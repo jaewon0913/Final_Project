@@ -3,12 +3,12 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias type="com.khfinal.mvc.~~" alias = "~~dto"/>
+		<typeAlias type="com.khfinal.mvc.member.dto.member_dto" alias = "memberdto"/>
 	</typeAliases>
 
 	<!-- resource : src/main/resources -->
 	<mappers>
-		<mapper resource="/sqls/mapper.xml"/>
+		<mapper resource="/sqls/membermapper.xml"/>
 	</mappers>
 
 </configuration>

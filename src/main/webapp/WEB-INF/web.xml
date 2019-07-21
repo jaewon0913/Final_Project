@@ -2,11 +2,55 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<!-- 시작페이지 설정 -->
+	<welcome-file-list>
+		<welcome-file>mainpage.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<!-- 타이틀설정 -->
+	<display-name>KHFinalProject</display-name>
+	<description>Team3 spring project</description>
+	
+	<!-- error-page 설정 -->
+	<error-page>
+	    <exception-type>java.lang.Throwable</exception-type>
+	    <location>/common/errorpage/error.do</location>
+	</error-page>
+	
+	<error-page>
+	    <exception-type>java.lang.Exception</exception-type>
+	    <location>/common/errorpage/error.do</location>
+	</error-page>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/common/errorpage/error.do</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/common/errorpage/error.do</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/common/errorpage/error.do</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/common/errorpage/error.do</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/common/errorpage/error.do</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/common/errorpage/error.do</location>
+	</error-page>
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/appServlet/applicationContext.xml</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -20,14 +64,17 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+			<param-value>
+				/WEB-INF/spring/appServlet/servlet-context.xml
+				/WEB-INF/spring/appServlet/aop-context.xml		
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
 	<!-- 한글 인코딩 -->
@@ -52,7 +99,7 @@
 	<!-- log filter -->
 	<filter>
 		<filter-name>logFilter</filter-name>
-		<filter-class>com.my.mvc.common.filter.LogFilter</filter-class>
+		<filter-class>com.khfinal.mvc.common.filter.LogFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>logFilter</filter-name>

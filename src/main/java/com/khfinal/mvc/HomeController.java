@@ -1,15 +1,19 @@
 package com.khfinal.mvc;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.khfinal.mvc.member.biz.member_biz;
+import com.khfinal.mvc.member.dto.member_dto;
 
 /**
  * Handles requests for the application home page.
@@ -17,25 +21,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	
+	@Autowired
+	private member_biz memberbiz;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@RequestMapping("error.do")
-	public String errorPage() {
-		return "error/errorPage";
+	@RequestMapping("/mainpage.do")
+	public String main() {
+		return "mainpage";
 	}
 	
-	@RequestMapping(value = "home.do", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	@RequestMapping("/login.do")
+	@ResponseBody
+	public Map<String, Boolean> login(String id, String pw, HttpSession session) {
+		member_dto memberdto = memberbiz.login(id,pw);
+		boolean loginchk = false;
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		if(memberdto != null) {
+			session.setAttribute("login", memberdto);
+			loginchk = true;
+		}
 		
-		String formattedDate = dateFormat.format(date);
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("loginchk", loginchk);
 		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+		return map;
 	}
 	
+	@RequestMapping("/insertform.do")
+	public String insertform() {
+		return "insertform";
+	}
 }

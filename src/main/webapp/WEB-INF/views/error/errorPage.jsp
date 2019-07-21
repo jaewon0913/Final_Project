@@ -7,18 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<div>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 	
-		<h3>기술적인 문제가 발생하였습니다.</h3><br/>
+	<div align = "center">
+		<h1>에러 발생!!!!!!!!!!!! 빨리 고쳐라~!~!~!~!~!~!~!</h1>
+		<hr/>
 		
-		<p>
+		
+		<h1>기술적인 문제가 발생하였습니다.</h1><br/>
+		
+		<h3>
 			존재하지 않는 주소를 입력하셨거나, 요청하신 페이지 주소가 변경, 삭제되어 찾을 수 없습니다.
 			이용에 불편을 드려 죄송합니다.
-		</p>
+		</h3>	
 	
 		<input type = "button" value = "이전페이지" onclick = "history.back()"/>
-	
+
 	</div>
 	
 </body>
