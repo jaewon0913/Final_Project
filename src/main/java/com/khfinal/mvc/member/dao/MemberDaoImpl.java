@@ -6,20 +6,20 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.khfinal.mvc.member.dto.member_dto;
+import com.khfinal.mvc.member.dto.MemberDto;
 
 @Repository
-public class member_dao_impl implements member_dao {
+public class MemberDaoImpl implements MemberDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public member_dto login(String id, String pw) {
+	public MemberDto login(String id, String pw) {
 		System.out.println("id : " + id);
 		System.out.println("pw : " + pw);
 		
-		member_dto memberdto = null;
+		MemberDto memberdto = null;
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		
@@ -32,13 +32,13 @@ public class member_dao_impl implements member_dao {
 	}
 
 	@Override
-	public int insert_member(member_dto dto) {
+	public int insert_member(MemberDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update_member(member_dto dto) {
+	public int update_member(MemberDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
