@@ -12,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.khfinal.mvc.member.biz.member_biz;
-import com.khfinal.mvc.member.dto.member_dto;
+import com.khfinal.mvc.member.biz.MemberBiz;
+import com.khfinal.mvc.member.dto.MemberDto;
 
 /**
  * Handles requests for the application home page.
@@ -22,7 +22,7 @@ import com.khfinal.mvc.member.dto.member_dto;
 public class HomeController {
 	
 	@Autowired
-	private member_biz memberbiz;
+	private MemberBiz memberbiz;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -34,7 +34,7 @@ public class HomeController {
 	@RequestMapping("/login.do")
 	@ResponseBody
 	public Map<String, Boolean> login(String id, String pw, HttpSession session) {
-		member_dto memberdto = memberbiz.login(id,pw);
+		MemberDto memberdto = memberbiz.login(id,pw);
 		boolean loginchk = false;
 		
 		if(memberdto != null) {

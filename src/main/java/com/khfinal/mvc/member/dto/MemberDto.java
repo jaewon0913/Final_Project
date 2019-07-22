@@ -1,6 +1,6 @@
 package com.khfinal.mvc.member.dto;
 
-public class member_dto {
+public class MemberDto {
 	private int member_seq;
 	private String member_id;
 	private String member_pw;
@@ -11,7 +11,7 @@ public class member_dto {
 	private String member_enabled;
 	private String member_regdate;
 	
-	public member_dto(int member_seq, String member_id, String member_pw, String member_name, String member_email,
+	public MemberDto(int member_seq, String member_id, String member_pw, String member_name, String member_email,
 			String member_phone, String member_address, String member_enabled, String member_regdate) {
 		this.member_seq = member_seq;
 		this.member_id = member_id;

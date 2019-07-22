@@ -8,7 +8,7 @@
 
 	<!-- resource : src/main/resources -->
 	<mappers>
-		<mapper resource="/sqls/membermapper.xml"/>
+		<mapper resource="/sqls/MemberMapper.xml"/>
 	</mappers>
 
 </configuration>

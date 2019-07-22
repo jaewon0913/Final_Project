@@ -3,27 +3,27 @@ package com.khfinal.mvc.member.biz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.khfinal.mvc.member.dao.member_dao;
-import com.khfinal.mvc.member.dto.member_dto;
+import com.khfinal.mvc.member.dao.MemberDao;
+import com.khfinal.mvc.member.dto.MemberDto;
 
 @Service
-public class member_biz_impl implements member_biz {
+public class MemberBizImpl implements MemberBiz {
 	
 	@Autowired
-	private member_dao memberdao;
+	private MemberDao memberdao;
 
 	@Override
-	public member_dto login(String id, String pw) {
+	public MemberDto login(String id, String pw) {
 		return memberdao.login(id,pw);
 	}
 
 	@Override
-	public int insert_member(member_dto dto) {
+	public int insert_member(MemberDto dto) {
 		return 0;
 	}
 
 	@Override
-	public int update_member(member_dto dto) {
+	public int update_member(MemberDto dto) {
 		return 0;
 	}
 
