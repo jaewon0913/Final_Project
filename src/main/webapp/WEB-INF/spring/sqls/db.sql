@@ -17,5 +17,5 @@ CREATE TABLE MEMBER(
 
 SELECT * FROM MEMBER;
 
-INSERT INTO MEMBER VALUES (MEMBERSEQ.NEXTVAL, 'admin', 'admin', 'Í¥ÄÎ¶¨Ïûê' , 'admin@admin.com', '010-1111-1111', 'ÏÑúÏö∏ Í∞ïÎÇ®Íµ¨', 'Y' , SYSDATE);
-INSERT INTO MEMBER VALUES (MEMBERSEQ.NEXTVAL, 'jaewon', '1111', 'Ìô©Ïû¨Ïõê' , 'jaewon@jaewon.com', '010-2222-2222', 'Ïù∏Ï≤ú Í≥ÑÏñëÍµ¨' , 'Y', SYSDATE);
+INSERT INTO MEMBER VALUES (MEMBERSEQ.NEXTVAL, 'admin', 'admin', '∞¸∏Æ¿⁄' , 'admin@admin.com', '010-1111-1111', 'º≠øÔ ∞≠≥≤±∏', 'Y' , SYSDATE);
+INSERT INTO MEMBER VALUES (MEMBERSEQ.NEXTVAL, 'jaewon', '1111', '»≤¿Áø¯' , 'jaewon@jaewon.com', '010-2222-2222', '¿Œ√µ ∞ËæÁ±∏' , 'Y', SYSDATE);

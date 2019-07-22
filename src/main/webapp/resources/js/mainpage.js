@@ -22,7 +22,7 @@ function login(){
 			success : function(msg){
 				if(msg.loginchk == true){
 					alert(idVal + "님 환영합니다");
-					location.href = "mainpage.do";
+					location.href = "/mainpage.do";
 				} else {
 					alert("ID 와 PW를 확인해주세요!");
 					location.href = "history.back()";

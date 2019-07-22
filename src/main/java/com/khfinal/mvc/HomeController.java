@@ -28,9 +28,9 @@ public class HomeController {
 	
 	@RequestMapping("/mainpage.do")
 	public String main() {
-		return "mainpage";
+		return "redirect:mainpage.jsp";
 	}
-	
+	 
 	@RequestMapping("/login.do")
 	@ResponseBody
 	public Map<String, Boolean> login(String id, String pw, HttpSession session) {
@@ -46,6 +46,13 @@ public class HomeController {
 		map.put("loginchk", loginchk);
 		
 		return map;
+	}
+	
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.setAttribute("login", null);
+		
+		return "redirect:mainpage.jsp";
 	}
 	
 	@RequestMapping("/insertform.do")
