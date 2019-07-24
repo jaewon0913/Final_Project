@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="membermapper">
+	
+	<select id = "login" parameterType = "map" resultType = "memberdto">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id} AND MEMBER_PW = #{pw}
+	</select>
+	
+	<select id="detail" parameterType="map" resultType="memberdto">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id}
+	</select>
+	
+	<update id="update" parameterType="memberdto">
+		UPDATE MEMBER SET MEMBER_PW = #{pw}, MEMBER_PHONE = #{phone},
+		MEMBER_EMAIL = #{email}, MEMBER_ADDRESS = #{address},
+		MEMBER_SUBWAY = #{subway} 
+		WHERE MEMBER_ID = #{id}
+	</update>
+	
+</mapper>
