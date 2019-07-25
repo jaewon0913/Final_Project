@@ -19,7 +19,7 @@ public class MemberBIzImpl implements MemberBiz {
 
 	@Override
 	public int insert_member(MemberDto dto) {
-		return 0;
+		return memberdao.insert_member(dto);
 	}
 
 	@Override
@@ -32,4 +32,8 @@ public class MemberBIzImpl implements MemberBiz {
 		return memberdao.detail_member(id);
 	}
 
+	@Override
+	public boolean idChk(String member_id) {
+		return memberdao.idChk(member_id);
+	}
 }
