@@ -1,6 +1,7 @@
 package com.khfinal.mvc.member.dao;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,21 +34,22 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insert_member(MemberDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = sqlSession.insert(namespace+"insert",dto);
+		
+		return res;
 	}
 
 	@Override
 	public int update_member(MemberDto dto) {
 		int res = 0;
-		System.out.println("넘어왔니??");
+		System.out.println("�꽆�뼱�솕�땲??");
 		try {
 			res = sqlSession.update(namespace+"update", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("넘어와줘라 제발");
-		System.out.println("아아아아아" + res);
+		System.out.println("�꽆�뼱��以섎씪 �젣諛�");
+		System.out.println("�븘�븘�븘�븘�븘" + res);
 		return res;
 	}
 
@@ -64,6 +66,22 @@ public class MemberDaoImpl implements MemberDao {
 		memberdto = sqlSession.selectOne(namespace + "detail", map);
 
 		return memberdto;
+	}
+	
+	@Override
+	public boolean idChk(String member_id) {
+		boolean idnotused = true;
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		
+		MemberDto memberdto = new MemberDto();
+		memberdto = sqlSession.selectOne(namespace+"idChk",map);
+		if(memberdto == null) {
+			idnotused = true;
+		}else {
+			idnotused = false;
+		}
+		return idnotused;
 	}
 
 }

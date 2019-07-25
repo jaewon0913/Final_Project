@@ -17,4 +17,14 @@
 		WHERE MEMBER_ID = #{id}
 	</update>
 	
+	<insert id="insert" parameterType="memberdto">
+		INSERT INTO MEMBER 
+		VALUES(#{member_id},#{member_pw},#{member_name},#{member_phone},#{member_address},#{member_subway},#{member_email},'Y','USER',SYSDATE)
+	</insert>
+	
+	<select id="idChk" parameterType="map" resultType="memberdto">
+		SELECT MEMBER_ID 
+		FROM MEMBER
+		WHERE MEMBER_ID=#{member_id} AND MEMBER_ENABLED='Y'
+	</select>
 </mapper>
