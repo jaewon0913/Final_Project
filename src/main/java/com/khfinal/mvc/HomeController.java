@@ -56,6 +56,11 @@ public class HomeController {
 
 		return "redirect:mainpage.jsp";
 	}
+	
+	@RequestMapping("/custom.do")
+	public String custom() {
+		return "custom/customPage";
+	}
 
 	@RequestMapping("/insertform.do")
 	public String insertform() {

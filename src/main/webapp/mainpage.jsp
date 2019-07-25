@@ -15,11 +15,10 @@
 <title>main</title>
 
 <!-- Bootstrap core CSS -->
-<link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
+<link href="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-
 <!-- Custom styles for this template -->
-<link href="resources/bootstrap/css/small-business.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
 
 
 
@@ -41,7 +40,7 @@
 		<div class="row align-items-center my-5">
 			<div class="col-lg-7">
 				<img class="img-fluid rounded mb-4 mb-lg-0"
-					src="resources/bootstrap/image/lunchbox1.jpg" alt="">
+					src="${pageContext.request.contextPath }/resources/bootstrap/image/lunchbox1.jpg" alt="">
 			</div>
 			<!-- /.col-lg-8 -->
 			<div class="col-lg-5">
@@ -133,9 +132,9 @@
 
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="resources/bootstrap/vendor/jquery/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/bootstrap/vendor/jquery/jquery.min.js"></script>
 	<script
-		src="resources/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="resources/js/mainpage.js"></script>
 	<div id="loginform">
 		<table align="center">
