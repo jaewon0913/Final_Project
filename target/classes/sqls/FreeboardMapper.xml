@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="freeboard">
+
+	<select id = "selectList" resultType="FreeboardDto">
+		SELECT MEMBER_ID, MEMBER_NAME, FREE_TITLE, FREE_CONTENT, FREE_VIEWS, FREE_REGDATE, MEMBER_LEVEL
+		FROM FREEBOARD
+	
+	</select>
+	
+	<select id = "slectOne" parameterType="map" resultType="FreeboardDto">
+		SELECT MEMBER_ID, MEMBER_NAME, FREE_TITLE, FREE_CONTENT, FREE_VIEWS, FREE_REGDATE, MEMBER_LEVEL
+		FROM FREEBOARD
+		WHERE MEMBER_ID = #{member_id}
+	</select>
+	
+	<insert id = "insert" parameterType="FreeboardDto">
+	
+	</insert>
+	
+	<update id = "update" parameterType="FreeboardDto">
+	
+	</update>
+	
+	<delete id = "delete" parameterType="String">
+	
+	</delete>
+	
+
+
+ 
+</mapper>
