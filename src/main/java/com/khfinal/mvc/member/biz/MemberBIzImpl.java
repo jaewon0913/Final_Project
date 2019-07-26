@@ -36,4 +36,9 @@ public class MemberBIzImpl implements MemberBiz {
 	public boolean idChk(String member_id) {
 		return memberdao.idChk(member_id);
 	}
+
+	@Override
+	public boolean emailChk(String member_email) {
+		return memberdao.emailChk(member_email);
+	}
 }
