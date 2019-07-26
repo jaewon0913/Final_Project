@@ -32,10 +32,10 @@ public class HomeController {
 	public String main() {
 		return "redirect:mainpage.jsp";
 	}
-	
 	@RequestMapping("/custom.do")
 	public String custom() {
 		return "custom/customPage";
 	}
+
 
 }
