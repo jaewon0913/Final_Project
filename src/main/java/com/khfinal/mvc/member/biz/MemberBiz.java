@@ -10,4 +10,5 @@ public interface MemberBiz {
 	public MemberDto detail_member(String id);		//	�쉶�썝�젙蹂� �씫�뼱�삤湲�
 	
 	public boolean idChk(String member_id);
+	public boolean emailChk(String member_email);
 }

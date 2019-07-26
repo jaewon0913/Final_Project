@@ -27,4 +27,10 @@
 		FROM MEMBER
 		WHERE MEMBER_ID=#{member_id} AND MEMBER_ENABLED='Y'
 	</select>
+	
+	<select id="emailChk" parameterType="map" resultType="memberdto">
+		SELECT MEMBER_EMAIL
+		FROM MEMBER
+		WHERE MEMBER_EMAIL = #{member_email}
+	</select>
 </mapper>

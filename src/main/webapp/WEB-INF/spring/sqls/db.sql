@@ -15,6 +15,8 @@ CREATE TABLE MEMBER(
 
 SELECT * FROM MEMBER;
 
+DELETE FROM MEMBER WHERE MEMBER_ID = 'qq';
+
 INSERT INTO MEMBER VALUES ('admin', 'admin', '정민호', '010-4933-2976', '경기도 성남시', '복정역', '1212081@naver.com', 'Y', 'admin' ,SYSDATE);
 
 

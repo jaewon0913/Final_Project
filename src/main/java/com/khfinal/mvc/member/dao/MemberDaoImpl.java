@@ -84,4 +84,19 @@ public class MemberDaoImpl implements MemberDao {
 		return idnotused;
 	}
 
+	@Override
+	public boolean emailChk(String member_email) {
+		boolean emailnotused = true;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_email", member_email);
+		MemberDto memberdto = new MemberDto();
+		memberdto = sqlSession.selectOne(namespace+"emailChk",map);
+		if(memberdto == null) {
+			emailnotused = true;//생성가능
+		}else {
+			emailnotused = false;
+		}
+		return emailnotused;
+	}
+
 }
