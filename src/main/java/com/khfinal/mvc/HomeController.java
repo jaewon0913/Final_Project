@@ -32,73 +32,10 @@ public class HomeController {
 	public String main() {
 		return "redirect:mainpage.jsp";
 	}
-
-//	@RequestMapping("/login.do")
-//	@ResponseBody
-//	public Map<String, Boolean> login(String id, String pw, HttpSession session) {
-//		MemberDto memberdto = memberbiz.login(id, pw);
-//		boolean loginchk = false;
-//
-//		if (memberdto != null) {
-//			session.setAttribute("login", memberdto);
-//			loginchk = true;
-//		}
-//
-//		Map<String, Boolean> map = new HashMap<String, Boolean>();
-//		map.put("loginchk", loginchk);
-//
-//		return map;
-//	}
-
-//	@RequestMapping("/logout.do")
-//	public String logout(HttpSession session) {
-//		session.setAttribute("login", null);
-//
-//		return "redirect:mainpage.jsp";
-//	}
-
-//	@RequestMapping("/insertform.do")
-//	public String insertform() {
-//		return "insertform";
-//	}
-//
-//		if (memberdto != null) {
-//			session.setAttribute("login", memberdto);
-//			loginchk = true;
-//		}
-//
-//		Map<String, Boolean> map = new HashMap<String, Boolean>();
-//		map.put("loginchk", loginchk);
-//
-//		return map;
-//	}
-//
-//	@RequestMapping("/logout.do")
-//	public String logout(HttpSession session) {
-//		session.setAttribute("login", null);
-//
-//		return "redirect:mainpage.jsp";
-//	}	
 	@RequestMapping("/custom.do")
 	public String custom() {
 		return "custom/customPage";
 	}
 
-//	@RequestMapping("/insertform.do")
-//	public String insertform() {
-//		return "insertform";
-//	}
-//
-//	@RequestMapping("/mypage.do")
-//	public String mypage() {
-//		return "MemberMypage";
-//	}
-
-//	@RequestMapping("/detail.do")
-//	public String detail(Model model, String id, HttpSession session) {
-//		MemberDto memberdto = (MemberDto) session.getAttribute("login");
-//		model.addAttribute("memberdto", memberdto);
-//		return "MemberUpdate";
-//	}
 
 }
