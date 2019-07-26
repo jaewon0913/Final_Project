@@ -35,79 +35,89 @@ public class MailController {
 
     @RequestMapping("/mailSend.do")
     @ResponseBody
-    public void sendMail(String member_email,HttpServletRequest request, HttpServletResponse response) {
-    	//mail server 설정
-        String host = "smtp.naver.com";
-        String user = "asdaldh"; //자신의 네이버 계정
-        String password = "gmltn0911";//자신의 네이버 패스워드
-        
-        //메일 받을 주소
-        String to_email = member_email;
-        
-        //SMTP 서버 정보를 설정한다.
-        Properties props = new Properties();
-        props.put("mail.smtp.host", host);
-        props.put("mail.smtp.port", 465);
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.ssl.enable", "true");
-        
-        //인증 번호 생성기
-        StringBuffer temp =new StringBuffer();
-        Random rnd = new Random();
-        for(int i=0;i<10;i++)
-        {
-            int rIndex = rnd.nextInt(3);
-            switch (rIndex) {
-            case 0:
-                // a-z
-                temp.append((char) ((int) (rnd.nextInt(26)) + 97));
-                break;
-            case 1:
-                // A-Z
-                temp.append((char) ((int) (rnd.nextInt(26)) + 65));
-                break;
-            case 2:
-                // 0-9
-                temp.append((rnd.nextInt(10)));
-                break;
-            }
-        }
-        String AuthenticationKey = temp.toString();
-        System.out.println(AuthenticationKey);
-        
-        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(user,password);
-            }
-        });
-        
-        //email 전송
-        try {
-            MimeMessage msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(user, "너도나도"));
-            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
-            
-            //메일 제목
-            msg.setSubject("희수의 mail TEST (title)");
-            //메일 내용
-            msg.setText("인증 번호는 :"+temp);
-            
-            Transport.send(msg);
-            System.out.println("이메일 전송");
-            
-        }catch (Exception e) {
-            e.printStackTrace();// TODO: handle exception
-        }
-        HttpSession saveKey = request.getSession();
-        saveKey.setAttribute("AuthenticationKey", AuthenticationKey);//세션에 인증번호 저장
-        
-//        Map<String, String> map = new HashMap<String, String>();
-//        map.put("AuthenticationKey", AuthenticationKey);
-//        System.out.println("map에 있는 인증번호: "+map.get("AuthenticationKey"));
-        //패스워드 바꿀때 뭘 바꿀지 조건에 들어가는 id
-//        request.setAttribute("id", memberId);
-//        request.getRequestDispatcher("/views/login_myPage/searchPasswordEnd.jsp").forward(request, response);
+    public Map<String, Boolean> sendMail(String member_email,HttpServletRequest request, HttpServletResponse response) {
+    	Boolean emailnotused = false;
+    	Map<String, Boolean> map = new HashMap<String, Boolean>();
+    	emailnotused = memberbiz.emailChk(member_email);
+    	if(emailnotused == false) {
+    		map.put("emailnotused", emailnotused);
+    		
+    	}else if(emailnotused == true) {
     	
+	    	//mail server 설정
+	        String host = "smtp.naver.com";
+	        String user = "asdaldh"; //자신의 네이버 계정
+	        String password = "gmltn0911";//자신의 네이버 패스워드
+	        
+	        //메일 받을 주소
+	        String to_email = member_email;
+	        
+	        //SMTP 서버 정보를 설정한다.
+	        Properties props = new Properties();
+	        props.put("mail.smtp.host", host);
+	        props.put("mail.smtp.port", 465);
+	        props.put("mail.smtp.auth", "true");
+	        props.put("mail.smtp.ssl.enable", "true");
+	        
+	        //인증 번호 생성기
+	        StringBuffer temp =new StringBuffer();
+	        Random rnd = new Random();
+	        for(int i=0;i<10;i++)
+	        {
+	            int rIndex = rnd.nextInt(3);
+	            switch (rIndex) {
+	            case 0:
+	                // a-z
+	                temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+	                break;
+	            case 1:
+	                // A-Z
+	                temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+	                break;
+	            case 2:
+	                // 0-9
+	                temp.append((rnd.nextInt(10)));
+	                break;
+	            }
+	        }
+	        String AuthenticationKey = temp.toString();
+	        System.out.println(AuthenticationKey);
+	        
+	        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+	            protected PasswordAuthentication getPasswordAuthentication() {
+	                return new PasswordAuthentication(user,password);
+	            }
+	        });
+	        
+	        //email 전송
+	        try {
+	            MimeMessage msg = new MimeMessage(session);
+	            msg.setFrom(new InternetAddress(user, "너도나도"));
+	            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
+	            
+	            //메일 제목
+	            msg.setSubject("희수의 mail TEST (title)");
+	            //메일 내용
+	            msg.setText("인증 번호는 :"+temp);
+	            
+	            Transport.send(msg);
+	            System.out.println("이메일 전송");
+	            
+	        }catch (Exception e) {
+	            e.printStackTrace();// TODO: handle exception
+	        }
+	        HttpSession saveKey = request.getSession();
+	        saveKey.setAttribute("AuthenticationKey", AuthenticationKey);//세션에 인증번호 저장
+	        
+	//        Map<String, String> map = new HashMap<String, String>();
+	//        map.put("AuthenticationKey", AuthenticationKey);
+	//        System.out.println("map에 있는 인증번호: "+map.get("AuthenticationKey"));
+	        //패스워드 바꿀때 뭘 바꿀지 조건에 들어가는 id
+	//        request.setAttribute("id", memberId);
+	//        request.getRequestDispatcher("/views/login_myPage/searchPasswordEnd.jsp").forward(request, response);
+	    	map.put("emailnotused", emailnotused);
+    	}
+    	return map;
     }
     
     @RequestMapping("/mailChk.do")

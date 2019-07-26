@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,6 +23,11 @@ public class LoginController {
 	private MemberBiz memberbiz;
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
+//	@RequestMapping("/mainpage.do")
+//	public String main() {
+//		return "redirect:mainpage.jsp";
+//	}
 	 
 	@RequestMapping("/login.do")
 	@ResponseBody
@@ -69,29 +73,5 @@ public class LoginController {
 		boolean idnotused = memberbiz.idChk(member_id);
 		model.addAttribute("idnotused", idnotused);
 		return "idchk";
-	}
-	
-	@RequestMapping("/mypage.do")
-	public String mypage() {
-		return "MemberMypage";
-	}
-
-	@RequestMapping("/detail.do")
-	public String detail(Model model, String id, HttpSession session) {
-		MemberDto memberdto = (MemberDto) session.getAttribute("login");
-		model.addAttribute("memberdto", memberdto);
-		return "MemberUpdate";
-	}
-	
-	@RequestMapping("/update.do")
-	public String update(@ModelAttribute MemberDto dto) {
-		System.err.println("�뾽�뜲�씠�듃�븯�옄");
-		int res = memberbiz.update_member(dto);
-		System.out.println("�뾽�뜲�씠�듃寃곌낵 : " + res);
-		if(res > 0) {
-			return "redirect:mypage.do";
-		} else {
-			return "error/ErrorPage";
-		}
 	}
 }

@@ -29,13 +29,20 @@
 	
 	function emailSend(){//메일보내기
 		var doc = document.getElementsByName("member_email")[0];
-		if(doc.value != null){
+	
+		if(doc.value != ""){
 			$.ajax({
 				url:"mailSend.do",
 				type:"post",
 				data:"member_email="+doc.value,
 				success:function(msg){
-					
+// 					alert(msg.emailnotused);
+					if(msg.emailnotused == true){
+						alert("인증번호가 발송 되었습니다.");
+					} else if(msg.emailnotused == false){
+						alert("중복된 이메일입니다.");				
+						doc.value="";
+					}
 				},error:function(){
 					alert("통신실패");
 				}
@@ -59,7 +66,6 @@
 						document.getElementsByName("member_email")[0].title="y";
 						document.getElementById("emailresult").innerHTML="인증번호가 일치합니다.";
 					}else if(msg.emailchk_res == false){
-						document.getElementsByName("member_email")[0].title="n";
 						document.getElementById("emailresult").innerHTML="인증번호가 일치하지 않습니다.";
 					}
 					

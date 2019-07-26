@@ -28,7 +28,7 @@ public class MemberBIzImpl implements MemberBiz {
 	}
 
 	@Override
-	public MemberDto detail_member(String id) {
+	public int detail_member(String id) {
 		return memberdao.detail_member(id);
 	}
 
@@ -36,4 +36,10 @@ public class MemberBIzImpl implements MemberBiz {
 	public boolean idChk(String member_id) {
 		return memberdao.idChk(member_id);
 	}
+
+	@Override
+	public boolean emailChk(String member_email) {
+		return memberdao.emailChk(member_email);
+	}
+
 }

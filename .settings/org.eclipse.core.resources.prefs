@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/java/com/khfinal/mvc/LoginController.java=UTF-8
+encoding//src/main/java/com/khfinal/mvc/common/filter/LogFilter.java=UTF-8
 encoding//src/main/java/com/khfinal/mvc/member/biz/MemberBiz.java=UTF-8
 encoding//src/main/java/com/khfinal/mvc/member/dao/MemberDao.java=UTF-8
-encoding//src/main/java/com/khfinal/mvc/member/dao/MemberDaoImpl.java=UTF-8
+encoding//src/main/resources/properties/db.properties=UTF-8

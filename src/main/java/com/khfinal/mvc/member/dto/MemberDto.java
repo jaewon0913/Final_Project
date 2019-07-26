@@ -1,31 +1,28 @@
 package com.khfinal.mvc.member.dto;
 
-import java.sql.Date;
-
 public class MemberDto {
 	private String member_id;
 	private String member_pw;
 	private String member_name;
+	private String member_email;
 	private String member_phone;
 	private String member_address;
 	private String member_subway;
-	private String member_email;
 	private String member_enabled;
 	private String member_level;
-	private Date member_regdate;
+	private String member_regdate;
 	
-	public MemberDto() {} 
+	public MemberDto() {}
 	
-	public MemberDto(String member_id, String member_pw, String member_name, String member_phone, String member_address,
-			String member_subway, String member_email, String member_enabled, String member_level,
-			Date member_regdate) {
+	public MemberDto(String member_id, String member_pw, String member_name, String member_email,
+			String member_phone, String member_address,String member_subway, String member_enabled,String member_level,String member_regdate) {
 		this.member_id = member_id;
 		this.member_pw = member_pw;
 		this.member_name = member_name;
+		this.member_email = member_email;
 		this.member_phone = member_phone;
 		this.member_address = member_address;
 		this.member_subway = member_subway;
-		this.member_email = member_email;
 		this.member_enabled = member_enabled;
 		this.member_level = member_level;
 		this.member_regdate = member_regdate;
@@ -55,6 +52,14 @@ public class MemberDto {
 		this.member_name = member_name;
 	}
 
+	public String getMember_email() {
+		return member_email;
+	}
+
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
+	}
+
 	public String getMember_phone() {
 		return member_phone;
 	}
@@ -79,14 +84,6 @@ public class MemberDto {
 		this.member_subway = member_subway;
 	}
 
-	public String getMember_email() {
-		return member_email;
-	}
-
-	public void setMember_email(String member_email) {
-		this.member_email = member_email;
-	}
-
 	public String getMember_enabled() {
 		return member_enabled;
 	}
@@ -103,14 +100,13 @@ public class MemberDto {
 		this.member_level = member_level;
 	}
 
-	public Date getMember_regdate() {
+	public String getMember_regdate() {
 		return member_regdate;
 	}
 
-	public void setMember_regdate(Date member_regdate) {
+	public void setMember_regdate(String member_regdate) {
 		this.member_regdate = member_regdate;
 	}
-	
 	
 	
 	
