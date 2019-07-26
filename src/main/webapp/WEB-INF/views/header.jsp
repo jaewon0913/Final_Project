@@ -15,18 +15,19 @@
 <title>main</title>
 
 <!-- Bootstrap core CSS -->
-<link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
+<link href="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-
 <!-- Custom styles for this template -->
-<link href="resources/bootstrap/css/small-business.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
 
+<script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
 </head>
 
 <body>
 	<header>
 		<nav class="header navbar navbar-expand-lg navbar-dark fixed-top">
-			<img alt="너도나도" src="resources/bootstrap/image/logo.png" onclick="#"
+			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="#"
 				style="width: 50px; height: 50px;">
 			<div style="margin-left: 70%">
 				<c:choose>
@@ -64,7 +65,7 @@
 						<li class="nav-item active"><a class="nav-link" href="#">도시락
 								주문 <span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">커스텀 도시락
+						<li class="nav-item"><a class="nav-link" href="custom.do">커스텀 도시락
 								주문</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">주간 영양정보</a>
 						</li>
