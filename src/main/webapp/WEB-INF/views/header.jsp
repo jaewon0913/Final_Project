@@ -27,7 +27,7 @@
 <body>
 	<header>
 		<nav class="header navbar navbar-expand-lg navbar-dark fixed-top">
-			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="mainpage.do"
+			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'"
 				style="width: 50px; height: 50px;">
 			<div style="margin-left: 70%">
 				<c:choose>

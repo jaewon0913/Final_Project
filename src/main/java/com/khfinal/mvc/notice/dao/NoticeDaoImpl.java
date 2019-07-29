@@ -4,9 +4,17 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.khfinal.mvc.notice.dto.NoticeDto;
 
+@Repository
 public class NoticeDaoImpl implements NoticeDao {
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
 	
 	//전체보기
 	@Override

@@ -33,12 +33,12 @@ public class NoticeController {
 		return "noticeboard/notice_selectlist";
 	}
 
-	@RequestMapping("/insertform.do")
+	@RequestMapping("/notice_insertform.do")
 	public String insertform() {
 		return "insertform";
 	}
 
-	@RequestMapping("/insert.do")
+	@RequestMapping("/notice_insert.do")
 	public String notice_insert() {
 		return "notice_insert";
 	}
