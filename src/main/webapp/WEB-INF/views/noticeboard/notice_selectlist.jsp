@@ -43,7 +43,7 @@
 				</c:choose>
 				<tr>
 					<td colspan="4" align="right"><input class="btn" type="button" value="글쓰기"
-						onclick="location.href='notice_insert.do'"></td>
+						onclick="location.href='notice_insertform.do'"></td>
 				</tr>
 			</table>
 

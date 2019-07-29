@@ -7,51 +7,37 @@
 <title>Insert title here</title>
 
 <style>
-	.custombox{
-		width: 230px;
-		height: 330px;
+ 	.customImg{
+		width: 150px;
+		height: 200px;
 		margin: 10px;
 		padding: 10px;
 		border: solid 15px #8B4513;
 		float: left;
 	}
 	
- 	.boxImg{
-		width :180px; 
-		height : 280px;
+ 	.customContent{
+		width :100px; 
+		height : 150px;
 	}
 	
-	.dropBox{
-		width: 230px;
-		height: 330px;
+	.customDrop{
+		width: 150px;
+		height: 200px;
 		margin: 10px;
 		padding: 10px;
 		border: solid 15px #8B4513;
 		float: left;
 	}
-	#dropHere {
-	    width:400px;
-	    height: 400px;
-	    border: dotted 1px black;
-	}
-			.abc {
-			width: 180px;
-			height: 280px;
-			margin: 10px;
-			padding: 10px;
-			border: solid 15px #8B4513;
-			float: left;
-		}
 </style>
 
 </head>
 
 <!-- Bootstrap core CSS -->
-<!-- <link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet"> -->
+<link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<!-- <link href="resources/bootstrap/css/small-business.css" rel="stylesheet">
- -->
+<link href="resources/bootstrap/css/small-business.css" rel="stylesheet">
+
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
@@ -60,68 +46,64 @@
 <body>
 
 	<!-- header.jsp -->
-	<%-- <%@ include file="/WEB-INF/views/header.jsp"%> --%>
+	<%@ include file="/WEB-INF/views/header.jsp"%>
 	
 	<!-- 커스텀 페이지 -->
 	<h1>커스텀 페이지</h1>
 	<hr/>
-	<h3>식판을 선택해 주세요(구현중)</h3>
-	<hr/>
 
 	<h1>드래그 앤 드롭을 이용한 객체의 이동</h1>
-
-	<p>모나리자 그림을 드래그해서 옆의 사각형으로 옮겨보세요!</p>
-
-	<div class = "abc" ondrop="drop(event)" ondragover="dragEnter(event)">
-		<img id="monalisa" width="180" height="280" src="${pageContext.request.contextPath }/resources/etc/image/img1.jpg" draggable="true" ondragstart="drag(event)">
-	</div>
-	<div class = "abc" ondrop="drop(event)" ondragover="dragEnter(event)"></div>
-
-	<script>
-		function dragEnter(ev) {
-			ev.preventDefault();
-		}
-
-		function drag(ev) {
-			ev.dataTransfer.setData("text", ev.target.id);
-		}
-
-		function drop(ev) {
-			ev.preventDefault();
-			var data = ev.dataTransfer.getData("text");
-			ev.target.appendChild(document.getElementById(data));
-		}
-	</script>
-	
-		<hr style = "clear : both" />
-	
-	
 	<div>
-		<div class="custombox">
-			<img class="boxImg" src="${pageContext.request.contextPath }/resources/etc/image/img1.jpg">
+		<h5>식판을 선택해 주세요</h5>
+		<input type = "image" src = "${pageContext.request.contextPath }/resources/etc/image/sikpan1.png" style = "width : 100px; height : 100px;" onclick = "sikpanChange(3)"/>
+		<input type = "image" src = "${pageContext.request.contextPath }/resources/etc/image/sikpan2.jpeg" style = "width : 100px; height : 100px;" onclick = "sikpanChange(4)"/>
+		<input type = "image" src = "${pageContext.request.contextPath }/resources/etc/image/sikpan3.jpeg" style = "width : 100px; height : 100px;" onclick = "sikpanChange(5)"/>
+	</div>
+
+	<!-- 반찬  -->
+	<div>
+		<p>반찬</p>
+		<div class="customImg" >
+			<img name = "dish1" id = "sideDish1" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img1.jpg">
 	    </div>
-	    <div class="custombox">
-			<img class="boxImg" src="${pageContext.request.contextPath }/resources/etc/image/img2.jpg">
+	    <div class="customImg" >
+			<img name = "dish2" id = "sideDish2" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img2.jpg">
 	    </div>
- 	    <div class="custombox">
-			<img class="boxImg" src="${pageContext.request.contextPath }/resources/etc/image/img3.jpg">
+	    <div class="customImg" >
+			<img name = "dish3" id = "sideDish3" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img3.jpg">
 	    </div>
-	    	<div class="custombox">
-			<img class="boxImg" src="${pageContext.request.contextPath }/resources/etc/image/img4.jpg">
+	    <div class="customImg" >
+			<img name = "dish4" id = "sideDish4" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img4.jpg">
 	    </div>
 	</div>
 	
 	<hr style = "clear : both" />
+	<!-- 반찬 드래그 하는 곳 -->
+	<c:choose>
+		<c:when test="${count eq 3}">
+			<div class='customDrop test'></div>
+			<div class='customDrop test'></div>
+			<div class='customDrop test'></div>
+		</c:when>
+		<c:when test="${count eq 4 }">
+			<div class='customDrop test'></div>
+			<div class='customDrop test'></div>
+			<div class='customDrop test'></div>
+			<div class='customDrop test'></div>
+		</c:when>
+		<c:otherwise>
+			<div class='customDrop test'></div>
+			<div class='customDrop test'></div>
+			<div class='customDrop test'></div>
+			<div class='customDrop test'></div>
+			<div class='customDrop test'></div>		
+		</c:otherwise>
+	</c:choose>
 	
-	<div>
-	    <div class="dropBox">	
-	    </div>
-	    <div class="dropBox">
-	    </div>
-	    <div class="dropBox">
-	    </div>
-	    <div class="dropBox">
-	    </div>
+	<hr style = "clear : both" />
+	
+	<div align = "center">
+		<input type = "button" onclick = "order(${count })" value = "주문" />
 	</div>
 </body>
 </html>

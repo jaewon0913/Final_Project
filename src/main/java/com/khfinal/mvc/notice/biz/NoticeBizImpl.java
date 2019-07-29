@@ -2,11 +2,20 @@ package com.khfinal.mvc.notice.biz;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import javax.servlet.http.HttpSession;
 
 import com.khfinal.mvc.notice.dto.NoticeDto;
+import com.khfinal.mvc.notice.dao.NoticeDao;
 
+
+@Service
 public class NoticeBizImpl implements NoticeBiz {
+	
+	@Autowired
+	private NoticeDao noticedao;
 
 	@Override
 	public List<NoticeDto> NoticeSelectlist() {

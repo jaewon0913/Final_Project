@@ -16,6 +16,6 @@ public class ErrorController {
 	
 	@RequestMapping("/error.do")
 	public String errorPage() {
-		return "error/errorPage";
+		return "error/ErrorPage";
 	}
 }
