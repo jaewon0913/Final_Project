@@ -117,9 +117,7 @@ public class LoginController {
 			return "error/ErrorPage";
 		}
 	}
-	
-	
-	//Captcha
+//Captcha
 	@ResponseBody
 	@RequestMapping(value = "VerifyRecaptcha.do", method = RequestMethod.POST)
 	public int VerifyRecaptcha(HttpServletRequest request) {

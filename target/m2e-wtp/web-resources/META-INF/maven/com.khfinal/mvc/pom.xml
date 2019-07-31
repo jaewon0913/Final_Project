@@ -200,8 +200,9 @@
             <artifactId>spring-context-support</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
-        
-        <!-- 구글 리캡챠 -->
+		
+		
+		<!-- 구글 리캡챠 -->
 		<dependency>
 			<groupId>net.tanesha.recaptcha4j</groupId>
 			<artifactId>recaptcha4j</artifactId>
@@ -252,7 +253,6 @@
 		    <artifactId>spring-security-taglibs</artifactId>
 		    <version>4.2.1.RELEASE</version>
 		</dependency>
-		   
 	</dependencies>
     <build>
         <plugins>

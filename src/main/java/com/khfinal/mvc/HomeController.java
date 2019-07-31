@@ -40,6 +40,4 @@ public class HomeController {
 	public String loginmain() {
 		return "loginMain";
 	}
-
-
 }
