@@ -34,7 +34,11 @@ public class HomeController {
 	}
 	@RequestMapping("/custom.do")
 	public String custom() {
-		return "custom/customPage";
+		return "custom/CustomPage";
+	}
+	@RequestMapping("/chat.do")
+	public String chat() {
+		return "chat/chat";
 	}
 	@RequestMapping("/loginMain.do")
 	public String loginmain() {
