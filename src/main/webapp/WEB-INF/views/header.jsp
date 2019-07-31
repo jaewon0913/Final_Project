@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="utf-8">
 
@@ -26,21 +29,20 @@
 
 <body>
 	<header>
-	<input type = "button" value = "채팅방으로" onclick = "location.href='chat.do'"/>
-	
 		<nav class="header navbar navbar-expand-lg navbar-dark fixed-top">
-			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'"
+			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="#"
 				style="width: 50px; height: 50px;">
 			<div style="margin-left: 70%">
-				<c:choose>
-					<c:when test="${empty login.member_id }">
+				
+					<sec:authorize access="isAnonymous()">
 						<div class="log" style="float: right;">
-							<button class="loginbutton btn" onclick="loginform()">로그인</button>
+							<button class="loginbutton btn" onclick="location.href='loginMain.do'">로그인</button>
 							<button class="insertbutton btn"
 								onclick="location.href='insertform.do'">회원가입</button>
 						</div>
-					</c:when>
-					<c:otherwise>
+					</sec:authorize>
+					
+					<sec:authorize access="isAuthenticated()">
 						<div class="log">
 							<span class="text">${login.member_id } 님</span>
 							<button class="mypagebutton btn"
@@ -48,8 +50,7 @@
 							<button class="logoutbutton btn"
 								onclick="location.href='logout.do'">로그아웃</button>
 						</div>
-					</c:otherwise>
-				</c:choose>
+					</sec:authorize>
 			</div>
 		</nav>
 
