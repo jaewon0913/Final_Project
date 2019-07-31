@@ -34,11 +34,12 @@ public class HomeController {
 	}
 	@RequestMapping("/custom.do")
 	public String custom() {
-		return "custom/CustomPage";
+		return "custom/customPage";
 	}
-	@RequestMapping("/chat.do")
-	public String chat() {
-		return "chat/chat";
+	@RequestMapping("/loginMain.do")
+	public String loginmain() {
+		return "loginMain";
 	}
+
 
 }
