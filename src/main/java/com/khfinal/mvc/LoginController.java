@@ -1,8 +1,10 @@
 package com.khfinal.mvc;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,10 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
+import com.khfinal.mvc.member.etc.VerifyRecaptcha;
 
 @Controller
 public class LoginController {
@@ -40,6 +44,23 @@ public class LoginController {
 		map.put("loginchk", loginchk);
 		
 		return map;
+	}
+	
+	@RequestMapping("/kakaologin.do")
+	public String kakaologin(String id, String name,HttpSession session,Model model){
+		Boolean idchk = false;
+		idchk = memberbiz.idChk(id);//가입가능 = true
+		if(idchk == true) {//가입페이지로 이동
+			model.addAttribute("id", id);
+			model.addAttribute("name", name);
+			return "kakaoMemberInsert";
+		}else {//로그인으로이동
+			MemberDto memberdto = memberbiz.login(id,id);
+			if(memberdto != null) {
+				session.setAttribute("login", memberdto);
+			}
+			return "redirect:mainpage.do";
+		}
 	}
 	
 	@RequestMapping("/logout.do")
@@ -92,6 +113,23 @@ public class LoginController {
 			return "redirect:mypage.do";
 		} else {
 			return "error/ErrorPage";
+		}
+	}
+//Captcha
+	@ResponseBody
+	@RequestMapping(value = "VerifyRecaptcha.do", method = RequestMethod.POST)
+	public int VerifyRecaptcha(HttpServletRequest request) {
+		VerifyRecaptcha.setSecretKey("6Lcjlq8UAAAAAHgAY2P6C7a6VUKdGFoqBhYj70ap");
+		String gRecaptchaResponse = request.getParameter("recaptcha");
+		System.out.println(gRecaptchaResponse);
+		//0 = 성공, 1 = 실패, -1 = 오류
+		try {
+			if(VerifyRecaptcha.verify(gRecaptchaResponse))
+				return 0;
+			else return 1;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 }
