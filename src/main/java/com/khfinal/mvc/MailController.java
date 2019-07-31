@@ -44,22 +44,22 @@ public class MailController {
     		
     	}else if(emailnotused == true) {
     	
-	    	//mail server ¼³Á¤
+	    	//mail server ï¿½ï¿½ï¿½ï¿½
 	        String host = "smtp.naver.com";
-	        String user = "asdaldh"; //ÀÚ½ÅÀÇ ³×ÀÌ¹ö °èÁ¤
-	        String password = "gmltn0911";//ÀÚ½ÅÀÇ ³×ÀÌ¹ö ÆÐ½º¿öµå
+	        final String user = "asdaldh";
+	        final String password = "gmltn0911";//ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        
-	        //¸ÞÀÏ ¹ÞÀ» ÁÖ¼Ò
+	        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½
 	        String to_email = member_email;
 	        
-	        //SMTP ¼­¹ö Á¤º¸¸¦ ¼³Á¤ÇÑ´Ù.
+	        //SMTP ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	        Properties props = new Properties();
 	        props.put("mail.smtp.host", host);
 	        props.put("mail.smtp.port", 465);
 	        props.put("mail.smtp.auth", "true");
 	        props.put("mail.smtp.ssl.enable", "true");
 	        
-	        //ÀÎÁõ ¹øÈ£ »ý¼º±â
+	        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        StringBuffer temp =new StringBuffer();
 	        Random rnd = new Random();
 	        for(int i=0;i<10;i++)
@@ -89,25 +89,25 @@ public class MailController {
 	            }
 	        });
 	        
-	        //email Àü¼Û
+	        //email ï¿½ï¿½ï¿½ï¿½
 	        try {
 	            MimeMessage msg = new MimeMessage(session);
-	            msg.setFrom(new InternetAddress(user, "³Êµµ³ªµµ"));
+	            msg.setFrom(new InternetAddress(user, "ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½"));
 	            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
 	            
-	            //¸ÞÀÏ Á¦¸ñ
-	            msg.setSubject("Èñ¼öÀÇ mail TEST (title)");
-	            //¸ÞÀÏ ³»¿ë
-	            msg.setText("ÀÎÁõ ¹øÈ£´Â :"+temp);
+	            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	            msg.setSubject("ï¿½ï¿½ï¿½ï¿½ï¿½ mail TEST (title)");
+	            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	            msg.setText("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ :"+temp);
 	            
 	            Transport.send(msg);
-	            System.out.println("ÀÌ¸ÞÀÏ Àü¼Û");
+	            System.out.println("ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 	            
 	        }catch (Exception e) {
 	            e.printStackTrace();// TODO: handle exception
 	        }
 	        HttpSession saveKey = request.getSession();
-	        saveKey.setAttribute("AuthenticationKey", AuthenticationKey);//¼¼¼Ç¿¡ ÀÎÁõ¹øÈ£ ÀúÀå
+	        saveKey.setAttribute("AuthenticationKey", AuthenticationKey);//ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½
 	        
 	    	map.put("emailnotused", emailnotused);
     	}

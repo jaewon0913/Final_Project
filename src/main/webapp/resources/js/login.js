@@ -58,29 +58,8 @@ function emailChk(){//메일전송된 인증번호랑 사용자가 입력한 인
 	}
 }
 
-$("#formtag").submit(function() {
-	var chk = document.getElementsByName("member_id")[0].title;
-	var emailchk = document.getElementsByName("member_email")[0].title;
-	var pw = document.getElementsByName("member_pw")[0].value;
-	var pw1 = document.getElementsByName("member_pw1")[0].value; 
-// 	alert(pw+" "+pw1);
-// 	alert("tname"+tnamechk);
-// 	alert("radio:"+radioVal);
-	
-		if(chk =="n"){
-			alert("ID!overlap check! 아이디 중복체크를 확인해주세요");
-			document.getElementsByName("member_id")[0].focus();
-			return false;
-		}else if(emailchk == "n"){
-			alert("email check! 이메일 인증을 확인해주세요.");
-			document.getElementsByName("member_email")[0].focus();
-			return false;
-		}else if(pw != pw1){
-			alert("password check! 비밀번호가 서로 같지 않습니다! 확인해주세요!");
-			//document.getElementsByName("pw")[0].focus();
-			return false;
-		}else if(chk =="y" && pw == pw1){
-			return true;
-		}
 
-});
+
+//캡차
+
+

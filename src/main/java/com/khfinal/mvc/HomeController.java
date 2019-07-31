@@ -36,6 +36,10 @@ public class HomeController {
 	public String custom() {
 		return "custom/customPage";
 	}
+	@RequestMapping("/loginMain.do")
+	public String loginmain() {
+		return "loginMain";
+	}
 
 
 }

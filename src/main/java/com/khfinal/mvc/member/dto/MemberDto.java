@@ -1,8 +1,12 @@
 package com.khfinal.mvc.member.dto;
 
 import java.sql.Date;
+import java.util.Collection;
 
-public class MemberDto {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class MemberDto implements UserDetails{
 	private String member_id;
 	private String member_pw;
 	private String member_name;
@@ -13,6 +17,7 @@ public class MemberDto {
 	private String member_enabled;
 	private String member_level;
 	private Date member_regdate;
+	
 	
 	public MemberDto() {} 
 	
@@ -109,6 +114,48 @@ public class MemberDto {
 
 	public void setMember_regdate(Date member_regdate) {
 		this.member_regdate = member_regdate;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	
