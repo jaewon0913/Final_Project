@@ -32,58 +32,13 @@ public class HomeController {
 	public String main() {
 		return "redirect:mainpage.jsp";
 	}
-
-	@RequestMapping("/login.do")
-	@ResponseBody
-	public Map<String, Boolean> login(String id, String pw, HttpSession session) {
-		MemberDto memberdto = memberbiz.login(id, pw);
-		boolean loginchk = false;
-
-		if (memberdto != null) {
-			session.setAttribute("login", memberdto);
-			loginchk = true;
-		}
-
-		Map<String, Boolean> map = new HashMap<String, Boolean>();
-		map.put("loginchk", loginchk);
-
-		return map;
+	@RequestMapping("/custom.do")
+	public String custom() {
+		return "custom/CustomPage";
 	}
-
-	@RequestMapping("/logout.do")
-	public String logout(HttpSession session) {
-		session.setAttribute("login", null);
-
-		return "redirect:mainpage.jsp";
-	}
-
-	@RequestMapping("/insertform.do")
-	public String insertform() {
-		return "insertform";
-	}
-
-	@RequestMapping("/mypage.do")
-	public String mypage() {
-		return "MemberMypage";
-	}
-
-	@RequestMapping("/detail.do")
-	public String detail(Model model, String id, HttpSession session) {
-		MemberDto memberdto = (MemberDto) session.getAttribute("login");
-		model.addAttribute("memberdto", memberdto);
-		return "MemberUpdate";
-	}
-	
-	@RequestMapping("/update.do")
-	public String update(@ModelAttribute MemberDto dto) {
-		System.err.println("업데이트하자");
-		int res = memberbiz.update_member(dto);
-		System.out.println("업데이트결과 : " + res);
-		if(res > 0) {
-			return "redirect:mypage.do";
-		} else {
-			return "error/ErrorPage";
-		}
+	@RequestMapping("/chat.do")
+	public String chat() {
+		return "chat/chat";
 	}
 
 }
