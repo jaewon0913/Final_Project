@@ -26,6 +26,8 @@
 
 <body>
 	<header>
+	<input type = "button" value = "채팅방으로" onclick = "location.href='chat.do'"/>
+	
 		<nav class="header navbar navbar-expand-lg navbar-dark fixed-top">
 			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'"
 				style="width: 50px; height: 50px;">
