@@ -37,7 +37,7 @@ public class CustomController {
 				
 		session.setAttribute("count", count);
 		
-		return "custom/customPage";
+		return "custom/CustomPage";
 	}
 	
 	@RequestMapping("/customdosilak.do")
