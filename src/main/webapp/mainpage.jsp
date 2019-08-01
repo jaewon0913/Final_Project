@@ -6,6 +6,12 @@
 
 <head>
 
+<!-- 파비콘 -->
+
+<link rel="shortcut icon" href="resources/bootstrap/image/favicon.ico" type="image/x-icon">
+
+<!-- 파비콘 -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">

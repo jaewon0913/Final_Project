@@ -11,16 +11,28 @@
 	</select>
 	
 	<update id="update" parameterType="memberdto">
-		UPDATE MEMBER SET MEMBER_PW = #{pw}, MEMBER_PHONE = #{phone},
-		MEMBER_EMAIL = #{email}, MEMBER_ADDRESS = #{address},
-		MEMBER_SUBWAY = #{subway} 
-		WHERE MEMBER_ID = #{id}
+		UPDATE MEMBER SET MEMBER_PW = #{member_pw}, MEMBER_PHONE = #{member_phone},
+		MEMBER_EMAIL = #{member_email}, MEMBER_ADDRESS = #{member_address},
+		MEMBER_SUBWAY = #{member_subway} 
+		WHERE MEMBER_ID = #{member_id}
 	</update>
 	
 	<insert id="insert" parameterType="memberdto">
 		INSERT INTO MEMBER 
 		VALUES(#{member_id},#{member_pw},#{member_name},#{member_phone},#{member_address},#{member_subway},#{member_email},'Y','USER',SYSDATE)
 	</insert>
+	
+	<select id="idfind" parameterType="map" resultType="memberdto">
+		SELECT MEMBER_ID FROM MEMBER 
+		WHERE MEMBER_EMAIL = #{email} 
+		AND MEMBER_NAME = #{name}
+	</select>
+	
+	<select id="pwfind" parameterType="map" resultType="memberdto">
+		SELECT MEMBER_PW FROM MEMBER 
+		WHERE MEMBER_EMAIL = #{email} 
+		AND MEMBER_ID = #{id}
+	</select>
 	
 	<select id="idChk" parameterType="map" resultType="memberdto">
 		SELECT MEMBER_ID 

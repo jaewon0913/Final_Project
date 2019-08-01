@@ -19,12 +19,12 @@ public class NoticeBizImpl implements NoticeBiz {
 
 	@Override
 	public List<NoticeDto> NoticeSelectlist() {
-		return null;
+		return noticedao.NoticeSelectlist();
 	}
 
 	@Override
 	public NoticeDto NoticeSelectOne(int notice_postnum) {
-		return null;
+		return noticedao.NoticeSelectOne(notice_postnum);
 	}
 
 	@Override
