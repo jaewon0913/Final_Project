@@ -36,29 +36,27 @@
          </tr>
             <tr>
                <th> ID &nbsp; : &nbsp;</th>
-               <td><input class="form" type="text" name="id" id="id"
+               <td><input class="form" type="text" name="id" id="loginid"
                   placeholder="아이디를 입력해주세요" /></td>
-<!--                <td><input class="form" type="text" name="id" id="loginid" -->
-<!--                placeholder="아이디를 입력해주세요" /></td> -->
             </tr>
             <tr>
                <th> PW &nbsp; : &nbsp;</th>
-               <td><input class="form" type="password" name="password" id="password"
+               <td><input class="form" type="password" name="pw" id="loginpw"
                   placeholder="비밀번호를 입력해주세요" /></td>
             </tr>
             <tr>
                <td colspan="2" align="center">
-               	  <button type="submit" class="btn">로그인</button>
-<!--                	<input class="btn" type="button" value="로그인" onclick="login()" />  -->
+                  <input class="btn" type="button" value="로그인" onclick="login()" /> 
                   <input class="btn"  type="button" value="회원가입" onclick="location.href='insertform.do'"/> 
                   <input class="btn" type="button" value="취소" onclick="location.href='mainpage.do'" />
+                  <a href="accountfind.do">아이디 /비밀번호 찾기</a>
                </td>
             </tr>
             <tr>
             <th>&nbsp;</th>
             <td>
-            	<a id="kakao-login-btn"></a>
-            	<script type='text/javascript'>
+               <a id="kakao-login-btn"></a>
+               <script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('417b6197d543e8ff274fa9c9db0ca421');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
@@ -73,7 +71,7 @@
         Kakao.API.request({
           url: '/v1/user/me',
           success: function(res) {//로그인되자마자 실행되는 구간
-        	alert("로그인 성공1111");
+           alert("로그인 성공1111");
             console.log(JSON.stringify(res.kaccount_email));
             console.log(JSON.stringify(res.id));
             console.log(JSON.stringify(res.properties.profile_image));
@@ -85,9 +83,9 @@
             test=kakaoname;
             
             document.write('<form action="kakaologin.do" id="sub_form" method="post">'+
-            				'<input type="hidden" name="id" value="'+kakaoid+'">'+
-            				'<input type="hidden" name="name" value="'+kakaoname+'">'+
-            				'</form>');
+                        '<input type="hidden" name="id" value="'+kakaoid+'">'+
+                        '<input type="hidden" name="name" value="'+kakaoname+'">'+
+                        '</form>');
             document.getElementById("sub_form").submit();
             //location.href="admin.do?command=kakaoregistform&id="+kakaoid+"&name="+kakaoname;
           },
