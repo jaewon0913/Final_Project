@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 파비콘 -->
+
+<link rel="shortcut icon" href="resources/bootstrap/image/favicon.ico" type="image/x-icon">
+
+<!-- 파비콘 -->
 <meta charset="UTF-8">
 <title>공지사항 게시판</title>
 </head>
