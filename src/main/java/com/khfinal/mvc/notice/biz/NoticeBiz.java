@@ -8,6 +8,9 @@ import com.khfinal.mvc.notice.dto.NoticeDto;
 
 public interface NoticeBiz {
 	
+	
+	
+	
 	public List<NoticeDto> NoticeSelectlist(); // 전체보기
 
 	public NoticeDto NoticeSelectOne(int notice_postnum); // 상세보기

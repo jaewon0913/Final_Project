@@ -6,31 +6,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khfinal.mvc.notice.biz.NoticeBiz;
 
 @Controller
 public class NoticeController {
-	
+
 	/*
 	 * @Autowired private MemberBiz memberbiz;
 	 */
 	@Autowired
 	private NoticeBiz noticebiz;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/*
 	 * @RequestMapping("/mainpage.do") public String main() { return
 	 * "redirect:mainpage.jsp"; }
 	 */
 
-
 	@RequestMapping("/notice_list.do")
-	public String notice(Model model) {
+	public String noticeselectlist(Model model) {
 		System.out.println("notice_list.do 들어옴");
 		model.addAttribute("list", noticebiz.NoticeSelectlist());
 		return "noticeboard/notice_selectlist";
+	}
+
+	@RequestMapping("/notice_detail.do")
+	public String noticeSelectone(Model model,  @RequestParam int notice_postnum) {
+		System.out.println("notice_selectone.do 들어옴");
+		model.addAttribute("NoticeDto", noticebiz.NoticeSelectOne(notice_postnum));
+		
+		return "noticeboard/notice_selectone";
 	}
 
 	@RequestMapping("/notice_insertform.do")

@@ -14,35 +14,34 @@
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<div>
 		<h1>공지사항 게시판</h1>
-			<table class="table table-hover">
+			<table class="table">
 				
 				<tr>
 					<th>번 호</th>
+					<td id="notice_postnum">${NoticeDto.notice_postnum}</td>
+				</tr>
+				<tr>
 					<th>작성자</th>
+					<td>${NoticeDto.notice_writer }</td>
+				</tr>
+				<tr>
 					<th>제 목</th>
+					<td>${NoticeDto.notice_title}</td>
+				</tr>
+				<tr>
+					<th>내 용</th>
+					<td>${NoticeDto.notice_content}</td>
+				</tr>
+				<tr>	
 					<th>작성일</th>
+					<td>${NoticeDto.notice_regdate}</td>
+				</tr>
+				<tr>
 					<th>조회수</th>
+					<td>${NoticeDto.notice_views}</td>
 				</tr>
 
-				<c:choose>
-					<c:when test="${empty list }">
-						<tr>
-							<td colspan="5" align="center">=======작성된 글이 존재하지
-								않습니다=======</td>
-						</tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${ list}" var="NoticeDto">
-							<tr>
-								<td id="seq">${NoticeDto.notice_postnum}</td>
-								<td>${NoticeDto.notice_writer }</td>
-								<td><a href="notice_detail.do?notice_postnum=${NoticeDto.notice_postnum}">${NoticeDto.notice_title}</a></td>
-								<td>${NoticeDto.notice_regdate}</td>
-								<td>${NoticeDto.notice_views}</td>
-							</tr>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
+							
 				<tr>
 					<td colspan="5" align="right"><input class="btn" type="button" value="글쓰기"
 						onclick="location.href='notice_insertform.do'"></td>

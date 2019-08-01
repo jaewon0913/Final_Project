@@ -9,6 +9,7 @@
 
 <head>
 
+
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,14 +24,29 @@
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
 
+<link href="resources/bootstrap/css/header.css" rel="stylesheet">
+
+<!-- Bootstrap core CSS -->
+<link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
+
+
 </head>
 
 <body>
 	<header>
+	
 		<nav class="header navbar navbar-expand-lg navbar-dark fixed-top">
-			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="#"
+			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/nado2.png" onclick="location.href='mainpage.do'"
 				style="width: 50px; height: 50px;">
 			<div style="margin-left: 70%">
 				
@@ -82,6 +98,11 @@
 				</div>
 			</div>
 		</nav>
+		
+		<div class="pull-right">
+		
+			<img alt="chat" src="resources/bootstrap/image/chat1.png" onclick="location.href='chat.do'" class="navbar-fixed-top  chat">
+		</div>
 	</header>
 </body>
 </html>
