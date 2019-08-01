@@ -41,4 +41,14 @@ public class MemberBIzImpl implements MemberBiz {
 	public boolean emailChk(String member_email) {
 		return memberdao.emailChk(member_email);
 	}
+
+	@Override
+	public MemberDto idfind(String member_name, String member_email) {
+		return memberdao.idfind(member_name, member_email);
+	}
+
+	@Override
+	public MemberDto pwfind(String member_id, String member_email) {
+		return memberdao.pwfind(member_id, member_email);
+	}
 }

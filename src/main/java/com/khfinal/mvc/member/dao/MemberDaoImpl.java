@@ -42,14 +42,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int update_member(MemberDto dto) {
 		int res = 0;
-		System.out.println("�꽆�뼱�솕�땲??");
 		try {
 			res = sqlSession.update(namespace+"update", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("�꽆�뼱��以섎씪 �젣諛�");
-		System.out.println("�븘�븘�븘�븘�븘" + res);
 		return res;
 	}
 
@@ -65,6 +62,32 @@ public class MemberDaoImpl implements MemberDao {
 
 		memberdto = sqlSession.selectOne(namespace + "detail", map);
 
+		return memberdto;
+	}
+	
+	@Override
+	public MemberDto idfind(String member_name,String member_email) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", member_name);
+		map.put("email", member_email);
+		
+		MemberDto memberdto = new MemberDto();
+	
+		memberdto = sqlSession.selectOne(namespace + "idfind" , map);
+		
+		return memberdto;
+	}
+	
+	@Override
+	public MemberDto pwfind(String member_id, String member_email) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", member_id);
+		map.put("email", member_email);
+		
+		MemberDto memberdto = new MemberDto();
+		
+		memberdto = sqlSession.selectOne(namespace + "pwfind" , map);
+		
 		return memberdto;
 	}
 	
