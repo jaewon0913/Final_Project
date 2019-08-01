@@ -35,7 +35,7 @@
 				<c:choose>
 					<c:when test="${empty login.member_id }">
 						<div class="log" style="float: right;">
-							<button class="loginbutton btn" onclick="loginform()">로그인</button>
+							<button class="loginbutton btn" onclick="location.href='loginMain.do'">로그인</button>
 							<button class="insertbutton btn"
 								onclick="location.href='insertform.do'">회원가입</button>
 						</div>
