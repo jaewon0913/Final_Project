@@ -48,7 +48,7 @@ SELECT * FROM MEMBER;
 
 DELETE FROM MEMBER WHERE MEMBER_ID = 'aa';
 
-INSERT INTO MEMBER VALUES ('admin', 'admin', '�젙誘쇳샇', '010-4933-2976', '寃쎄린�룄 �꽦�궓�떆', '蹂듭젙�뿭', '1212081@naver.com', 'Y', 'admin' ,SYSDATE);
+INSERT INTO MEMBER VALUES ('admin', 'admin', '관리자', '010-1111-1111', '서울 강남구', '강남구', '1212081@naver.com', 'Y', 'admin' ,SYSDATE);
 
 
 UPDATE MEMBER SET MEMBER_PW = '2222', MEMBER_PHONE = '1111', MEMBER_EMAIL = '1111',

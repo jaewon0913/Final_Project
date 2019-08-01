@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -77,7 +78,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/insert_res.do")
-	public String insert_res(MemberDto dto) {
+	public String insert_res(MemberDto dto,String addr1,String addr2, String addr3) {
+		System.out.println(addr1+" "+addr2+" "+addr3);
+		dto.setMember_address(addr2+" "+addr3);
 		int res = memberbiz.insert_member(dto);
 		if(res > 0) {
 			return "redirect:mainpage.do";
@@ -132,6 +135,8 @@ public class LoginController {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return -1;
+		}
+	}
 	
 	/* ---------- 아이디 / 비밀번호 찾기 ---------- */
 	@RequestMapping("/accountfind.do")

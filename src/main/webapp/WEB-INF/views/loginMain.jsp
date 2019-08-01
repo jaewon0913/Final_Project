@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+`<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -36,20 +36,22 @@
          </tr>
             <tr>
                <th> ID &nbsp; : &nbsp;</th>
-               <td><input class="form" type="text" name="id" id="loginid"
+               <td><input class="form" type="text" name="id" id="id"
                   placeholder="아이디를 입력해주세요" /></td>
+<!--                <td><input class="form" type="text" name="id" id="loginid" -->
+<!--                placeholder="아이디를 입력해주세요" /></td> -->
             </tr>
             <tr>
                <th> PW &nbsp; : &nbsp;</th>
-               <td><input class="form" type="password" name="pw" id="loginpw"
+               <td><input class="form" type="password" name="password" id="password"
                   placeholder="비밀번호를 입력해주세요" /></td>
             </tr>
             <tr>
                <td colspan="2" align="center">
-                  <input class="btn" type="button" value="로그인" onclick="login()" /> 
+                  <button type="submit" class="btn">로그인</button>
+<!--              <input class="btn" type="submit" value="로그인" onclick="login()" />  -->
                   <input class="btn"  type="button" value="회원가입" onclick="location.href='insertform.do'"/> 
                   <input class="btn" type="button" value="취소" onclick="location.href='mainpage.do'" />
-                  <a href="accountfind.do">아이디 /비밀번호 찾기</a>
                </td>
             </tr>
             <tr>
