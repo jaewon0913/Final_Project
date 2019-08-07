@@ -38,7 +38,6 @@ public class LoginController {
 		boolean loginchk = false;
 		
 		if(memberdto != null) {
-			session.setAttribute("login", memberdto);
 			loginchk = true;
 		}
 		
