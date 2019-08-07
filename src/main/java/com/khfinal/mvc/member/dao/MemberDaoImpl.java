@@ -31,12 +31,26 @@ public class MemberDaoImpl implements MemberDao {
 
 		return memberdto;
 	}
+	
+	@Override
+	public MemberDto loginsuccess(String id) {
+		MemberDto memberdto = new MemberDto();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		memberdto = sqlSession.selectOne(namespace+"loginsuccess",map);
+		
+		return memberdto;
+		
+	}
 
 	@Override
 	public int insert_member(MemberDto dto) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", dto.getMember_id());
 		int res = sqlSession.insert(namespace+"insert",dto);
+		int res1 = sqlSession.insert(namespace+"insertAuthorities",map);
 		
-		return res;
+		return res+res1;
 	}
 
 	@Override
@@ -93,6 +107,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public boolean idChk(String member_id) {
+		System.out.println("daoImpl : "+member_id);
 		boolean idnotused = true;
 		Map<String,String> map = new HashMap<String, String>();
 		map.put("member_id", member_id);

@@ -7,8 +7,10 @@ function cancleloginform(){
 }
 
 function login(){
-	var idVal = $("#loginid").val();
-	var pwVal = $("#loginpw").val();
+	var idVal = $("#id").val();
+	var pwVal = $("#password").val();
+	alert(idVal);
+	alert(pwVal);
 	
 	if (idVal == null || idVal == ""){
 		alert ("아이디를 확인해주세요");
@@ -18,7 +20,7 @@ function login(){
 		$.ajax({
 			url : "login.do",
 			type : "post",
-			data : "id="+idVal+"&pw="+pwVal,
+			data : "id="+idVal+"&password="+pwVal,
 			success : function(msg){
 				if(msg.loginchk == true){
 					alert(idVal + "님 환영합니다");
