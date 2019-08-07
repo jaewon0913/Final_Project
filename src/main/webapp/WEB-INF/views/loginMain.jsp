@@ -1,4 +1,4 @@
-`<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -9,9 +9,9 @@
 <meta charset="UTF-8">
 <title>login</title>
 </head>
-<link href="resources/bootstrap/css/login.css" rel="stylesheet">
+<!-- <link href="resources/bootstrap/css/login.css" rel="stylesheet"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/login.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
 
 <!-- kakao -->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -21,6 +21,8 @@
 </style>
 
 <body>
+
+	
    <%@ include file="header.jsp"%>
    
    <h1 class="title1">Login</h1>
@@ -48,11 +50,10 @@
             </tr>
             <tr>
                <td colspan="2" align="center">
-                    <button type="submit" class="btn">로그인</button>
-<!--                   <input class="btn" type="button" value="로그인" onclick="login()" />  -->
+<!--                   <button type="submit" class="btn">로그인</button> -->
+             <input class="btn" type="submit" value="로그인" /> 
                   <input class="btn"  type="button" value="회원가입" onclick="location.href='insertform.do'"/> 
                   <input class="btn" type="button" value="취소" onclick="location.href='mainpage.do'" />
-                  <input class="btn" type="button" value="ID/PW 찾기" onclick="location.href='accountfind.do'" />
                </td>
             </tr>
             <tr>
@@ -83,7 +84,9 @@
             var kaname = kname.replace("\"","");
             var kakaoname = kaname.replace("\"","");
             test=kakaoname;
-            
+            //아이디 중복체크 ajax
+            //있으면 가상폼태그로 시큐리티로그인
+            //없으면 insert보내고
             document.write('<form action="kakaologin.do" id="sub_form" method="post">'+
                         '<input type="hidden" name="id" value="'+kakaoid+'">'+
                         '<input type="hidden" name="name" value="'+kakaoname+'">'+
@@ -121,5 +124,18 @@
    </div>
 <script src="resources/js/mainpage.js"></script>
 </body>
+<script type="text/javascript">
+// $("#formtag").submit(function(){
+// 	var id = document.getElementById("id").value;
+// 	var password = document.getElementById("password").value;
+// 	alert(id);
+// 	alert(password);
+// 	document.write('<form action="login.do" id="sub_form" method="post">'+
+//             '<input type="hidden" name="id" value="'+id+'">'+
+//             '<input type="hidden" name="password" value="'+password+'">'+
+//             '</form>');
+// 	document.getElementById("sub_form").submit();
+// });
 
+</script>
 </html>

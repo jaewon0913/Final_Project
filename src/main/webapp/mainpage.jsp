@@ -1,3 +1,4 @@
+<%@page import="com.khfinal.mvc.member.dto.MemberDto"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -39,21 +40,23 @@
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">	
-	$(document).ready(function() {
-		$("#slider").lightSlider({
-			mode : 'slide',
-			loop : true,
-			auto : true,
-			keyPress : true,
-			pager : false,
-			speed : 1500,
-			pause : 3000
-		});
-	});
+// 	$(document).ready(function() {
+// 		$("#slider").lightSlider({
+// 			mode : 'slide',
+// 			loop : true,
+// 			auto : true,
+// 			keyPress : true,
+// 			pager : false,
+// 			speed : 1500,
+// 			pause : 3000
+// 		});
+// 	});
 </script>
 
 </head>
-
+<%
+	MemberDto logindto = (MemberDto)session.getAttribute("logindto");
+%>
 <body>
 
 	<!-- header.jsp -->
@@ -135,10 +138,20 @@
 				<div class="card h-100">
 					<div class="card-body">
 						<h2 class="card-title">인스타 크롤링1</h2>
-						<p class="card-text">위하여, 풀밭에 없는 풍부하게 스며들어 가는 수 이것이다. 능히 청춘은
-							그들에게 유소년에게서 두기 같이, 봄바람이다. 꽃이 트고, 얼음 길을 소금이라 이상의 낙원을 대중을 이 있는가? 하는
-							심장은 우리의 너의 우리 쓸쓸하랴? 용기가 이것을 품으며, 설산에서 앞이 인류의 봄바람이다. 싸인 이것을 피가
-							반짝이는 아니다.</p>
+						<p class="card-text">
+							<c:choose>
+								<c:when test="${empty logindto}">
+									<h3>로그인 세션 없음.</h3>
+								</c:when>
+								<c:otherwise>
+									<h3>${logindto.member_id }</h3>
+									<h3>${logindto.member_name }</h3>
+									<h3>${logindto.member_phone }</h3>
+									<h3>${logindto.member_address }</h3>
+									<h3>${logindto.member_subway }</h3>
+								</c:otherwise>
+							</c:choose>
+						</p>
 					</div>
 					<div class="card-footer">
 						<a href="#" class="btn btn-primary btn-sm">More Info</a>

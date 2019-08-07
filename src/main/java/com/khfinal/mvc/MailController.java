@@ -47,7 +47,7 @@ public class MailController {
 	    	//mail server ����
 	        String host = "smtp.naver.com";
 	        String user = "asdaldh"; //�ڽ��� ���̹� ����
-	        String password = "gmltn0911";//�ڽ��� ���̹� �н�����
+	        String password = "gmltn0911!";//�ڽ��� ���̹� �н�����
 	        
 	        //���� ���� �ּ�
 	        String to_email = member_email;

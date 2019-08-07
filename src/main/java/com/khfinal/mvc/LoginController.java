@@ -2,6 +2,7 @@ package com.khfinal.mvc;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,24 +31,36 @@ public class LoginController {
 
 	@Autowired
 	private MemberBiz memberbiz;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
+	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@RequestMapping("/login.do")
-	@ResponseBody
-	public Map<String, Boolean> login(String id, String pw, HttpSession session) {
-		MemberDto memberdto = memberbiz.login(id, pw);
-		boolean loginchk = false;
-
-		if (memberdto != null) {
-			session.setAttribute("login", memberdto);
-			loginchk = true;
+	public String login(String id, String password) {
+		String encPassword = bcryptPasswordEncoder.encode(password);
+		System.out.println("암호화된 비밀번호 : "+encPassword);
+		
+		MemberDto memberdto = memberbiz.login(id,encPassword);
+		
+		if(memberdto != null) {
+			return "redirect: mainpage.do";
+		}else {
+			return "redirect: loginMain.do";
 		}
-
-		Map<String, Boolean> map = new HashMap<String, Boolean>();
-		map.put("loginchk", loginchk);
-
-		return map;
+		
+	}
+	@RequestMapping("/loginsuccess.do")
+	public String loginsuccess(Principal auth,HttpSession session) {
+		MemberDto memberdto = memberbiz.loginsuccess(auth.getName());
+		if(memberdto != null) {
+			session.setAttribute("logindto", memberdto);
+			return "redirect: mainpage.do";
+		}else {
+			return "redirect: mainpage.do";
+		}
 	}
 
 	@RequestMapping("/kakaologin.do")
@@ -57,10 +71,12 @@ public class LoginController {
 			model.addAttribute("id", id);
 			model.addAttribute("name", name);
 			return "kakaoMemberInsert";
-		} else {// 로그인으로이동
-			MemberDto memberdto = memberbiz.login(id, id);
-			if (memberdto != null) {
-				session.setAttribute("login", memberdto);
+		}else {//로그인으로이동
+			System.out.println("kakaologin컨틀롤러 else문");
+			MemberDto memberdto = memberbiz.login(id,id);
+			System.out.println(memberdto.getMember_address()+" "+memberdto.getMember_name());
+			if(memberdto != null) {
+				session.setAttribute("logindto", memberdto);
 			}
 			return "redirect:mainpage.do";
 		}
@@ -79,7 +95,17 @@ public class LoginController {
 	}
 
 	@RequestMapping("/insert_res.do")
-	public String insert_res(MemberDto dto) {
+	public String insert_res(MemberDto dto,String addr1,String addr2, String addr3) {
+		System.out.println("내가 입력한 pw: "+dto.getMember_pw());
+		
+		System.out.println(addr1+" "+addr2+" "+addr3);
+		dto.setMember_address(addr2+" "+addr3);
+		
+		String encPassword = bcryptPasswordEncoder.encode(dto.getMember_pw());
+		dto.setMember_pw(encPassword);
+		System.out.println("암호화된 비밀번호 : "+encPassword);
+		
+		
 		int res = memberbiz.insert_member(dto);
 		if (res > 0) {
 			return "redirect:mainpage.do";
@@ -87,14 +113,32 @@ public class LoginController {
 			return "redirect:insertform.do";
 		}
 	}
-
+	
+	@RequestMapping("/kakaoinsert_res.do")
+	public String kakaoinsert_res(MemberDto dto,String addr1,String addr2,String addr3,HttpSession session) {
+		System.out.println(addr1+" "+addr2+" "+addr3);
+		dto.setMember_address(addr2+" "+addr3);
+		
+		int res = memberbiz.insert_member(dto);
+		if(res > 0) {
+			return "redirect:mainpage.do";
+		}else {
+			return "redirect:insertform.do";
+		}
+	}
 	@RequestMapping("/idChk.do")
 	public String idChk(String member_id, Model model) {
 		boolean idnotused = memberbiz.idChk(member_id);
 		model.addAttribute("idnotused", idnotused);
 		return "idchk";
 	}
-
+	
+	@RequestMapping("/test.do")
+	public String testpage(Principal auth) {
+		System.out.println("---------------"+auth.getName());
+		return "redirect:main.do";
+	}
+	
 	@RequestMapping("/mypage.do")
 	public String mypage() {
 		return "MemberMypage";
@@ -137,6 +181,7 @@ public class LoginController {
 			return -1;
 		}
 	}
+	
 	/* ---------- 아이디 / 비밀번호 찾기 ---------- */
 	@RequestMapping("/accountfind.do")
 	public String accountfind() {
