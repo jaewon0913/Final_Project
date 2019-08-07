@@ -6,6 +6,10 @@
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id} AND MEMBER_PW = #{pw}
 	</select>
 	
+	<select id="loginsuccess" parameterType="map" resultType="memberdto">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id} AND MEMBER_ENABLED=1
+	</select>
+	
 	<select id="detail" parameterType="map" resultType="memberdto">
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id}
 	</select>
@@ -19,7 +23,11 @@
 	
 	<insert id="insert" parameterType="memberdto">
 		INSERT INTO MEMBER 
-		VALUES(#{member_id},#{member_pw},#{member_name},#{member_phone},#{member_address},#{member_subway},#{member_email},'Y','USER',SYSDATE)
+		VALUES(#{member_id},#{member_pw},#{member_name},#{member_phone},#{member_address},#{member_subway},#{member_email},1,'USER',SYSDATE)
+	</insert>
+	
+	<insert id="insertAuthorities" parameterType="map">
+		INSERT INTO AUTHORITIES_MEMBER VALUES (#{member_id}, 'ROLE_USER')
 	</insert>
 	
 	<select id="idfind" parameterType="map" resultType="memberdto">
@@ -37,7 +45,7 @@
 	<select id="idChk" parameterType="map" resultType="memberdto">
 		SELECT MEMBER_ID 
 		FROM MEMBER
-		WHERE MEMBER_ID=#{member_id} AND MEMBER_ENABLED='Y'
+		WHERE MEMBER_ID=#{member_id} AND MEMBER_ENABLED=1
 	</select>
 	
 	<select id="emailChk" parameterType="map" resultType="memberdto">

@@ -14,4 +14,5 @@ public interface MemberDao {
 
 	public boolean idChk(String member_id);
 	public boolean emailChk(String member_email);
+	public MemberDto loginsuccess(String id);
 }
