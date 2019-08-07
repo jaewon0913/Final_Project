@@ -44,4 +44,12 @@ public class HomeController {
 	public String loginmain() {
 		return "loginMain";
 	}
+	@RequestMapping("/delivery_place.do")
+	public String delivery_place() {
+		return "place/delivery_place";
+	}
+	@RequestMapping("/popup_map.do")
+	public String popup_map() {
+		return "place/popup_map";
+	}
 }
