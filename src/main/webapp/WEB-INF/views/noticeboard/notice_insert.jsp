@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +18,14 @@
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
 		<div>
-			<form action="notice_insertres.do" method="post">
+			<form action="notice_insert.do" method="post">
 		<table class="table table-hover">
 			
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" name="notice_writer"></td>				
+				<td>
+				<input type="text" name="member_id">
+				</td>				
 			</tr>
 			<tr>
 				<th>제 목</th>
@@ -34,7 +38,7 @@
 			<tr>
 				<td colspan="2">
 					<input class="btn" type="submit" value="작 성" >
-					<input class="btn" type="button" value="취 소">
+					<input class="btn" type="button" value="취 소" onclick="location.href='notice_list.do'">
 				</td>
 			</tr>
 		</table>

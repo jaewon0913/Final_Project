@@ -32,9 +32,35 @@ body {
 	position: static;
 }
 .btn{
-	opacity: (255,255,255,0);
-	color: #59CAB7;
+	
 	font-size: 1.5rem;
+	
+}
+.btn-outline-light{
+	background-color: #A3E4DC;
+	color: white;
+	border-radius: 10px;
+}
+.btn-outline-dark:light{
+	opacity: 0.2;
+	color: white;
+}
+.btn:hover{
+	
+	font-size: 1.5rem;
+	opacity: 0.2;
+	
+}
+.button1{
+	font-size: 1.5rem;
+	background-color: (255,255,255,1);
+	border: none;
+}
+
+
+.btn1{
+	opacity: 0.5;
+	color: #59CAB7;
 	
 }	
 .text{
@@ -63,9 +89,18 @@ body{
 	color: white;
 }
 
+.IDF{
+	background-color: #59CAB7;
+	border: 1 solid black;
+	color: white;
+}
 
-
-
+.IDF:hover {
+	background-color: #59CAB7;
+	border: 1 solid black;
+	opacity: 0.2;
+	color: white;
+}
 
 
 	

@@ -17,8 +17,10 @@
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
-	<div>
-		<h1>공지사항 게시판</h1>
+	<div class="container">
+		<h1>공지사항 게시판 상세보기</h1>
+		<br/>
+		<div class="container col-sm-12 "> 
 			<table class="table">
 				
 				<tr>
@@ -27,7 +29,7 @@
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td>${NoticeDto.notice_writer }</td>
+					<td>${NoticeDto.member_id }</td>
 				</tr>
 				<tr>
 					<th>제 목</th>
@@ -35,7 +37,8 @@
 				</tr>
 				<tr>
 					<th>내 용</th>
-					<td>${NoticeDto.notice_content}</td>
+					<td>
+					<textarea rows="5" cols="60" readonly="readonly">${NoticeDto.notice_content}</textarea></td>
 				</tr>
 				<tr>	
 					<th>작성일</th>
@@ -48,12 +51,15 @@
 
 							
 				<tr>
-					<td colspan="5" align="right"><input class="btn" type="button" value="글쓰기"
-						onclick="location.href='notice_insertform.do'"></td>
+					<td colspan="5" align="right">
+					<input class="btn" type="submit" value="수정" onclick="location.href='notice_updateform.do?notice_postnum=${NoticeDto.notice_postnum}'">
+					<input class="btn" type="button" value="삭제" onclick="location.href='notice_delete.do?notice_postnum=${NoticeDto.notice_postnum}'">
+					<input class="btn" type="button" value="목록" onclick="location.href='notice_list.do'">
+					</td>
 				</tr>
 			</table>
 
-
+</div>
 	</div>
 
 

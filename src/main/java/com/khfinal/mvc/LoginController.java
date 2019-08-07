@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -22,77 +23,78 @@ import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.member.etc.VerifyRecaptcha;
 
+
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	private MemberBiz memberbiz;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	 
+
 	@RequestMapping("/login.do")
 	@ResponseBody
 	public Map<String, Boolean> login(String id, String pw, HttpSession session) {
-		MemberDto memberdto = memberbiz.login(id,pw);
+		MemberDto memberdto = memberbiz.login(id, pw);
 		boolean loginchk = false;
-		
-		if(memberdto != null) {
+
+		if (memberdto != null) {
 			session.setAttribute("login", memberdto);
 			loginchk = true;
 		}
-		
+
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("loginchk", loginchk);
-		
+
 		return map;
 	}
-	
+
 	@RequestMapping("/kakaologin.do")
-	public String kakaologin(String id, String name,HttpSession session,Model model){
+	public String kakaologin(String id, String name, HttpSession session, Model model) {
 		Boolean idchk = false;
-		idchk = memberbiz.idChk(id);//가입가능 = true
-		if(idchk == true) {//가입페이지로 이동
+		idchk = memberbiz.idChk(id);// 가입가능 = true
+		if (idchk == true) {// 가입페이지로 이동
 			model.addAttribute("id", id);
 			model.addAttribute("name", name);
 			return "kakaoMemberInsert";
-		}else {//로그인으로이동
-			MemberDto memberdto = memberbiz.login(id,id);
-			if(memberdto != null) {
+		} else {// 로그인으로이동
+			MemberDto memberdto = memberbiz.login(id, id);
+			if (memberdto != null) {
 				session.setAttribute("login", memberdto);
 			}
 			return "redirect:mainpage.do";
 		}
 	}
-	
+
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.setAttribute("login", null);
-		
+
 		return "redirect:mainpage.jsp";
 	}
-	
+
 	@RequestMapping("/insertform.do")
 	public String insertform() {
 		return "MemberInsert";
 	}
-	
+
 	@RequestMapping("/insert_res.do")
 	public String insert_res(MemberDto dto) {
 		int res = memberbiz.insert_member(dto);
-		if(res > 0) {
+		if (res > 0) {
 			return "redirect:mainpage.do";
-		}else {
+		} else {
 			return "redirect:insertform.do";
 		}
 	}
-	
+
 	@RequestMapping("/idChk.do")
-	public String idChk(String member_id,Model model) {
+	public String idChk(String member_id, Model model) {
 		boolean idnotused = memberbiz.idChk(member_id);
 		model.addAttribute("idnotused", idnotused);
 		return "idchk";
 	}
-	
+
 	@RequestMapping("/mypage.do")
 	public String mypage() {
 		return "MemberMypage";
@@ -104,7 +106,7 @@ public class LoginController {
 		model.addAttribute("memberdto", memberdto);
 		return "MemberUpdate";
 	}
-	
+
 	@RequestMapping("/update.do")
 	public String update(@ModelAttribute MemberDto dto, Model model, HttpSession session) {
 		int res = memberbiz.update_member(dto);
@@ -117,7 +119,8 @@ public class LoginController {
 			return "error/ErrorPage";
 		}
 	}
-	//Captcha
+
+	// Captcha
 	@ResponseBody
 	@RequestMapping(value = "VerifyRecaptcha.do", method = RequestMethod.POST)
 	public int VerifyRecaptcha(HttpServletRequest request) {
@@ -132,13 +135,14 @@ public class LoginController {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return -1;
-	
+		}
+	}
 	/* ---------- 아이디 / 비밀번호 찾기 ---------- */
 	@RequestMapping("/accountfind.do")
 	public String accountfind() {
 		return "AccountFind";
 	}
-	
+
 	@RequestMapping("/idfind.do")
 	public String idfind(MemberDto dto, Model model, HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("UTF-8");
@@ -158,7 +162,7 @@ public class LoginController {
 			return "AccountFind";
 		}
 	}
-	
+
 	@RequestMapping("/pwfind.do")
 	public String pwfind(MemberDto dto, Model model, HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("UTF-8");
@@ -178,4 +182,5 @@ public class LoginController {
 			return "AccountFind";
 		}
 	}
+	
 }
