@@ -1,13 +1,24 @@
 @charset "UTF-8";
 
 
-.chat{
+img.chat{
 	border: none;
 	margin-top: 25%;
 	margin-left: 95%;
 	margin-right: 5%; 
-}
+	
 
+	
+}
+img.chat:hover{
+	border: none;
+	margin-top: 25%;
+	margin-left: 95%;
+	margin-right: 5%; 
+	opacity:0.4;; 
+
+	
+}
 
 
 

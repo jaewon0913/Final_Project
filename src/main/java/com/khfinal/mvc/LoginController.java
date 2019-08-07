@@ -25,9 +25,10 @@ import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.member.etc.VerifyRecaptcha;
 
+
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	private MemberBiz memberbiz;
 	
@@ -36,7 +37,7 @@ public class LoginController {
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	 
+
 	@RequestMapping("/login.do")
 	public String login(String id, String password) {
 		String encPassword = bcryptPasswordEncoder.encode(password);
@@ -61,12 +62,12 @@ public class LoginController {
 			return "redirect: mainpage.do";
 		}
 	}
-	
+
 	@RequestMapping("/kakaologin.do")
-	public String kakaologin(String id, String name,HttpSession session,Model model){
+	public String kakaologin(String id, String name, HttpSession session, Model model) {
 		Boolean idchk = false;
-		idchk = memberbiz.idChk(id);//가입가능 = true
-		if(idchk == true) {//가입페이지로 이동
+		idchk = memberbiz.idChk(id);// 가입가능 = true
+		if (idchk == true) {// 가입페이지로 이동
 			model.addAttribute("id", id);
 			model.addAttribute("name", name);
 			return "kakaoMemberInsert";
@@ -80,19 +81,19 @@ public class LoginController {
 			return "redirect:mainpage.do";
 		}
 	}
-	
+
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.setAttribute("login", null);
-		
+
 		return "redirect:mainpage.jsp";
 	}
-	
+
 	@RequestMapping("/insertform.do")
 	public String insertform() {
 		return "MemberInsert";
 	}
-	
+
 	@RequestMapping("/insert_res.do")
 	public String insert_res(MemberDto dto,String addr1,String addr2, String addr3) {
 		System.out.println("내가 입력한 pw: "+dto.getMember_pw());
@@ -106,9 +107,9 @@ public class LoginController {
 		
 		
 		int res = memberbiz.insert_member(dto);
-		if(res > 0) {
+		if (res > 0) {
 			return "redirect:mainpage.do";
-		}else {
+		} else {
 			return "redirect:insertform.do";
 		}
 	}
@@ -126,7 +127,7 @@ public class LoginController {
 		}
 	}
 	@RequestMapping("/idChk.do")
-	public String idChk(String member_id,Model model) {
+	public String idChk(String member_id, Model model) {
 		boolean idnotused = memberbiz.idChk(member_id);
 		model.addAttribute("idnotused", idnotused);
 		return "idchk";
@@ -149,7 +150,7 @@ public class LoginController {
 		model.addAttribute("memberdto", memberdto);
 		return "MemberUpdate";
 	}
-	
+
 	@RequestMapping("/update.do")
 	public String update(@ModelAttribute MemberDto dto, Model model, HttpSession session) {
 		int res = memberbiz.update_member(dto);
@@ -162,7 +163,8 @@ public class LoginController {
 			return "error/ErrorPage";
 		}
 	}
-	//Captcha
+
+	// Captcha
 	@ResponseBody
 	@RequestMapping(value = "VerifyRecaptcha.do", method = RequestMethod.POST)
 	public int VerifyRecaptcha(HttpServletRequest request) {
@@ -185,7 +187,7 @@ public class LoginController {
 	public String accountfind() {
 		return "AccountFind";
 	}
-	
+
 	@RequestMapping("/idfind.do")
 	public String idfind(MemberDto dto, Model model, HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("UTF-8");
@@ -205,7 +207,7 @@ public class LoginController {
 			return "AccountFind";
 		}
 	}
-	
+
 	@RequestMapping("/pwfind.do")
 	public String pwfind(MemberDto dto, Model model, HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("UTF-8");
@@ -225,4 +227,5 @@ public class LoginController {
 			return "AccountFind";
 		}
 	}
+	
 }

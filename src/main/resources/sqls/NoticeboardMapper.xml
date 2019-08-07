@@ -5,7 +5,7 @@
 	<select id = "NoticeSelectlist" resultType="NoticeDto">
 		SELECT 
 			NOTICE_POSTNUM,
-			NOTICE_WRITER,
+			MEMBER_ID,
 			NOTICE_TITLE,
 			NOTICE_REGDATE,
 			NOTICE_VIEWS
@@ -16,7 +16,7 @@
 	<select id = "NoticeSelectOne" parameterType="map" resultType="NoticeDto">
 		SELECT 
 			NOTICE_POSTNUM,
-			NOTICE_WRITER,
+			MEMBER_ID,
 			NOTICE_TITLE,
 			NOTICE_CONTENT,
 			NOTICE_REGDATE,
@@ -29,7 +29,7 @@
 	INSERT INTO NOTICEBOARD 
 	VALUES (
 			NOTICESEQ.NEXTVAL,
-			#{ notice_writer},
+			#{ member_id},
 		    #{ notice_title},
 			#{ notice_content},
 			SYSDATE,
@@ -41,19 +41,21 @@
 	<update id = "NoticeUpdate" parameterType="NoticeDto">
 		UPDATE NOTICEBOARD 
 		SET
-			 NOTICE_TITLE = #{ notice_title},
-			 NOTICE_CONTENT = #{ notice_content}
-			 WHERE NOTICE_POSTNUM = #{notice_postnum} 
+			 NOTICE_TITLE = #{notice_title},
+			 NOTICE_CONTENT = #{notice_content}
+		WHERE NOTICE_POSTNUM = #{notice_postnum} 
 	</update>
 	
-	<delete id = "NoticeDelete" parameterType="String">
+	<delete id = "NoticeDelete" parameterType="int">
 		DELETE FROM NOTICEBOARD WHERE NOTICE_POSTNUM = #{notice_postnum} 
 	</delete>
 	
-	<update id="NoticeViews" parameterType="NoticeDto">
+	<update id="NoticeViews">
 		UPDATE NOTICEBOARD 
 		SET
-			NOTICE_VIEWS = +1
+			NOTICE_VIEWS = NOTICE_VIEWS + 1
+		 WHERE NOTICE_POSTNUM = #{notice_postnum} 
+		 
 	</update>
 
 
