@@ -51,4 +51,9 @@ public class MemberBIzImpl implements MemberBiz {
 	public MemberDto pwfind(String member_id, String member_email) {
 		return memberdao.pwfind(member_id, member_email);
 	}
+
+	@Override
+	public MemberDto loginsuccess(String id) {
+		return memberdao.loginsuccess(id);
+	}
 }
