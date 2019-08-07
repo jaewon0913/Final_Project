@@ -12,6 +12,9 @@
 <!-- 파비콘 -->
 <meta charset="UTF-8">
 <title>공지사항 게시판 글작성</title>
+<%
+	MemberDto logindto = (MemberDto)session.getAttribute("logindto");
+%>
 </head>
 <body>
 	<!-- ------------------------헤더-------------------------------------------- -->
@@ -24,7 +27,7 @@
 			<tr>
 				<th>작성자</th>
 				<td>
-				<input type="text" name="member_id">
+				<input type="text" name="member_id" value="${logindto.member_name }" readonly="readonly">
 				</td>				
 			</tr>
 			<tr>

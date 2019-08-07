@@ -12,6 +12,9 @@
 <!-- 파비콘 -->
 <meta charset="UTF-8">
 <title>공지사항 게시판</title>
+<%
+	MemberDto logindto = (MemberDto)session.getAttribute("logindto");
+%>
 </head>
 <body>
 	<!-- ------------------------헤더-------------------------------------------- -->
@@ -50,10 +53,14 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				<tr>
-					<td colspan="5" align="right"><input class="btn btn-outline-dark" type="button" value="글쓰기"
-						onclick="location.href='notice_insertform.do'"></td>
-				</tr>
+				<c:choose>
+					<c:when test="${logindto.member_id ne null}">
+						<tr>
+							<td colspan="5" align="right"><input class="btn btn-outline-dark" type="button" value="글쓰기"
+								onclick="location.href='notice_insertform.do'"></td>
+						</tr>
+					</c:when>
+				</c:choose>
 			</table>
 		</div>
 

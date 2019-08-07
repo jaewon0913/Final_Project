@@ -42,7 +42,6 @@ function logout(user_id){
 
 
 <body>
-	<button onclick="location.href='test.do'">테스트</button>
 
    <header>
       <nav class="header navbar navbar-expand-lg navbar-dark fixed-top">

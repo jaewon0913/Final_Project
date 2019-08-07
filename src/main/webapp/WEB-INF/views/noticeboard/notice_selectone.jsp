@@ -12,6 +12,9 @@
 <!-- 파비콘 -->
 <meta charset="UTF-8">
 <title>공지사항 게시판</title>
+<%
+	MemberDto logindto = (MemberDto)session.getAttribute("logindto");
+%>
 </head>
 <body>
 	<!-- ------------------------헤더-------------------------------------------- -->
@@ -52,8 +55,17 @@
 							
 				<tr>
 					<td colspan="5" align="right">
-					<input class="btn" type="submit" value="수정" onclick="location.href='notice_updateform.do?notice_postnum=${NoticeDto.notice_postnum}'">
-					<input class="btn" type="button" value="삭제" onclick="location.href='notice_delete.do?notice_postnum=${NoticeDto.notice_postnum}'">
+					<c:choose>
+					<c:when test="${logindto.member_id eq NoticeDto.member_id}">
+						<tr>
+							<td colspan="5" align="right">
+								<input class="btn" type="submit" value="수정" onclick="location.href='notice_updateform.do?notice_postnum=${NoticeDto.notice_postnum}'">
+								<input class="btn" type="button" value="삭제" onclick="location.href='notice_delete.do?notice_postnum=${NoticeDto.notice_postnum}'">
+							</td>
+						</tr>
+					</c:when>
+				</c:choose>
+					
 					<input class="btn" type="button" value="목록" onclick="location.href='notice_list.do'">
 					</td>
 				</tr>
