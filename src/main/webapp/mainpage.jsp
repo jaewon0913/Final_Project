@@ -18,7 +18,10 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>main</title>
+<title>main1</title>
+
+
+
 
 <!-- Bootstrap core CSS -->
 <link href="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
@@ -33,6 +36,7 @@
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">	

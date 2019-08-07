@@ -14,12 +14,6 @@ function logout(user_id){
 	alert(user_id+"님 로그아웃 되었습니다.");
 	location.href=contextPath+"/logout";
 }
-
-
-
-
-
-
 </script>
 
 <head>
@@ -38,14 +32,16 @@ function logout(user_id){
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
 
+<link href="resources/bootstrap/css/header.css" rel="stylesheet">
+
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
 
 <script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
 </head>
 
 
 <body>
-	<button onclick="location.href='test.do'">테스트</button>
-
 
    <header>
       <nav class="header navbar navbar-expand-lg navbar-dark fixed-top">
@@ -106,6 +102,10 @@ function logout(user_id){
             </div>
          </div>
       </nav>
+      <div class="pull-right">
+		
+			<img alt="chat" src="resources/bootstrap/image/chat1.png" onclick="location.href='chat.do'" class="navbar-fixed-top  chat">
+		</div>
    </header>
 </body>
 </html>
