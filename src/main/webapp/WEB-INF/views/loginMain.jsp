@@ -9,9 +9,9 @@
 <meta charset="UTF-8">
 <title>login</title>
 </head>
-<link href="resources/bootstrap/css/login.css" rel="stylesheet">
+<!-- <link href="resources/bootstrap/css/login.css" rel="stylesheet"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/login.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
 
 <!-- kakao -->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -21,6 +21,8 @@
 </style>
 
 <body>
+
+	
    <%@ include file="header.jsp"%>
    
    <h1 class="title1">Login</h1>
@@ -29,8 +31,8 @@
    
    <div style="padding-bottom:10%; padding-top:10%;">
       <div class="row border">
-      <form:form name="f" action="${loginUrl}" method="POST">
-         <table style="align-content: center;">
+      <form:form name="f" action="${loginUrl}" method="POST" class="center-block">
+         <table style="align-content: center; border: none;" class="table" >
          <tr>
          <th>&nbsp;</th>
          </tr>
@@ -48,17 +50,16 @@
             </tr>
             <tr>
                <td colspan="2" align="center">
-               	  <button type="submit" class="btn">로그인</button>
-<!--                	<input class="btn" type="button" value="로그인" onclick="login()" />  -->
+<!--                   <button type="submit" class="btn">로그인</button> -->
+             <input class="btn" type="submit" value="로그인" /> 
                   <input class="btn"  type="button" value="회원가입" onclick="location.href='insertform.do'"/> 
                   <input class="btn" type="button" value="취소" onclick="location.href='mainpage.do'" />
                </td>
             </tr>
             <tr>
-            <th>&nbsp;</th>
-            <td>
-            	<a id="kakao-login-btn"></a>
-            	<script type='text/javascript'>
+            <td colspan="2" align="center">
+               <a id="kakao-login-btn"></a>
+               <script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('417b6197d543e8ff274fa9c9db0ca421');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
@@ -73,7 +74,7 @@
         Kakao.API.request({
           url: '/v1/user/me',
           success: function(res) {//로그인되자마자 실행되는 구간
-        	alert("로그인 성공1111");
+           alert("로그인 성공1111");
             console.log(JSON.stringify(res.kaccount_email));
             console.log(JSON.stringify(res.id));
             console.log(JSON.stringify(res.properties.profile_image));
@@ -83,11 +84,13 @@
             var kaname = kname.replace("\"","");
             var kakaoname = kaname.replace("\"","");
             test=kakaoname;
-            
+            //아이디 중복체크 ajax
+            //있으면 가상폼태그로 시큐리티로그인
+            //없으면 insert보내고
             document.write('<form action="kakaologin.do" id="sub_form" method="post">'+
-            				'<input type="hidden" name="id" value="'+kakaoid+'">'+
-            				'<input type="hidden" name="name" value="'+kakaoname+'">'+
-            				'</form>');
+                        '<input type="hidden" name="id" value="'+kakaoid+'">'+
+                        '<input type="hidden" name="name" value="'+kakaoname+'">'+
+                        '</form>');
             document.getElementById("sub_form").submit();
             //location.href="admin.do?command=kakaoregistform&id="+kakaoid+"&name="+kakaoname;
           },
@@ -104,6 +107,9 @@
 </script>
             </td>
          </tr>
+         <tr>
+         	<th>&nbsp;</th>
+         </tr>
          </table>
        </form:form>
       </div>
@@ -118,5 +124,18 @@
    </div>
 <script src="resources/js/mainpage.js"></script>
 </body>
+<script type="text/javascript">
+// $("#formtag").submit(function(){
+// 	var id = document.getElementById("id").value;
+// 	var password = document.getElementById("password").value;
+// 	alert(id);
+// 	alert(password);
+// 	document.write('<form action="login.do" id="sub_form" method="post">'+
+//             '<input type="hidden" name="id" value="'+id+'">'+
+//             '<input type="hidden" name="password" value="'+password+'">'+
+//             '</form>');
+// 	document.getElementById("sub_form").submit();
+// });
 
+</script>
 </html>

@@ -4,22 +4,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</style>
+<title>mypage</title>
+
 </head>
+
 <body>
 	
 	<%@ include file="header.jsp"%>
 	
-	<h1>마이 페이지</h1>
+	<div style="width: 250px; height: 50px; font-size: 36px; font-weight: bold; padding-left: 3%;" >
+		마이 페이지
+	</div>
+	<br/>
 	
-	<div><button onclick="location.href='detail.do?id=${login.member_id}'">개인정보 수정</button></div>
+	<div class="container ">
+	<div id="row text-center" style="margin-bottom: 4em; margin: auto;">
 	
-	<div><button>결제 내역</button></div>
+		<div class="list-group list-group-horizontal" style="margin-bottom: 4em;">
+		
+			<div class="col-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center; ">
+				
+				<p onclick="location.href='detail.do?id=${login.member_id}'" class="text-dark" style="font-size: 36px; margin: 8%;">개인정보 수정</p>
+			</div>
+			
+			<div class="col-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center;">
+				<p onclick="location.href='#'" class="text-dark " style="font-size: 36px; padding: 8%;">결제내역</p>
+			</div>
+		</div>
+		
+		
+		
+		<div class="list-group list-group-horizontal" style="margin-bottom: 4em;">
+		
+			<div class="colcol-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center;">
+				<p onclick="location.href='dosirak_list.do'" class="text-dark" style="font-size: 36px; padding: 8%;">장바구니</p>
+			</div>
+			
+			<div class="col-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center;">
+				<p  onclick="location.href='#'" class="text-dark" style="font-size: 36px; padding: 8%;">QR코드 조회</p>
+			</div>
+		</div>
+	</div>
+	</div>	
 	
-	<div><button>장바구니</button></div>
-	
-	<div><button>QR코드 조회</button></div>
 	
 	<%@ include file="footer.jsp"%>
 

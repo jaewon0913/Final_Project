@@ -31,25 +31,36 @@ public class MemberDaoImpl implements MemberDao {
 
 		return memberdto;
 	}
+	
+	@Override
+	public MemberDto loginsuccess(String id) {
+		MemberDto memberdto = new MemberDto();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		memberdto = sqlSession.selectOne(namespace+"loginsuccess",map);
+		
+		return memberdto;
+		
+	}
 
 	@Override
 	public int insert_member(MemberDto dto) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", dto.getMember_id());
 		int res = sqlSession.insert(namespace+"insert",dto);
+		int res1 = sqlSession.insert(namespace+"insertAuthorities",map);
 		
-		return res;
+		return res+res1;
 	}
 
 	@Override
 	public int update_member(MemberDto dto) {
 		int res = 0;
-		System.out.println("�꽆�뼱�솕�땲??");
 		try {
 			res = sqlSession.update(namespace+"update", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("�꽆�뼱��以섎씪 �젣諛�");
-		System.out.println("�븘�븘�븘�븘�븘" + res);
 		return res;
 	}
 
@@ -69,7 +80,34 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public MemberDto idfind(String member_name,String member_email) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", member_name);
+		map.put("email", member_email);
+		
+		MemberDto memberdto = new MemberDto();
+	
+		memberdto = sqlSession.selectOne(namespace + "idfind" , map);
+		
+		return memberdto;
+	}
+	
+	@Override
+	public MemberDto pwfind(String member_id, String member_email) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", member_id);
+		map.put("email", member_email);
+		
+		MemberDto memberdto = new MemberDto();
+		
+		memberdto = sqlSession.selectOne(namespace + "pwfind" , map);
+		
+		return memberdto;
+	}
+	
+	@Override
 	public boolean idChk(String member_id) {
+		System.out.println("daoImpl : "+member_id);
 		boolean idnotused = true;
 		Map<String,String> map = new HashMap<String, String>();
 		map.put("member_id", member_id);

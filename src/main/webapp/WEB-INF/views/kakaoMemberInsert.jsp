@@ -97,7 +97,7 @@ function execPostCode() {
 </head>
 <body>
 
-	<form id="formtag" action="insert_res.do" method="post" >
+	<form id="formtag" action="kakaoinsert_res.do" method="post" >
 		<table border="1">
 		
 		<h3>kakao 회원가입</h3>
