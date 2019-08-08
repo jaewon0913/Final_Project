@@ -1,6 +1,9 @@
 package com.khfinal.mvc.free.biz;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,23 +22,41 @@ public class FreeboardBizImpl implements FreeboardBiz{
 	}
 
 	@Override
-	public FreeboardDto selectOne(String memeber_id) {
-		return dao.selectOne(memeber_id);
+	public FreeboardDto selectOne(int free_postnum) {
+		return dao.selectOne(free_postnum);
 	}
 
 	@Override
-	public int insert(FreeboardDto dto) {
-		return dao.insert(dto);
+	public int freeboard_insert(FreeboardDto dto) {
+		return dao.freeboard_insert(dto);
 	}
 
 	@Override
-	public int update(FreeboardDto dto) {
-		return dao.update(dto);
+	public int freeboard_update(FreeboardDto dto) {
+		return dao.freeboard_update(dto);
 	}
 
 	@Override
-	public int delete(String memeber_id) {
-		return dao.delete(memeber_id);
+	public int freeboard_delete(int free_postnum) {
+		return dao.freeboard_delete(free_postnum);
+	
+
 	}
+
+	@Override
+	//public int freeboard_muldel(String[] free_chk) {
+	public int freeboard_muldel(Integer[] free_chk) {
+		return dao.freeboard_muldel(free_chk);
+	}
+
+	
+
+	@Override
+	public int updateViews(int free_postnum) {
+
+		return dao.updateViews(free_postnum);
+	}
+
+
 
 }

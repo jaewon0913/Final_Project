@@ -1,0 +1,28 @@
+
+DROP TABEL COMMENT_BAORD;
+DROP SEQUENCE COMMENTSEQ;
+DROP SEQUENCE GROUPNOSEQ;
+
+CREATE SEQUENCE COMMENTSEQ;
+CREATE SEQUENCE GROUPNOSEQ;
+
+CREATE TABLE COMMENT_BOARD(
+	CMT_NUM NUMBER PRIMARY KEY,
+	CMT_type VARCHAR2(2) NOT NULL, => 그룹이 없었는데 갑자기 그룹? 그룹이라는 말보단 cmt_type 으로 게시글 종류로 하나 정도는 있으면 나쁘진 않ㅈ뵤
+	FREE_POSTNUM NUMBER , => 항상 free 보드의 키를 가지고 값니다.
+	CMT_GRP_SQ NUMBER NOT NULL,  => 댓글도 여러개 달릴수 있으니깐요 댓글에서의 순번입니다.
+	CMT_CONTENT VARCHAR2(2000) NULL,
+	CMT_DEL_YN VARCHAR2(2) NOT NULL, => comment 를 줄여서 cmt 라고 씁시다. 너무 길어요
+	MEMBER_ID VARCHAR2(1000) ,
+	MEMBER_NAME VARCHAR2(200) ,
+	FREE_REGDATE DATE;
+	
+	-- 이정도면 될거예요
+	
+	
+	
+
+	
+
+
+)
