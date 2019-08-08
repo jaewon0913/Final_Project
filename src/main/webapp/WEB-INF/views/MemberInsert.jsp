@@ -167,7 +167,7 @@ function execPostCode() {
 			</tr>
 			<tr>
 				<th>도시락 받을 역q</th>
-				<td><input type="text" name="member_subway" required="required"></td>
+				<td><input type="text" name="member_subway" required="required" id="addr4"> <input type="button" value="지도 보기" 	onclick="showPopup();" class="btn btn-outline-light"/></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -217,7 +217,12 @@ $("#formtag").submit(function() {
 			return true;
 		}
 
-});   
+});
+
+function showPopup() {
+	window.open("popup_map.do", "abc",
+			"width=700, height=600, left=100, top=50");
+}
 </script>
 <!-- ------------------------------헤더----------------------------------- -->
 <%@ include file="footer.jsp"%>
