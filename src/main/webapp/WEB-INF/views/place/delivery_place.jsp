@@ -34,17 +34,11 @@ body {
 }
 </style>
 </head>
-<script type="text/javascript">
-	function showPopup() {
-		window.open("popup_map.do", "abc",
-				"width=700, height=600, left=100, top=50, resizable=no");
-	}
-</script>
 <body>
 	
 		<div id="map"></div>
 		<%--<input type="text" id="ADS" placeholder="주소가 들어 가는 곳" readonly="readonly"/>
-		<input type="button" value="지도 보기" 	onclick="showPopup();"/>--%>
+		--%>
 		<div id="buttons">
 			<input type="button" value="지도 초기화" onclick="mapReset()" class="a"/>
 			<input type="button" value="메인 페이지로" onclick="location.href='mainpage.do'" class="b"/>
@@ -74,13 +68,12 @@ body {
 	            }
 	            else {
 	                var notification = new Notification('배달장소 확인', {
-	                    icon: 'https://en.pimg.jp/015/673/266/1/15673266.jpg',
-	                    body: '배달장소는 3곳 입니다.',
+	                    icon: 'resources/bootstrap/image/map1.jpg',
+	                    body: '배달장소는 5곳 입니다.',
 	                });	 
 	            }
 	            
 	        }
-
 
 	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -110,11 +103,19 @@ body {
 			content : '<div id="content">망포역 분당선 1번출구</div>',
 			latlng : new kakao.maps.LatLng(37.245654, 127.058529),
 			clickable : true
+		}, {
+			content : '<div id="content">부천시청역 7호선 1번출구</div>',
+			latlng : new kakao.maps.LatLng(37.504280, 126.764500),
+			clickable : true
+		}, {
+			content : '<div id="content">계산역 인천 1호선 1번출구</div>',
+			latlng : new kakao.maps.LatLng(37.543110, 126.728840),
+			clickable : true
 		} ];
-
+		
 		// 마커 이미지의 이미지 주소입니다
 		//var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-		var imageSrc = "http://www.wiryei.co.kr/images/gmap.png";
+		var imageSrc = "resources/bootstrap/image/gmap.png";
 		// 마커 이미지의 이미지 크기 입니다
 		var imageSize = new kakao.maps.Size(24, 35);
 
@@ -165,7 +166,7 @@ body {
 			var level = map.getLevel();
 
 			// 지도를 1레벨 내립니다 (지도가 확대됩니다)
-			map.setLevel(level - 13);
+			map.setLevel(level - 9);
 		}
 
 		function zoomOut() {
