@@ -80,44 +80,30 @@
 		</c:otherwise>
 		</c:choose>
 		</div>
-		<!--
-		<c:choose>
-		
-			<c:when test="${count eq 3}">
-			<div style = "display : inline-block">
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-			</div>
-			</c:when>
-			<c:when test="${count eq 4 }">
-			<div style = "display : inline-block">
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-			</div>
-			</c:when>
-			<c:when test="${count eq 5 }">
-			<div style = "display : inline-block">
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>
-				<div class='customDrop test' ondrop = "drop_handler(event);" ondragover = "dragover_handler(event)"></div>	
-			</div>	
-			</c:when>
-<%-- 			<c:otherwise>
-				<h1>식판을 먼저 눌러주세요</h1>
-			</c:otherwise> --%>
-		</c:choose>
-		 -->
 	</div>
 	<hr style = "clear : both" />
 	<!-- 반찬  -->
 	<div align = "center">
 		<p>반찬선택</p>
-		<div style = "display : inline-block">
+		<c:if test="${logindto.member_id eq 'admin' }">
+			<!-- 글작성 테스트 -->
+			<input type = "button" value = "반찬 등록" onclick = "location.href='dishinsert_form.do'">
+		</c:if>
+		<input type = "button" value = "밥류" onclick = "changeDish('rice')" />
+		<input type = "button" value = "고기류" onclick = "changeDish('meal')" />
+		<input type = "button" value = "반찬류" onclick = "changeDish('sidedish')" />
+		<input type = "button" value = "샐러드류" onclick = "changeDish('salad')" />
+		<br/>
+		<div id = "dish_list">
+		<c:forEach items = "${list }" var = "UploadFile">
+			<div style = "display : inline-block">
+				<div class = "customImg">
+					<img name = "dish" id = "sideDish" class = "customContent" src = '${UploadFile.file_path }' draggable = "true" ondragstart = "dragstart_handler(event);">
+				</div>
+			</div>
+		</c:forEach>
+		</div>
+		<%-- <div style = "display : inline-block">
 			<div class="customImg">
 				<img name = "dish1" id = "sideDish1" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img01.jpeg" draggable = "true" ondragstart = "dragstart_handler(event);">
 		    </div>
@@ -198,7 +184,7 @@
 		    </div>
 		</div>
 		<div style = "display : inline-block">
-		</div>
+		</div> --%>
 	<br style = "clear : both" />
 	<div align = "center">
 		<input type = "button" onclick = "order(${count })" value = "주문" />

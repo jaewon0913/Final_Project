@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="uploadmapper">
+	<insert id="insert" parameterType = "UploadDto">
+		INSERT INTO UPLOAD_TABLE VALUES (
+			UPLOAD_SEQ.NEXTVAL, #{dish_name}, #{dish_tan}, #{dish_dan}, #{dish_zi},
+			#{dish_amount}, #{dish_cal}, #{dish_kind}, #{file_name}, #{file_path}
+		)
+	</insert>
+	
+	<select id="selectlist" parameterType = "String" resultType = "UploadDto">
+		SELECT * FROM UPLOAD_TABLE WHERE DISH_KIND = #{dish_name}
+	</select>
+</mapper>

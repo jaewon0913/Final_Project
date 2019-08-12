@@ -7,6 +7,7 @@
 		<typeAlias type="com.khfinal.mvc.free.dto.FreeboardDto" alias="FreeboardDto"/>
 		<typeAlias type="com.khfinal.mvc.notice.dto.NoticeDto" alias="NoticeDto"/>
 		<typeAlias type="com.khfinal.mvc.dosirak.dto.DosirakDto" alias="DosirakDto"/>
+		<typeAlias type="com.khfinal.mvc.etc.util.UploadFile" alias = "UploadDto"/>
 	</typeAliases>
 	<!-- resource : src/main/resources -->
 	<mappers>
@@ -14,6 +15,7 @@
 		<mapper resource="/sqls/FreeboardMapper.xml"/>
 		<mapper resource="/sqls/NoticeboardMapper.xml"/>
 		<mapper resource="/sqls/DosirakMapper.xml"/>
+		<mapper resource="/sqls/UploadMapper.xml"/>
 	</mappers>
 
 </configuration>

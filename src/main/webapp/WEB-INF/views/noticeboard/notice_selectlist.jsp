@@ -5,15 +5,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 파비콘 -->
+
+<link rel="shortcut icon" href="resources/bootstrap/image/favicon.ico" type="image/x-icon">
+
+<!-- 파비콘 -->
 <meta charset="UTF-8">
 <title>공지사항 게시판</title>
+<%
+	MemberDto logindto = (MemberDto)session.getAttribute("logindto");
+%>
 </head>
 <body>
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
-	<div>
-		<h1>공지사항 게시판</h1>
+	<div class="container">
+		<h1>공지사항 게시판 리스트</h1>
+		<br/>
+		<div class="container col-sm-12 text-center"> 
 			<table class="table table-hover">
 				
 				<tr>
@@ -28,14 +38,14 @@
 					<c:when test="${empty list }">
 						<tr>
 							<td colspan="5" align="center">=======작성된 글이 존재하지
-								않습니다=======</td>
+								않습니다.=======</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${ list}" var="NoticeDto">
 							<tr>
 								<td id="seq">${NoticeDto.notice_postnum}</td>
-								<td>${NoticeDto.notice_writer }</td>
+								<td>${NoticeDto.member_id }</td>
 								<td><a href="notice_detail.do?notice_postnum=${NoticeDto.notice_postnum}">${NoticeDto.notice_title}</a></td>
 								<td>${NoticeDto.notice_regdate}</td>
 								<td>${NoticeDto.notice_views}</td>
@@ -43,12 +53,16 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				<tr>
-					<td colspan="5" align="right"><input class="btn" type="button" value="글쓰기"
-						onclick="location.href='notice_insertform.do'"></td>
-				</tr>
+				<c:choose>
+					<c:when test="${logindto.member_id ne null}">
+						<tr>
+							<td colspan="5" align="right"><input class="btn btn-outline-dark" type="button" value="글쓰기"
+								onclick="location.href='notice_insertform.do'"></td>
+						</tr>
+					</c:when>
+				</c:choose>
 			</table>
-
+		</div>
 
 	</div>
 

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 
 <!-- 주소API -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -15,7 +15,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
-<script src="resources/js/login.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/login.js"></script>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -96,19 +96,20 @@ function execPostCode() {
 </script>
 </head>
 <body>
+<!-- ------------------------------헤더----------------------------------- -->
+<%@ include file="../header.jsp"%>
+<!-- ------------------------------헤더----------------------------------- -->
+	<h3 style="text-align: center;">회원가입</h3>
+	
+	<form id="formtag" action="insert_res.do" method="post" class=" container center-block" style="padding-left: 10%;" class="container text-center">
 
-	<form id="formtag" action="insert_res.do" method="post" >
-		<table border="1">
-		
-		<h3>회원가입</h3>
-		
-		<col width="150px">
-		<col width="300px">
+	<div class="container col-sm-10">
+		<table class="table ">
 			<tr>
 				<th>아이디</th>
 				<td>
 					<input type="text" name="member_id" title="n" required="required">
-					<input type="button" value="중복체크" onclick="idChk()">
+					<input type="button" value="중복체크" onclick="idChk()" class="btn btn-outline-light">
 				</td>
 			</tr>
 			<tr>
@@ -127,14 +128,14 @@ function execPostCode() {
 				<th>이메일</th>
 				<td>
 					<input type="text" name="member_email" title="n" required="required">
-					<input type="button" value="이메일 인증요청" onclick="emailSend()">
+					<input type="button" value="이메일 인증요청" onclick="emailSend()" class="btn btn-outline-light">
 				</td>
 			</tr>
 			<tr>
 				<th>이메일 인증번호 입력</th>
 				<td>
 					<input type="text" name="emailtext" required="required">
-					<input type="button" value="인증번호 확인" onclick="emailChk()">
+					<input type="button" value="인증번호 확인" onclick="emailChk()" class="btn btn-outline-light">
 					<p id="emailresult"></p>
 				</td>
 			</tr>
@@ -149,7 +150,7 @@ function execPostCode() {
 <!-- 				<td><input type="text" name="member_address" required="required"></td> -->
 				<td>
 					<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
-    				<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
+    				<button type="button" class="btn btn-outline-light " onclick="execPostCode();"><i class="fa fa-search button1 "></i> 우편번호 찾기</button>
 				</td>
 			</tr>
 			<tr>
@@ -166,22 +167,23 @@ function execPostCode() {
 			</tr>
 			<tr>
 				<th>도시락 받을 역</th>
-				<td><input type="text" name="member_subway" required="required"></td>
+				<td><input type="text" name="member_subway" required="required" id="addr4"> <input type="button" value="지도 보기" 	onclick="showPopup();" class="btn btn-outline-light"/></td>
 			</tr>
 			<tr>
-				<td colspan="2">
-				    <div class="g-recaptcha" data-sitekey="6Lcjlq8UAAAAAIl-9rG38Ko_2AHNrSzvUe4FA0V-"></div>
+				<td colspan="2" align="center">
+				    <div class="g-recaptcha" data-sitekey="6Lcjlq8UAAAAAIl-9rG38Ko_2AHNrSzvUe4FA0V-" style="width: 350px; margin-right: 1px;"></div>
 <!--     				<button id="btn" title="n">테스트 버튼</button> -->
-    				<input type="button" value="테스트 버튼" id="btn" name="btn" title="n">
+    				<span><input type="button" value="테스트 버튼" id="btn" name="btn" title="n" class="btn btn-outline-light"></span>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
-					<input type="submit" value="회원가입">
-					<input type="button" value="취소" onclick="location.href='mainpage.do'">
+				<td colspan="2" align="right">
+					<input type="submit" value="회원가입" class="btn btn-outline-light">
+					<input type="button" value="취소" onclick="location.href='mainpage.do'" class="btn btn-outline-light">
 				</td>
 			</tr>
 		</table>
+		</div>
 	</form>
    
 <script type="text/javascript">
@@ -215,7 +217,15 @@ $("#formtag").submit(function() {
 			return true;
 		}
 
-});   
+});
+
+function showPopup() {
+	window.open("popup_map.do", "abc",
+			"width=700, height=600, left=100, top=50");
+}
 </script>
+<!-- ------------------------------헤더----------------------------------- -->
+<%@ include file="../footer.jsp"%>
+<!-- ------------------------------헤더----------------------------------- -->
 </body>
 </html>
