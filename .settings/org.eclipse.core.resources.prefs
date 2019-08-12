@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/khfinal/mvc/BoxorderController.java=UTF-8
+encoding//src/main/java/com/khfinal/mvc/DosirakController.java=UTF-8
 encoding//src/main/java/com/khfinal/mvc/LoginController.java=UTF-8
 encoding//src/main/java/com/khfinal/mvc/member/biz/MemberBiz.java=UTF-8
 encoding//src/main/java/com/khfinal/mvc/member/dao/MemberDao.java=UTF-8

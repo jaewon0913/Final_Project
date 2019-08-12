@@ -41,7 +41,7 @@
 			</div>
 			
 			<div class="col-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center;">
-				<p  onclick="location.href='#'" class="text-dark" style="font-size: 36px; padding: 8%;">QR코드 조회</p>
+				<p  onclick="location.href='qrcodeSelect.do'" class="text-dark" style="font-size: 36px; padding: 8%;">QR코드 조회</p>
 			</div>
 		</div>
 	</div>
