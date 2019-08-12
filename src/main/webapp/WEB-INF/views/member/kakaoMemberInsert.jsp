@@ -96,14 +96,16 @@ function execPostCode() {
 </script>
 </head>
 <body>
-
-	<form id="formtag" action="kakaoinsert_res.do" method="post" >
-		<table border="1">
+<!-- ------------------------------헤더----------------------------------- -->
+<%@ include file="header.jsp"%>
+<!-- ------------------------------헤더----------------------------------- -->
+	<h3 style="text-align: center;">kakao 회원가입</h3>
+	
+	<form id="formtag" action="kakaoinsert_res.do" method="post" class="container center-block container " style="padding-left: 10%;"
+	 >
+	 <div class="container col-sm-10">
+		<table class="table">
 		
-		<h3>kakao 회원가입</h3>
-		
-		<col width="150px">
-		<col width="300px">
 			<tr>
 				<th>아이디</th>
 				<td>
@@ -164,19 +166,20 @@ function execPostCode() {
 				<td><input type="text" name="member_subway" required="required"></td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td colspan="2" align="center">
 				    <div class="g-recaptcha" data-sitekey="6Lcjlq8UAAAAAIl-9rG38Ko_2AHNrSzvUe4FA0V-"></div>
 <!--     				<button id="btn" title="n">테스트 버튼</button> -->
     				<input type="button" value="테스트 버튼" id="btn" name="btn" title="n">
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td colspan="2" align="right">
 					<input type="submit" value="회원가입">
 					<input type="button" value="취소" onclick="location.href='mainpage.do'">
 				</td>
 			</tr>
 		</table>
+		</div>
 	</form>
    
 <script type="text/javascript">
