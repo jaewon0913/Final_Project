@@ -16,6 +16,11 @@ public class MemberBIzImpl implements MemberBiz {
 	public MemberDto login(String id, String pw) {
 		return memberdao.login(id,pw);
 	}
+	
+	@Override
+	public MemberDto loginpw(String id, String pw) {
+		return memberdao.loginpw(id,pw);
+	}
 
 	@Override
 	public int insert_member(MemberDto dto) {
@@ -25,6 +30,11 @@ public class MemberBIzImpl implements MemberBiz {
 	@Override
 	public int update_member(MemberDto dto) {
 		return memberdao.update_member(dto);
+	}
+	
+	@Override
+	public int update_pw(MemberDto dto) {
+		return memberdao.update_pw(dto);
 	}
 
 	@Override
@@ -56,4 +66,5 @@ public class MemberBIzImpl implements MemberBiz {
 	public MemberDto loginsuccess(String id) {
 		return memberdao.loginsuccess(id);
 	}
+
 }

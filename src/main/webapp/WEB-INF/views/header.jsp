@@ -5,6 +5,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<%@ include file="chat/ChatPage.jsp" %>
+
+
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
@@ -20,7 +23,7 @@
 <link href="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
-<link href="resources/bootstrap/css/header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/bootstrap/css/header.css" rel="stylesheet">
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -72,45 +75,55 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link a-link" href="#">도시락
+						<li class="nav-item active"><a class="nav-link" href="dosirak_listpagig.do">도시락
 								주문 <span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item active" ><a class="nav-link a-link" href="custom.do">커스텀
-								도시락 주문</a></li>
-						<li class="nav-item active"><a class="nav-link a-link" href="#">주간 영양정보</a>
+						<li class="nav-item"><a class="nav-link" href="custom.do">커스텀 도시락
+								주문</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">주간 영양정보</a>
 						</li>
-						<li class="nav-item active"><a class="nav-link a-link" href="#">특가 도시락</a></li>
-						<li class="nav-item active"><a class="nav-link a-link"
-							href="freeboard_list.do">자유 게시판</a></li>
-						<li class="nav-item active" ><a class="nav-link a-link" href="#">이벤트 게시판</a>
+						<li class="nav-item"><a class="nav-link" href="#">특가 도시락</a></li>
+						<li class="nav-item"><a class="nav-link" href="freeboard_list.do">자유 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">이벤트 게시판</a>
 						</li>
-						<li class="nav-item active"><a class="nav-link a-link" href="#">배달장소 확인</a>
+						<li class="nav-item"><a class="nav-link" href="delivery_place.do">배달장소 확인</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 		
-		<!-- chat -->
+		<%-- <jsp:include page="chat/ChatPage.jsp"></jsp:include> --%>
+		<%-- <!-- chat -->
 		<div class="pull-right">
-			<img alt="chat" src="resources/bootstrap/image/chat1.png" class="navbar-fixed-top  chat" id = "chat_btn">
-		</div>
-		<div id = "chat_div" style = "display : none; width : 500px; height : 500px;" >
-			<h1>Chatting Page : ${logindto.member_id}</h1>
-			<br>
-			<div>
+			<img alt="chat" src="resources/bootstrap/image/chat1.png" class="navbar-fixed-top  chat" id = "chat_btn" style = "top : -205px">
+			<div id = "chat_div" style = "display : none; width : 500px; height : 500px; position : absoulte" >
+				<h1>Chatting Page : ${logindto.member_id}</h1>
+				<button type = "button" id = "chat_close" style = "float: right">닫기</button>
+				<br>
 				<div>
-					<input type="text" id="message"/>
-    					<input type="button" id="sendBtn" value="전송"/>
-   			 	</div>
-   		 		<br>
-    				<div class="well" id="chatdata">
-    					<!-- User Session Info Hidden -->
-    					<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
-   	 			</div>
+					<div>
+						<input type="text" id="message"/>
+    						<input type="button" id="sendBtn" value="전송"/>
+   			 		</div>
+   		 			<br>
+    					<div class="well" id="chatdata">
+    						<!-- User Session Info Hidden -->
+    						<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
+   	 				</div>
+				</div>
 			</div>
-		</div>
-	<script type="text/javascript">
+		</div> --%>
+	<!-- <script type="text/javascript">
+	$(function() {
+		$("#chat_btn").click(function() {
+			$("#chat_div").css("display", "block");
+		});
+		$("#chat_close").click(function(){
+			$("#chat_div").css("display", "none");
+		});
+	});
+	
 	/**
 		SockJS 객체를 생성한다. 이 후 참조 변수를 이용하여 해당 콜백(onmessage, onclose)들을 등록 한다. 
 		jQuery를 이용해서 버튼이 클릭되면 메시지 전송함수를 실행
@@ -123,14 +136,6 @@
 		alert(user_id + "님 로그아웃 되었습니다.");
 		location.href = contextPath + "/logout";
 	}
-	
-	$(function() {
-		$("#chat_btn").click(function() {
-			$("#chat_div").css("display", "block");
-			//socket.onopen = onOpen;
-		})
-	});
-	
 	
 	//	WebSocket 서버에서 메시지를 보내면 자동으로 실행된다.
 	socket.onmessage = onMessage;
@@ -171,32 +176,59 @@
 		sessionWho = strArray[1]; 	//	귓속말 대상 비교
 		message = strArray[2];		//	현재 메시지 저장
 		
-		//	나와 상대방이 보낸 메시지를 구분하여 영역을 나눈다.
-		if(sessionid == currentUser_Session){
+		console.log("총메시지 : " + data);
+		console.log("보낸 사람 : " + sessionid);
+		console.log("받는 사람 : " + sessionWho);
+		console.log("메시지 : " + message);
+		
+		//	상대방과 내가 보낸 메시지를 구분하여 영역을 나눈다.
+		if(currentUser_Session == "" && sessionid == sessionWho){
 			var printHTML = "<div class = 'well'>";
 				printHTML += "<div class = 'alert alert-info'>";
-				printHTML += "<strong>["+sessionid+"] ["+sessionWho+"]-> "+message+"</strong>";
+				printHTML += "<strong>["+sessionid+"] -> "+message+"</strong>";
+				printHTML += "</div>";
+				printHTML += "</div>";
+			
+			$("#chatdata").append(printHTML);
+		} else if(sessionid == currentUser_Session){
+			//	내가 보낸걸 내 화면에
+			alert(currentUser_Session);
+			var printHTML = "<div class = 'well'>";
+				printHTML += "<div class = 'alert alert-info'>";
+				printHTML += "<strong>["+sessionid+"] -> "+message+"</strong>";
 				printHTML += "</div>";
 				printHTML += "</div>";
 				
 				$("#chatdata").append(printHTML);
 		} else {
-			var printHTML = "<div class = 'well'>";
-			printHTML += "<div class = 'alert alert-warning'>";
-			printHTML += "<strong>["+sessionid+"] -> "+message+"</strong>";
-			printHTML += "</div>";
-			printHTML += "</div>";
-			
-			$("#chatdata").append(printHTML);
+			//	남이 보낸걸 내 화면에
+			//	보낸사람이 admin이면 출력
+			if(sessionWho == "admin"){
+				var printHTML = "<div class = 'well'>";
+				printHTML += "<div class = 'alert alert-warning'>";
+				printHTML += "<strong>["+sessionWho+"] -> "+message+"</strong>";
+				printHTML += "</div>";
+				printHTML += "</div>";
+				
+				$("#chatdata").append(printHTML);
+			} else if(currentUser_Session == "admin"){
+				//	admin만 다른 사람이 보낸 메시지 받기
+				var printHTML = "<div class = 'well'>";
+				printHTML += "<div class = 'alert alert-warning'>";
+				printHTML += "<strong>["+sessionid+"] ["+sessionWho+"] -> "+message+"</strong>";
+				printHTML += "</div>";
+				printHTML += "</div>";
+				
+				$("#chatdata").append(printHTML);
+			}
 		}
-		
 		console.log('chatting data : ' + data);
 	}
 	
 	function onClose(evt){
 		$("#data").append("연결 끊김");
 	}
-</script>
+</script> -->
 	</header>
 </body>
 </html>

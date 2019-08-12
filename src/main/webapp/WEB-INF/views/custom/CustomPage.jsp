@@ -327,6 +327,73 @@ font-size:2rem;
 			</c:otherwise> --%>
 		</c:choose>
 		 -->
+	</div>
+	<hr style = "clear : both" />
+	<!-- 반찬  -->
+	<div align = "center">
+		<p>반찬선택</p>
+		<c:if test="${logindto.member_id eq 'admin' }">
+			<!-- 글작성 테스트 -->
+			<input type = "button" value = "반찬 등록" onclick = "location.href='dishinsert_form.do'">
+		</c:if>
+		<input type = "button" value = "밥류" onclick = "changeDish('rice')" />
+		<input type = "button" value = "고기류" onclick = "changeDish('meal')" />
+		<input type = "button" value = "반찬류" onclick = "changeDish('sidedish')" />
+		<input type = "button" value = "샐러드류" onclick = "changeDish('salad')" />
+		<br/>
+		<div id = "dish_list">
+		<c:forEach items = "${list }" var = "UploadFile">
+			<div style = "display : inline-block">
+				<div class = "customImg">
+					<img name = "dish" id = "sideDish" class = "customContent" src = '${UploadFile.file_path }' draggable = "true" ondragstart = "dragstart_handler(event);">
+				</div>
+			</div>
+		</c:forEach>
+		</div>
+		<%-- <div style = "display : inline-block">
+			<div class="customImg">
+				<img name = "dish1" id = "sideDish1" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img01.jpeg" draggable = "true" ondragstart = "dragstart_handler(event);">
+		    </div>
+		</div>
+		<div style = "display : inline-block">
+		    <div class="customImg" >
+				<img name = "dish2" id = "sideDish2" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img02.jpeg" draggable = "true" ondragstart = "dragstart_handler(event);">
+		    </div>
+		</div>
+		<div style = "display : inline-block">
+		    <div class="customImg" >
+				<img name = "dish3" id = "sideDish3" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img03.jpeg" draggable = "true" ondragstart = "dragstart_handler(event);">
+		    </div>
+		</div>
+		<div style = "display : inline-block">
+		    <div class="customImg" >
+				<img name = "dish4" id = "sideDish4" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img04.jpeg" draggable = "true" ondragstart = "dragstart_handler(event);">
+		    </div>
+		</div>
+		<div style = "display : inline-block">
+		    <div class="customImg" >
+				<img name = "dish5" id = "sideDish5" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img05.jpeg" draggable = "true" ondragstart = "dragstart_handler(event);">
+		    </div>
+		</div>
+		<div style = "display : inline-block">
+		    <div class="customImg" >
+				<img name = "dish6" id = "sideDish6" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img06.jpeg" draggable = "true" ondragstart = "dragstart_handler(event);">
+		    </div>
+		</div>
+		<div style = "display : inline-block">
+		    <div class="customImg" >
+				<img name = "dish7" id = "sideDish7" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img07.jpeg" draggable = "true" ondragstart = "dragstart_handler(event);">
+		    </div>
+		</div>
+		<div style = "display : inline-block">
+		    <div class="customImg" >
+				<img name = "dish8" id = "sideDish8" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img08.jpeg" draggable = "true" ondragstart = "dragstart_handler(event);">
+		    </div>
+		</div>
+		<div style = "display : inline-block">
+		    <div class="customImg" >
+				<img name = "dish9" id = "sideDish9" class="customContent" src="${pageContext.request.contextPath }/resources/etc/image/img09.jpeg" draggable = "true" ondragstart = "dragstart_handler(event);">
+		    </div>
 		</div>
 		<hr style="clear: both" />
 		<div class="container" style="text-align: center;">
@@ -526,8 +593,9 @@ font-size:2rem;
 			<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%;"></div>
 			<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%;"></div>
 						
-	</div>
-
+		<div style = "display : inline-block">
+		</div> --%>
+	
 <!-- ------------------------------식판6---------------------------------- -->		
 <!-- ------------------------------식판7----------------------------------- -->	
 		<div class="container" style="border: 5px solid black; border-radius: 30px; width: 78rem; height: 45rem;">

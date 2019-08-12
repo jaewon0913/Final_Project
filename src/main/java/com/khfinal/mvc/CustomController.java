@@ -22,6 +22,7 @@ public class CustomController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CustomController.class);
 
+	
 	@RequestMapping("/customSikpan.do")
 	@ResponseBody
 	public Map<String, String> customSikpan(String sikpan) {
