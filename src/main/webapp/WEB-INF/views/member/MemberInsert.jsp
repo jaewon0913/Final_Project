@@ -15,7 +15,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
-<script src="resources/js/login.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/login.js"></script>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -97,7 +97,7 @@ function execPostCode() {
 </head>
 <body>
 <!-- ------------------------------헤더----------------------------------- -->
-<%@ include file="header.jsp"%>
+<%@ include file="../header.jsp"%>
 <!-- ------------------------------헤더----------------------------------- -->
 	<h3 style="text-align: center;">회원가입</h3>
 	
@@ -166,7 +166,7 @@ function execPostCode() {
 				</td>
 			</tr>
 			<tr>
-				<th>도시락 받을 역q</th>
+				<th>도시락 받을 역</th>
 				<td><input type="text" name="member_subway" required="required" id="addr4"> <input type="button" value="지도 보기" 	onclick="showPopup();" class="btn btn-outline-light"/></td>
 			</tr>
 			<tr>
@@ -225,7 +225,7 @@ function showPopup() {
 }
 </script>
 <!-- ------------------------------헤더----------------------------------- -->
-<%@ include file="footer.jsp"%>
+<%@ include file="../footer.jsp"%>
 <!-- ------------------------------헤더----------------------------------- -->
 </body>
 </html>

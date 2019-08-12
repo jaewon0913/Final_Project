@@ -10,7 +10,7 @@
 
 <body>
 	
-	<%@ include file="header.jsp"%>
+	<%@ include file="../header.jsp"%>
 	
 	<div style="width: 250px; height: 50px; font-size: 36px; font-weight: bold; padding-left: 3%;" >
 		마이 페이지
@@ -48,7 +48,7 @@
 	</div>	
 	
 	
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../footer.jsp"%>
 
 </body>
 </html>

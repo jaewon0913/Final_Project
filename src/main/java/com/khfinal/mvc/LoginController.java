@@ -91,7 +91,7 @@ public class LoginController {
 
 	@RequestMapping("/insertform.do")
 	public String insertform() {
-		return "MemberInsert";
+		return "member/MemberInsert";
 	}
 
 	@RequestMapping("/insert_res.do")
@@ -130,7 +130,7 @@ public class LoginController {
 	public String idChk(String member_id, Model model) {
 		boolean idnotused = memberbiz.idChk(member_id);
 		model.addAttribute("idnotused", idnotused);
-		return "idchk";
+		return "member/idchk";
 	}
 	
 	@RequestMapping("/test.do")
@@ -141,14 +141,14 @@ public class LoginController {
 	
 	@RequestMapping("/mypage.do")
 	public String mypage() {
-		return "MemberMypage";
+		return "member/MemberMypage";
 	}
 
 	@RequestMapping("/detail.do")
 	public String detail(Model model, String id, HttpSession session) {
 		MemberDto memberdto = (MemberDto) session.getAttribute("login");
 		model.addAttribute("memberdto", memberdto);
-		return "MemberUpdate";
+		return "member/MemberUpdate";
 	}
 
 	@RequestMapping("/update.do")
@@ -185,7 +185,7 @@ public class LoginController {
 	/* ---------- 아이디 / 비밀번호 찾기 ---------- */
 	@RequestMapping("/accountfind.do")
 	public String accountfind() {
-		return "AccountFind";
+		return "member/AccountFind";
 	}
 
 	@RequestMapping("/idfind.do")
@@ -199,12 +199,12 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('회원님의 아이디는" + memberdto.getMember_id() + "입니다.')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('이름과 이메일을 확인해주세요')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		}
 	}
 
@@ -219,12 +219,12 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('회원님의 비밀번호는" + memberdto.getMember_pw() + "입니다.')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('아이디와 이메일을 확인해주세요')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		}
 	}
 	

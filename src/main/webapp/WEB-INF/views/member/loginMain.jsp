@@ -23,7 +23,7 @@
 <body>
 
 	
-   <%@ include file="header.jsp"%>
+   <%@ include file="../header.jsp"%>
    
    <h1 class="title1">Login</h1>
    
@@ -119,10 +119,10 @@
    
    <div>
    <!-- ------------------------푸터-------------------------------------------- -->
-   <%@ include file="footer.jsp"%>
+   <%@ include file="../footer.jsp"%>
 <!-- ------------------------푸터-------------------------------------------- -->
    </div>
-<script src="resources/js/mainpage.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
 </body>
 <script type="text/javascript">
 // $("#formtag").submit(function(){
