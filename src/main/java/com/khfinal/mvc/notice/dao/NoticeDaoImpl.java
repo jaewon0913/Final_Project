@@ -42,7 +42,7 @@ public class NoticeDaoImpl implements NoticeDao {
 		try {
 			noticedto = sqlSession.selectOne(namespace+ "NoticeSelectOne",notice_postnum);
 		} catch (Exception e) {
-			System.out.println("NticeSelectOne 에러났다앙");
+			System.out.println("NoticeSelectOne 에러났다앙");
 			e.printStackTrace();
 		}
 		
@@ -51,26 +51,60 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	// 글작성
 	@Override
-	public void NoticeInsert(NoticeDto dto) {
+	public int NoticeInsert(NoticeDto dto) {
+		
+		int res = 0;
+		try {
+			res=sqlSession.insert(namespace+"NoticeInsert",dto);
+		} catch (Exception e) {
+			System.out.println("NoticeInsert 에러났다아앙");
+			e.printStackTrace();
+		}
+		
+		return res;
 
 	}
 
 	// 글수정
 	@Override
-	public void NoticeUpdate(int notice_postnum) {
+	public int NoticeUpdate(NoticeDto dto) {
+		int res = 0;
+		try {
+			res=sqlSession.update(namespace+"NoticeUpdate",dto);
+		} catch (Exception e) {
+			System.out.println("NoticeUpdate 에러났다아앙");
+			e.printStackTrace();
+		}
+		
+		return res;
 
 	}
 
 	// 글삭제
 	@Override
-	public void NoticeDelete(int notice_postnum) {
-
+	public int NoticeDelete(int notice_postnum) {
+		int res = 0;
+		try {
+			res=sqlSession.delete(namespace+"NoticeDelete",notice_postnum);
+		} catch (Exception e) {
+			System.out.println("NoticeDelete 에러났다아앙");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 	// 조회수
 	@Override
-	public void NoticeViews(int notice_postnum, HttpSession session) {
-
+	public int NoticeViews(int notice_postnum) {
+		int res = 0;
+		try {
+			res=sqlSession.update(namespace+"NoticeViews",notice_postnum);
+		} catch (Exception e) {
+			System.out.println("NoticeViews 에러났다아앙");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 }

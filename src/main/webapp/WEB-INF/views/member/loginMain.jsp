@@ -1,4 +1,4 @@
-`<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -22,9 +22,8 @@
 
 <body>
 
-	<!-- ------------------------헤더-------------------------------------------- -->
-	<%@ include file="header.jsp"%>
-	<!-- ------------------------헤더-------------------------------------------- -->
+	
+   <%@ include file="../header.jsp"%>
    
    <h1 class="title1">Login</h1>
    
@@ -32,8 +31,8 @@
    
    <div style="padding-bottom:10%; padding-top:10%;">
       <div class="row border">
-      <form:form name="f" action="${loginUrl}" method="POST">
-         <table style="align-content: center;">
+      <form:form name="f" action="${loginUrl}" method="POST" class="center-block">
+         <table style="align-content: center; border: none;" class="table" >
          <tr>
          <th>&nbsp;</th>
          </tr>
@@ -59,8 +58,7 @@
                </td>
             </tr>
             <tr>
-            <th>&nbsp;</th>
-            <td>
+            <td colspan="2" align="center">
                <a id="kakao-login-btn"></a>
                <script type='text/javascript'>
   //<![CDATA[
@@ -110,6 +108,9 @@
 </script>
             </td>
          </tr>
+         <tr>
+         	<th>&nbsp;</th>
+         </tr>
          </table>
        </form:form>
       </div>
@@ -118,11 +119,11 @@
    
    
    <div>
-	<!-- ------------------------푸터-------------------------------------------- -->
-	<%@ include file="footer.jsp"%>
-	<!-- ------------------------푸터-------------------------------------------- -->
+   <!-- ------------------------푸터-------------------------------------------- -->
+   <%@ include file="../footer.jsp"%>
+<!-- ------------------------푸터-------------------------------------------- -->
    </div>
-<script src="resources/js/mainpage.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
 </body>
 <script type="text/javascript">
 // $("#formtag").submit(function(){

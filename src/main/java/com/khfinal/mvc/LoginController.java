@@ -24,9 +24,10 @@ import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.member.etc.VerifyRecaptcha;
 
+
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	private MemberBiz memberbiz;
 	
@@ -35,7 +36,7 @@ public class LoginController {
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	 
+
 	@RequestMapping("/login.do")
 	public String login(String id, String password) {
 		String encPassword = bcryptPasswordEncoder.encode(password);
@@ -60,12 +61,12 @@ public class LoginController {
 			return "redirect: mainpage.do";
 		}
 	}
-	
+
 	@RequestMapping("/kakaologin.do")
-	public String kakaologin(String id, String name,HttpSession session,Model model){
+	public String kakaologin(String id, String name, HttpSession session, Model model) {
 		Boolean idchk = false;
-		idchk = memberbiz.idChk(id);//가입가능 = true
-		if(idchk == true) {//가입페이지로 이동
+		idchk = memberbiz.idChk(id);// 가입가능 = true
+		if (idchk == true) {// 가입페이지로 이동
 			model.addAttribute("id", id);
 			model.addAttribute("name", name);
 			return "kakaoMemberInsert";
@@ -79,19 +80,19 @@ public class LoginController {
 			return "redirect:mainpage.do";
 		}
 	}
-	
+
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.setAttribute("login", null);
-		
+
 		return "redirect:mainpage.jsp";
 	}
-	
+
 	@RequestMapping("/insertform.do")
 	public String insertform() {
-		return "MemberInsert";
+		return "member/MemberInsert";
 	}
-	
+
 	@RequestMapping("/insert_res.do")
 	public String insert_res(MemberDto dto,String addr1,String addr2, String addr3) {
 		System.out.println("내가 입력한 pw: "+dto.getMember_pw());
@@ -105,9 +106,9 @@ public class LoginController {
 		
 		
 		int res = memberbiz.insert_member(dto);
-		if(res > 0) {
+		if (res > 0) {
 			return "redirect:mainpage.do";
-		}else {
+		} else {
 			return "redirect:insertform.do";
 		}
 	}
@@ -125,10 +126,10 @@ public class LoginController {
 		}
 	}
 	@RequestMapping("/idChk.do")
-	public String idChk(String member_id,Model model) {
+	public String idChk(String member_id, Model model) {
 		boolean idnotused = memberbiz.idChk(member_id);
 		model.addAttribute("idnotused", idnotused);
-		return "idchk";
+		return "member/idchk";
 	}
 	
 	@RequestMapping("/test.do")
@@ -139,16 +140,16 @@ public class LoginController {
 	
 	@RequestMapping("/mypage.do")
 	public String mypage() {
-		return "MemberMypage";
+		return "member/MemberMypage";
 	}
 
 	@RequestMapping("/detail.do")
 	public String detail(Model model, String id, HttpSession session) {
-		MemberDto memberdto = (MemberDto) session.getAttribute("logindto");
-		model.addAttribute("logindto", memberdto);
-		return "MemberUpdate";
+		MemberDto memberdto = (MemberDto) session.getAttribute("login");
+		model.addAttribute("memberdto", memberdto);
+		return "member/MemberUpdate";
 	}
-	
+
 	@RequestMapping("/update.do")
 	public String update(@ModelAttribute MemberDto dto, Model model, HttpSession session) {
 		System.out.println("내가 입력한 pw: "+dto.getMember_pw());		
@@ -224,9 +225,9 @@ public class LoginController {
 	/* ---------- 아이디 / 비밀번호 찾기 ---------- */
 	@RequestMapping("/accountfind.do")
 	public String accountfind() {
-		return "AccountFind";
+		return "member/AccountFind";
 	}
-	
+
 	@RequestMapping("/idfind.do")
 	public String idfind(MemberDto dto, Model model, HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("UTF-8");
@@ -238,15 +239,15 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('회원님의 아이디는" + memberdto.getMember_id() + "입니다.')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('이름과 이메일을 확인해주세요')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		}
 	}
-	
+
 	@RequestMapping("/pwfind.do")
 	public String pwfind(MemberDto dto, Model model, HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("UTF-8");
@@ -259,12 +260,13 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호 재설정 페이지로 이동합니다.')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('아이디와 이메일을 확인해주세요')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		}
 	}
+	
 }

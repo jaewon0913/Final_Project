@@ -5,22 +5,31 @@ import java.sql.Date;
 public class NoticeDto {
 
 	private int notice_postnum;
-	private String notice_writer;
+	private String member_id;
 	private String notice_title;
 	private String notice_content;
 	private Date notice_regdate;
 	private int notice_views;
-	
-	
+
 	public NoticeDto() {
 		super();
 	}
+	
+	
+	
+	public NoticeDto(String notice_title, String notice_content) {
+		super();
+		this.notice_title = notice_title;
+		this.notice_content = notice_content;
+	}
 
-	public NoticeDto(int notice_postnum, String notice_writer, String notice_title, String notice_content,
+
+
+	public NoticeDto(int notice_postnum, String member_id, String notice_title, String notice_content,
 			Date notice_regdate, int notice_views) {
 		super();
 		this.notice_postnum = notice_postnum;
-		this.notice_writer = notice_writer;
+		this.member_id = member_id;
 		this.notice_title = notice_title;
 		this.notice_content = notice_content;
 		this.notice_regdate = notice_regdate;
@@ -35,12 +44,12 @@ public class NoticeDto {
 		this.notice_postnum = notice_postnum;
 	}
 
-	public String getNotice_writer() {
-		return notice_writer;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setNotice_writer(String notice_writer) {
-		this.notice_writer = notice_writer;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
 	public String getNotice_title() {
