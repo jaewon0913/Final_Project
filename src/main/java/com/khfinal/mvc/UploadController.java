@@ -1,0 +1,189 @@
+package com.khfinal.mvc;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.*;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ServletContextAware;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
+
+import com.khfinal.mvc.etc.biz.UploadBiz;
+import com.khfinal.mvc.etc.util.FileValidator;
+import com.khfinal.mvc.etc.util.UploadFile;
+import com.khfinal.mvc.member.biz.MemberBiz;
+import com.khfinal.mvc.member.dto.MemberDto;
+
+@Controller
+public class UploadController implements ServletContextAware {
+	
+	private ServletContext servletContext;
+	
+	@Autowired
+	private UploadBiz biz;
+	
+	@Autowired
+	private FileValidator fileValidator;
+	
+	@RequestMapping("/custom.do")
+	public String custom(Model model) {
+		model.addAttribute("list",biz.selectList("쌀밥류"));
+		
+		return "custom/CustomPage";
+	}
+
+	//	2. form을 받아서 uploadForm.jsp 로 페이지 이동하라
+	@RequestMapping("/dishinsert_form.do")
+	public String dishinsert_form() {
+				
+		//	3. uploadForm.jsp 이동
+		return "custom/DishInsertForm";
+	}
+
+	@RequestMapping("/changeDish.do")
+	@ResponseBody
+	public Map<String, Object> changedish(String dishname, Model model) {
+		String name = null;
+		
+		if(dishname.equals("meal")) {
+			name = "고기류";
+		} else if(dishname.equals("rice")){
+			name = "쌀밥류";
+		} else if(dishname.equals("salad")) {
+			name = "샐러드류";
+		} else if(dishname.equals("sidedish")) {
+			name = "반찬류";
+		}
+		
+		List<UploadFile> list = new ArrayList<UploadFile>();
+		
+		list = biz.selectList(name);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+	
+		return map;
+	}
+	
+	//	6. uploadForm.jsp 에서 submit을 눌렀을 경우 실행
+	@RequestMapping(value="/upload.do")
+	public String fileUpload(HttpServletRequest request, Model model, 
+			UploadFile uploadFile, BindingResult result) {
+		//	BindingResult : uploadForm.jsp 에서 modelAttribute 를 이용해 매개변수를 Bean에 binding 할 때 발생한 오류 정보를 받는다.
+		
+		//	7.	업로드 파일 데이터 저장 (FileValidator.java 로 이동)
+		//	발생하는 errors의 정보를 받기 위해 사용
+		fileValidator.validate(uploadFile, result);
+		
+		//	7-4. validate method 실행 후 errors에 메시지가 존재 할 경우 다시 uploadForm.jsp로 이동 후 에러 메시지 출력
+		if(result.hasErrors()) {
+			return "error.do";
+		}
+		
+		//	8. dto에서 각 데이터들 불러와서 저장
+		MultipartFile file = uploadFile.getFile();
+		String filename = file.getOriginalFilename();
+		
+		//	9. 새로운 UploadFile.class 생성 후 위에서 저장시킨 데이터 다시 저장
+		
+		System.out.println("disth_tan : " + uploadFile.getDish_tan());
+		
+		UploadFile fileobj = new UploadFile();
+		fileobj.setFile_name(filename);
+		fileobj.setDish_name(uploadFile.getDish_name());
+		fileobj.setDish_tan(uploadFile.getDish_tan());
+		fileobj.setDish_dan(uploadFile.getDish_dan());
+		fileobj.setDish_zi(uploadFile.getDish_zi());
+		fileobj.setDish_amount(uploadFile.getDish_amount());
+		fileobj.setDish_cal(uploadFile.getDish_cal());
+		fileobj.setDish_kind(uploadFile.getDish_kind());
+		
+		
+		//	10. input / output 호출
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+		
+		
+		try {
+			//	11. request.getSession().getServletContext()에서 /storage 폴더 까지 경로 저장
+			inputStream = file.getInputStream();
+			String path = servletContext.getRealPath("/resources");
+			fileobj.setFile_path(path + "/" + filename);
+			System.out.println("업로드 될 실제 경로 : " + path);
+			System.out.println("업로드 될 경로 + 이름 :" + fileobj.getFile_path());
+			
+			//	12. 위의 path의 경로를 가진 파일 저장소 생성
+			File storage = new File(path);
+			
+			//	12-1. 만약 저장소가 존재 하지 않으면 저장소를 만든다.
+			if(!storage.exists()) {
+				storage.mkdirs();
+			}
+			
+			//	13. 위의 path의 경로에 새로운 파일 생성
+			File newfile = new File(path + "/" + filename);
+			
+			//	13-1. 경로에 파일이 없으면 파일을 만든다.
+			if(!newfile.exists()) {
+				newfile.createNewFile();
+			}
+			
+			//	14. 파일 출력
+			outputStream = new FileOutputStream(newfile);
+			
+			int read = 0;
+			//	14-1. 파일의 크기를 byte 형식으로 저장
+			byte[] b = new byte[(int)file.getSize()];
+			
+			//	14-2. byte가 다음이 없으면 -1 / 있으면 0 / 다음이 있으면 1 (즉, 파일이 끝나면)
+			while((read=inputStream.read(b)) != -1) {
+				//	14-3. 그 크기만큼 읽어서 출력
+				outputStream.write(b, 0, read);
+			}
+			
+			if(biz.insert(fileobj) > 0) {
+				System.out.println("DB에 저장 성공");
+			}
+			
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				inputStream.close();
+				outputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//	15. model에 fileobj로 저장
+//		model.addAttribute("fileobj", fileobj);
+		
+		model.addAttribute("list",biz.selectList("쌀밥류"));
+		
+		//	16. uploadFile.jsp로 이동
+		return "custom/CustomPage";
+	}
+
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext = servletContext;
+	}
+}

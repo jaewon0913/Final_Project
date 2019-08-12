@@ -5,6 +5,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<%@ include file="chat/ChatPage.jsp" %>
+
+
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
@@ -20,7 +23,7 @@
 <link href="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
-<link href="resources/bootstrap/css/header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/bootstrap/css/header.css" rel="stylesheet">
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -36,7 +39,7 @@
 
 <!-- socket -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="resources/js/sockjs.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/sockjs.min.js"></script>
 </head>
 <body>
    <header>
@@ -89,26 +92,37 @@
 			</div>
 		</nav>
 		
-		<!-- chat -->
+		<%-- <jsp:include page="chat/ChatPage.jsp"></jsp:include> --%>
+		<%-- <!-- chat -->
 		<div class="pull-right">
-			<img alt="chat" src="resources/bootstrap/image/chat1.png" class="navbar-fixed-top  chat" id = "chat_btn">
-		</div>
-		<div id = "chat_div" style = "display : none; width : 500px; height : 500px;" >
-			<h1>Chatting Page : ${logindto.member_id}</h1>
-			<br>
-			<div>
+			<img alt="chat" src="resources/bootstrap/image/chat1.png" class="navbar-fixed-top  chat" id = "chat_btn" style = "top : -205px">
+			<div id = "chat_div" style = "display : none; width : 500px; height : 500px; position : absoulte" >
+				<h1>Chatting Page : ${logindto.member_id}</h1>
+				<button type = "button" id = "chat_close" style = "float: right">닫기</button>
+				<br>
 				<div>
-					<input type="text" id="message"/>
-    					<input type="button" id="sendBtn" value="전송"/>
-   			 	</div>
-   		 		<br>
-    				<div class="well" id="chatdata">
-    					<!-- User Session Info Hidden -->
-    					<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
-   	 			</div>
+					<div>
+						<input type="text" id="message"/>
+    						<input type="button" id="sendBtn" value="전송"/>
+   			 		</div>
+   		 			<br>
+    					<div class="well" id="chatdata">
+    						<!-- User Session Info Hidden -->
+    						<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
+   	 				</div>
+				</div>
 			</div>
-		</div>
-	<script type="text/javascript">
+		</div> --%>
+	<!-- <script type="text/javascript">
+	$(function() {
+		$("#chat_btn").click(function() {
+			$("#chat_div").css("display", "block");
+		});
+		$("#chat_close").click(function(){
+			$("#chat_div").css("display", "none");
+		});
+	});
+	
 	/**
 		SockJS 객체를 생성한다. 이 후 참조 변수를 이용하여 해당 콜백(onmessage, onclose)들을 등록 한다. 
 		jQuery를 이용해서 버튼이 클릭되면 메시지 전송함수를 실행
@@ -121,14 +135,6 @@
 		alert(user_id + "님 로그아웃 되었습니다.");
 		location.href = contextPath + "/logout";
 	}
-	
-	$(function() {
-		$("#chat_btn").click(function() {
-			$("#chat_div").css("display", "block");
-			//socket.onopen = onOpen;
-		})
-	});
-	
 	
 	//	WebSocket 서버에서 메시지를 보내면 자동으로 실행된다.
 	socket.onmessage = onMessage;
@@ -221,7 +227,7 @@
 	function onClose(evt){
 		$("#data").append("연결 끊김");
 	}
-</script>
+</script> -->
 	</header>
 </body>
 </html>

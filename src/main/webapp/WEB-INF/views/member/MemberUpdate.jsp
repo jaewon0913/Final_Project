@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<%@ include file="header.jsp"%>
+	<%@ include file="../header.jsp"%>
 
 	<h1>개인정보 수정</h1>
 	<br/>
@@ -51,7 +51,7 @@
 	</div>
 	</form>
 	
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../footer.jsp"%>
 	
 </body>
 </html>
