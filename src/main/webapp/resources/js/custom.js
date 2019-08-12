@@ -25,7 +25,7 @@ function drop_handler(event){
 	jb(copyimg).addClass('copydish');
 	
 	event.target.appendChild(copyimg);
-	copyimg.setAttribute("style","width : 100px; height : 150px;");
+	copyimg.setAttribute("style","width : 170px; height : 220px;");
 	copyimg.setAttribute('draggable', true);
 	
 	jb(copyimg).dblclick(function() {
@@ -44,7 +44,6 @@ function sikpanChange(content){
 		data : "sikpan="+content,
 		success : function(msg){
 			var sikpan = msg.sikpan;
-			alert(msg.sikpan);
 			
 			location.href = "sikpanChange.do?count="+sikpan;
 								
@@ -63,6 +62,34 @@ function order(count){
 		alert(jb(".copydish")[i].outerHTML);
 	}
 	
+}
+
+//	ajax로 
+function changeDish(data) {
+	alert(data);
+	hj.ajax({
+		url : "changeDish.do",
+		type : "post",
+		data : "dishname=" + data,
+		dataType : "json",
+		success : function(msg){
+			hj("#dish_list *").remove();
+			var list = msg.list;
+			
+			for(var i = 0 ; i < list.length ; i++){
+				hj("#dish_list").append(
+							"<div style = 'display : inline-block'>" +
+							"	<div class = 'customImg'>" +
+							"		<img name = "+list[i].dish_name+" id = 'sideDish' class = 'customContent' src = "+list[0].file_path+" draggable = 'true' ondragstart = 'dragstart_handler(event);'>" +
+							"	</div>" +
+							"</div>"
+						);
+			}
+		},
+		error : function(){
+			location.href = "error.do";
+		}
+	});
 }
 
 //jb(function() {

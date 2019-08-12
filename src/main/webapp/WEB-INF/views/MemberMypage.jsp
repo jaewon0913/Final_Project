@@ -4,51 +4,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>mypage</title>
+<title>Insert title here</title>
 
 </head>
 
 <body>
 	
+	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="header.jsp"%>
+	<!-- ------------------------헤더-------------------------------------------- -->
 	
-	<div style="width: 250px; height: 50px; font-size: 36px; font-weight: bold; padding-left: 3%;" >
+	<div style="width: 250px; height: 50px; font-size: 36px; font-weight: bold;" >
 		마이 페이지
 	</div>
-	<br/>
 	
 	<div class="container ">
 	<div id="row text-center" style="margin-bottom: 4em; margin: auto;">
-	
 		<div class="list-group list-group-horizontal" style="margin-bottom: 4em;">
-		
-			<div class="col-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center; ">
-				
-				<p onclick="location.href='detail.do?id=${login.member_id}'" class="text-dark" style="font-size: 36px; margin: 8%;">개인정보 수정</p>
+			<div class="col-el-4 col-lg-4 col-md-4 list-group-item mx-5" style="height:150px; background-color: pink; line-height: 7rem; text-align: center;">
+				<a href="detail.do?id=${login.member_id}" class="text-dark" style="font-size: 36px;">개인정보 수정</a>
 			</div>
-			
-			<div class="col-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center;">
-				<p onclick="location.href='#'" class="text-dark " style="font-size: 36px; padding: 8%;">결제내역</p>
+			<div class="col-el-4 col-lg-4 col-md-4 list-group-item mx-5" style="height:150px; background-color: pink; line-height: 7rem; text-align: center;">
+				<a href="" class="text-dark" style="font-size: 36px;">결제내역</a>
 			</div>
 		</div>
 		
-		
-		
 		<div class="list-group list-group-horizontal" style="margin-bottom: 4em;">
-		
-			<div class="colcol-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center;">
-				<p onclick="location.href='dosirak_list.do'" class="text-dark" style="font-size: 36px; padding: 8%;">장바구니</p>
+			<div class="colcol-el-4 col-lg-4 col-md-4 list-group-item mx-5" style="height:150px; background-color: pink; line-height: 7rem; text-align: center;">
+				<a href="dosirak_list.do" class="text-dark" style="font-size: 36px;">장바구니</a>
 			</div>
-			
-			<div class="col-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center;">
-				<p  onclick="location.href='#'" class="text-dark" style="font-size: 36px; padding: 8%;">QR코드 조회</p>
+			<div class="col-el-4 col-lg-4 col-md-4 list-group-item mx-5" style="height:150px; background-color: pink; line-height: 7rem; text-align: center;">
+				<a href="#" class="text-dark" style="font-size: 36px;">QR코드 조회</a>
 			</div>
 		</div>
 	</div>
 	</div>	
 	
-	
+	<!-- ------------------------푸터-------------------------------------------- -->
 	<%@ include file="footer.jsp"%>
+	<!-- ------------------------푸터-------------------------------------------- -->
 
 </body>
 </html>

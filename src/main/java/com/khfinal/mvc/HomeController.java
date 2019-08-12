@@ -33,18 +33,13 @@ public class HomeController {
 		return "redirect:mainpage.jsp";
 	}
 
-	@RequestMapping("/custom.do")
-	public String custom() {
-		return "custom/CustomPage";
-	}
-
 	@RequestMapping("/chat.do")
 	public String chat() {
 		return "chat/chat";
 	}
 	@RequestMapping("/loginMain.do")
 	public String loginmain() {
-		return "loginMain";
+		return "member/loginMain";
 	}
 	@RequestMapping("/delivery_place.do")
 	public String delivery_place() {

@@ -19,9 +19,9 @@
 	<div class="container">
 		<h1>공지사항 게시판 수정</h1>
 		<br/>
-		<div class="container col-sm-12 "> 
-		<form action="notice_update.do?notice_postnum=${NoticeDto.notice_postnum}" method="post">
-			<table class="table">
+		<div class="container col-sm-12 " style="padding-left: 10%;"> 
+		<form action="notice_update.do?notice_postnum=${NoticeDto.notice_postnum}" method="post" >
+			<table class="table" >
 				
 				<tr>
 					<th>번 호</th>

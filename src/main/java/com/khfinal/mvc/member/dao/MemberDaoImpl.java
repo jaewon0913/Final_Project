@@ -33,31 +33,58 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public MemberDto loginpw(String id, String pw) {
+		MemberDto memberdto = null;
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("pw", pw);
+		
+		memberdto = sqlSession.selectOne(namespace + "loginpw", map);
+		
+		return memberdto;
+	}
+
+	@Override
 	public MemberDto loginsuccess(String id) {
 		MemberDto memberdto = new MemberDto();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
-		memberdto = sqlSession.selectOne(namespace+"loginsuccess",map);
-		
+		memberdto = sqlSession.selectOne(namespace + "loginsuccess", map);
+
 		return memberdto;
-		
+
 	}
 
 	@Override
 	public int insert_member(MemberDto dto) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("member_id", dto.getMember_id());
-		int res = sqlSession.insert(namespace+"insert",dto);
-		int res1 = sqlSession.insert(namespace+"insertAuthorities",map);
-		
-		return res+res1;
+		int res = sqlSession.insert(namespace + "insert", dto);
+		int res1 = sqlSession.insert(namespace + "insertAuthorities", map);
+
+		return res + res1;
 	}
 
 	@Override
 	public int update_member(MemberDto dto) {
 		int res = 0;
 		try {
-			res = sqlSession.update(namespace+"update", dto);
+			res = sqlSession.update(namespace + "update", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int update_pw(MemberDto dto) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", dto.getMember_id());
+		map.put("member_pw", dto.getMember_pw());
+		int res = 0;
+		try {
+			res = sqlSession.update(namespace + "pwupdate", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,45 +105,45 @@ public class MemberDaoImpl implements MemberDao {
 
 		return memberdto;
 	}
-	
+
 	@Override
-	public MemberDto idfind(String member_name,String member_email) {
+	public MemberDto idfind(String member_name, String member_email) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", member_name);
 		map.put("email", member_email);
-		
+
 		MemberDto memberdto = new MemberDto();
-	
-		memberdto = sqlSession.selectOne(namespace + "idfind" , map);
-		
+
+		memberdto = sqlSession.selectOne(namespace + "idfind", map);
+
 		return memberdto;
 	}
-	
+
 	@Override
 	public MemberDto pwfind(String member_id, String member_email) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", member_id);
 		map.put("email", member_email);
-		
+
 		MemberDto memberdto = new MemberDto();
-		
-		memberdto = sqlSession.selectOne(namespace + "pwfind" , map);
-		
+
+		memberdto = sqlSession.selectOne(namespace + "pwfind", map);
+
 		return memberdto;
 	}
-	
+
 	@Override
 	public boolean idChk(String member_id) {
-		System.out.println("daoImpl : "+member_id);
+		System.out.println("daoImpl : " + member_id);
 		boolean idnotused = true;
-		Map<String,String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("member_id", member_id);
-		
+
 		MemberDto memberdto = new MemberDto();
-		memberdto = sqlSession.selectOne(namespace+"idChk",map);
-		if(memberdto == null) {
+		memberdto = sqlSession.selectOne(namespace + "idChk", map);
+		if (memberdto == null) {
 			idnotused = true;
-		}else {
+		} else {
 			idnotused = false;
 		}
 		return idnotused;
@@ -128,13 +155,12 @@ public class MemberDaoImpl implements MemberDao {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("member_email", member_email);
 		MemberDto memberdto = new MemberDto();
-		memberdto = sqlSession.selectOne(namespace+"emailChk",map);
-		if(memberdto == null) {
-			emailnotused = true;//생성가능
-		}else {
+		memberdto = sqlSession.selectOne(namespace + "emailChk", map);
+		if (memberdto == null) {
+			emailnotused = true;// 생성가능
+		} else {
 			emailnotused = false;
 		}
 		return emailnotused;
 	}
-
 }
