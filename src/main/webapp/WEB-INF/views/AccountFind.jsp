@@ -62,7 +62,7 @@ function emailChk(){//메일전송된 인증번호랑 사용자가 입력한 인
 	<h3>아이디 찾기</h3>
 	<div id="id_find" class="box">
 		<form action="idfind.do" method="post">
-			<input type="hidden" name="">
+			<input type="hidden" name="member_id">
 			<table>
 				<tr>
 					<td>이 름</td>
@@ -85,8 +85,8 @@ function emailChk(){//메일전송된 인증번호랑 사용자가 입력한 인
 
 
 	<div id="pw_find" class="box">
-		<form id="formtag" action="pwfind.do" method="post">
-			<input type="hidden" name="">
+		<form id="formtag" action="pwupdateform.do" method="post">
+			<input type="hidden" name="member_id">
 			<table border="1">
 				<tr>
 					<td>아 이 디</td>

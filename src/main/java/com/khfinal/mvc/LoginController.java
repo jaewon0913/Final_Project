@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khfinal.mvc.member.biz.MemberBiz;
@@ -143,23 +144,65 @@ public class LoginController {
 
 	@RequestMapping("/detail.do")
 	public String detail(Model model, String id, HttpSession session) {
-		MemberDto memberdto = (MemberDto) session.getAttribute("login");
-		model.addAttribute("memberdto", memberdto);
+		MemberDto memberdto = (MemberDto) session.getAttribute("logindto");
+		model.addAttribute("logindto", memberdto);
 		return "MemberUpdate";
 	}
 	
 	@RequestMapping("/update.do")
 	public String update(@ModelAttribute MemberDto dto, Model model, HttpSession session) {
+		System.out.println("내가 입력한 pw: "+dto.getMember_pw());		
+		String encPassword = bcryptPasswordEncoder.encode(dto.getMember_pw());
+		dto.setMember_pw(encPassword);
+		System.out.println("암호화된 비밀번호 : "+encPassword);
 		int res = memberbiz.update_member(dto);
 		if (res > 0) {
-			MemberDto memberdto = (MemberDto) session.getAttribute("login");
-			MemberDto memberdto_res = memberbiz.login(memberdto.getMember_id(), memberdto.getMember_pw());
-			session.setAttribute("login", memberdto_res);
+			MemberDto memberdto = (MemberDto) session.getAttribute("logindto");
+			MemberDto memberdto_res = memberbiz.login(memberdto.getMember_id(), encPassword);
+			session.setAttribute("logindto", memberdto_res);
 			return "redirect:mypage.do";
 		} else {
 			return "error/ErrorPage";
 		}
 	}
+	
+	@RequestMapping("/pwupdateform.do")
+	public String pwupdateform(Model model, HttpServletResponse response,@RequestParam String member_id) {
+		String id = member_id.split(",")[1];
+		model.addAttribute("member_id",id);
+		System.out.println("넘어온아이디" + id);
+		return "pwUpdate";
+	}
+	
+	@RequestMapping("/pwupdate.do")
+	public String pwupdate(@ModelAttribute MemberDto dto, Model model,HttpServletResponse response, HttpSession session,@RequestParam String member_id) throws IOException {
+
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		System.out.println("내가 입력한 pw: " + dto.getMember_pw());		
+		String encPassword = bcryptPasswordEncoder.encode(dto.getMember_pw());
+		model.addAttribute(member_id);
+		dto.setMember_pw(encPassword);
+		dto.setMember_id(member_id);
+		System.out.println(member_id+"아이디입니다");
+		System.out.println("암호화된 비밀번호 : "+encPassword);
+		int res = memberbiz.update_pw(dto);
+		if(res > 0) {
+			/*
+			 * MemberDto memberdto_res = memberbiz.loginpw(dto.getMember_id(), encPassword);
+			 * session.setAttribute("logindto", memberdto_res);
+			 */
+			session.setAttribute("logindto", null);
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호가 변경되었습니다.')</script>");
+			out.flush();
+			return "loginMain";
+		} else {
+			return "error/ErrorPage";
+		}
+	}
+	
 	//Captcha
 	@ResponseBody
 	@RequestMapping(value = "VerifyRecaptcha.do", method = RequestMethod.POST)
@@ -208,12 +251,13 @@ public class LoginController {
 	public String pwfind(MemberDto dto, Model model, HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		
 		System.out.println("id:" + dto.getMember_id() + "email: " + dto.getMember_email());
 		MemberDto memberdto = memberbiz.pwfind(dto.getMember_id(), dto.getMember_email());
 		if (memberdto != null) {
 			model.addAttribute("memberdto", memberdto);
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('회원님의 비밀번호는" + memberdto.getMember_pw() + "입니다.')</script>");
+			out.println("<script>alert('비밀번호 재설정 페이지로 이동합니다.')</script>");
 			out.flush();
 			return "AccountFind";
 		} else {
