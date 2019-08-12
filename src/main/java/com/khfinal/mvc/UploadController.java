@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -83,8 +85,7 @@ public class UploadController implements ServletContextAware {
 	
 	//	6. uploadForm.jsp 에서 submit을 눌렀을 경우 실행
 	@RequestMapping(value="/upload.do")
-	public String fileUpload(HttpServletRequest request, Model model, 
-			UploadFile uploadFile, BindingResult result) {
+	public String fileUpload(HttpServletRequest request, Model model, UploadFile uploadFile, BindingResult result) {
 		//	BindingResult : uploadForm.jsp 에서 modelAttribute 를 이용해 매개변수를 Bean에 binding 할 때 발생한 오류 정보를 받는다.
 		
 		//	7.	업로드 파일 데이터 저장 (FileValidator.java 로 이동)
@@ -102,7 +103,7 @@ public class UploadController implements ServletContextAware {
 		
 		//	9. 새로운 UploadFile.class 생성 후 위에서 저장시킨 데이터 다시 저장
 		
-		System.out.println("disth_tan : " + uploadFile.getDish_tan());
+		System.out.println("dish_tan : " + uploadFile.getDish_tan());
 		
 		UploadFile fileobj = new UploadFile();
 		fileobj.setFile_name(filename);
@@ -123,13 +124,34 @@ public class UploadController implements ServletContextAware {
 		try {
 			//	11. request.getSession().getServletContext()에서 /storage 폴더 까지 경로 저장
 			inputStream = file.getInputStream();
-			String path = servletContext.getRealPath("/resources");
-			fileobj.setFile_path(path + "/" + filename);
-			System.out.println("업로드 될 실제 경로 : " + path);
+//			String path = servletContext.getRealPath("/resources");
+//			fileobj.setFile_path(path + "/" + filename);
+//			System.out.println("업로드 될 실제 경로 : " + path);
+//			System.out.println("업로드 될 경로 + 이름 :" + fileobj.getFile_path());
+			
+			// 업로드 경로 테스트중
+				
+			final DefaultResourceLoader defaultResourceLoader = new DefaultResourceLoader();
+			Resource resource = defaultResourceLoader.getResource("file:resource/etc/image/img01");
+			System.out.println("경로 불러오기?? : " + resource.getFile().getAbsolutePath());
+			String testPath = request.getSession().getServletContext().getRealPath("/resources/etc/uploadImage");
+			fileobj.setFile_path(testPath + "/" + filename);
+			System.out.println(servletContext.getRealPath("/"));
+			System.out.println("이게 경로 ? : " + request.getSession().getServletContext().getResourcePaths("/resources/etc/uploadImage"));
+			System.out.println("경로 테스트 : " + request.getSession().getServletContext().getRealPath("/resources"));
+			System.out.println("업로드 될 실제 경로 : " + testPath);
 			System.out.println("업로드 될 경로 + 이름 :" + fileobj.getFile_path());
 			
+			// /mvc/resources...
+			System.out.println(request.getSession().getServletContext());
+			System.out.println(request.getSession());
+			System.out.println("테스트~ : " + testPath.substring(1, testPath.indexOf(".metadata")));
+			String realPath = testPath.substring(1, testPath.indexOf(".metadata")) + "Final_Project/src/main/webapp/resources/etc/uploadImage";
+			System.out.println("저장되어야 할 곳 : " + realPath);
+			
 			//	12. 위의 path의 경로를 가진 파일 저장소 생성
-			File storage = new File(path);
+			//File storage = new File(testPath);
+			File storage = new File("/testFolder");
 			
 			//	12-1. 만약 저장소가 존재 하지 않으면 저장소를 만든다.
 			if(!storage.exists()) {
@@ -137,7 +159,8 @@ public class UploadController implements ServletContextAware {
 			}
 			
 			//	13. 위의 path의 경로에 새로운 파일 생성
-			File newfile = new File(path + "/" + filename);
+			//File newfile = new File(testPath + "/" + filename);
+			File newfile = new File("/testFolder"+"/a.txt");
 			
 			//	13-1. 경로에 파일이 없으면 파일을 만든다.
 			if(!newfile.exists()) {

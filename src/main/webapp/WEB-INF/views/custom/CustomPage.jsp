@@ -185,9 +185,10 @@
 		</div>
 		<div style = "display : inline-block">
 		</div> --%>
-	<br style = "clear : both" />
-	<div align = "center">
-		<input type = "button" onclick = "order(${count })" value = "주문" />
+		<br style = "clear : both" />
+		<div align = "center">
+			<input type = "button" onclick = "order(${count })" value = "주문" />
+		</div>
 	</div>
 </body>
 </html>
