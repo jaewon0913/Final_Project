@@ -39,33 +39,34 @@
 
 <!-- socket -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/sockjs.min.js"></script>
+<script src="resources/js/sockjs.min.js"></script>
 </head>
+
 <body>
-   <header>
-    <nav class="header navbar navbar-expand-lg navbar-dark fixed-top">
-         <img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'"
-            style="width: 50px; height: 50px;">
-         <div style="margin-left: 70%">
-            <c:choose>
-               	<c:when test="${empty logindto}">
-	               	<div class="log" style="float: right;">
-	                    <button class="loginbutton btn" onclick="location.href='loginMain.do'">로그인</button>
-	                    <button class="insertbutton btn" onclick="location.href='insertform.do'">회원가입</button>
-	                </div>
-               	</c:when>
-               	<c:otherwise>
-               		<div class="log">
-		                <div>안녕하세요. ${logindto.member_name }님</div>
-		                <button class="mypagebutton btn" onclick="location.href='mypage.do'">마이페이지</button>
-		                <button class="logoutbutton btn" onclick="logout('${logindto.member_id}')">로그아웃</button>
-                    </div>
-               	</c:otherwise>
-            </c:choose>
-        </div>
-    </nav>
+	<header>
+		<nav class="header navbar navbar-expand-lg fixed-top " style="margin-bottom: 0px;">
+		<div style="float: left; width: 50%;">
+			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/nado2.png" onclick="location.href='mainpage.do'" style="width: 70px; height: 70px;">
+			</div>
+			<div style="float: right; width: 50%; text-align: right;">
+				<c:choose>
+					<c:when test="${empty logindto}">
+							<span class="loginbutton btn" onclick="location.href='loginMain.do'">로그인</span>
+							<span class="insertbutton btn" onclick="location.href='insertform.do'">회원가입</span>
+					</c:when>
+					<c:otherwise>
+							<span>안녕하세요. ${logindto.member_name }님</span>
+							<span class="mypagebutton btn" onclick="location.href='mypage.do'">마이페이지</span>
+							<span class="logoutbutton btn" onclick="logout('${logindto.member_id}')">로그아웃</span>
+						
+						
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</nav>
+
 		<!-- Navigation -->
-		<nav class="navbar navbar-expand-lg navbar-dark main_img">
+		<nav class="navbar navbar-expand-lg nav-bar-custom main_img navbar-dark">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarResponsive" aria-controls="navbarResponsive"
