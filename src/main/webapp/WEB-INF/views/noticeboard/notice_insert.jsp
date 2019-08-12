@@ -20,14 +20,15 @@
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
-		<div>
+	<h1>글작성</h1>
+		<div class="container" style="padding-left: 10%;">
 			<form action="notice_insert.do" method="post">
-		<table class="table table-hover">
+		<table class="table ">
 			
 			<tr>
 				<th>작성자</th>
 				<td>
-				<input type="text" name="member_id" value="${logindto.member_name }" readonly="readonly">
+				<input type="text" name="member_id" value="${logindto.member_id }" readonly="readonly">
 				</td>				
 			</tr>
 			<tr>
@@ -39,7 +40,7 @@
 				<td><textarea rows="10" cols="60" name="notice_content"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td colspan="2" align="right">
 					<input class="btn" type="submit" value="작 성" >
 					<input class="btn" type="button" value="취 소" onclick="location.href='notice_list.do'">
 				</td>
