@@ -54,6 +54,7 @@
              <input class="btn" type="submit" value="로그인" /> 
                   <input class="btn"  type="button" value="회원가입" onclick="location.href='insertform.do'"/> 
                   <input class="btn" type="button" value="취소" onclick="location.href='mainpage.do'" />
+                   <a href="accountfind.do">아이디 비밀번호 찾기</a>
                </td>
             </tr>
             <tr>
