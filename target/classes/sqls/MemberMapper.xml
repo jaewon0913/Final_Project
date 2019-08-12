@@ -6,6 +6,10 @@
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id} AND MEMBER_PW = #{pw}
 	</select>
 	
+	<select id = "loginpw" parameterType = "map" resultType = "memberdto">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id} AND MEMBER_PW = #{pw}
+	</select>
+	
 	<select id="loginsuccess" parameterType="map" resultType="memberdto">
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id} AND MEMBER_ENABLED=1
 	</select>
@@ -20,6 +24,13 @@
 		MEMBER_SUBWAY = #{member_subway} 
 		WHERE MEMBER_ID = #{member_id}
 	</update>
+	
+	<update id="pwupdate" parameterType="map">
+		UPDATE MEMBER SET MEMBER_PW = #{member_pw}
+		WHERE MEMBER_ID = #{member_id}
+	</update>
+	
+	
 	
 	<insert id="insert" parameterType="memberdto">
 		INSERT INTO MEMBER 

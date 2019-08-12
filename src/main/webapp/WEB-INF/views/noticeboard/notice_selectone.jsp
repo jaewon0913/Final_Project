@@ -24,7 +24,7 @@
 		<h1>공지사항 게시판 상세보기</h1>
 		<br/>
 		<div class="container col-sm-12 "> 
-			<table class="table">
+			<table class="table ">
 				
 				<tr>
 					<th>번 호</th>
@@ -61,6 +61,7 @@
 							<td colspan="5" align="right">
 								<input class="btn" type="submit" value="수정" onclick="location.href='notice_updateform.do?notice_postnum=${NoticeDto.notice_postnum}'">
 								<input class="btn" type="button" value="삭제" onclick="location.href='notice_delete.do?notice_postnum=${NoticeDto.notice_postnum}'">
+								<input class="btn" type="button" value="목록" onclick="location.href='notice_list.do'">
 							</td>
 						</tr>
 					</c:when>

@@ -54,6 +54,7 @@
              <input class="btn" type="submit" value="로그인" /> 
                   <input class="btn"  type="button" value="회원가입" onclick="location.href='insertform.do'"/> 
                   <input class="btn" type="button" value="취소" onclick="location.href='mainpage.do'" />
+                   <a href="accountfind.do">아이디 비밀번호 찾기</a>
                </td>
             </tr>
             <tr>
@@ -122,7 +123,7 @@
    <%@ include file="../footer.jsp"%>
 <!-- ------------------------푸터-------------------------------------------- -->
    </div>
-<script src="resources/js/mainpage.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
 </body>
 <script type="text/javascript">
 // $("#formtag").submit(function(){
