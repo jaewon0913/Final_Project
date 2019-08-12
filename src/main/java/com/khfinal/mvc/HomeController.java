@@ -44,6 +44,7 @@ public class HomeController {
 	}
 	@RequestMapping("/loginMain.do")
 	public String loginmain() {
-		return "loginMain";
+		return "member/loginMain";
 	}
+
 }

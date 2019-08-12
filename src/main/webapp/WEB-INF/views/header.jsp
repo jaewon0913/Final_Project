@@ -85,7 +85,7 @@ function logout(user_id){
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active"><a class="nav-link" href="#">도시락
+                  <li class="nav-item active"><a class="nav-link" href="dosiraktest.do">도시락
                         주문 <span class="sr-only">(current)</span>
                   </a></li>
                   <li class="nav-item"><a class="nav-link" href="custom.do">커스텀 도시락

@@ -1,11 +1,12 @@
 package com.khfinal.mvc;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
+import com.khfinal.mvc.boxorder.dto.BoxorderDto;
 import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.member.etc.VerifyRecaptcha;
@@ -31,6 +39,8 @@ public class LoginController {
 
 	@Autowired
 	private MemberBiz memberbiz;
+	@Autowired
+	private BoxorderBiz boxorderbiz;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -86,12 +96,12 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		session.setAttribute("login", null);
 
-		return "redirect:mainpage.jsp";
+		return "redirect:mainpage.do";
 	}
 
 	@RequestMapping("/insertform.do")
 	public String insertform() {
-		return "MemberInsert";
+		return "member/MemberInsert";
 	}
 
 	@RequestMapping("/insert_res.do")
@@ -130,25 +140,19 @@ public class LoginController {
 	public String idChk(String member_id, Model model) {
 		boolean idnotused = memberbiz.idChk(member_id);
 		model.addAttribute("idnotused", idnotused);
-		return "idchk";
-	}
-	
-	@RequestMapping("/test.do")
-	public String testpage(Principal auth) {
-		System.out.println("---------------"+auth.getName());
-		return "redirect:main.do";
+		return "member/idchk";
 	}
 	
 	@RequestMapping("/mypage.do")
 	public String mypage() {
-		return "MemberMypage";
+		return "member/MemberMypage";
 	}
 
 	@RequestMapping("/detail.do")
 	public String detail(Model model, String id, HttpSession session) {
 		MemberDto memberdto = (MemberDto) session.getAttribute("login");
 		model.addAttribute("memberdto", memberdto);
-		return "MemberUpdate";
+		return "member/MemberUpdate";
 	}
 
 	@RequestMapping("/update.do")
@@ -185,7 +189,7 @@ public class LoginController {
 	/* ---------- 아이디 / 비밀번호 찾기 ---------- */
 	@RequestMapping("/accountfind.do")
 	public String accountfind() {
-		return "AccountFind";
+		return "member/AccountFind";
 	}
 
 	@RequestMapping("/idfind.do")
@@ -199,12 +203,12 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('회원님의 아이디는" + memberdto.getMember_id() + "입니다.')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('이름과 이메일을 확인해주세요')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		}
 	}
 
@@ -219,13 +223,55 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('회원님의 비밀번호는" + memberdto.getMember_pw() + "입니다.')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('아이디와 이메일을 확인해주세요')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		}
 	}
 	
-}
+//	@RequestMapping("/qrcodepage.do")
+//	public String qrcodepage(Principal auth,Model model) {
+//		BoxorderDto boxorderdto = boxorderbiz.selectOne(auth.getName());
+//		model.addAttribute("boxorderdto", boxorderdto);
+//		
+//		return "qrcodepage";
+//	}
+	
+	@RequestMapping(value="/makeqr.do") 
+	public void makeqr() throws IOException { 
+		String url = "http://192.168.110.39:8787/mvc/"; 
+		int width = 150; 
+		int height = 150; 
+		String file_path = "C:"+File.separator+"qr"+File.separator; 
+		System.out.println("file.separator"+File.separator);
+		String file_name = "QRcode.png"; 
+		makeQR(url, width, height, file_path, file_name); 
+	}
+
+	public static void makeQR(String url,int width, int height, String file_path, String file_name){ 
+		try { 
+				File file = null; 
+				file = new File(file_path); 
+				if(!file.exists()) { 
+					file.mkdirs(); 
+				} 
+				QRCodeWriter writer = new QRCodeWriter(); 
+				url = new String(url.getBytes("UTF-8"), "ISO-8859-1"); 
+				BitMatrix matrix = writer.encode(url, BarcodeFormat.QR_CODE,width, height); 
+				//QR코드 색상 
+				int qrColor	=	0xFF2e4e96; 
+				MatrixToImageConfig config = new MatrixToImageConfig(qrColor,0xFFFFFFFF); 
+				BufferedImage qrImage	= MatrixToImageWriter.toBufferedImage(matrix,config); 
+				ImageIO.write(qrImage, "png", new File(file_path+file_name));		
+			} catch (Exception e) { 
+				e.printStackTrace(); 
+			} 
+		}
+		
+	}
+
+	
+
