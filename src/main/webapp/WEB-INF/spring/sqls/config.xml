@@ -8,8 +8,6 @@
 		<typeAlias type="com.khfinal.mvc.notice.dto.NoticeDto" alias="NoticeDto"/>
 		<typeAlias type="com.khfinal.mvc.boxorder.dto.BoxorderDto" alias="boxorderdto"/>
 		<typeAlias type="com.khfinal.mvc.dosirak.dto.DosirakDto" alias="dosirakdto"/>
-		<!--둘중 선택-->
-		<typeAlias type="com.khfinal.mvc.dosirak.dto.DosirakDto" alias="DosirakDto"/>
 		<typeAlias type="com.khfinal.mvc.etc.util.UploadFile" alias = "UploadDto"/>
 	</typeAliases>
 	<!-- resource : src/main/resources -->

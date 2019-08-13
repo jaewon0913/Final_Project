@@ -24,7 +24,7 @@
 		
 			<div class="col-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center; ">
 				
-				<p onclick="location.href='detail.do?id=${login.member_id}'" class="text-dark" style="font-size: 36px; margin: 8%;">개인정보 수정</p>
+				<p onclick="location.href='detail.do'" class="text-dark" style="font-size: 36px; margin: 8%;">개인정보 수정</p>
 			</div>
 			
 			<div class="col-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center;">

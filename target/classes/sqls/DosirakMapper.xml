@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="dosirak">
-<!-- <mapper namespace="dosirakmapper"> -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+	
+<mapper namespace="dosirakmapper">
 
-	<!-- <select id="selectlist" resultType="DosirakDto">
-		SELECT *
-		FROM DOSIRAK
-	</select> -->
-	<select id = "selectOne" parameterType="map"  resultType = "dosirakdto">
+	<select id = "selecttest" parameterType="map"  resultType = "dosirakdto">
 		SELECT * FROM DOSIRAK WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
 	</select>
+	<select id="selectlist" resultType="dosirakdto">
+		SELECT *
+		FROM DOSIRAK
+ 	</select>
 
 	<select id="selectlistpaging" parameterType="map"
-		resultType="DosirakDto">
+		resultType="dosirakdto">
 		SELECT *
 		FROM (SELECT ROWNUM AS RNUM, P.*
 		FROM ( SELECT *
@@ -35,22 +35,25 @@
 		</if>
 	</select>
 
-	<select id="selectone" parameterType="map"
-		resultType="DosirakDto">
+	<select id="selectone" parameterType="map" resultType="dosirakdto">
 		SELECT *
 		FROM DOSIRAK
 		WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
 	</select>
 
-	<!-- <insert id="insert" parameterType="DosirSakDto"> INSERT INTO DOSIRAK 
+	<insert id="insert" parameterType="dosirakdto"> INSERT INTO DOSIRAK 
 		VALUES(DOSIRAK_POSTNUM.NEXTVAL,DOSIRAK_NAME = #{dosirak_name}, DOSIRAK_TITLE 
 		= #{dosirak_title}, DOSIRAK_CONTENT = #{dosirak_content}, DOSIRAK_DELIVERY 
 		= #{dosirak_delivery}, DOSIRAK_PRICE = #{dosirak_price},1,DOSIRAK_AFTERNUM 
 		= #{dosirak_afternum}, TAN = #{tan}, DAN = #{dan}, GI = #{gi}, KCAL = #{kcal}, 
-		IMAGE1 = #{image1}, IMAGE2 = #{image2}, IMAGE3 = #{image3}, SYSDATE); </insert> -->
+		IMAGE1 = #{image1}, IMAGE2 = #{image2}, IMAGE3 = #{image3}, SYSDATE); 
+	</insert>
 
-	<!-- <insert id="insert" parameterType="DosirSakDto"> </insert> <update 
-		id="update" parameterType="DosirakDto"> </update> <delete id="delete" parameterType="String"> 
+	<!-- <insert id="insert" parameterType="dosirakdto"> 
+		</insert> 
+		<update id="update" parameterType="dosirakdto"> 
+		</update> 
+		<delete id="delete" parameterType="String"> 
 		</delete> -->
 
 </mapper>

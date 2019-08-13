@@ -1,12 +1,9 @@
 package com.khfinal.mvc;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,13 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.client.j2se.MatrixToImageConfig;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
-import com.khfinal.mvc.boxorder.dto.BoxorderDto;
 import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.member.etc.VerifyRecaptcha;
@@ -156,8 +147,8 @@ public class LoginController {
 	}
 
 	@RequestMapping("/detail.do")
-	public String detail(Model model, String id, HttpSession session) {
-		MemberDto memberdto = (MemberDto) session.getAttribute("login");
+	public String detail(Model model, HttpSession session) {
+		MemberDto memberdto = (MemberDto) session.getAttribute("logindto");
 		model.addAttribute("memberdto", memberdto);
 		return "member/MemberUpdate";
 	}
@@ -184,7 +175,7 @@ public class LoginController {
 		String id = member_id.split(",")[1];
 		model.addAttribute("member_id",id);
 		System.out.println("넘어온아이디" + id);
-		return "pwUpdate";
+		return "member/pwUpdate";
 	}
 	
 	@RequestMapping("/pwupdate.do")
@@ -281,46 +272,8 @@ public class LoginController {
 		}
 	}
 	
-//	@RequestMapping("/qrcodepage.do")
-//	public String qrcodepage(Principal auth,Model model) {
-//		BoxorderDto boxorderdto = boxorderbiz.selectOne(auth.getName());
-//		model.addAttribute("boxorderdto", boxorderdto);
-//		
-//		return "qrcodepage";
-//	}
-	
-	@RequestMapping(value="/makeqr.do") 
-	public void makeqr() throws IOException { 
-		String url = "http://192.168.110.39:8787/mvc/"; 
-		int width = 150; 
-		int height = 150; 
-		String file_path = "C:"+File.separator+"qr"+File.separator; 
-		System.out.println("file.separator"+File.separator);
-		String file_name = "QRcode.png"; 
-		makeQR(url, width, height, file_path, file_name); 
-	}
-
-	public static void makeQR(String url,int width, int height, String file_path, String file_name){ 
-		try { 
-				File file = null; 
-				file = new File(file_path); 
-				if(!file.exists()) { 
-					file.mkdirs(); 
-				} 
-				QRCodeWriter writer = new QRCodeWriter(); 
-				url = new String(url.getBytes("UTF-8"), "ISO-8859-1"); 
-				BitMatrix matrix = writer.encode(url, BarcodeFormat.QR_CODE,width, height); 
-				//QR코드 색상 
-				int qrColor	=	0xFF2e4e96; 
-				MatrixToImageConfig config = new MatrixToImageConfig(qrColor,0xFFFFFFFF); 
-				BufferedImage qrImage	= MatrixToImageWriter.toBufferedImage(matrix,config); 
-				ImageIO.write(qrImage, "png", new File(file_path+file_name));		
-			} catch (Exception e) { 
-				e.printStackTrace(); 
-			} 
-		}
 		
-	}
+}
 
 	
 
