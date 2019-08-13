@@ -1,7 +1,8 @@
 package com.khfinal.mvc;
 
-
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khfinal.mvc.dosirak.biz.DosirakBiz;
 import com.khfinal.mvc.dosirak.dto.DosirakDto;
+import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.paging.Paging;
 
 @Controller
@@ -21,11 +23,25 @@ public class DosirakController {
 	@Autowired
 	private DosirakBiz dosirakbiz;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	@RequestMapping("/dosiraktest.do")
+	public String dosiraktest(Model model) {
+		DosirakDto dosirakdto = dosirakbiz.selecttest(1);
+		model.addAttribute("dosirakdto", dosirakdto);
+		
+		return "payment/dosiraktest";
+	}
 	
-	/*
-	 * @RequestMapping("/mainpage.do") public String main() { return
-	 * "redirect:mainpage.jsp"; }
-	 */
+	@RequestMapping("/kakaopay.do")
+	public String kakaopay(DosirakDto dto, Model model,HttpSession session) {
+		System.out.println("kakaopay들어옴");
+		MemberDto memberdto = (MemberDto)session.getAttribute("logindto");
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("memberdto",memberdto);
+		return "payment/kakaopay";
+	}
+	
 
 	@RequestMapping("/dosirak_list.do")
 	public String dosiraklist(Model model) {
@@ -37,7 +53,6 @@ public class DosirakController {
 	public String dosiraklistpaging(Model model, String txt_search, String page) {
 		
 		String txt_s = txt_search;
-	
 	      
 	         // 페이징하기
 	         int totalCount = dosirakbiz.totalcount(txt_s);
@@ -62,7 +77,9 @@ public class DosirakController {
 	@RequestMapping("/dosirak_selectone.do")
 	public String dosirakselectOne(Model model, @RequestParam int dosirak_postnum) {
 		System.out.println(dosirak_postnum + "도시락번호12313123");
-		model.addAttribute("dto", dosirakbiz.selectOne(dosirak_postnum));
+		
+		DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
+		model.addAttribute("dosirakdto", dosirakdto);
 		return "dosirak/dosirak_selectone";
 	}
 	

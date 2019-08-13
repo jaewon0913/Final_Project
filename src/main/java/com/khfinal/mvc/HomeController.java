@@ -49,4 +49,5 @@ public class HomeController {
 	public String popup_map() {
 		return "place/popup_map";
 	}
+
 }

@@ -18,7 +18,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>main1</title>
+<title>main</title>
 
 
 
@@ -194,9 +194,11 @@
 
 <!-- -----------------공지사항 게시판-------------------------------------------- -->
 			<div class="Notice">
-				<a href="notice_list.do">공지사항 게시판</a>
+				<a href="notice_list.do" class="btn">공지사항 게시판</a>
 				<ul>
-					<li>공지사항</li>
+					<li>공지사항1</li>
+					<li>공지사항2</li>
+					<li>공지사항3</li>
 				</ul>
 			</div>
 
@@ -231,11 +233,7 @@
 	<%@ include file="WEB-INF/views/footer.jsp"%>
 
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="${pageContext.request.contextPath }/resources/bootstrap/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/js/mainpage.js"></script>
+
 	
 </body>
 
