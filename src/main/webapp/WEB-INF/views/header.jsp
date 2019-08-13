@@ -78,6 +78,9 @@
 						<li class="nav-item active"><a class="nav-link" href="dosirak_listpagig.do">도시락
 								주문 <span class="sr-only">(current)</span>
 						</a></li>
+						<!-- 둘중 선택 <li class="nav-item active"><a class="nav-link" href="dosiraktest.do">도시락
+							주문 <span class="sr-only">(current)</span>
+					 	</a></li> -->
 						<li class="nav-item"><a class="nav-link" href="custom.do">커스텀 도시락
 								주문</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">주간 영양정보</a>
