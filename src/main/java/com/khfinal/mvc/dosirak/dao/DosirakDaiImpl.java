@@ -73,8 +73,15 @@ public class DosirakDaiImpl implements DosirakDao {
 
 	@Override
 	public int insert(DosirakDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(namespace + "insert", dto);
+		} catch (Exception e) {
+			System.out.println("insert 에러");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override

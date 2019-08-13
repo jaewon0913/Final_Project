@@ -60,15 +60,15 @@
 <body>
 	<%@ include file="../header.jsp"%>
 	<h1 style="padding: 3%;">ID/ PW 찾기</h1>
-	
+
 	<!-- 아이디 찾기 -->
 	<div class="container" style="padding-bottom: 5%;">
-		
+
 		<div id="id_find" class="col-sm-6">
-		<h3>ID 찾기</h3>
+			<h3>ID 찾기</h3>
 			<form action="idfind.do" method="post">
 				<input type="hidden" name="">
-				<table >
+				<table>
 					<tr>
 						<td>이 름</td>
 						<td><input type="text" name="member_name" required="required">
@@ -80,16 +80,17 @@
 							required="required"></td>
 					</tr>
 				</table>
-				<input type="submit" id="idfind_alert" value="아이디 찾기" style="float: right;" class="btn IDF">
+				<input type="submit" id="idfind_alert" value="아이디 찾기"
+					style="float: right;" class="btn IDF">
 			</form>
 		</div>
 
 
 
 		<div id="pw_find" class="col-sm-6 border-left">
-			<form id="formtag" action="pwfind.do" method="post">
-			<h3>PW 찾기</h3>
-				<input type="hidden" name="">
+			<form id="formtag" action="pwupdateform.do" method="post">
+				<h3>PW 찾기</h3>
+				<input type="hidden" name="member_id">
 				<table>
 					<tr>
 						<td class="pw">아 이 디</td>
@@ -99,20 +100,20 @@
 					<tr>
 						<td class="pw">이메일</td>
 						<td><input type="text" name="member_email" title="n"
-							required="required">
-						</td>
-						<td><input type="button"
-							value="인증요청" onclick="emailSend()" class="btn">
-						</td>
+							required="required"></td>
+						<td><input type="button" value="인증요청" onclick="emailSend()"
+							class="btn"></td>
 					</tr>
 					<tr>
 						<td class="pw">인증번호 입력 &nbsp;</td>
 						<td><input type="text" name="emailtext" required="required"></td>
-						<th>	<input type="button" value="인증번호 확인" onclick="emailChk()" class="btn">
+						<th><input type="button" value="인증번호 확인" onclick="emailChk()"
+							class="btn">
 							<p id="emailresult"></p></th>
 					</tr>
 				</table>
-				<input type="submit" id="pwfind_alert" value="비밀번호 찾기" style="float: right;" class="btn IDF">
+				<input type="submit" value="비밀번호 찾기"
+					style="float: right;" class="btn IDF">
 			</form>
 		</div>
 	</div>

@@ -89,7 +89,7 @@
 
 							<tr>
 								<td colspan="2"><input type="button" value="메인화면" onclick="location.href='mainpage.jsp'"> 
-								<input type="button" value="작성하기"></td>
+								<input type="button" value="작성하기" onclick="location.href='dosirak_insertform.do'"></td>
 							</tr>
 						</c:otherwise>
 					</c:choose>

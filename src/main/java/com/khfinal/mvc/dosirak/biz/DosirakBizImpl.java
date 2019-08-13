@@ -26,8 +26,7 @@ public class DosirakBizImpl implements DosirakBiz{
 
 	@Override
 	public int insert(DosirakDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.insert(dto);
 	}
 
 	@Override

@@ -38,7 +38,6 @@ public class DosirakController {
 		
 		String txt_s = txt_search;
 	
-	      
 	         // 페이징하기
 	         int totalCount = dosirakbiz.totalcount(txt_s);
 	         int pag = (page == null) ? 1 : Integer.parseInt(page);
@@ -61,9 +60,24 @@ public class DosirakController {
 	
 	@RequestMapping("/dosirak_selectone.do")
 	public String dosirakselectOne(Model model, @RequestParam int dosirak_postnum) {
-		System.out.println(dosirak_postnum + "도시락번호12313123");
 		model.addAttribute("dto", dosirakbiz.selectOne(dosirak_postnum));
 		return "dosirak/dosirak_selectone";
+	}
+	
+	@RequestMapping("/dosirak_insertform.do")
+	public String dosirak_insertform() {
+		return "dosirak/dosirak_insert";
+	}
+	
+	@RequestMapping("/dosirak_insert.do")
+	public String dosirak_insert(Model model, DosirakDto dto) {
+		int res = dosirakbiz.insert(dto);
+		
+		if(res > 0) {
+			return "redirect:dosirak_listpagig.do";
+		} else {
+			return "error/ErrorPage";
+		}
 	}
 	
 	@RequestMapping("/dosirak_cart")

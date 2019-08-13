@@ -37,6 +37,13 @@
 		FROM DOSIRAK
 		WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
 	</select>
+	<insert id="insert" parameterType="DosirakDto">
+		INSERT INTO DOSIRAK VALUES(DOSIRAK_POSTNUM.NEXTVAL, DOSIRAK_NAME = #{dosirak_name},
+			DOSIRAK_TITLE = #{dosirak_title}, DOSIRAK_CONTENT = #{dosirak_content},
+			DOSIRAK_DELIVERY = #{dosirak_delivery}, DOSIRAK_PRICE = #{dosirak_price}, 1, 0
+			TAN = #{tan}, DAN = #{dan}, GI = #{gi}, KCAL = #{kcal}, IMAGE1 = #{image1},
+			IMAGE2 = #{image2}, IMAGE3 = #{image3}, SYSDATE);
+	</insert>
 
 	<!-- <insert id="insert" parameterType="DosirSakDto"> INSERT INTO DOSIRAK 
 		VALUES(DOSIRAK_POSTNUM.NEXTVAL,DOSIRAK_NAME = #{dosirak_name}, DOSIRAK_TITLE 

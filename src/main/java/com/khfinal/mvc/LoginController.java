@@ -47,7 +47,7 @@ public class LoginController {
 		if(memberdto != null) {
 			return "redirect: mainpage.do";
 		}else {
-			return "redirect: loginMain.do";
+			return "redirect:member/loginMain.do";
 		}
 		
 	}
@@ -172,7 +172,7 @@ public class LoginController {
 		String id = member_id.split(",")[1];
 		model.addAttribute("member_id",id);
 		System.out.println("넘어온아이디" + id);
-		return "pwUpdate";
+		return "member/pwUpdate";
 	}
 	
 	@RequestMapping("/pwupdate.do")
@@ -198,7 +198,7 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호가 변경되었습니다.')</script>");
 			out.flush();
-			return "loginMain";
+			return "member/loginMain";
 		} else {
 			return "error/ErrorPage";
 		}
