@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
 import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.member.etc.VerifyRecaptcha;
@@ -30,6 +31,8 @@ public class LoginController {
 
 	@Autowired
 	private MemberBiz memberbiz;
+	@Autowired
+	private BoxorderBiz boxorderbiz;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -85,7 +88,7 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		session.setAttribute("login", null);
 
-		return "redirect:mainpage.jsp";
+		return "redirect:mainpage.do";
 	}
 
 	@RequestMapping("/insertform.do")
@@ -144,8 +147,8 @@ public class LoginController {
 	}
 
 	@RequestMapping("/detail.do")
-	public String detail(Model model, String id, HttpSession session) {
-		MemberDto memberdto = (MemberDto) session.getAttribute("login");
+	public String detail(Model model, HttpSession session) {
+		MemberDto memberdto = (MemberDto) session.getAttribute("logindto");
 		model.addAttribute("memberdto", memberdto);
 		return "member/MemberUpdate";
 	}
@@ -269,4 +272,8 @@ public class LoginController {
 		}
 	}
 	
+		
 }
+
+	
+

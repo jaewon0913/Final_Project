@@ -11,6 +11,7 @@ body {
 	margin-left: 0px;
 	margin-bottom: 0px;
 	height: 99%;
+	font-size: 1.0rem;
 }
 
 #map{
@@ -18,8 +19,7 @@ body {
 	height: 100%;
 	position: relative;
 	overflow: hidden;
-	border: 3px solid;
-	
+	border: 3px solid;	
 }
 
 #buttons {
@@ -30,18 +30,23 @@ body {
 }
 
 #content{
-	width: 170px;
+	width: 110%;
 }
+
+.btn-outline-light{
+	background-color: #A3E4DC;
+	color: black;
+	border-radius: 10px;
+}
+
 </style>
 </head>
 <body>
 	
 		<div id="map"></div>
-		<%--<input type="text" id="ADS" placeholder="주소가 들어 가는 곳" readonly="readonly"/>
-		--%>
 		<div id="buttons">
-			<input type="button" value="지도 초기화" onclick="mapReset()" class="a"/>
-			<input type="button" value="메인 페이지로" onclick="location.href='mainpage.do'" class="b"/>
+			<input type="button" value="지도 초기화" onclick="mapReset()" id="abutton" class="btn-outline-light"/>
+			<input type="button" value="메인 페이지로" onclick="location.href='mainpage.do'" id="bbutton" class="btn-outline-light"/>
 		</div>
 		
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=51191c741f7e20835fa12c73414cc9e6&libraries=services"></script>
@@ -69,8 +74,9 @@ body {
 	            else {
 	                var notification = new Notification('배달장소 확인', {
 	                    icon: 'resources/bootstrap/image/map1.jpg',
-	                    body: '배달장소는 5곳 입니다.',
-	                });	 
+	                    body: '배달 장소는 6곳입니다.\n마커 클릭 시 지도가 확대됩니다.',
+	                });	
+
 	            }
 	            
 	        }
@@ -110,6 +116,10 @@ body {
 		}, {
 			content : '<div id="content">계산역 인천 1호선 1번출구</div>',
 			latlng : new kakao.maps.LatLng(37.543110, 126.728840),
+			clickable : true
+		}, {
+			content : '<div id="content">삼각지역 4호선 1번출구</div>',
+			latlng : new kakao.maps.LatLng(37.534604, 126.973411),
 			clickable : true
 		} ];
 		

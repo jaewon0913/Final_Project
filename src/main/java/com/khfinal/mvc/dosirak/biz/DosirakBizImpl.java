@@ -15,6 +15,11 @@ public class DosirakBizImpl implements DosirakBiz{
 	private DosirakDao dao;
 	
 	@Override
+	public DosirakDto selecttest(int dosirak_postnum) {
+		return dao.selecttest(dosirak_postnum);
+	}
+	
+	@Override
 	public List<DosirakDto> selectList() {
 		return dao.selectList();
 	}
@@ -50,5 +55,7 @@ public class DosirakBizImpl implements DosirakBiz{
 	public int totalcount(String txt_search) {
 		return dao.totalcount(txt_search);
 	}
+
+
 
 }

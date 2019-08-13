@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
-
-import com.khfinal.mvc.notice.dto.NoticeDto;
 import com.khfinal.mvc.notice.dao.NoticeDao;
+import com.khfinal.mvc.notice.dto.NoticeDto;
 
 @Service
 public class NoticeBizImpl implements NoticeBiz {
@@ -49,5 +47,6 @@ public class NoticeBizImpl implements NoticeBiz {
 		return noticedao.NoticeViews(notice_postnum);
 
 	}
+
 
 }

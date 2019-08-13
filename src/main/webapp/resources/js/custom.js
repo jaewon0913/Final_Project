@@ -25,7 +25,7 @@ function drop_handler(event){
 	jb(copyimg).addClass('copydish');
 	
 	event.target.appendChild(copyimg);
-	copyimg.setAttribute("style","width : 100px; height : 150px;");
+	copyimg.setAttribute("style","width : 170px; height : 220px;");
 	copyimg.setAttribute('draggable', true);
 	
 	jb(copyimg).dblclick(function() {
