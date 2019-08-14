@@ -1,16 +1,29 @@
 // custom drag and drop
 var jb = $.noConflict();
 
-function dragstart_handler(event){	
+var contextPath = '${pageContext.request.contextPath }';
+
+//	드래그 시작시
+function dragstart_handler(event){
+	fnMove();
+	
 	event.dataTransfer.effectAllowed = "copy";
 	event.dataTransfer.setData("text/plain",event.target.id);
 }
 
+//무한 스크롤 처럼 화면의 몇 % 지나면 스크롤이 올라가도록 해보기
+function fnMove(){
+	var offset = jb(".container").offset();
+	jb('html,body').animate({scrollTop : offset.top + 100}, 400);
+}
+
+//	드래그 도중
 function dragover_handler(event){
 	event.dataTransfer.dropEffect = "copy";
 	event.preventDefault();
 }
 
+//	드래그 끝 = 드랍시
 function drop_handler(event){
 	event.dataTransfer.dropEffect = "copy";
 	event.preventDefault();
@@ -21,20 +34,63 @@ function drop_handler(event){
 	var original = document.getElementById(data);
 	
 	copyimg.src = original.src;
+	console.log(original.id);
+	console.log(copyimg.src);
+	console.log(original.name);
 	copyimg.id = original.id;
 	jb(copyimg).addClass('copydish');
 	
-	event.target.appendChild(copyimg);
-	copyimg.setAttribute("style","width : 170px; height : 220px;");
-	copyimg.setAttribute('draggable', true);
+	//	데이터 추가하기
+	//sumData(original.name);
+	var test = document.getElementById(original.id+"_cal");
+	alert(test.value);
 	
+	var before_cal = jb("#kal_span").text();
+	alert("before_cal" + before_cal);
+	var after_cal = 0;
+	if(before_cal == "0"){
+		after_cal = test.value;
+		jb("#kal_span").html(after_cal);
+	} else {
+		var before_cal_int = parseInt(before_cal);
+		var test_value_int = parseInt(test.value);
+		after_cal = before_cal_int + test_value_int;
+		jb("#kal_span").html(after_cal);
+	}
+	
+	event.target.appendChild(copyimg);
+	copyimg.setAttribute("style","width : 15rem; height : 15rem;");
+	copyimg.setAttribute('draggable', true);
+		
 	jb(copyimg).dblclick(function() {
 		jb(this).remove();
 	});
 }
+//주문
+function order(count){
+	var list = new Array();
+	for (var i = 0 ; i < count ; i++){
+		list[i] = jb('.test').eq(i).children('.copydish').attr('id');
+		alert(list[i]);
+		alert(jb(".copydish")[i].outerHTML);
+	}
+}
+var i = 0;
+function sumData(data){
+	var list = new Array();
+//	list[i] = document.getElementsByName(data+"_tan")[0].value;
+//	
+//	for(var j = 0 ; j < i ; j++){
+//		alert(list[j]);
+//	}
+//	
+//	i++;
+
+}
 
 var hj = jQuery.noConflict();
 
+//	식판 화면 변환
 function sikpanChange(content){
 	alert(content+" sikpan click")
 		
@@ -53,34 +109,28 @@ function sikpanChange(content){
 		}
 	});
 }
-//
-function order(count){
-	var list = new Array();
-	for (var i = 0 ; i < count ; i++){
-		list[i] = jb('.test').eq(i).children('.copydish').attr('id');
-		alert(list[i]);
-		alert(jb(".copydish")[i].outerHTML);
-	}
-	
-}
 
-//	ajax로 
+//	ajax로 반찬 변경
 function changeDish(data) {
-	alert(data);
 	hj.ajax({
 		url : "changeDish.do",
 		type : "post",
 		data : "dishname=" + data,
 		dataType : "json",
-		success : function(msg){
+		success : function(data){
 			hj("#dish_list *").remove();
-			var list = msg.list;
+			var list = data.list;
+			// list
 			
 			for(var i = 0 ; i < list.length ; i++){
 				hj("#dish_list").append(
 							"<div style = 'display : inline-block'>" +
 							"	<div class = 'customImg'>" +
-							"		<img name = "+list[i].dish_name+" id = 'sideDish' class = 'customContent' src = "+list[0].file_path+" draggable = 'true' ondragstart = 'dragstart_handler(event);'>" +
+							"		<img name = "+list[i].dish_name+" id = 'sideDish"+i+"' class = 'customContent' src = '/mvc/resources/etc/upload/"+list[i].file_name+"' draggable = 'true' ondragstart = 'dragstart_handler(event);'>" +
+							"		<input type = 'hidden' id = 'sideDish" + i + "_tan' name = '" + list[i].dish_name + "_tan' value = '" + list[i].dish_tan + "'>" +
+							"		<input type = 'hidden' id = 'sideDish" + i + "_dan' name = '" + list[i].dish_name + "_dan' value = '" + list[i].dish_dan + "'>" +
+							"		<input type = 'hidden' id = 'sideDish" + i + "_zi' name = '" + list[i].dish_name + "_zi' value = '" + list[i].dish_zi + "'>" +
+							"		<input type = 'hidden' id = 'sideDish" + i + "_cal' name = '" + list[i].dish_name + "_cal' value = '" + list[i].dish_cal + "'>" +
 							"	</div>" +
 							"</div>"
 						);
@@ -91,65 +141,3 @@ function changeDish(data) {
 		}
 	});
 }
-
-//jb(function() {
-//// Make every clone image unique.
-//var counts = [ 0 ];
-//var resizeOpts = {
-//	handles : "all",
-//	autoHide : true
-//};
-//
-//jb(".customContent").draggable({
-//	helper : "clone",
-//	// Create counter
-//	start : function() {
-//		counts[0]++;
-//	}
-//});
-//
-//jb(".customDrop").droppable(
-//		{
-//			drop : function(e, ui) {
-//				if (ui.draggable.hasClass("customContent")) {
-//					jb(this).append(jb(ui.helper).clone());
-//					// Pointing to the dragImg class in dropHere and add new class.
-//					jb(".customDrop .customContent").addClass("item-" + counts[0]);
-//					jb(".customDrop .customContent").addClass("imgSize-" + counts[0]);
-//					
-//					// 그림 사이즈 바꾸기
-//					//jb(".imgSize-" + counts[0]).width(100);
-//					//jb(".imgSize-" + counts[0]).height(150);
-//					
-//					jb(".imgSize-" + counts[0]).css('width','100px');
-//					jb(".imgSize-" + counts[0]).css('height','150px');
-//					
-//					// Remove the current class (ui-draggable and dragImg)
-//					jb(".customDrop .item-" + counts[0]).removeClass("customContent ui-draggable ui-draggable-dragging");
-//					
-//					// double click => content delete
-//					jb(".item-" + counts[0]).dblclick(function() {
-//						jb(this).remove();
-//					});
-//					
-//					// ???
-//					make_draggable(jb(".item-" + counts[0]));
-//					
-//					//jb(".imgSize-" + counts[0]).resizable(resizeOpts);
-//				}
-//			}
-//		});
-//var zIndex = 0;
-//
-//function make_draggable(elements) {
-//	elements.draggable({
-//		containment : 'parent',
-//		start : function(e, ui) {
-//			ui.helper.css('z-index', ++zIndex);
-//		},
-//		stop : function(e, ui) {
-//		}
-//	});
-//}
-//});
-//
