@@ -8,10 +8,10 @@
 </head>
 <body>
 <%@ include file="../header.jsp"%>
-
+<div class="container">
 	<h1>결제 완료 페이지</h1>
 
-	<table>
+	<table class="table">
 		<tr>
 			<th>아이디</th>
 			<td>${dto.member_id }</td>
@@ -41,7 +41,7 @@
 			<td>${dto.qrcode }</td>
 		</tr>
 	</table>
-	
+	</div>
 	
 <%@ include file="../footer.jsp"%>
 </body>

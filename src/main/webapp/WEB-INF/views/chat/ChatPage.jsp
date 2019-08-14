@@ -16,11 +16,10 @@
 		position : fixed;
 		background-color : white;
 		border : 1px solid;
-		right : 850px;
-		width: 500px; 
-		height: 300px;
-		top : 167px;
-		overflow : scroll;
+		left : 5rem;
+		width: 60rem; 
+		height: 30rem;
+		top : 22rem;
 	}
 	#send_div{
 		z-index : 10;
@@ -28,17 +27,17 @@
 		position : fixed;
 		background-color : white;
 		border : 1px solid;
-		right : 850px;
-		width: 500px; 
-		top : 467px;
+		left : 5rem;
+		width: 60rem; 
+		top : 52rem;
 	}
 	#send_btn{
-		width : 57px;
+		width : 10rem;
 		float : right;
 	}
 	#message{
-		width : 435px;
-		margin-right : 6px;
+		width :45rem;
+		margin-right : 3rem;
 	}
 </style>
 </head>
