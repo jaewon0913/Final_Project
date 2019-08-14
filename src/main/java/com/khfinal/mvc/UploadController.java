@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
 import com.khfinal.mvc.etc.biz.UploadBiz;
@@ -49,6 +50,56 @@ public class UploadController implements ServletContextAware {
 		
 		return "custom/CustomPage";
 	}
+	
+	@RequestMapping("/uploadtest.do")
+	   public String cloudUpload(MultipartHttpServletRequest mtfRequest,UploadFile uploaddto) {
+	      mtfRequest.getContextPath();
+	      System.out.println("아예안오니");
+	      List<MultipartFile> fileList = mtfRequest.getFiles("file");
+	      String path = "./testFolder";
+	      File dir = new File(path); 
+	      if (!dir.isDirectory()) { 
+	         dir.mkdirs(); 
+	         }      
+	      for (MultipartFile mf : fileList) {
+	         String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+	         long fileSize = mf.getSize(); // 파일 사이즈
+	         String content=path+originFileName;
+	        // dto.setContent(content);
+	         System.out.println(content);
+	         System.out.println("originFileName : " + originFileName);
+	         System.out.println("fileSize : " + fileSize);
+	         String safeFile = path + System.currentTimeMillis() + originFileName;
+	         System.out.println(safeFile);
+	         int res=0;
+	         try {
+	            mf.transferTo(new File(safeFile));
+	            if(mf==fileList.get(0)) {
+	              // res=cloudBiz.insert(dto);
+	            }else {
+	               //res=cloudBiz.nextInsert(dto);
+	            }
+	            
+	            if(res>0) {
+	               System.out.println("성공");
+	            }else {
+	               System.out.println("실패");
+	            }   
+	         } catch (IllegalStateException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	      }
+
+	      return "redirect:home.do";
+	   }
+	
+	
+	
+	
 
 	//	2. form을 받아서 uploadForm.jsp 로 페이지 이동하라
 	@RequestMapping("/dishinsert_form.do")
@@ -76,6 +127,8 @@ public class UploadController implements ServletContextAware {
 		List<UploadFile> list = new ArrayList<UploadFile>();
 		
 		list = biz.selectList(name);
+		
+		model.addAttribute("list",list);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
@@ -129,29 +182,31 @@ public class UploadController implements ServletContextAware {
 //			System.out.println("업로드 될 실제 경로 : " + path);
 //			System.out.println("업로드 될 경로 + 이름 :" + fileobj.getFile_path());
 			
+			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/etc/upload");
+			
+			System.out.println("업로드 될 실제 경로 : " + path);
+			System.out.println("servletcontext : " + servletContext.getRealPath("resources/etc/upload"));
+			fileobj.setFile_path(path + "/" + filename);
+			
 			// 업로드 경로 테스트중
-				
-			final DefaultResourceLoader defaultResourceLoader = new DefaultResourceLoader();
-			Resource resource = defaultResourceLoader.getResource("file:resource/etc/image/img01");
-			System.out.println("경로 불러오기?? : " + resource.getFile().getAbsolutePath());
-			String testPath = request.getSession().getServletContext().getRealPath("/resources/etc/uploadImage");
-			fileobj.setFile_path(testPath + "/" + filename);
-			System.out.println(servletContext.getRealPath("/"));
-			System.out.println("이게 경로 ? : " + request.getSession().getServletContext().getResourcePaths("/resources/etc/uploadImage"));
-			System.out.println("경로 테스트 : " + request.getSession().getServletContext().getRealPath("/resources"));
-			System.out.println("업로드 될 실제 경로 : " + testPath);
-			System.out.println("업로드 될 경로 + 이름 :" + fileobj.getFile_path());
+//			String testPath = request.getSession().getServletContext().getRealPath("/resources/etc/uploadImage");
+//			fileobj.setFile_path(testPath + "/" + filename);
+//			System.out.println(servletContext.getRealPath("/"));
+//			System.out.println("이게 경로 ? : " + request.getSession().getServletContext().getResourcePaths("/resources/etc/uploadImage"));
+//			System.out.println("경로 테스트 : " + request.getSession().getServletContext().getRealPath("/resources"));
+//			System.out.println("업로드 될 실제 경로 : " + testPath);
+//			System.out.println("업로드 될 경로 + 이름 :" + fileobj.getFile_path());
 			
 			// /mvc/resources...
-			System.out.println(request.getSession().getServletContext());
-			System.out.println(request.getSession());
-			System.out.println("테스트~ : " + testPath.substring(1, testPath.indexOf(".metadata")));
-			String realPath = testPath.substring(1, testPath.indexOf(".metadata")) + "Final_Project/src/main/webapp/resources/etc/uploadImage";
-			System.out.println("저장되어야 할 곳 : " + realPath);
+//			System.out.println(request.getSession().getServletContext());
+//			System.out.println(request.getSession());
+//			System.out.println("테스트~ : " + testPath.substring(1, testPath.indexOf(".metadata")));
+//			String realPath = testPath.substring(1, testPath.indexOf(".metadata")) + "Final_Project/src/main/webapp/resources/etc/uploadImage";
+//			System.out.println("저장되어야 할 곳 : " + realPath);
 			
 			//	12. 위의 path의 경로를 가진 파일 저장소 생성
 			//File storage = new File(testPath);
-			File storage = new File("/testFolder");
+			File storage = new File(path);
 			
 			//	12-1. 만약 저장소가 존재 하지 않으면 저장소를 만든다.
 			if(!storage.exists()) {
@@ -160,7 +215,7 @@ public class UploadController implements ServletContextAware {
 			
 			//	13. 위의 path의 경로에 새로운 파일 생성
 			//File newfile = new File(testPath + "/" + filename);
-			File newfile = new File("/testFolder"+"/a.txt");
+			File newfile = new File(path +"/"+ filename);
 			
 			//	13-1. 경로에 파일이 없으면 파일을 만든다.
 			if(!newfile.exists()) {
