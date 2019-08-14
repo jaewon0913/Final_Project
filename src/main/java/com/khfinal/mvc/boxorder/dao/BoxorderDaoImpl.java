@@ -24,7 +24,7 @@ public class BoxorderDaoImpl implements BoxorderDao {
 		map.put("ordernumber", ordernumber);
 		
 		BoxorderDto dto = sqlSession.selectOne(namespace+"selectOne",map);
-		
+		System.out.println("daoimpl 확인 : "+dto.getDosirak_title());
 		return dto;
 	}
 

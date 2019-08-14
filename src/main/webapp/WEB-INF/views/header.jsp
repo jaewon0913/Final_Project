@@ -18,8 +18,27 @@
 <meta name="author" content="">
 
 <title>main</title>
+<style type="text/css">
 
-<!-- Bootstrap core CSS -->
+body, input, div, span, p, a, nav, li, ul, button {
+	font-family:'샘물';
+}
+
+a.nav-link{
+	color: white;
+}
+
+a.nav-link:hover{
+	color: white;
+	opacity: 0.5;
+}
+.navbar-dark .navbar-nav .nav-link {
+   
+}
+</style>
+
+
+<!-- Bootstrap core CSS -->s
 <link href="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
@@ -46,9 +65,9 @@
 	<header>
 		<nav class="header navbar navbar-expand-lg fixed-top " style="margin-bottom: 0px;">
 		<div style="float: left; width: 50%;">
-			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/nado2.png" onclick="location.href='mainpage.do'" style="width: 70px; height: 70px;">
+			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/nado2.png" onclick="location.href='mainpage.do'" style="width: 10rem; height: 10rem;">
 			</div>
-			<div style="float: right; width: 50%; text-align: right;">
+			<div style="float: right; width: 50%; text-align: right;" class="pull-right">
 				<c:choose>
 					<c:when test="${empty logindto}">
 							<span class="loginbutton btn" onclick="location.href='loginMain.do'">로그인</span>
@@ -66,7 +85,7 @@
 		</nav>
 
 		<!-- Navigation -->
-		<nav class="navbar navbar-expand-lg nav-bar-custom main_img navbar-dark">
+		<nav class="navbar navbar-expand-lg nav-bar-custom main_img ">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -75,21 +94,21 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="dosirak_listpagig.do">도시락
-								주문 <span class="sr-only">(current)</span>
+						<li class="nav-item ">
+						<a class="nav-link" href="dosirak_listpagig.do">도시락 주문 <span class="sr-only">(current)</span>
 						</a></li>
 						<!-- 둘중 선택 <li class="nav-item active"><a class="nav-link" href="dosiraktest.do">도시락
 							주문 <span class="sr-only">(current)</span>
 					 	</a></li> -->
-						<li class="nav-item"><a class="nav-link" href="custom.do">커스텀 도시락
+						<li class="nav-item "><a class="nav-link" href="custom.do">커스텀 도시락
 								주문</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">주간 영양정보</a>
+						<li class="nav-item "><a class="nav-link" href="#">주간 영양정보</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="#">특가 도시락</a></li>
-						<li class="nav-item"><a class="nav-link" href="freeboard_list.do">자유 게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">이벤트 게시판</a>
+						<li class="nav-item " ><a class="nav-link" href="#">특가 도시락</a></li>
+						<li class="nav-item "><a class="nav-link" href="freeboard_list.do">자유 게시판</a></li>
+						<li class="nav-item "><a class="nav-link" href="#">이벤트 게시판</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="delivery_place.do">배달장소 확인</a>
+						<li class="nav-item "><a class="nav-link" href="delivery_place.do">배달장소 확인</a>
 						</li>
 					</ul>
 				</div>

@@ -198,7 +198,7 @@
 				<ul>
 					<li>공지사항1</li>
 					<li>공지사항2</li>
-					<li>공지사항3</li>
+					<li onclick="location.href='testpay.do'">공지사항3</li>
 				</ul>
 			</div>
 

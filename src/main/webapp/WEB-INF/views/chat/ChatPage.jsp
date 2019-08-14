@@ -16,10 +16,10 @@
 		position : fixed;
 		background-color : white;
 		border : 1px solid;
-		left : 790px;
-		width: 500px; 
-		height: 300px;
-		top : 167px;
+		left : 5rem;
+		width: 60rem; 
+		height: 30rem;
+		top : 22rem;
 	}
 	#send_div{
 		z-index : 10;
@@ -27,28 +27,28 @@
 		position : fixed;
 		background-color : white;
 		border : 1px solid;
-		left : 790px;
-		width: 500px; 
-		top : 467px;
+		left : 5rem;
+		width: 60rem; 
+		top : 52rem;
 	}
 	#send_btn{
-		width : 57px;
+		width : 10rem;
 		float : right;
 	}
 	#message{
-		width : 435px;
-		margin-right : 6px;
+		width :45rem;
+		margin-right : 3rem;
 	}
 </style>
 </head>
 <body>
 	<!-- chat -->
 	<div class="pull-right">
-		<img alt="chat" src="resources/bootstrap/image/chat1.png" class="navbar-fixed-top  chat" id="chat_btn" style="top: -205px">
+		<img alt="chat" src="resources/bootstrap/image/chat1.png" class="navbar-fixed-top  chat" id="chat_btn" >
 		<div id="chat_div">
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
-				<div style="float: right;">
+				<div style="float: right; ">
 					<button type="button" id="chat_close">닫기</button>
 				</div>
 				<div id="msg_div">

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.khfinal.mvc.dosirak.dto.DosirakDto;
 import com.khfinal.mvc.notice.dto.NoticeDto;
 
 public interface NoticeDao {
@@ -21,5 +22,11 @@ public interface NoticeDao {
 	public int NoticeDelete(int notice_postnum);// 삭제
 
 	public int NoticeViews(int notice_postnum);// 조회수
+	
+	//페이징
+	public List<NoticeDto> NoticeSelectlist(int firstIndex, int recordCountPerPage, String txt_search);
+	
+	public int totalcount(String txt_search);
+	
 
 }

@@ -129,37 +129,7 @@ font-size:2rem;
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	
-	<script>
-		var IMP = window.IMP;
-		IMP.init('imp15057713');
-		$("#pay").click(function() {
-			IMP.request_pay({
-				pg : 'kakaopay',
-				pay_method : 'card',
-				merchant_uid : 'merchant_' + new Date().getTime(),
-				name : '물품 명',
-				amount : 1,
-				buyer_email : '이메일',
-				buyer_name : '이름',
-				buyer_tel : '전화번호',
-				buyer_addr : '주소',
-				buyer_postcode : '123-456',
-				m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-			}, function(rsp) {
-				if (rsp.success) {
-					var msg = '결제가 완료되었습니다.';
-					msg += '고유ID : ' + rsp.imp_uid;
-					msg += '상점 거래ID : ' + rsp.merchant_uid;
-					msg += '결제 금액 : ' + rsp.paid_amount;
-					msg += '카드 승인번호 : ' + rsp.apply_num;
-				} else {
-					var msg = '결제에 실패하였습니다.';
-					msg += '에러내용 : ' + rsp.error_msg;
-				}
-				alert(msg);
-			});
-		});
-	</script>
+	
 <!-- -----------kakaopay-------------- -->
 <!-- Bootstrap core CSS -->
 <link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -257,7 +227,37 @@ font-size:2rem;
 		<img id="pay" alt="결제" src="resources/bootstrap/image/kakaopay_btn.png" style="width: 8rem;">
 		</div>
 
-
+<script>
+		var IMP = window.IMP;
+		IMP.init('imp15057713');
+		$("#pay").click(function() {
+			IMP.request_pay({
+				pg : 'kakaopay',
+				pay_method : 'card',
+				merchant_uid : 'merchant_' + new Date().getTime(),
+				name : '물품 명',
+				amount : 1,
+				buyer_email : '이메일',
+				buyer_name : '이름',
+				buyer_tel : '전화번호',
+				buyer_addr : '주소',
+				buyer_postcode : '123-456',
+				m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+			}, function(rsp) {
+				if (rsp.success) {
+					var msg = '결제가 완료되었습니다.';
+					msg += '고유ID : ' + rsp.imp_uid;
+					msg += '상점 거래ID : ' + rsp.merchant_uid;
+					msg += '결제 금액 : ' + rsp.paid_amount;
+					msg += '카드 승인번호 : ' + rsp.apply_num;
+				} else {
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : ' + rsp.error_msg;
+				}
+				alert(msg);
+			});
+		});
+	</script>
 
 	</div>
 
@@ -336,10 +336,21 @@ font-size:2rem;
 			<!-- 글작성 테스트 -->
 			<input type = "button" value = "반찬 등록" onclick = "location.href='dishinsert_form.do'">
 		</c:if>
-		<input type = "button" value = "밥류" onclick = "changeDish('rice')" />
-		<input type = "button" value = "고기류" onclick = "changeDish('meal')" />
-		<input type = "button" value = "반찬류" onclick = "changeDish('sidedish')" />
-		<input type = "button" value = "샐러드류" onclick = "changeDish('salad')" />
+		<div class="container" style="text-align: center;">
+			<img alt="밥" src="resources/bootstrap/image/rice.png" class="iconbtn" onclick = "changeDish('rice')" />
+			&emsp;
+			<img alt="고기" src="resources/bootstrap/image/gogi.png" class="iconbtn"  onclick = "changeDish('meal')"/>
+			&emsp;
+			<img alt="생선" src="resources/bootstrap/image/fish.png" class="iconbtn" onclick="#" />
+			&emsp;
+			<img alt="샐러드" src="resources/bootstrap/image/sal.png" class="iconbtn" onclick = "changeDish('salad')" />
+			&emsp;
+			<img alt="반찬" src="resources/bootstrap/image/side.png" class="iconbtn" onclick = "changeDish('sidedish')" />
+			&emsp;
+			<img alt="김치" src="resources/bootstrap/image/kim.png" class="iconbtn" onclick="#"/>
+		</div>
+		<br/>
+		<br/>
 		<br/>
 		<div id = "dish_list">
 		<c:forEach items = "${list }" var = "UploadFile">
