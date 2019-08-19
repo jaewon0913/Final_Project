@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="eventboard">
+
+	<select id="event_selectList" resultType="EventboardDto">
+		SELECT EVENT_POSTNUM, MEMBER_ID, MEMBER_NAME, EVENT_TITLE, EVENT_CONTENT, EVENT_VIEWS, EVENT_REGDATE, MEMBER_LEVEL FROM EVENTBOARD
+	</select>
+	
+	
+	<!--  목록에서 가져오기 -->
+	<select id = "event_selectOne" parameterType="map" resultType="EventboardDto">
+		SELECT EVENT_POSTNUM, MEMBER_ID, MEMBER_NAME, EVENT_TITLE, EVENT_CONTENT, EVENT_VIEWS, EVENT_REGDATE, MEMBER_LEVEL
+		FROM EVENTBOARD
+		WHERE EVENT_POSTNUM = #{EVENT_postnum }
+	</select>
+	
+	<insert id = "eventboard_insert" parameterType="EventboardDto">
+<!-- 0802 수정-오류확인해야함 -->
+	 	INSERT INTO EVENTBOARD (EVENT_POSTNUM, MEMBER_ID, MEMBER_NAME, EVENT_TITLE, EVENT_CONTENT,EVENT_VIEWS, EVENT_REGDATE)
+	 	VALUES(EVENT_POSTNUM.NEXTVAL,#{member_id},#{member_name}, #{EVENT_title}, #{EVENT_content},0,SYSDATE) 
+	</insert>
+	
+	<!-- 글쓰기저장 -->
+	<insert id = "eventboard_insert2" parameterType="EventboardDto">
+<!-- 0804 오류수정함 -->
+	 	INSERT INTO EVENTBOARD (EVENT_POSTNUM.NEXTVAL, MEMBER_ID, MEMBER_NAME, EVENT_TITLE, EVENT_CONTENT,EVENT_VIEWS, SYSDATE, MEMEBER_LEVEL)
+	 	VALUES(EVENT_POSTNUM.NEXTVAL,#{member_id},#{member_name}, #{EVENT_title}, #{EVENT_content},0,SYSDATE,#{member_level}) 
+	</insert>
+	
+	
+	<!--  글수정   -->
+	<update id = "eventboard_update" parameterType="EventboardDto">
+		UPDATE EVENTBOARD SET  EVENT_TITLE= #{EVENT_title}, EVENT_CONTENT= #{EVENT_content} 
+		WHERE EVENT_POSTNUM = #{EVENT_postnum} 
+	</update>
+	
+	<!-- 글삭제  -->
+	<delete id = "eventboard_delete" parameterType="int">
+		DELETE FROM EVENTBOARD WHERE EVENT_POSTNUM = #{EVENT_postnum}
+	</delete>
+	
+	<!-- 체크 글삭제 -->
+	<delete id="evnetboard_muldel" parameterType="java.util.Map">
+	
+		DELETE EVENTBOARD WHERE EVENT_POSTNUM IN
+		
+	  	<foreach collection="list" item="item" open="(" separator="," close=")">
+		#{item}
+	  	</foreach> 
+	</delete>
+
+
+	<!--  조회수  -->
+	<update id= "updateViews">
+		UPDATE EVENTBOARD SET EVENT_VIEWS = EVENT_VIEWS + 1 WHERE EVENT_POSTNUM = #{evnet_postnum}
+	</update>
+	
+	
+ 	<!-- 페이징   -->
+	<select id = "selectListPaging" parameterType="map" resultType="EventboardDto">
+		SELECT * FROM
+		( SELECT ROWNUM AS RNUM, N.*
+			FROM EVENTBOARD N
+			WHERE 1=1
+			<if test="txt_search != null">
+				AND
+				(
+					(upper(EVENT_TITLE) like '%' || upper(#{txt_search}) || '%') or
+					(upper(EVENT_CONTENT) like '%' || upper(#{txt_search}) || '%') 
+				)
+			</if>
+			
+ 			ORDER BY EVENT_POSTNUM DESC
+			
+		)
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +
+		#{recordCountPerPage}	
+	
+	</select>
+	
+	<!-- 전체 글 갯수 조회 -->
+	<select id = "getTotalCount" parameterType="map" resultType="Integer">
+		SELECT count( *)
+		FROM EVENTBOARD
+		WHERE 1=1
+			<if test="txt_search != null">
+				AND
+				(
+					(upper(EVENT_TITLE) like '%' || upper(#{txt_search}) || '%') or
+					(upper(EVENT_CONTENT) like '%' || upper(#{txt_search}) || '%') 
+				)
+			</if>
+	</select>
+	
+	
+
+ 
+</mapper>
