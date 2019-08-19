@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="freeboard">
+
+	
+	<select id = "selectList" resultType="FreeboardDto">
+		SELECT FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, FREE_TITLE, FREE_CONTENT, FREE_VIEWS, FREE_REGDATE, MEMBER_LEVEL FROM FREEBOARD
+	
+	</select>
+	
+	
+	<!--  목록에서 가져오기 -->
+	<select id = "selectOne" parameterType="map" resultType="FreeboardDto">
+		SELECT FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, FREE_TITLE, FREE_CONTENT, FREE_VIEWS, FREE_REGDATE, MEMBER_LEVEL
+		FROM FREEBOARD
+		WHERE FREE_POSTNUM = #{free_postnum }
+	</select>
+	
+	<insert id = "freeboard_insert" parameterType="FreeboardDto">
+<!-- 0802 수정-오류확인해야함 -->
+	 	INSERT INTO FREEBOARD (FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, FREE_TITLE, FREE_CONTENT,FREE_VIEWS, FREE_REGDATE)
+	 	VALUES(FREE_POSTNUM.NEXTVAL,#{member_id},#{member_name}, #{free_title}, #{free_content},0,SYSDATE) 
+	</insert>
+	
+	<!-- 글쓰기저장 -->
+	<insert id = "freeboard_insert2" parameterType="FreeboardDto">
+<!-- 0804 오류수정함 -->
+	 	INSERT INTO FREEBOARD (FREE_POSTNUM.NEXTVAL, MEMBER_ID, MEMBER_NAME, FREE_TITLE, FREE_CONTENT,FREE_VIEWS, SYSDATE, MEMEBER_LEVEL)
+	 	VALUES(FREE_POSTNUM.NEXTVAL,#{member_id},#{member_name}, #{free_title}, #{free_content},0,SYSDATE,#{member_level}) 
+	</insert>
+	
+	
+	<!--  글수정   -->
+	<update id = "freeboard_update" parameterType="FreeboardDto">
+		UPDATE FREEBOARD SET  FREE_TITLE= #{free_title}, FREE_CONTENT= #{free_content} 
+		WHERE FREE_POSTNUM = #{free_postnum} 
+	</update>
+	
+	<!-- 글삭제  -->
+	<delete id = "freeboard_delete" parameterType="int">
+		DELETE FROM FREEBOARD WHERE FREE_POSTNUM = #{free_postnum}
+	</delete>
+	
+	<!-- 체크 글삭제 -->
+	<!-- <delete id="freeboard_muldel" parameterType="String"> -->
+	<delete id="freeboard_muldel" parameterType="java.util.Map">
+	
+		DELETE FREEBOARD WHERE FREE_POSTNUM IN
+		
+	  	<foreach collection="list" item="item" open="(" separator="," close=")">
+		#{item}
+	  	</foreach> 
+	</delete>
+
+
+	<!--  조회수  -->
+	<update id= "updateViews">
+		UPDATE FREEBOARD SET FREE_VIEWS = FREE_VIEWS + 1 WHERE FREE_POSTNUM = #{free_postnum}
+	</update>
+	
+	
+	<!-- 페이징   -->
+	<select id = "selectListPaging" parameterType="map" resultType="FreeboardDto">
+		SELECT * FROM
+		( SELECT ROWNUM AS RNUM, N.*
+			FROM FREEBOARD N
+			WHERE 1=1
+			<if test="txt_search != null">
+				AND
+				(
+					(upper(FREE_TITLE) like '%' || upper(#{txt_search}) || '%') or
+					(upper(FREE_CONTENT) like '%' || upper(#{txt_search}) || '%') 
+				)
+			</if>
+			
+ 			<!-- ORDER BY FREE_POSTNUM DESC -->
+			
+		)
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +
+		#{recordCountPerPage}	
+	
+	</select>
+	
+	<!-- 전체 글 갯수 조회 -->
+	<select id = "getTotalCount" parameterType="map" resultType="Integer">
+		SELECT count( *)
+		FROM FREEBOARD
+		WHERE 1=1
+			<if test="txt_search != null">
+				AND
+				(
+					(upper(FREE_TITLE) like '%' || upper(#{txt_search}) || '%') or
+					(upper(FREE_CONTENT) like '%' || upper(#{txt_search}) || '%') 
+				)
+			</if>
+	</select>
+	
+	
+
+ 
+</mapper>

@@ -14,10 +14,11 @@ public class NoticeBizImpl implements NoticeBiz {
 	@Autowired
 	private NoticeDao noticedao;
 
-	@Override
-	public List<NoticeDto> NoticeSelectlist() {
-		return noticedao.NoticeSelectlist();
-	}
+	
+	@Override public List<NoticeDto> NoticeSelectlist() { 
+		return noticedao.NoticeSelectlist(); 
+		}
+	 
 
 	@Override
 	public NoticeDto NoticeSelectOne(int notice_postnum) {
@@ -46,6 +47,16 @@ public class NoticeBizImpl implements NoticeBiz {
 	public int NoticeViews(int notice_postnum) {
 		return noticedao.NoticeViews(notice_postnum);
 
+	}
+
+	@Override
+	public List<NoticeDto> NoticeSelectlist(int firstIndex, int recordCountPerPage, String txt_search) {
+		return noticedao.NoticeSelectlist(firstIndex, recordCountPerPage, txt_search);
+	}
+
+	@Override
+	public int totalcount(String txt_search) {
+		return noticedao.totalcount(txt_search);
 	}
 
 

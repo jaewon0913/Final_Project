@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
 import com.khfinal.mvc.boxorder.dto.BoxorderDto;
 import com.khfinal.mvc.dosirak.biz.DosirakBiz;
-import com.khfinal.mvc.dosirak.dto.DosirakDto;
 
 
 @Controller
@@ -55,9 +54,10 @@ public class BoxorderController {
 	
 	@RequestMapping("/qrcode.do")
 	public String qrcoderesult(Model model,HttpServletRequest request) {
+		System.out.println("!!#!@#!@#!@#!@#qrcode.do 들어옴~!!!!!");
 		String member_id = request.getParameter("member_id");
 		String ordernumber = request.getParameter("ordernumber");
-		System.out.println(member_id+" "+ordernumber);
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!"+member_id+" "+ordernumber);
 		BoxorderDto dto = boxorderbiz.selectOne(member_id, ordernumber);
 		model.addAttribute("dto", dto);
 		System.out.println(dto.getDosirak_delivery());		

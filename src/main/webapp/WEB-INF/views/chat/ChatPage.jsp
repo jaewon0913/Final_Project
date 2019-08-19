@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,77 +6,50 @@
 <title>Insert title here</title>
 <!-- socket -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/sockjs.min.js"></script>
+<script src="resources/js/sockjs.min.js"></script>
 
-<style type="text/css">
-	#chat_div{
-		z-index : 10;
-		display: none; 
-		position : fixed;
-		background-color : white;
-		border : 1px solid;
-		left : 790px;
-		width: 500px; 
-		height: 300px;
-		top : 167px;
-	}
-	#send_div{
-		z-index : 10;
-		display: none; 
-		position : fixed;
-		background-color : white;
-		border : 1px solid;
-		left : 790px;
-		width: 500px; 
-		top : 467px;
-	}
-	#send_btn{
-		width : 57px;
-		float : right;
-	}
-	#message{
-		width : 435px;
-		margin-right : 6px;
-	}
-</style>
+<!-- css -->
+<link href="resources/css/chatpage.css" rel="stylesheet" />
+
+<!-- script -->
+<script src = "resources/js/chatpage.js"></script>
+
+
 </head>
 <body>
-	<!-- chat -->
+	<!-- etc button -->
 	<div class="pull-right">
-		<img alt="chat" src="resources/bootstrap/image/chat1.png" class="navbar-fixed-top  chat" id="chat_btn" style="top: -205px">
+		<!-- chat -->
+		<img alt="chat" src="${pageContext.request.contextPath }/resources/bootstrap/image/chat1.png" class="navbar-fixed-top chat" id="chat_btn">
 		<div id="chat_div">
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
 				<div style="float: right;">
-					<button type="button" id="chat_close">닫기</button>
+					<button type="button" id="chat_close" style = "position : fixed; right : 850px; z-index : 10; width : 2rem; font-size : 1rem;">x</button>
 				</div>
-				<div id="msg_div">
-					<%-- <h1>Chatting Page : ${logindto.member_id}</h1> --%>
+				<div id="msg_div" style = "clear : both;" >
 				</div>
 			</div>
 		<div id = "send_div">
-			<input type="text" id="message" /> 
-			<input type="button" id="send_btn" value="전송" />
+			<input type="text" id="message" onkeyup = "enterkey();"/> 
+			<input type="button" id="send_btn" value="전송"/>
+		</div>
+		
+		<img alt="bot" src = "${pageContext.request.contextPath }/resources/bootstrap/image/bot1.png" class = "navbar-fixed-top bot" id = "bot_btn" >
+		<div id = "bot_div">
+			<div style="float: right;">
+				<button type="button" id="bot_chat_close" style = "position : fixed; right : 850px; z-index : 10; width : 2rem; font-size : 1rem;">x</button>
+			</div>
+			<div id="bot_msg_div" style = "clear : both;" >
+			</div>
+		</div>
+		<div id = "bot_send_div">
+			<input type="text" id="bot_message" onkeyup = "bot_enterkey();"/> 
+			<input type="button" id="bot_send_btn" value="전송"/>
 		</div>
 	</div>
-	
-	<script>
-		var scrollDiv = document.getElementById("chat_div");
-		scrollDiv.scrollTop = scrollDiv.scrollHeight;
-	</script>
 
 	<script type="text/javascript">
-		$(function() {
-			$("#chat_btn").click(function() {
-				$("#chat_div").css("display", "block");
-				$("#send_div").css("display", "block");
-			});
-			$("#chat_close").click(function() {
-				$("#chat_div").css("display", "none");
-				$("#send_div").css("display", "none");
-			});
-		});
-
 		/**
 			SockJS 객체를 생성한다. 이 후 참조 변수를 이용하여 해당 콜백(onmessage, onclose)들을 등록 한다. 
 			jQuery를 이용해서 버튼이 클릭되면 메시지 전송함수를 실행
@@ -107,6 +79,7 @@
 		function sendMessage() {
 			//	WebSocket 으로 메시지를 보낸다
 			socket.send($("#message").val());
+			$("#message").val("");
 		}
 
 		//	evt 파라미터는 WebSocket이 보내준 데이터이다.
@@ -144,10 +117,9 @@
 				printHTML += "</div>";
 				printHTML += "</div>";
 
-				$("#msg_div").append(printHTML);
+				$("#msg_div").prepend(printHTML);
 			} else if (sessionid == currentUser_Session) {
 				//	내가 보낸걸 내 화면에
-				alert(currentUser_Session);
 				var printHTML = "<div>";
 				printHTML += "<div class = 'alert alert-info'>";
 				printHTML += "<strong>[" + sessionid + "] -> " + message
@@ -155,7 +127,7 @@
 				printHTML += "</div>";
 				printHTML += "</div>";
 
-				$("#msg_div").append(printHTML);
+				$("#msg_div").prepend(printHTML);
 			} else {
 				//	남이 보낸걸 내 화면에
 				//	보낸사람이 admin이면 출력
@@ -167,7 +139,7 @@
 					printHTML += "</div>";
 					printHTML += "</div>";
 
-					$("#msg_div").append(printHTML);
+					$("#msg_div").prepend(printHTML);
 				} else if (currentUser_Session == "admin") {
 					//	admin만 다른 사람이 보낸 메시지 받기
 					var printHTML = "<div>";
@@ -177,7 +149,7 @@
 					printHTML += "</div>";
 					printHTML += "</div>";
 
-					$("#msg_div").append(printHTML);
+					$("#msg_div").prepend(printHTML);
 				}
 			}
 			console.log('chatting data : ' + data);

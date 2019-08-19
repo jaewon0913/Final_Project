@@ -9,7 +9,7 @@
 <body>
 
 <%@ include file="../header.jsp"%>
-
+<div class="container">
 	<h1>수령 완료 페이지</h1>
 
 	<table>
@@ -29,12 +29,12 @@
 			<td>${dto.member_name }님의 도시락을 수령 완료 하였습니다.</td>
 		</tr>
 		<tr>
-			<td>
-				<input type="button" value="홈" onclick="location.href='mainpage.do'">
+			<td align="right" >
+				<input type="button" value="홈" onclick="location.href='mainpage.do'" class="btn btn-outline-light"/>
 			</td>
 		</tr>
 	</table>
-	
+</div>	
 	
 <%@ include file="../footer.jsp"%>
 
