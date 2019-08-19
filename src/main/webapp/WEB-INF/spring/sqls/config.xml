@@ -5,6 +5,8 @@
 	<typeAliases>
 		<typeAlias type="com.khfinal.mvc.member.dto.MemberDto" alias = "memberdto"/>
 		<typeAlias type="com.khfinal.mvc.free.dto.FreeboardDto" alias="FreeboardDto"/>
+		<typeAlias type="com.khfinal.mvc.event.dto.EventboardDto" alias="EventboardDto"/>
+		<typeAlias type="com.khfinal.mvc.free.dto.CommentDto" alias="CommentDto"/>
 
 	</typeAliases>
 
@@ -12,6 +14,7 @@
 	<mappers>
 		<mapper resource="/sqls/MemberMapper.xml"/>
 		<mapper resource="/sqls/FreeboardMapper.xml"/>
+		<mapper resource="/sqls/EventboardMapper.xml"/>
 	</mappers>
 
 </configuration>

@@ -12,6 +12,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.khfinal.mvc.common.util.Paging;
+import com.khfinal.mvc.free.dto.CommentDto;
 import com.khfinal.mvc.free.dto.FreeboardDto;
 
 @Repository
@@ -46,7 +48,7 @@ public class FreeboardDaoImpl implements FreeboardDao {
 		try {
 			dto = sqlSession.selectOne(namespace + "selectOne", free_postnum);			
 		} catch (Exception e) {
-			System.out.println("select one error");
+			System.out.println("selectOne error");
 			e.printStackTrace();
 		}
 		
@@ -139,8 +141,124 @@ public class FreeboardDaoImpl implements FreeboardDao {
 		}
 		return res;
 	}
+
+
+
+	
+	public int getTotalCount(String txt_search) {
+
+		int ret = 0;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("txt_search", txt_search );
+		try {
+			ret = sqlSession.selectOne(namespace + "getTotalCount", map);			
+		} catch (Exception e) {
+			System.out.println("getTotalCount error");
+			e.printStackTrace();
+		}
+		
+		return ret;
+	}
+	
+
+	/* 페이징 */
+	public List<FreeboardDto> selectList(Paging paging,String txt_search){
+		
+		int firstIndex = (paging.getPageNo() - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
+		int recordCountPerPage = paging.getPageSize();
+				
+		List<FreeboardDto> list = new ArrayList<FreeboardDto>();
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("firstIndex",  String.valueOf(firstIndex) );
+		map.put("recordCountPerPage",  String.valueOf(recordCountPerPage) );
+		map.put("txt_search", txt_search );
+		
+		try {
+			list = sqlSession.selectList(namespace + "selectListPaging",map);
+		} catch (Exception e) {
+			System.out.println("select list 실패.");
+			e.printStackTrace();
+		}
+		
+		return list;
+
+	}
 	
 
 	
+	/* 답글 */
+	@Override
+	public List<CommentDto> com_selectList(int free_postnum) {
+	
+		List<CommentDto> list = new ArrayList<CommentDto>();
+		
+		try {
+			list = sqlSession.selectList(namespace + "com_selectList",free_postnum);
+		} catch (Exception e) {
+			System.out.println("com_select list 실패.");
+			e.printStackTrace();
+		}
+		
+		return list;
+
 	}
 
+	
+	  @Override public CommentDto com_selectOne(int com_num) { 
+		  CommentDto dto = new CommentDto();
+	  
+		  try {
+			  dto = sqlSession.selectOne(namespace + "com_selectOne", com_num); }
+		  catch(Exception e) { 
+			  System.out.println("selectOne error"); 
+			  e.printStackTrace(); }
+	  
+	  return dto; }
+	 
+
+	@Override
+	public int com_board_insert(CommentDto dto) {
+		
+		int res = 0;
+		try {
+			res = sqlSession.update(namespace+"com_board_insert",dto);
+		} catch (Exception e) {
+			System.out.println("insert 실패");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	@Override
+	public int com_board_update(CommentDto dto) {
+		
+		int res = 0;
+		try {
+			res = sqlSession.update(namespace + "com_board_update",dto);
+			System.out.println("com_board_update>>>" + dto.toString());
+		} catch (Exception e) {
+			System.out.println("com_board_update error");
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	
+	@Override
+	public int com_board_delete(int com_num) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(namespace + "com_board_delete",com_num);
+		} catch (Exception e) {
+			System.out.println("delete error");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	
+	
+}

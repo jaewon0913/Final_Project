@@ -16,18 +16,18 @@ public class FreeboardDto {
 	public FreeboardDto() {
 	}
 
-	public FreeboardDto(int free_postnum, String member_id, String member_name, String free_title, String free_content,
-			int free_views, Date free_regdate, String member_level) {
-		super();
-		this.free_postnum = free_postnum;
-		this.member_id = member_id;
-		this.member_name = member_name;
-		this.free_title = free_title;
-		this.free_content = free_content;
-		this.free_views = free_views;
-		this.free_regdate = free_regdate;
-		this.member_level = member_level;
-	}
+//	public FreeboardDto(int free_postnum, String member_id, String member_name, String free_title, String free_content,
+//			int free_views, Date free_regdate, String member_level) {
+//		super();
+//		this.free_postnum = free_postnum;
+//		this.member_id = member_id;
+//		this.member_name = member_name;
+//		this.free_title = free_title;
+//		this.free_content = free_content;
+//		this.free_views = free_views;
+//		this.free_regdate = free_regdate;
+//		this.member_level = member_level;
+//	}
 //	
 //
 //	public FreeboardDto(int free_postnum, String member_id, String member_name, String free_title, String free_content) {
@@ -70,12 +70,12 @@ public class FreeboardDto {
 //	}
 //	
 	
-	public FreeboardDto(String free_title, String free_content, int free_views) {
-		super();
-		this.free_title = free_title;
-		this.free_content = free_content;
-		this.free_views = free_views;
-	}
+//	public FreeboardDto(String free_title, String free_content, int free_views) {
+//		super();
+//		this.free_title = free_title;
+//		this.free_content = free_content;
+//		this.free_views = free_views;
+//	}
 
 	 
 

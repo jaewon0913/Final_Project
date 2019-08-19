@@ -5,7 +5,7 @@
 	
 	<select id = "selectList" resultType="FreeboardDto">
 		SELECT FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, FREE_TITLE, FREE_CONTENT, FREE_VIEWS, FREE_REGDATE, MEMBER_LEVEL FROM FREEBOARD
-		<!-- ORDER BY FREE_POSTNUM DESC -->
+	
 	</select>
 	
 	
@@ -17,6 +17,7 @@
 	</select>
 	
 	<insert id = "freeboard_insert" parameterType="FreeboardDto">
+<!-- 0802 수정-오류확인해야함 -->
 	 	INSERT INTO FREEBOARD (FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, FREE_TITLE, FREE_CONTENT,FREE_VIEWS, FREE_REGDATE)
 	 	VALUES(FREE_POSTNUM.NEXTVAL,#{member_id},#{member_name}, #{free_title}, #{free_content},0,SYSDATE) 
 	</insert>
@@ -94,67 +95,6 @@
 			</if>
 	</select>
 	
-	
-	
-	
-	
-	
-	<!-- 답글 -->
-	
-	
-	<select id = "com_selectList" resultType="CommentDto" parameterType="int">
-		SELECT COM_NUM, FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, COM_CONTENT, COM_CONTAB, COM_COMNO, COM_COMSQ, COM_REGDATE
-		FROM COM_BOARD 
-		WHERE FREE_POSTNUM = #{free_postnum}
-		ORDER BY COM_COMSQ DESC
-		
-	</select>
-	
-	<select id = "com_selectOne" parameterType="int" resultType="CommentDto">
-		SELECT COM_NUM, FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, COM_CONTENT, COM_CONTAB, COM_COMNO, COM_COMSQ, COM_REGDATE
-		FROM COM_BOARD
-		WHERE COM_NUM = #{com_num }
-	</select>
-	
-	<insert id = "com_board_insert" parameterType="CommentDto">
-
-	 	INSERT INTO COM_BOARD (COM_NUM, FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, COM_CONTENT, com_comsq,   COM_REGDATE)
-	 	VALUES(COM_NUMSEQ.NEXTVAL,#{free_postnum},#{member_id}, #{member_name}, #{com_content},
-	 		(select NVL(max(COM_COMSQ)+1,1) as COM_COMSQ from COM_BOARD
-		where 1=1
-		and FREE_POSTNUM = #{free_postnum}),
-			
-	 	SYSDATE) 
-	 	
-	 	
-	</insert>
-	
-
-	<insert id = "com_board_insert2" parameterType="CommentDto">
-
-	 	INSERT INTO COM_BOARD (COM_NUM, FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, COM_CONTENT, COM_CONTAB, COM_COMNO, COM_COMSQ, COM_REGDATE)
-	 	VALUES(COM_NUMSEQ.NEXTVALL,#{free_postnum},#{member_id}, #{member_name}, #{com_content},0,COM_COMNO.NEXTVAL,{com_comsq),SYSDATE) 
-	</insert>
-	
-	
-	<!-- 답글 수정  --> 
-	<update id = "com_board_update" parameterType="CommentDto">
-		<!-- UPDATE COM_BOARD MEMBER_ID = #{member_id}, COM_CONTENT= #{com_content}, COM_REGDATE= #{com_regdate} 
-		WHERE COM_NUM = #{com_num}  -->
-		
-		UPDATE COM_BOARD SET COM_CONTENT = #{com_content}
-		WHERE COM_NUM = #{com_num} 
-	</update>
-	
-	<!-- 답글 삭제  -->
-	<delete id = "com_board_delete" parameterType="int">
-		DELETE FROM COM_BOARD WHERE COM_NUM = #{com_num}
-	</delete>
-	
-	<!-- 게시글 삭제시 관련 댓글 전체  삭제  -->
-	<delete id = "comment_all_del" parameterType="int">
-		DELETE FROM COM_BOARD WHERE FREE_POSTNUM = #{free_postnum}
-	</delete>
 	
 
  

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <%
+String member_id = "test";
 int member_level = 0;
 %>
 
@@ -17,7 +18,7 @@ int member_level = 0;
 		
 	
 		
-	<form action="freeboard_insert.do" method="post">
+	<form action="eventboard_insert.do" method="post">
 	
 	<%-- <input type="hidden" name="member_id" value="${member_id }" readonly="readonly"><!--  세션에서 가져와야함 -->
 	<input type="hidden" name="member_level" value="${member_level }" readonly="readonly"> --%>
@@ -38,15 +39,15 @@ int member_level = 0;
 			</tr>
 			<tr>
 				<th>제  목</th>
-				<td><input type="text"	name="free_title" placeholder="졔목을 작성해 주세요"></td>
+				<td><input type="text"	name="event_title" placeholder="졔목을 작성해 주세요"></td>
 			</tr>
 			<tr>
 				<th>글 내용</th>
-				<td><textarea row="100" cols="60" name="free_content" placeholder="글을 작성해 주세요"  ></textarea></td>
+				<td><textarea row="100" cols="60" name="event_content" placeholder="글을 작성해 주세요"  ></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="목록으로" onclick="location.href='freeboard_list.do'">
+					<input type="button" value="목록으로" onclick="location.href='eventboard_list.do'">
 					<input type="submit" value="저  장">
 				</td> 
 			</tr>

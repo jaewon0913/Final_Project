@@ -84,7 +84,7 @@ function logout(user_id){
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#">특가 도시락</a></li>
 						<li class="nav-item"><a class="nav-link" href="freeboard_list.do">자유 게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">이벤트 게시판</a>
+						<li class="nav-item"><a class="nav-link" href="eventboard_list.do">이벤트 게시판</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="delivery_place.do">배달장소 확인</a>
 						</li>
