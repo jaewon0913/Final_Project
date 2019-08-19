@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,80 +6,50 @@
 <title>Insert title here</title>
 <!-- socket -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/sockjs.min.js"></script>
+<script src="resources/js/sockjs.min.js"></script>
 
-<style type="text/css">
-	#chat_div{
-		z-index : 10;
-		display: none; 
-		position : fixed;
-		background-color : white;
-		border : 1px solid;
-		left : 5rem;
-		width: 60rem; 
-		height: 30rem;
-		top : 17rem;
-		border-radius: 30px;
-	}
-	#send_div{
-		z-index : 10;
-		display: none; 
-		position : fixed;
-		background-color : white;
-		border : 1px solid;
-		left : 5rem;
-		width: 60rem; 
-		top : 47rem;
-		border-radius: 30px;
-	}
-	#send_btn{
-		width : 10rem;
-		float : right;
-		margin-right: 0.5rem
-	}
-	#message{
-		width :45rem;
-		margin-left : 0.5rem;
-		border-radius: 30px;
-	}
-</style>
+<!-- css -->
+<link href="resources/css/chatpage.css" rel="stylesheet" />
+
+<!-- script -->
+<script src = "resources/js/chatpage.js"></script>
+
+
 </head>
 <body>
-	<!-- chat -->
+	<!-- etc button -->
 	<div class="pull-right">
-		<img alt="chat" src="resources/bootstrap/image/chat1.png" class="navbar-fixed-top  chat" id="chat_btn">
+		<!-- chat -->
+		<img alt="chat" src="${pageContext.request.contextPath }/resources/bootstrap/image/chat1.png" class="navbar-fixed-top chat" id="chat_btn">
 		<div id="chat_div">
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
 				<div style="float: right;">
-					<button type="button" id="chat_close" style = "z-index : 10; margin-right: 1rem; margin-top: 0.5rem " class="btn btn-outline-light">닫기</button>
+					<button type="button" id="chat_close" style = "position : fixed; right : 850px; z-index : 10; width : 2rem; font-size : 1rem;">x</button>
 				</div>
 				<div id="msg_div" style = "clear : both;" >
 				</div>
 			</div>
 		<div id = "send_div">
-			<input type="text" id="message" /> 
-			<input type="button" id="send_btn" value="전송" class="btn btn-outline-light"/>
+			<input type="text" id="message" onkeyup = "enterkey();"/> 
+			<input type="button" id="send_btn" value="전송"/>
+		</div>
+		
+		<img alt="bot" src = "${pageContext.request.contextPath }/resources/bootstrap/image/bot1.png" class = "navbar-fixed-top bot" id = "bot_btn" >
+		<div id = "bot_div">
+			<div style="float: right;">
+				<button type="button" id="bot_chat_close" style = "position : fixed; right : 850px; z-index : 10; width : 2rem; font-size : 1rem;">x</button>
+			</div>
+			<div id="bot_msg_div" style = "clear : both;" >
+			</div>
+		</div>
+		<div id = "bot_send_div">
+			<input type="text" id="bot_message" onkeyup = "bot_enterkey();"/> 
+			<input type="button" id="bot_send_btn" value="전송"/>
 		</div>
 	</div>
-	
-	<script>
-		var scrollDiv = document.getElementById("chat_div");
-		scrollDiv.scrollTop = scrollDiv.scrollHeight;
-	</script>
 
 	<script type="text/javascript">
-		$(function() {
-			$("#chat_btn").click(function() {
-				$("#chat_div").css("display", "block");
-				$("#send_div").css("display", "block");
-			});
-			$("#chat_close").click(function() {
-				$("#chat_div").css("display", "none");
-				$("#send_div").css("display", "none");
-			});
-		});
-
 		/**
 			SockJS 객체를 생성한다. 이 후 참조 변수를 이용하여 해당 콜백(onmessage, onclose)들을 등록 한다. 
 			jQuery를 이용해서 버튼이 클릭되면 메시지 전송함수를 실행
@@ -110,6 +79,7 @@
 		function sendMessage() {
 			//	WebSocket 으로 메시지를 보낸다
 			socket.send($("#message").val());
+			$("#message").val("");
 		}
 
 		//	evt 파라미터는 WebSocket이 보내준 데이터이다.
