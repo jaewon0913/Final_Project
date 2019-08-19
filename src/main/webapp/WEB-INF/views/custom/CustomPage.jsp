@@ -130,14 +130,14 @@
 
 <!-- -----------kakaopay-------------- -->
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
+<link href="resources/bootstrap/css/small-business.css" rel="stylesheet">
 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/js/custom.js"></script>
+<script src="resources/js/custom.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
@@ -196,14 +196,25 @@
 		</ul>
 
 		<div class="container" id="sendDiv">
-			<br />
-			<p class="font">1회구매</p>
-			<br />
-			<p class="font">탄수화물 : <span id = "tan_span"></span></p>
-			<br />
-			<p class="font">가격 : <span id = ""></span>원</p>
-			<br />
-			<p class="font">총 칼로리 : <span id = "kal_span">0</span>kal</p>
+			<hr/>
+			<p class="font">탄수화물 : <span id = "tan_span">0</span>g</p>
+			<p class="font">단백질 : <span id = "dan_span">0</span>g</p>
+			<p class="font">지방 : <span id = "zi_span">0</span>g</p>
+			<c:choose>
+				<c:when test="${count eq 4 }">
+					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
+				</c:when>
+				<c:when test="${count eq 5 }">
+					<p class="font">가격 : <span id = "price_span"></span>5000원</p>
+				</c:when>
+				<c:when test="${count eq 6 }">
+					<p class="font">가격 : <span id = "price_span"></span>6000원</p>
+				</c:when>
+				<c:otherwise>
+					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
+				</c:otherwise>
+			</c:choose>
+			<p class="font">총 칼로리 : <span id = "cal_span">0</span>kal</p>
 			<br /> 
 			<input type="button" value="장바구니" onclick="location.href='#'" class="mintbtn " /> 
 			<img id="pay" alt="결제" src="${pageContext.request.contextPath }/resources/bootstrap/image/kakaopay_btn.png" style="width: 8rem;">
@@ -211,13 +222,26 @@
 
 
 		<div class="container" id="sendDiv2">
+			<hr/>
+			<p class="font">탄수화물 : <span id = "tan_span_multi">0</span>g</p>
+			<p class="font">단백질 : <span id = "dan_span_multi">0</span>g</p>
+			<p class="font">지방 : <span id = "zi_span_multi">0</span>g</p>
+			<c:choose>
+				<c:when test="${count eq 4 }">
+					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
+				</c:when>
+				<c:when test="${count eq 5 }">
+					<p class="font">가격 : <span id = "price_span"></span>5000원</p>
+				</c:when>
+				<c:when test="${count eq 6 }">
+					<p class="font">가격 : <span id = "price_span"></span>6000원</p>
+				</c:when>
+				<c:otherwise>
+					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
+				</c:otherwise>
+			</c:choose>
+			<p class="font">총 칼로리 : <span id = "cal_span_multi">0</span>kal</p>
 			<br />
-			<p class="font">정기구매</p>
-			<br />
-			<p class="font">가격 : @@@@@@원</p>
-			<br />
-			<p class="font">총 칼로리 : @@@@@@kal</p>
-			<br /> 
 			<input type="button" value="장바구니" onclick="location.href='#'" class="mintbtn " /> 
 			<img id="pay" alt="결제" src="${pageContext.request.contextPath }/resources/bootstrap/image/kakaopay_btn.png" style="width: 8rem;">
 		</div>
@@ -228,6 +252,15 @@
 	var IMP = window.IMP;
 	IMP.init('imp15057713');
 	jw("#pay").click(function() {
+		
+		var length = jw("div").length;
+		alert(length);
+		
+		var before_cal = jb("#cal_span").text();
+		if(before_cal == "0"){
+			alert("도시락을 완성시켜주세요.");
+		}
+		
 		IMP.request_pay({
 			pg : 'kakaopay',
 			pay_method : 'card',
@@ -348,17 +381,7 @@
 				</div>
 			</c:forEach>
 		</div>
-
-	<!-- 	
-		<div class="container">
-			<br /> <br /> <br /> <br />
-
-		</div>
-
-			<div class="container">
-				<br /> <br /> <br /> <br />
-
-		</div> -->
+		<br/>
 	<!-- ------------------------푸터-------------------------------------------- -->
 	<%@ include file="../footer.jsp"%>
 	<!-- ------------------------푸터-------------------------------------------- -->

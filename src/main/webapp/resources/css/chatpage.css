@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+#chat_div {
+	z-index: 10;
+	display: none;
+	position: fixed;
+	background-color: white;
+	border: 1px solid;
+	right: 850px;
+	width: 500px;
+	height: 300px;
+	top: 167px;
+	overflow: scroll;
+}
+
+#send_div {
+	z-index: 10;
+	display: none;
+	position: fixed;
+	background-color: white;
+	border: 1px solid;
+	right: 850px;
+	width: 500px;
+	top: 467px;
+}
+
+#send_btn {
+	width: 57px;
+	float: right;
+}
+
+#chat_close {
+	width : 57px;
+	float : right;
+}
+
+#message {
+	width: 435px;
+	margin-right: 6px;
+}
+
+.arrow_box {
+	position: relative;
+	background: #88b7d5;
+	border: 4px solid #c2e1f5;
+}
+
+
+
+#bot_div {
+	z-index: 10;
+	display: none;
+	position: fixed;
+	background-color: white;
+	border: 1px solid;
+	right: 850px;
+	width: 500px;
+	height: 300px;
+	top: 245px;
+	overflow : scroll;
+}
+
+#bot_send_div {
+	z-index: 10;
+	display: none;
+	position: fixed;
+	background-color: white;
+	border: 1px solid;
+	right: 850px;
+	width: 500px;
+	top: 544px;
+}
+
+#bot_send_btn {
+	width: 57px;
+	float: right;
+}
+
+#bot_message {
+	width: 435px;
+	margin-right: 6px;
+}
+
+.arrow_box {
+	position: relative;
+	background: #bbd5bf;
+	border: 4px solid #f0f55d;
+	font-size : 10pt;
+}
+.arrow_box:after, .arrow_box:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(213, 148, 75, 0);
+	border-right-color: #bbd5bf;
+	border-width: 30px;
+	margin-top: -54px;
+}
+.arrow_box:before {
+	border-color: rgba(240, 245, 93, 0);
+	border-right-color: #f0f55d;
+	border-width: 36px;
+	margin-top: -60px;
+}
+
+
+.arrow_box_right {
+	position: relative;
+	background: #b5d3d5;
+	border: 4px solid #c2e1f5;
+}
+.arrow_box_right:after, .arrow_box_right:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box_right:after {
+	border-color: rgba(181, 211, 213, 0);
+	border-left-color: #b5d3d5;
+	border-width: 30px;
+	margin-top: -30px;
+}
+.arrow_box_right:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-left-color: #c2e1f5;
+	border-width: 36px;
+	margin-top: -36px;
+}

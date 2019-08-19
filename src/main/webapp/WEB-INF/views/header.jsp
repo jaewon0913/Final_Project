@@ -20,14 +20,14 @@
 <title>main</title>
 
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/bootstrap/css/header.css" rel="stylesheet">
+<link href="resources/bootstrap/css/small-business.css" rel="stylesheet">
+<link href="resources/bootstrap/css/header.css" rel="stylesheet">
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
 
-<script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
+<script src="resources/js/mainpage.js"></script>
 
 <!-- jaewon -->
 <!-- jQuery, bootstrap CDN -->

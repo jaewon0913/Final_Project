@@ -44,13 +44,6 @@ public class UploadController implements ServletContextAware {
 	@Autowired
 	private FileValidator fileValidator;
 	
-	@RequestMapping("/custom.do")
-	public String custom(Model model) {
-		model.addAttribute("list",biz.selectList("쌀밥류"));
-		
-		return "custom/CustomPage";
-	}
-	
 	@RequestMapping("/uploadtest.do")
 	   public String cloudUpload(MultipartHttpServletRequest mtfRequest,UploadFile uploaddto) {
 	      mtfRequest.getContextPath();
