@@ -19,7 +19,8 @@
 		left : 5rem;
 		width: 60rem; 
 		height: 30rem;
-		top : 22rem;
+		top : 17rem;
+		border-radius: 30px;
 	}
 	#send_div{
 		z-index : 10;
@@ -29,15 +30,18 @@
 		border : 1px solid;
 		left : 5rem;
 		width: 60rem; 
-		top : 52rem;
+		top : 47rem;
+		border-radius: 30px;
 	}
 	#send_btn{
 		width : 10rem;
 		float : right;
+		margin-right: 0.5rem
 	}
 	#message{
 		width :45rem;
-		margin-right : 3rem;
+		margin-left : 0.5rem;
+		border-radius: 30px;
 	}
 </style>
 </head>
@@ -49,14 +53,14 @@
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
 				<div style="float: right;">
-					<button type="button" id="chat_close" style = "position : fixed; right : 850px; z-index : 10;">닫기</button>
+					<button type="button" id="chat_close" style = "z-index : 10; margin-right: 1rem; margin-top: 0.5rem " class="btn btn-outline-light">닫기</button>
 				</div>
 				<div id="msg_div" style = "clear : both;" >
 				</div>
 			</div>
 		<div id = "send_div">
 			<input type="text" id="message" /> 
-			<input type="button" id="send_btn" value="전송" />
+			<input type="button" id="send_btn" value="전송" class="btn btn-outline-light"/>
 		</div>
 	</div>
 	

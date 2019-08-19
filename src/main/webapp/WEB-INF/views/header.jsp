@@ -38,7 +38,7 @@ a.nav-link:hover{
 </style>
 
 
-<!-- Bootstrap core CSS -->s
+<!-- Bootstrap core CSS -->
 <link href="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
