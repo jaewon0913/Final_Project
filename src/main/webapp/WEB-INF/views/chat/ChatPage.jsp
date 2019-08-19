@@ -32,7 +32,7 @@
 			</div>
 		<div id = "send_div">
 			<input type="text" id="message" onkeyup = "enterkey();"/> 
-			<input type="button" id="send_btn" value="전송"/>
+			<input type="button" id="send_btn" value="전송" class="btn btn-outline-light"/>
 		</div>
 		
 		<img alt="bot" src = "${pageContext.request.contextPath }/resources/bootstrap/image/bot1.png" class = "navbar-fixed-top bot" id = "bot_btn" >
