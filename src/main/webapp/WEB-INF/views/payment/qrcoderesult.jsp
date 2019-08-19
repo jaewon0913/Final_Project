@@ -15,7 +15,7 @@
 </script>
 <body>
 <%@ include file="../header.jsp"%>
-
+<div class="container">
 	<h1>qrcode 페이지</h1>
 
 	<form action="receive.do" method="post">
@@ -68,15 +68,15 @@
 			</c:when>
 			<c:otherwise>
 				<tr>
-					<td colspan="2">
-						<input type="button" value="수령완료" onclick="receiveChk()">
+					<td colspan="2" align="right">
+						<input type="button" value="수령완료" onclick="receiveChk()" class="btn btn-outline-light">
 					</td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
 	</table>
 	</form>
-	
+	</div>
 <%@ include file="../footer.jsp"%>
 </body>
 </html>

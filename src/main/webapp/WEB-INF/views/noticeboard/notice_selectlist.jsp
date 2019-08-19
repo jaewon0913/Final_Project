@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <!-- 파비콘 -->
 
 <link rel="shortcut icon" href="resources/bootstrap/image/favicon.ico"
@@ -12,7 +13,17 @@
 
 <!-- 파비콘 -->
 <meta charset="UTF-8">
-<title>공지사항 게시판</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+   function PageMove(page) {
+      location.href = "notice_list.do?page=" + page ;
+   }
+   
+</script>
+
+
+<title>공지사항 게시판1</title>
 <%
 	MemberDto logindto = (MemberDto) session.getAttribute("logindto");
 %>
@@ -67,10 +78,32 @@
 			</table>
 
 		</div>
+		
+		
+		
+		
 
 	</div>
 
-
+<!-- Pagination -->
+	<div class="container text-center " style="font-size: 3rem;">
+		<a href="javascript:PageMove(${paging.firstPageNo})"  class="page">&laquo;</a> <a
+			href="javascript:PageMove(${paging.prevPageNo})" class="page">&lt;</a>
+		<c:forEach var="i" begin="${paging.startPageNo}"
+			end="${paging.endPageNo}" step="1">
+			<c:choose>
+				<c:when test="${i eq paging.pageNo}">
+					<a href="javascript:PageMove(${i})" class="page">${i}</a>
+				</c:when>
+				<c:otherwise>
+					<a href="javascript:PageMove(${i})" class="page">${i}</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<a href="javascript:PageMove(${paging.nextPageNo})" class="page">&gt;</a> <a
+			href="javascript:PageMove(${paging.finalPageNo})" class="page">&raquo;</a>
+	</div>
+		<!-- /Pagination -->
 
 
 	<!-- ------------------------푸터-------------------------------------------- -->
