@@ -2,18 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="noticeboard">
 
-	<select id = "NoticeSelectlist" resultType="NoticeDto">
-		SELECT 
-			NOTICE_POSTNUM,
-			MEMBER_ID,
-			NOTICE_TITLE,
-			NOTICE_REGDATE,
-			NOTICE_VIEWS
+	<select id = "NoticeSelectlist" resultType="NoticeDto"> <!-- 목록 -->
+	SELECT *
+		FROM (SELECT ROWNUM AS RNUM, P.*
+		FROM ( SELECT *
 		FROM NOTICEBOARD
-	
+		<if test="txt_search != null">
+			WHERE upper(NOTICE_TITLE) like '%' || upper(#{txt_search}) || '%'
+		</if>
+		ORDER BY NOTICE_POSTNUM
+		) P
+		)
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +
+		#{recordCountPerPage}
 	</select>
 	
-	<select id = "NoticeSelectOne" parameterType="map" resultType="NoticeDto">
+	<select id="totalcount" parameterType="map" resultType="Integer">
+		SELECT count(*)
+		FROM NOTICEBOARD
+		<if test="txt_search != null">
+			WHERE upper(NOTICE_TITLE) like '%' || upper(#{txt_search}) || '%'
+		</if>
+	</select>
+	
+	<select id = "NoticeSelectOne" parameterType="map" resultType="NoticeDto"><!-- 상세보기 -->
 		SELECT 
 			NOTICE_POSTNUM,
 			MEMBER_ID,
@@ -25,7 +37,7 @@
 		WHERE NOTICE_POSTNUM = #{notice_postnum}
 	</select>
 	
-	<insert id = "NoticeInsert" parameterType="NoticeDto">
+	<insert id = "NoticeInsert" parameterType="NoticeDto"> <!-- 글작성 -->
 	INSERT INTO NOTICEBOARD 
 	VALUES (
 			NOTICESEQ.NEXTVAL,
@@ -38,7 +50,7 @@
 	
 	</insert>
 	
-	<update id = "NoticeUpdate" parameterType="NoticeDto">
+	<update id = "NoticeUpdate" parameterType="NoticeDto"><!-- 글 수정 -->
 		UPDATE NOTICEBOARD 
 		SET
 			 NOTICE_TITLE = #{notice_title},
@@ -46,18 +58,17 @@
 		WHERE NOTICE_POSTNUM = #{notice_postnum} 
 	</update>
 	
-	<delete id = "NoticeDelete" parameterType="int">
+	<delete id = "NoticeDelete" parameterType="int"><!-- 글 삭제 -->
 		DELETE FROM NOTICEBOARD WHERE NOTICE_POSTNUM = #{notice_postnum} 
 	</delete>
 	
-	<update id="NoticeViews">
+	<update id="NoticeViews"><!-- 조회수 -->
 		UPDATE NOTICEBOARD 
 		SET
 			NOTICE_VIEWS = NOTICE_VIEWS + 1
 		 WHERE NOTICE_POSTNUM = #{notice_postnum} 
 		 
 	</update>
-
-
+	
  
 </mapper>

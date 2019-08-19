@@ -3,8 +3,6 @@ package com.khfinal.mvc;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
 import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.member.etc.VerifyRecaptcha;
@@ -31,6 +31,8 @@ public class LoginController {
 
 	@Autowired
 	private MemberBiz memberbiz;
+	@Autowired
+	private BoxorderBiz boxorderbiz;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -86,12 +88,12 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		session.setAttribute("login", null);
 
-		return "redirect:mainpage.jsp";
+		return "redirect:mainpage.do";
 	}
 
 	@RequestMapping("/insertform.do")
 	public String insertform() {
-		return "MemberInsert";
+		return "member/MemberInsert";
 	}
 
 	@RequestMapping("/insert_res.do")
@@ -130,7 +132,7 @@ public class LoginController {
 	public String idChk(String member_id, Model model) {
 		boolean idnotused = memberbiz.idChk(member_id);
 		model.addAttribute("idnotused", idnotused);
-		return "idchk";
+		return "member/idchk";
 	}
 	
 	@RequestMapping("/test.do")
@@ -141,30 +143,71 @@ public class LoginController {
 	
 	@RequestMapping("/mypage.do")
 	public String mypage() {
-		return "MemberMypage";
+		return "member/MemberMypage";
 	}
 
 	@RequestMapping("/detail.do")
-	public String detail(Model model, String id, HttpSession session) {
-		MemberDto memberdto = (MemberDto) session.getAttribute("login");
+	public String detail(Model model, HttpSession session) {
+		MemberDto memberdto = (MemberDto) session.getAttribute("logindto");
 		model.addAttribute("memberdto", memberdto);
-		return "MemberUpdate";
+		return "member/MemberUpdate";
 	}
 
 	@RequestMapping("/update.do")
 	public String update(@ModelAttribute MemberDto dto, Model model, HttpSession session) {
+		System.out.println("내가 입력한 pw: "+dto.getMember_pw());		
+		String encPassword = bcryptPasswordEncoder.encode(dto.getMember_pw());
+		dto.setMember_pw(encPassword);
+		System.out.println("암호화된 비밀번호 : "+encPassword);
 		int res = memberbiz.update_member(dto);
 		if (res > 0) {
-			MemberDto memberdto = (MemberDto) session.getAttribute("login");
-			MemberDto memberdto_res = memberbiz.login(memberdto.getMember_id(), memberdto.getMember_pw());
-			session.setAttribute("login", memberdto_res);
+			MemberDto memberdto = (MemberDto) session.getAttribute("logindto");
+			MemberDto memberdto_res = memberbiz.login(memberdto.getMember_id(), encPassword);
+			session.setAttribute("logindto", memberdto_res);
 			return "redirect:mypage.do";
 		} else {
 			return "error/ErrorPage";
 		}
 	}
+	
+	@RequestMapping("/pwupdateform.do")
+	public String pwupdateform(Model model, HttpServletResponse response,@RequestParam String member_id) {
+		String id = member_id.split(",")[1];
+		model.addAttribute("member_id",id);
+		System.out.println("넘어온아이디" + id);
+		return "member/pwUpdate";
+	}
+	
+	@RequestMapping("/pwupdate.do")
+	public String pwupdate(@ModelAttribute MemberDto dto, Model model,HttpServletResponse response, HttpSession session,@RequestParam String member_id) throws IOException {
 
-	// Captcha
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		System.out.println("내가 입력한 pw: " + dto.getMember_pw());		
+		String encPassword = bcryptPasswordEncoder.encode(dto.getMember_pw());
+		model.addAttribute(member_id);
+		dto.setMember_pw(encPassword);
+		dto.setMember_id(member_id);
+		System.out.println(member_id+"아이디입니다");
+		System.out.println("암호화된 비밀번호 : "+encPassword);
+		int res = memberbiz.update_pw(dto);
+		if(res > 0) {
+			/*
+			 * MemberDto memberdto_res = memberbiz.loginpw(dto.getMember_id(), encPassword);
+			 * session.setAttribute("logindto", memberdto_res);
+			 */
+			session.setAttribute("logindto", null);
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호가 변경되었습니다.')</script>");
+			out.flush();
+			return "loginMain";
+		} else {
+			return "error/ErrorPage";
+		}
+	}
+	
+	//Captcha
 	@ResponseBody
 	@RequestMapping(value = "VerifyRecaptcha.do", method = RequestMethod.POST)
 	public int VerifyRecaptcha(HttpServletRequest request) {
@@ -185,7 +228,7 @@ public class LoginController {
 	/* ---------- 아이디 / 비밀번호 찾기 ---------- */
 	@RequestMapping("/accountfind.do")
 	public String accountfind() {
-		return "AccountFind";
+		return "member/AccountFind";
 	}
 
 	@RequestMapping("/idfind.do")
@@ -199,12 +242,12 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('회원님의 아이디는" + memberdto.getMember_id() + "입니다.')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('이름과 이메일을 확인해주세요')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		}
 	}
 
@@ -212,20 +255,25 @@ public class LoginController {
 	public String pwfind(MemberDto dto, Model model, HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		
 		System.out.println("id:" + dto.getMember_id() + "email: " + dto.getMember_email());
 		MemberDto memberdto = memberbiz.pwfind(dto.getMember_id(), dto.getMember_email());
 		if (memberdto != null) {
 			model.addAttribute("memberdto", memberdto);
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('회원님의 비밀번호는" + memberdto.getMember_pw() + "입니다.')</script>");
+			out.println("<script>alert('비밀번호 재설정 페이지로 이동합니다.')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('아이디와 이메일을 확인해주세요')</script>");
 			out.flush();
-			return "AccountFind";
+			return "member/AccountFind";
 		}
 	}
 	
+		
 }
+
+	
+

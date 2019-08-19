@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
-
-import com.khfinal.mvc.notice.dto.NoticeDto;
 import com.khfinal.mvc.notice.dao.NoticeDao;
+import com.khfinal.mvc.notice.dto.NoticeDto;
 
 @Service
 public class NoticeBizImpl implements NoticeBiz {
@@ -16,10 +14,11 @@ public class NoticeBizImpl implements NoticeBiz {
 	@Autowired
 	private NoticeDao noticedao;
 
-	@Override
-	public List<NoticeDto> NoticeSelectlist() {
-		return noticedao.NoticeSelectlist();
-	}
+	
+	@Override public List<NoticeDto> NoticeSelectlist() { 
+		return noticedao.NoticeSelectlist(); 
+		}
+	 
 
 	@Override
 	public NoticeDto NoticeSelectOne(int notice_postnum) {
@@ -49,5 +48,16 @@ public class NoticeBizImpl implements NoticeBiz {
 		return noticedao.NoticeViews(notice_postnum);
 
 	}
+
+	@Override
+	public List<NoticeDto> NoticeSelectlist(int firstIndex, int recordCountPerPage, String txt_search) {
+		return noticedao.NoticeSelectlist(firstIndex, recordCountPerPage, txt_search);
+	}
+
+	@Override
+	public int totalcount(String txt_search) {
+		return noticedao.totalcount(txt_search);
+	}
+
 
 }

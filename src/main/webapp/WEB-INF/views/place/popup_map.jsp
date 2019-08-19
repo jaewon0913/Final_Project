@@ -1,20 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 body{
     margin-top: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
+	margin-left: 0px;
+	margin-bottom: 0px;
+	height: 99%;
+}
+.map_wrap{
+	width: 100%;
+	height: 100%;
+	position:relative;
+}
+#map{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	border: 3px solid;	
 }
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-.map_wrap {position:relative;width:100%;height:600px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;height:130px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;height:130px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;border: 1px solid;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
 #menu_wrap .option p {margin:10px 0;}  
@@ -33,18 +44,23 @@ body{
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+.btn-outline-light{
+	background-color: #A3E4DC;
+	color: black;
+	border-radius: 10px;
+}
 </style>
 </head>
 <body>
 <div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    <div id="map"></div>
 
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
                     키워드 : <input type="text" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
+                    <button type="submit" class="btn-outline-light">검색하기</button> 
                 </form>
             </div>
         </div>
@@ -52,10 +68,9 @@ body{
         <ul id="placesList"></ul>
         <div id="pagination"></div>
         <form id="abutton">
-        	<input type="button" value="주소전송" onclick="send()"/>
+        	<input type="button" value="주소전송" onclick="send()" class="btn-outline-light"/>
         </form>
-    </div>
-    
+    </div>    
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=51191c741f7e20835fa12c73414cc9e6&libraries=services"></script>
@@ -88,15 +103,31 @@ function searchPlaces() {
 
     var keyword = document.getElementById('keyword').value;
 
+    //alert(keyword);
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
-        alert('키워드를 입력해주세요!');
+        alert('키워드를 입력해주세요!\n사용가능한 키워드는\n서울 강남구, 경기도 원미구, 인천 부평구\n서울 용산구, 경기도 영통구, 인천 계양구\n6개 입니다.');
         return false;
     }
     
-   if (keyword.includes('서울') == true){
-	   keyword = '강남역1번출구';	 
-   }else if(keyword.includes('인천') == true){
-	   keyword = '부평역1번출구';	 
+   if (keyword.includes("서울 강남구") == true){
+	   keyword = '강남역1번출구';
+   }else if(keyword.includes('경기도 원미구') == true){
+	   keyword = '부천시청역1번출구';
+   }else if(keyword.includes('인천 부평구') == true){
+	   keyword = '부평역1번출구';
+   }else if(keyword.includes('인천 계양구') == true){
+	   keyword = '계산역1번출구';
+   }else if(keyword.includes('경기도 영통구') == true){
+	   keyword = '망포역1번출구';	 
+   }else if(keyword.includes('서울 용산구') == true){
+	   keyword = '삼각지역1번출구';	 
+   }else{
+	   alert('사용불가능한 키워드 입니다.');
+	   if (window.Notification) {
+           Notification.requestPermission();
+       }
+	   notify();
+	   return false; 
    }
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
@@ -273,11 +304,29 @@ function removeAllChildNods(el) {
 
  function send(){
 	 if(ads != ''){
-	 opener.document.getElementById('ADS').value = ads;
+	 opener.document.getElementById('addr4').value = ads;
 	 this.close();
 	 return;
 	 }
 	 alert('검색 결과가 존재하지 않습니다.');     
+ }
+ 
+ function notify() {
+     if (Notification.permission !== 'granted') {
+         alert('notification is disabled');
+     }
+     else {
+         var notification = new Notification('사용불가능한 키워드 입니다', {
+        	 icon: 'resources/bootstrap/image/error.jpg',
+        	 body: '서울 강남구, 경기도 원미구, 인천 부평구\n서울 용산구, 경기도 영통구, 인천 계양구\n6곳중 하나를 입력해주세요 ',
+         });	
+         
+         //notification.onclick = function () {
+         //    window.open('http://google.com');
+         //};
+
+     }
+     
  }
 </script>
 </body>

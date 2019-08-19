@@ -1,6 +1,5 @@
 <%@page import="com.khfinal.mvc.member.dto.MemberDto"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	language="java"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -9,7 +8,7 @@
 
 <!-- 파비콘 -->
 
-<link rel="shortcut icon" href="resources/bootstrap/image/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/bootstrap/image/favicon.ico" type="image/x-icon">
 
 <!-- 파비콘 -->
 
@@ -18,16 +17,16 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>main1</title>
+<title>main</title>
 
 
 
 
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
+<link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath }/resources/bootstrap/css/small-business.css" rel="stylesheet">
+<link href="resources/bootstrap/css/small-business.css" rel="stylesheet">
 
 <!-- Bootstrap core CSS -->
 <link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +78,7 @@
 				<div class="carousel-inner">
 					<!--슬라이드1-->
 					<div class="item active">
-						<img src="resources/bootstrap/image/ex1.jpg"
+						<img src="${pageContext.request.contextPath }/resources/bootstrap/image/ex1.jpg"
 							style="width: 100%; float: none;" alt="First slide">
 						<div class="container">
 							<div class="carousel-caption">
@@ -90,7 +89,7 @@
 
 					<!--슬라이드2-->
 					<div class="item">
-						<img src="resources/bootstrap/image/ex2.jpg" style="width: 100%"
+						<img src="${pageContext.request.contextPath }/resources/bootstrap/image/ex2.jpg" style="width: 100%"
 							data-src="" alt="Second slide">
 						<div class="container">
 							<div class="carousel-caption">
@@ -101,7 +100,7 @@
 
 					<!--슬라이드3-->
 					<div class="item">
-						<img src="resources/bootstrap/image/ex3.jpg" style="width: 100%"
+						<img src="${pageContext.request.contextPath }/resources/bootstrap/image/ex3.jpg" style="width: 100%"
 							data-src="" alt="Third slide">
 						<div class="container">
 							<div class="carousel-caption">
@@ -112,11 +111,12 @@
 				</div>
 
 				<!--이전, 다음 버튼-->
-				<a class="left carousel-control" href="#myCarousel"
-					data-slide="prev"><span
-					class="glyphicon glyphicon-chevron-left"></span></a> <a
-					class="right carousel-control" href="#myCarousel" data-slide="next"><span
-					class="glyphicon glyphicon-chevron-right"></span></a>
+				<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a> 
+				<a class="right carousel-control" href="#myCarousel" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
 			</div>
 			<!-- /.col-md-4 -->
 		</div>
@@ -194,9 +194,11 @@
 
 <!-- -----------------공지사항 게시판-------------------------------------------- -->
 			<div class="Notice">
-				<a href="notice_list.do">공지사항 게시판</a>
+				<a href="notice_list.do" class="btn">공지사항 게시판</a>
 				<ul>
-					<li>공지사항</li>
+					<li>공지사항1</li>
+					<li>공지사항2</li>
+					<li onclick="location.href='testpay.do'">공지사항3</li>
 				</ul>
 			</div>
 
@@ -231,11 +233,7 @@
 	<%@ include file="WEB-INF/views/footer.jsp"%>
 
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="${pageContext.request.contextPath }/resources/bootstrap/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/js/mainpage.js"></script>
+
 	
 </body>
 

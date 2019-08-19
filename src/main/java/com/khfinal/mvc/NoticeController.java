@@ -1,16 +1,22 @@
 package com.khfinal.mvc;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.khfinal.mvc.dosirak.dto.DosirakDto;
 import com.khfinal.mvc.notice.biz.NoticeBiz;
+import com.khfinal.mvc.notice.dao.NoticeDao;
 import com.khfinal.mvc.notice.dto.NoticeDto;
+import com.khfinal.mvc.paging.Paging;
 
 @Controller
 public class NoticeController {
@@ -20,6 +26,9 @@ public class NoticeController {
 	 */
 	@Autowired
 	private NoticeBiz noticebiz;
+	
+	@Autowired
+	private NoticeDao noticedao;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -27,14 +36,41 @@ public class NoticeController {
 	 * @RequestMapping("/mainpage.do") public String main() { return
 	 * "redirect:mainpage.jsp"; }
 	 */
-
+	
+	//게시판 목록
+	/*
+	 * @RequestMapping("/notice_list.do") public String noticeselectlist(Model
+	 * model) { model.addAttribute("list",noticebiz.NoticeSelectlist()); return
+	 * "noticeboard/notice_selectlist"; }
+	 */
+	
 	@RequestMapping("/notice_list.do")
-	public String noticeselectlist(Model model) {
-		System.out.println("notice_list.do 들어옴");
-		model.addAttribute("list", noticebiz.NoticeSelectlist());
-		return "noticeboard/notice_selectlist";
-	}
+	public String noticeselectlistpaging(Model model, String txt_search, String page) {
+		
+		String txt_s = txt_search;
+	      
+        // 페이징하기
+        int totalCount = noticebiz.totalcount(txt_s);
+        int pag = (page == null) ? 1 : Integer.parseInt(page);
 
+        Paging paging = new Paging();
+        
+        paging.setPageNo(pag); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
+        paging.setPageSize(10); // 한페이지에 불러낼 게시물의 개수 지정
+        paging.setTotalCount(totalCount);
+        pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
+
+        List<NoticeDto> list = noticebiz.NoticeSelectlist(pag, paging.getPageSize(), txt_s);
+        model.addAttribute("list", list);
+        model.addAttribute("paging", paging);
+        model.addAttribute("txt_search", txt_s);
+        
+        return "noticeboard/notice_selectlist";
+        
+	}
+	
+	
+	//게시판 상세보기
 	@RequestMapping("/notice_detail.do")
 	public String noticeSelectone(Model model,  @RequestParam int notice_postnum) {
 		int res;
@@ -47,13 +83,15 @@ public class NoticeController {
 		}
 		return "noticeboard/notice_selectone";
 	}
-
+	
+	//게시판 등록폼
 	@RequestMapping("/notice_insertform.do")
 	public String insertform() {
 		logger.info("<<<noticeinsertform>>>");
 		return "noticeboard/notice_insert";
 	}
-
+	
+	//게시판 등록
 	@RequestMapping("/notice_insert.do")
 	public String notice_insert(Model model,NoticeDto dto) {
 		logger.info("<<<noticeinsert>>>");
@@ -65,6 +103,7 @@ public class NoticeController {
 		return "redirect:notice_list.do";
 	}
 	
+	//게시판 수정폼
 	@RequestMapping("/notice_updateform.do")
 	public String updateform(Model model, @RequestParam int notice_postnum) {
 		System.out.println("notice_updateform.do 들어옴");
@@ -74,6 +113,7 @@ public class NoticeController {
 		return "noticeboard/notice_update";
 	}
 	
+	//게시판수정
 	@RequestMapping("/notice_update.do")
 	public String noticeupdate(NoticeDto dto) {
 		System.out.println(dto.getNotice_postnum());
@@ -93,6 +133,7 @@ public class NoticeController {
 		
 	}
 	
+	//게시판 삭제
 	@RequestMapping("/notice_delete.do")
 	public String noticedelete(@RequestParam int notice_postnum) {
 		System.out.println("삭제 : "+notice_postnum);
@@ -108,5 +149,15 @@ public class NoticeController {
 		
 		
 	}
-
+	
+	//카카오페이 테스트
+	@RequestMapping("/testpay.do")
+	public String testpay() {
+		return "testpay";
+	}
+	
+	//페이징
+	
+	
+	
 }

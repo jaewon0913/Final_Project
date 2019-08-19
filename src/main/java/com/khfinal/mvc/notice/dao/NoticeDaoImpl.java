@@ -1,37 +1,41 @@
 package com.khfinal.mvc.notice.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.khfinal.mvc.dosirak.dto.DosirakDto;
 import com.khfinal.mvc.free.dto.FreeboardDto;
 import com.khfinal.mvc.notice.dto.NoticeDto;
 
 @Repository
-public class NoticeDaoImpl implements NoticeDao {
+public class NoticeDaoImpl  implements NoticeDao  {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
 
 	// 전체보기
-	@Override
-	public List<NoticeDto> NoticeSelectlist() {
-		List<NoticeDto> list = new ArrayList<NoticeDto>();
-
-		try {
-			list = sqlSession.selectList(namespace + "NoticeSelectlist");
-		} catch (Exception e) {
-			System.out.println("NoticeSelectList 에러났다아아앙");
-			e.printStackTrace();
-		}
-
-		return list;
-	}
+	
+	  @Override public List<NoticeDto> NoticeSelectlist() { List<NoticeDto> list =
+	  new ArrayList<NoticeDto>();
+	  
+	  
+	  try { list = sqlSession.selectList(namespace + "NoticeSelectlist");
+	  
+	  } catch (Exception e) { System.out.println("NoticeSelectList 에러났다아아앙");
+	  e.printStackTrace(); }
+	  
+	  return list; }
+	 
 
 	// 상세보기
 	@Override
@@ -106,5 +110,33 @@ public class NoticeDaoImpl implements NoticeDao {
 		}
 		return res;
 	}
+
+	
+	//페이징 전체보기
+	@Override
+	public List<NoticeDto> NoticeSelectlist(int firstIndex, int recordCountPerPage, String txt_search) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("firstIndex", String.valueOf(firstIndex));
+		map.put("recordCountPerPage", String.valueOf(recordCountPerPage));
+		map.put("txt_search", txt_search);
+		
+		List<NoticeDto> list = sqlSession.selectList(namespace + "NoticeSelectlist", map);
+		
+		return list;
+	}
+
+	@Override
+	public int totalcount(String txt_search) {
+		int res = 0;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("txt_search", txt_search);
+		
+		res = sqlSession.selectOne(namespace + "totalcount", map);
+		
+		return res;
+	}
+	
+
 
 }

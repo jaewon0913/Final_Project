@@ -1,40 +1,41 @@
 @charset "UTF-8";
 
-
 img.chat{
 	border: none;
-	margin-top: 25%;
-	margin-left: 95%;
-	margin-right: 5%; 
+	margin-top: 20rem;
 	
 
 	
 }
 img.chat:hover{
 	border: none;
-	margin-top: 25%;
-	margin-left: 95%;
-	margin-right: 5%; 
-	opacity:0.4;; 
-
-	
+	margin-top: 20rem;
+	opacity:0.4;
+}
+img.bot{
+	border: none;
+	margin-top: 250px;
+}
+img.bot:hover{
+	border: none;
+	margin-top : 250px;
+	opacity:0.4;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.page{
+	color: #59CAB7;
+	border: 1 solid gray;
+	border-radius: 10px; 
+	font-size: 1.5rem;
+}
+.page:hover{
+	color: white;
+	border: 1 solid gray;
+	background-color: #59CAB7;
+	border-radius: 10px; 
+	opacity: 0.5;
+	font-size: 1.5rem;
+}
 
 
 
