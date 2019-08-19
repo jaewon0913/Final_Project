@@ -21,7 +21,10 @@ import com.khfinal.mvc.member.dto.MemberDto;
 public class CustomController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CustomController.class);
-
+	@RequestMapping("/custom.do")
+	public String custom(Model model) {		
+		return "custom/CustomPage";
+	}
 	
 	@RequestMapping("/customSikpan.do")
 	@ResponseBody
