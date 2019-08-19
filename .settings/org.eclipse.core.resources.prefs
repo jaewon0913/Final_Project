@@ -5,4 +5,5 @@ encoding//src/main/java/com/khfinal/mvc/LoginController.java=UTF-8
 encoding//src/main/java/com/khfinal/mvc/member/biz/MemberBiz.java=UTF-8
 encoding//src/main/java/com/khfinal/mvc/member/dao/MemberDao.java=UTF-8
 encoding//src/main/java/com/khfinal/mvc/member/dao/MemberDaoImpl.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/freeboard/freeboard_detail.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/testpay.jsp=UTF-8

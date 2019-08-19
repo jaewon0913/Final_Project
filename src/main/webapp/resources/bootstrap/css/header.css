@@ -11,8 +11,15 @@ img.chat:hover{
 	border: none;
 	margin-top: 15rem;
 	opacity:0.4;
-
-	
+}
+img.bot{
+	border: none;
+	margin-top: 250px;
+}
+img.bot:hover{
+	border: none;
+	margin-top : 250px;
+	opacity:0.4;
 }
 
 .page{
