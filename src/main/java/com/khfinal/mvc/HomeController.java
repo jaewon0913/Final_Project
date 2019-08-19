@@ -49,5 +49,9 @@ public class HomeController {
 	public String popup_map() {
 		return "place/popup_map";
 	}
+	@RequestMapping("/nutritiongraph.do")
+	public String nutritiongraph() {
+		return "graph/nutritiongraph";
+	}
 
 }

@@ -10,17 +10,89 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 <style type="text/css">
-/* 	#qrcodeform{ */
-/* 		display: none; */
-/* 	} */
+ 	#qrcodeform{ 
+ 		display: none; 
+ 	} 
 </style>
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
 
 <!--     <input type="button" id="pay" value="결제시스템입니다." >-->   
-<img id="pay" alt="결제" src="resources/bootstrap/image/kakaopay_btn.png">
-<script>
+
+
+<!-- 바코드 이미지 태그  outerHTML-->
+	<div id="qrcodeform">
+		<img id="qrcode" src='' />
+	</div>
+	
+	<table>
+		<tr>
+			<td colspan="2">[주문자 정보]</td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td><input type="text" value="${memberdto.member_name }" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<th>아이디</th>
+			<td><input type="text" value="${memberdto.member_id }" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<th>전화번호</th>
+			<td><input type="text"  value="${memberdto.member_phone }" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<th>상품명</th>
+			<td><input type="text" value="${dto.dosirak_title }" readonly="readonly"></td>
+		</tr>
+	</table>
+	
+	
+	<table>
+		<tr>
+			<td colspan="2">[수령인 정보]</td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td><input type="text" name="get_name" value="${memberdto.member_name }"></td>
+		</tr>
+		<tr>
+			<th>전화번호</th>
+			<td><input type="text" name="get_phone" value="${memberdto.member_phone }"></td>
+		</tr>
+		<tr>
+			<th>상품명</th>
+			<td><input type="text" name="dosirak_title" value="${dto.dosirak_title }" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<th>수령 장소</th>
+			<td>
+				<input type="text" name="get_subway" value="${memberdto.member_subway }" id="addr4" readonly="readonly">
+				 <input type="button" value="지도 보기" 	onclick="showPopup();" class="btn btn-outline-light"/>
+			</td>
+		</tr>
+		<tr>
+			<th>도시락 가격</th>
+			<td><input type="text" name="dosirak_price" value="${dto.dosirak_price} 원" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<th>배송비</th>
+			<td><input type="text" value="1000 원" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<th>총 결제금액</th>
+			<td><input type="text" name="price" value="${dto.dosirak_price+1000}" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<img id="pay" alt="결제" src="resources/bootstrap/image/kakaopay_btn.png">
+				
+				<input type="button" value="취소" onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'">
+			</td>
+		</tr>
+	</table>
+	<script>
 var IMP = window.IMP; 
 IMP.init('imp15057713');
 var ordernumber = "";
@@ -53,7 +125,7 @@ var date = "";
       pay_method : 'card',
       merchant_uid : 'merchant_' + new Date().getTime(),
       name : '${dto.dosirak_title}',
-      amount : '${dto.dosirak_price}',
+      amount : '${dto.dosirak_price+1000}',
       buyer_email : 'abc',
       buyer_name : '${memberdto.member_name}',
       buyer_tel : '${memberdto.member_phone}',
@@ -71,6 +143,10 @@ var date = "";
           
           //바코드 이미지 input타입에 넣고
           var qrcode = chuan();
+          var get_name = document.getElementsByName("get_name")[0].value;
+          var get_phone = document.getElementsByName("get_phone")[0].value;
+          var get_subway = document.getElementsByName("get_subway")[0].value;
+          var price = document.getElementsByName("price")[0].value;
           //컨트롤러보내고
           document.write('<form action="dosirakorderinsert.do" id="sub_form" method="post">'+
                         '<input type="hidden" name="member_id" value="${memberdto.member_id}">'+
@@ -78,11 +154,15 @@ var date = "";
                         '<input type="hidden" name="member_level" value="${memberdto.member_level}">'+
                         '<input type="hidden" name="dosirak_title" value="${dto.dosirak_title}">'+
                         '<input type="hidden" name="dosirak_delivery" value="${dto.dosirak_delivery}">'+
+                        '<input type="hidden" name="dosirak_price" value="${dto.dosirak_price}">'+
+                        '<input type="hidden" name="get_name" value="'+get_name+'">'+
+                        '<input type="hidden" name="get_phone" value="'+get_phone+'">'+
+                        '<input type="hidden" name="get_subway" value="'+get_subway+'">'+
                         '<input type="hidden" name="tan" value="${dto.tan}">'+
                         '<input type="hidden" name="dan" value="${dto.dan}">'+
                         '<input type="hidden" name="gi" value="${dto.gi}">'+
                         '<input type="hidden" name="kcal" value="${dto.kcal}">'+
-                        '<input type="hidden" name="price" value="${dto.dosirak_price}">'+
+                        '<input type="hidden" name="price" value="'+price+'">'+
                         '<input type="hidden" name="ordernumber" value="'+ordernumber+'">'+
                         '<input type="hidden" name="qrcode" value="'+qrcode+'">'+
                         '</form>');
@@ -98,12 +178,15 @@ var date = "";
          
  });
 
-</script>
-<!-- 바코드 이미지 태그  outerHTML-->
-	<div id="qrcodeform">
-		<img id="qrcode" src='' />
-	</div>
+      
+ function showPopup() {
+		window.open("popup_map.do", "abc",
+				"width=700, height=600, left=100, top=50");
+	}
 
+</script>
+	
+	
 <%@ include file="../footer.jsp"%>
 </body>
 </html>

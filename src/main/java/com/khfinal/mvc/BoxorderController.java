@@ -1,7 +1,9 @@
 package com.khfinal.mvc;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
 import com.khfinal.mvc.boxorder.dto.BoxorderDto;
@@ -36,12 +39,16 @@ public class BoxorderController {
 		System.out.println(boxorderdto.getDosirak_delivery()+" "+boxorderdto.getOrdernumber());
 		int res = boxorderbiz.dosirakinsert(boxorderdto);
 		
-		BoxorderDto dto = boxorderbiz.selectOne(boxorderdto.getMember_id(), boxorderdto.getOrdernumber());
+//		BoxorderDto dto = boxorderbiz.selectOne(boxorderdto.getMember_id(), boxorderdto.getOrdernumber());
+//		model.addAttribute("dto", dto);
+		
+		return "redirect:orderresult.do?member_id="+boxorderdto.getMember_id()+"&ordernumber="+boxorderdto.getOrdernumber();
+	}
+	@RequestMapping("/orderresult.do")
+	public String orderresult(Model model,String member_id,String ordernumber) {
+		BoxorderDto dto = boxorderbiz.selectOne(member_id,ordernumber);
 		model.addAttribute("dto", dto);
-		//
-		//insert
-		//selectone
-		//결제완료페이지
+		
 		return "payment/orderresult";
 	}
 	
@@ -74,6 +81,17 @@ public class BoxorderController {
 		model.addAttribute("list", list);
 		
 		return "member/qrcodeSelect";
+	}
+	
+	@RequestMapping("/graph.do")
+	@ResponseBody
+	public Map<String, List<BoxorderDto>> graph(Model model,Principal auth) {
+		Map<String, List<BoxorderDto>> map = new HashMap<String, List<BoxorderDto>>();
+		
+		List<BoxorderDto> list = boxorderbiz.graphSelectList(auth.getName());
+		map.put("list", list);
+		
+		return map;
 	}
 }
 

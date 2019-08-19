@@ -34,4 +34,9 @@ public class BoxorderBizImpl implements BoxorderBiz {
 		return boxorderdao.qrcodeSelect(member_id);
 	}
 
+	@Override
+	public List<BoxorderDto> graphSelectList(String member_id) {
+		return boxorderdao.graphSelectList(member_id);
+	}
+
 }
