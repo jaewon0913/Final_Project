@@ -34,6 +34,7 @@ ALTER TABLE authorities_member ADD CONSTRAINT IDX_authorities_member_FK0 FOREIGN
 
 INSERT INTO MEMBER VALUES ('user', '1','신희수','010-1111-1111','인천','부평역','이메일',1,'user',sysdate);
 INSERT INTO MEMBER VALUES ('admin', '1','관리자','010-2222-1111','서울','강남역','관리자이메일',1,'admin',sysdate);
+INSERT INTO MEMBER VALUES ('yumi', 'aaaa','홍유미','010-2222-1111','서울','강남역','관리자이메일',1,'admin',sysdate);
 
 -- 회원 권한 입력
 INSERT INTO authorities_member (MEMBER_ID, authority) VALUES ('user', 'ROLE_USER');
@@ -48,7 +49,7 @@ SELECT * FROM MEMBER;
 SELECT * FROM authorities_member;
 
 DELETE FROM MEMBER WHERE MEMBER_ID = 'aa';
-DELETE FROM authorities_member WHERE member_id='1090687081';
+DELETE FROM authorities_member WHERE member_id='aa';
 INSERT INTO MEMBER VALUES ('admin', 'admin', '관리자', '010-1111-1111', '서울 강남구', '강남구', '1212081@naver.com', 'Y', 'admin' ,SYSDATE);
 
 

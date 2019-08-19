@@ -10,6 +10,10 @@
 		</layout>
 	</appender>
 	
+	<Logger name="jdbc.sqlonly" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+	
 	<!-- Application Loggers -->
 	<logger name="com.khfinal.mvc">
 		<level value="info" />
@@ -34,7 +38,8 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<!-- <priority value="warn" /> -->
+		<level value="debug" />
 		<appender-ref ref="console" />
 	</root>
 	
