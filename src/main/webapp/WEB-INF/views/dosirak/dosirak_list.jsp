@@ -31,9 +31,14 @@
 
 .menu{
 	margin-top: 2%;
-	margin-left: 6%
+	margin-left: 6%;
 }
-
+.menu:hover {
+	margin-top: 2%;
+	margin-left: 6%;
+	opacity: 0.8;
+	
+}
 
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -84,7 +89,7 @@
 <!-- search bar -->
 
 <!-- ------------------best3------------------ -->
-	<div class="container best3 center">
+	<div class="container best3 center border">
 		<h1 style="text-align: center;">Best 3</h1>
 		<br/><br/><br/>
 		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
@@ -114,7 +119,7 @@
 						<c:otherwise>
 							<c:forEach items="${list}" var="dto">
 								<div
-									class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu">
+									class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
 									<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'"> 
 										<img alt="이미지" src="https://dosirakmall.wisacdn.com/_data/product/201901/11/214bf675538ebab78e937949a977544e.jpg" style="width: 20rem; height: 20rem;" />
 										<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
