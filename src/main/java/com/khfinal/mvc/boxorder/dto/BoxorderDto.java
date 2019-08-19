@@ -1,7 +1,5 @@
 package com.khfinal.mvc.boxorder.dto;
 
-import java.util.Date;
-
 public class BoxorderDto {
 
 	private int orderseq;
@@ -11,6 +9,10 @@ public class BoxorderDto {
 	private String member_level;
 	private String dosirak_title;
 	private String dosirak_delivery;
+	private int dosirak_price;
+	private String get_name;
+	private String get_phone;
+	private String get_subway;
 	private String dish1;
 	private String dish2;
 	private String dish3;
@@ -31,9 +33,10 @@ public class BoxorderDto {
 	public BoxorderDto() {}
 
 	public BoxorderDto(int orderseq, String ordernumber, String member_id, String member_name, String member_level,
-			String dosirak_title, String dosirak_delivery, String dish1, String dish2, String dish3, String dish4,
-			String dish5, String dish6, String dish7, int tan, int dan, int gi, int kcal, int price, String order_regdate,
-			String qrcode, String receivechk, String custom_status) {
+			String dosirak_title, String dosirak_delivery, int dosirak_price, String get_name, String get_phone,
+			String get_subway, String dish1, String dish2, String dish3, String dish4, String dish5, String dish6,
+			String dish7, int tan, int dan, int gi, int kcal, int price, String order_regdate, String qrcode,
+			String receivechk, String custom_status) {
 		super();
 		this.orderseq = orderseq;
 		this.ordernumber = ordernumber;
@@ -42,6 +45,10 @@ public class BoxorderDto {
 		this.member_level = member_level;
 		this.dosirak_title = dosirak_title;
 		this.dosirak_delivery = dosirak_delivery;
+		this.dosirak_price = dosirak_price;
+		this.get_name = get_name;
+		this.get_phone = get_phone;
+		this.get_subway = get_subway;
 		this.dish1 = dish1;
 		this.dish2 = dish2;
 		this.dish3 = dish3;
@@ -114,6 +121,38 @@ public class BoxorderDto {
 
 	public void setDosirak_delivery(String dosirak_delivery) {
 		this.dosirak_delivery = dosirak_delivery;
+	}
+
+	public int getDosirak_price() {
+		return dosirak_price;
+	}
+
+	public void setDosirak_price(int dosirak_price) {
+		this.dosirak_price = dosirak_price;
+	}
+
+	public String getGet_name() {
+		return get_name;
+	}
+
+	public void setGet_name(String get_name) {
+		this.get_name = get_name;
+	}
+
+	public String getGet_phone() {
+		return get_phone;
+	}
+
+	public void setGet_phone(String get_phone) {
+		this.get_phone = get_phone;
+	}
+
+	public String getGet_subway() {
+		return get_subway;
+	}
+
+	public void setGet_subway(String get_subway) {
+		this.get_subway = get_subway;
 	}
 
 	public String getDish1() {
@@ -244,6 +283,7 @@ public class BoxorderDto {
 		this.custom_status = custom_status;
 	}
 
+	
 	
 
 	

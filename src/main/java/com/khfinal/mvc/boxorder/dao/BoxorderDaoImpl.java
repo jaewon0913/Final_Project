@@ -57,4 +57,14 @@ public class BoxorderDaoImpl implements BoxorderDao {
 		return list;
 	}
 
+	@Override
+	public List<BoxorderDto> graphSelectList(String member_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		
+		List<BoxorderDto> list = sqlSession.selectList(namespace+"graphSelect",map);
+		
+		return list;
+	}
+
 }

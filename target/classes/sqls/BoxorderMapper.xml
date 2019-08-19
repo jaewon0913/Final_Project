@@ -9,7 +9,7 @@
 	<insert id="dosirakinsert" parameterType="boxorderdto">
 		INSERT INTO BOXORDER 
 		VALUES(ORDERSEQ.NEXTVAL,#{ordernumber},#{member_id},#{member_name},#{member_level},#{dosirak_title},
-		#{dosirak_delivery},NULL,NULL,NULL,NULL,NULL,NULL,NULL,#{tan},#{dan},#{gi},#{kcal},#{price},SYSDATE,#{qrcode},'N','N')
+		#{dosirak_delivery},#{dosirak_price},#{get_name},#{get_phone},#{get_subway},NULL,NULL,NULL,NULL,NULL,NULL,NULL,#{tan},#{dan},#{gi},#{kcal},#{price},SYSDATE,#{qrcode},'N','N')
 	</insert>
 	
 	<update id="receiveUpdate" parameterType="map">
@@ -18,5 +18,9 @@
 	
 	<select id="qrcodeSelect" parameterType="map" resultType="boxorderdto">
 		SELECT * FROM BOXORDER WHERE MEMBER_ID=#{member_id} AND RECEIVECHK='N'
+	</select>
+	
+	<select id="graphSelect" parameterType="map" resultType="boxorderdto">
+		SELECT * FROM BOXORDER WHERE ROWNUM <![CDATA[<]]>= 7 AND MEMBER_ID=#{member_id} ORDER BY ORDER_REGDATE DESC
 	</select>
 </mapper>

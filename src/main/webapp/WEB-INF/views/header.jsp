@@ -83,7 +83,7 @@
 					 	</a></li> -->
 						<li class="nav-item"><a class="nav-link" href="custom.do">커스텀 도시락
 								주문</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">주간 영양정보</a>
+						<li class="nav-item"><a class="nav-link" href="nutritiongraph.do">주간 영양정보</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#">특가 도시락</a></li>
 						<li class="nav-item"><a class="nav-link" href="freeboard_list.do">자유 게시판</a></li>

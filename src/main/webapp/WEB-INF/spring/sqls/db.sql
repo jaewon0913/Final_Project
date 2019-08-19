@@ -48,7 +48,7 @@ SELECT * FROM MEMBER;
 SELECT * FROM authorities_member;
 
 DELETE FROM MEMBER WHERE MEMBER_ID = 'aa';
-DELETE FROM authorities_member WHERE member_id='1090687081';
+DELETE FROM authorities_member WHERE member_id='aa';
 INSERT INTO MEMBER VALUES ('admin', 'admin', '관리자', '010-1111-1111', '서울 강남구', '강남구', '1212081@naver.com', 'Y', 'admin' ,SYSDATE);
 
 
