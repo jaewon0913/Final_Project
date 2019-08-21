@@ -184,8 +184,8 @@
 		<h1>도시락 커스텀</h1>
 	</div>
 	<hr />
-
-	<div class="payback">
+	
+	<div class="payback" style = "top : 100px;">
 		<ul class="nav nav-tabs">
 			<li class="mint line font" style="width: 50%">
 				<input class="btn " type="button" id="one" value="1회 구매" style="width: 10rem" />
@@ -194,31 +194,56 @@
 				<input class="btn " type="button" id="month" value="정기 구매" style="width: 10rem" />
 			</li>
 		</ul>
-
+		
+		<form action="kakaopay_custom.do" method = "POST">
 		<div class="container" id="sendDiv">
 			<hr/>
 			<p class="font">탄수화물 : <span id = "tan_span">0</span>g</p>
+			<input type = "hidden" id = "input_tan" name = "custom_tan" value =""/>
 			<p class="font">단백질 : <span id = "dan_span">0</span>g</p>
+			<input type = "hidden" id = "input_dan" name = "custom_dan" value =""/>
 			<p class="font">지방 : <span id = "zi_span">0</span>g</p>
+			<input type = "hidden" id = "input_zi" name = "custom_zi" value = ""/>
+						
 			<c:choose>
 				<c:when test="${count eq 4 }">
+					<input type = "hidden" value = "${count }" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
+					<input type = "hidden" value = "4000" name = "custom_price">
 				</c:when>
 				<c:when test="${count eq 5 }">
+					<input type = "hidden" value = "${count }" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>5000원</p>
+					<input type = "hidden" value = "5000" name = "custom_price">
 				</c:when>
 				<c:when test="${count eq 6 }">
+					<input type = "hidden" value = "${count }" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>6000원</p>
+					<input type = "hidden" value = "6000" name = "custom_price">
 				</c:when>
 				<c:otherwise>
+					<input type = "hidden" value = "4" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
+					<input type = "hidden" value = "4000" name = "custom_price">
 				</c:otherwise>
 			</c:choose>
 			<p class="font">총 칼로리 : <span id = "cal_span">0</span>kal</p>
+			<input type = "hidden" id = "input_kal" name = "custom_kal" value = ""/>
+			<p class = "font">수령 날짜 : <input type = "date" name = "custom_delivery" id = "input_date"/></p>
+			<p class = "font">수령 시간 : 
+				<select name = "custom_time">
+					<option value = "">시간 선택</option>
+					<option value = "AM">아침</option>
+					<option value = "PM">저녁</option>
+				</select>
+			</p>
 			<br /> 
-			<input type="button" value="장바구니" onclick="location.href='#'" class="mintbtn " /> 
+			<input type="button" value="장바구니" onclick="createCookie(${count })" class="mintbtn " /> 
+			<input type="submit" value="결제하기" class="btn btn-outline-light">
+			
 			<img id="pay" alt="결제" src="${pageContext.request.contextPath }/resources/bootstrap/image/kakaopay_btn.png" style="width: 8rem;">
 		</div>
+		</form>
 
 
 		<div class="container" id="sendDiv2">
@@ -229,24 +254,35 @@
 			<c:choose>
 				<c:when test="${count eq 4 }">
 					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
+					<input type = "hidden" id = "input_tan_multi" name = "custom_tan" value =""/>		
 				</c:when>
 				<c:when test="${count eq 5 }">
 					<p class="font">가격 : <span id = "price_span"></span>5000원</p>
+					<input type = "hidden" id = "input_dan_multi" name = "custom_tan" value =""/>						
 				</c:when>
 				<c:when test="${count eq 6 }">
 					<p class="font">가격 : <span id = "price_span"></span>6000원</p>
+					<input type = "hidden" id = "input_zi_multi" name = "custom_tan" value =""/>		
 				</c:when>
 				<c:otherwise>
 					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
 				</c:otherwise>
 			</c:choose>
 			<p class="font">총 칼로리 : <span id = "cal_span_multi">0</span>kal</p>
+			<input type = "hidden" id = "input_kal_multi" name = "custom_kal" value = ""/>
+			<p class = "font">수령 날짜 : <input type = "date" name = "input_delivery" id = "date"/></p> 
 			<br />
 			<input type="button" value="장바구니" onclick="location.href='#'" class="mintbtn " /> 
+			<input type="submit" value="결제하기" class="btn btn-outline-light"> 
+			
 			<img id="pay" alt="결제" src="${pageContext.request.contextPath }/resources/bootstrap/image/kakaopay_btn.png" style="width: 8rem;">
 		</div>
 	</div>
 <script>
+	//date 타입 오늘 날짜 세팅
+	document.getElementById("input_date").value = new Date().toISOString().substring(0,10);
+
+
 	var jw = $.noConflict();
 	
 	var IMP = window.IMP;
@@ -254,7 +290,6 @@
 	jw("#pay").click(function() {
 		
 		var length = jw("div").length;
-		alert(length);
 		
 		var before_cal = jb("#cal_span").text();
 		if(before_cal == "0"){
@@ -307,34 +342,70 @@
 			<c:choose>
 				<c:when test="${count eq 4}">
 					<div class="container" style="border: 5px solid black; border-radius: 30px; width: 70rem; height: 45rem;">
-						<div class=" col-sm-3 " style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">밥</div>
-						<div class=" col-sm-3 " style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬1</div>
-						<div class=" col-sm-3 " style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬2</div>
+						<div class=" col-sm-3 " style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">밥
+							<input type = "hidden" id = "sideDish1_id" name = "sideDish1" value = "">
+						</div>
+						<div class=" col-sm-3 " style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬1
+							<input type = "hidden" id = "sideDish2_id" name = "sideDish2" value = "">
+						</div>
+						<div class=" col-sm-3 " style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬2
+							<input type = "hidden" id = "sideDish3_id" name = "sideDish3" value = "">
+						</div>
 						<div class="col-sm-2"></div>
-						<div class=" col-sm-5 " style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬3</div>
-						<div class=" col-sm-5 " style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬4</div>
+						<div class=" col-sm-5 " style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬3
+							<input type = "hidden" id = "sideDish4_id" name = "sideDish4" value = "">
+						</div>
+						<div class=" col-sm-5 " style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬4
+							<input type = "hidden" id = "sideDish5_id" name = "sideDish5" value = "">
+						</div>
 					</div>
 				</c:when>
 				<c:when test="${count eq 5 }">
 					<div class="container" style="border: 5px solid black; border-radius: 30px; width: 70rem; height: 45rem;">
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">밥</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬1</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬2</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬3</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬4</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬5</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">밥
+							<input type = "hidden" id = "sideDish1_id" name = "sideDish1" value = "">
+						</div>	
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬1
+							<input type = "hidden" id = "sideDish2_id" name = "sideDish2" value = "">
+						</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬2
+							<input type = "hidden" id = "sideDish3_id" name = "sideDish3" value = "">
+						</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬3
+							<input type = "hidden" id = "sideDish4_id" name = "sideDish4" value = "">
+						</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬4
+							<input type = "hidden" id = "sideDish5_id" name = "sideDish5" value = "">
+						</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 5%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬5
+							<input type = "hidden" id = "sideDish6_id" name = "sideDish6" value = "">
+						</div>
 						<div style="display: inline-block"></div>
 					</div>
 				</c:when>
 				<c:when test="${count eq 6 }">
 					<div class="container" style="border: 5px solid black; border-radius: 30px; width: 78rem; height: 45rem;">
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 2%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">밥</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 2%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬1</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 2%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬2</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 2%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬3</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 6%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬4</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 6%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬5</div>
-						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 6%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬6</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 2%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">밥
+							<input type = "hidden" id = "sideDish1_id" name = "sideDish1" value = "">
+						</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 2%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬1
+							<input type = "hidden" id = "sideDish2_id" name = "sideDish2" value = "">
+						</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 2%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬2
+							<input type = "hidden" id = "sideDish3_id" name = "sideDish3" value = "">
+						</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 2%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬3
+							<input type = "hidden" id = "sideDish4_id" name = "sideDish4" value = "">
+						</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 6%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬4
+							<input type = "hidden" id = "sideDish5_id" name = "sideDish5" value = "">
+						</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 6%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬5
+							<input type = "hidden" id = "sideDish6_id" name = "sideDish6" value = "">
+						</div>
+						<div class=" col-sm-3" style="border: 5px solid black; border-radius: 50%; width: 15rem; height: 15rem; margin: 6%; position : relative;" ondrop="drop_handler(event);" ondragover="dragover_handler(event)">반찬6
+							<input type = "hidden" id = "sideDish7_id" name = "sideDish7" value = "">
+						</div>
 					</div>
 				</c:when>
 				<c:otherwise>

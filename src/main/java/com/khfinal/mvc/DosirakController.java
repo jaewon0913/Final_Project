@@ -2,6 +2,7 @@ package com.khfinal.mvc;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khfinal.mvc.dosirak.biz.DosirakBiz;
 import com.khfinal.mvc.dosirak.dto.DosirakDto;
+import com.khfinal.mvc.etc.util.CustomOrderDto;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.paging.Paging;
 
@@ -40,6 +42,41 @@ public class DosirakController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("memberdto",memberdto);
 		return "payment/kakaopay";
+	}
+	
+	@RequestMapping("/kakaopay_custom.do")
+	public String kakaopay_custom(CustomOrderDto custom_dto, Model model,HttpSession session, HttpServletRequest request) {
+		MemberDto memberdto = (MemberDto)session.getAttribute("logindto");
+				
+		if(custom_dto.getCustom_count().equals("4")) {
+			custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+			custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
+			custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
+			custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
+			custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
+			custom_dto.setCustom_dish6(null);
+			custom_dto.setCustom_dish7(null);
+		} else if (custom_dto.getCustom_count().equals("5")) {
+			custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+			custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
+			custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
+			custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
+			custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
+			custom_dto.setCustom_dish6(request.getParameter("sideDish6"));
+			custom_dto.setCustom_dish7(null);
+		} else {
+			custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+			custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
+			custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
+			custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
+			custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
+			custom_dto.setCustom_dish6(request.getParameter("sideDish6"));
+			custom_dto.setCustom_dish7(request.getParameter("sideDish7"));
+		}
+				
+		model.addAttribute("customdto", custom_dto);
+		model.addAttribute("memberdto",memberdto);
+		return "payment/kakaopay_custom";
 	}
 	
 
