@@ -16,12 +16,12 @@
 .iii {
 	width: 25rem; 
 	height : 25rem; 
-	transition: width 2s, height 2s;
+	transition: width 1s, height 1s;
 }
 
 .iii:hover {
-	width: 30rem; 
-	height : 30rem; 
+	width: 28rem; 
+	height : 28rem; 
 	
 }
 
@@ -38,6 +38,12 @@
 	margin-left: 6%;
 	opacity: 0.8;
 	
+}
+.event:hover{
+	opacity: 0.8;
+}
+.search{
+margin-top: 1rem;
 }
 
 </style>
@@ -71,10 +77,13 @@
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
-
-<!-- search bar -->
 	<div class="container">
-		<table class="pull-right">
+<div class="col-md-5">
+<img alt="evevt" src="resources/bootstrap/image/event.png" onclick="location.href='eventboard_list.do'" class="event">
+</div>
+<!-- search bar -->
+	<div class="col-md-5 pull-right">
+		<table class="pull-right search">
 			<tr>
 				<td>
 					<div class="form-group form-inline search" >
@@ -87,9 +96,9 @@
 		</table>
 	</div>
 <!-- search bar -->
-
+</div>
 <!-- ------------------best3------------------ -->
-	<div class="container best3 center border">
+	<div class="container best3 center ">
 		<h1 style="text-align: center;">Best 3</h1>
 		<br/><br/><br/>
 		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
