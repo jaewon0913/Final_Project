@@ -229,6 +229,128 @@
 		$("#data").append("연결 끊김");
 	}
 </script> -->
+	<script type="text/javascript">
+			var EndEvent = new Date('March 14, 15:15:30');
+			End_hours = EndEvent.getHours();
+			End_minutes = EndEvent.getMinutes();
+			End_seconds = EndEvent.getSeconds();
+
+			var StartEvent = new Date('March 14, 14:39:50');
+			Start_hours = StartEvent.getHours();
+			Start_minutes = StartEvent.getMinutes();
+			Start_seconds = StartEvent.getSeconds();
+
+			
+			var EVT = setInterval("Event_Time()", 1000);
+
+			function Event_Time() {
+				var now = new Date();
+				hours = now.getHours();
+				minutes = now.getMinutes();
+				seconds = now.getSeconds();
+
+				if (End_hours > Start_hours) {
+					if (End_hours < hours) {
+						clearInterval(EVT);
+					}
+
+					else if (End_hours == hours) {
+						if (End_minutes < minutes) {
+							clearInterval(EVT);
+						} else if (End_minutes == minutes) {
+							if (End_seconds < seconds) {
+								clearInterval(EVT);
+							} else if (End_seconds >= seconds) {
+								calculate();
+							}
+						} else if (End_minutes > minutes) {
+							calculate();
+						}
+					}
+
+					else if (End_hours > hours && hours > Start_hours) {
+						calculate();
+					}
+
+					else if (Start_hours == hours) {
+						if (Start_minutes < minutes) {
+							calculate();
+						} else if (Start_minutes == minutes) {
+							if (Start_seconds <= seconds) {
+								calculate();
+							} else if (Start_seconds > seconds) {
+
+							}
+						} else if (Start_minutes > minutes) {
+
+						}
+					}
+
+					else if (Start_hours > hours) {
+
+					}
+				}
+
+				else if (End_hours == Start_hours) {
+					if (End_hours < hours) {
+						clearInterval(EVT);
+					} else if (End_hours == hours && Start_hours == hours) {
+						if (End_minutes < minutes) {
+							clearInterval(EVT);
+						} else if (End_minutes > minutes
+								&& Start_minutes < minutes) {
+							calculate();
+						} else if (End_minutes == minutes
+								&& Start_minutes == minutes) {
+							if (End_seconds > seconds
+									&& Start_seconds < seconds) {
+								calculate();
+							} else if (End_seconds < seconds) {
+								clearInterval(EVT);
+							} else if (Start_seconds > seconds) {
+
+							}
+						} else if (End_minutes == minutes) {
+							if (End_seconds >= seconds) {
+								calculate();
+							}
+						} else if (Start_minutes == minutes) {
+							if (Start_seconds <= seconds) {
+								calculate();
+							}
+						} else if (Start_minutes > minutes) {
+
+						}
+
+					} else if (Start_hours > hours) {
+
+					}
+				}
+			}
+
+			function calculate() {
+				setTimeout(function() {
+					notify();
+				}, 500);
+				clearInterval(EVT);
+			}
+
+			function notify() {
+				if (Notification.permission !== 'granted') {
+					alert('notification is disabled');
+				} else {
+					var notification = new Notification('Event', {
+						icon : 'resources/bootstrap/image/Event.jpg',
+						body : '이벤트의 내용을 적어 주세요',
+					});
+
+					notification.onclick = function() {
+						//location.href = 'mainpage.do';
+						notification.close();
+					};
+				}
+			}
+		</script>
 	</header>
 </body>
 </html>

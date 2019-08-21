@@ -97,7 +97,7 @@ function execPostCode() {
 </head>
 <body>
 <!-- ------------------------------헤더----------------------------------- -->
-<%@ include file="header.jsp"%>
+<%@ include file="../header.jsp"%>
 <!-- ------------------------------헤더----------------------------------- -->
 	<h3 style="text-align: center;">kakao 회원가입</h3>
 	
