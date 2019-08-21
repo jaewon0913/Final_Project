@@ -95,7 +95,9 @@ public static class eventController {
 	
 	@RequestMapping("/eventboard_insert.do")
 	public String insert(@ModelAttribute EventboardDto dto) {
+		System.out.println(dto.getevent_content());
 		int res = biz.eventboard_insert(dto);
+		
 		if(res>0) {
 			return "redirect:eventboard_list.do";
 		}else {
@@ -151,15 +153,14 @@ public static class eventController {
 		
 	}
 	
-	@RequestMapping("/eventboard_muldel.do")
-	//public String eventboard_muldel(String[] event_chk) {
-	public String eventboard_muldel(Integer[] event_chk) {
-		int res = biz.eventboard_muldel(event_chk);
-		if(res>0) {
-			return "redirect:eventboard_list.do";
-		}else {
-			return "redirect:eventboard_list.do";
-		}
-	}
+	//체크삭제 없애기로함 0821
+		/*
+		 * @RequestMapping("/eventboard_muldel.do") //public String
+		 * eventboard_muldel(String[] event_chk) { public String
+		 * eventboard_muldel(Integer[] event_chk) { int res =
+		 * biz.eventboard_muldel(event_chk); if(res>0) { return
+		 * "redirect:eventboard_list.do"; }else { return "redirect:eventboard_list.do";
+		 * } }
+		 */
 }
 }

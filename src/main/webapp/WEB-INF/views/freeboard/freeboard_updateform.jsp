@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>UpdateForm</title>
+
+<!-- include libraries(jQuery, bootstrap )-->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<!-- include summernote css/js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+
+
 </head>
 <body>
 
@@ -39,7 +46,8 @@
 		</tr>
 		<tr>
 			<th>내  용</th>
-			<td colspan="2"><textarea rows="10" cols="60"  type="text" name="free_content">${dto.free_content }"</textarea></td>
+			<td colspan="2"><textarea rows="10" cols="60"  type="text" name="free_content" class="summernote">${dto.free_content }"</textarea></td>
+		
 		</tr>
 		<tr>
 			<td colspan="3">
@@ -53,6 +61,22 @@
 	
 	<br>
 	<br>
+	
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+	
+<script>
+$(document).ready(function() {
+	  $('.summernote').summernote({
+	    	placeholder: 'content',
+	        minHeight: 370,
+	        maxHeight: null,
+	        focus: true, 
+	        lang : 'ko-KR'
+	  });
+	});
+</script>
 
 	<!--footer-->
 	<%@ include file="../footer.jsp"%>
