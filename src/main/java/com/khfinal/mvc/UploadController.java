@@ -43,56 +43,6 @@ public class UploadController implements ServletContextAware {
 	
 	@Autowired
 	private FileValidator fileValidator;
-	
-	@RequestMapping("/uploadtest.do")
-	   public String cloudUpload(MultipartHttpServletRequest mtfRequest,UploadFile uploaddto) {
-	      mtfRequest.getContextPath();
-	      System.out.println("아예안오니");
-	      List<MultipartFile> fileList = mtfRequest.getFiles("file");
-	      String path = "./testFolder";
-	      File dir = new File(path); 
-	      if (!dir.isDirectory()) { 
-	         dir.mkdirs(); 
-	         }      
-	      for (MultipartFile mf : fileList) {
-	         String originFileName = mf.getOriginalFilename(); // 원본 파일 명
-	         long fileSize = mf.getSize(); // 파일 사이즈
-	         String content=path+originFileName;
-	        // dto.setContent(content);
-	         System.out.println(content);
-	         System.out.println("originFileName : " + originFileName);
-	         System.out.println("fileSize : " + fileSize);
-	         String safeFile = path + System.currentTimeMillis() + originFileName;
-	         System.out.println(safeFile);
-	         int res=0;
-	         try {
-	            mf.transferTo(new File(safeFile));
-	            if(mf==fileList.get(0)) {
-	              // res=cloudBiz.insert(dto);
-	            }else {
-	               //res=cloudBiz.nextInsert(dto);
-	            }
-	            
-	            if(res>0) {
-	               System.out.println("성공");
-	            }else {
-	               System.out.println("실패");
-	            }   
-	         } catch (IllegalStateException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	         } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	         }
-	      }
-
-	      return "redirect:home.do";
-	   }
-	
-	
-	
-	
 
 	//	2. form을 받아서 uploadForm.jsp 로 페이지 이동하라
 	@RequestMapping("/dishinsert_form.do")
@@ -115,6 +65,10 @@ public class UploadController implements ServletContextAware {
 			name = "샐러드류";
 		} else if(dishname.equals("sidedish")) {
 			name = "반찬류";
+		} else if(dishname.equals("kimchi")) {
+			name = "김치류";
+		} else if(dishname.equals("fish")) {
+			name = "생선류";
 		}
 		
 		List<UploadFile> list = new ArrayList<UploadFile>();
@@ -170,32 +124,12 @@ public class UploadController implements ServletContextAware {
 		try {
 			//	11. request.getSession().getServletContext()에서 /storage 폴더 까지 경로 저장
 			inputStream = file.getInputStream();
-//			String path = servletContext.getRealPath("/resources");
-//			fileobj.setFile_path(path + "/" + filename);
-//			System.out.println("업로드 될 실제 경로 : " + path);
-//			System.out.println("업로드 될 경로 + 이름 :" + fileobj.getFile_path());
 			
 			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/etc/upload");
 			
 			System.out.println("업로드 될 실제 경로 : " + path);
 			System.out.println("servletcontext : " + servletContext.getRealPath("resources/etc/upload"));
 			fileobj.setFile_path(path + "/" + filename);
-			
-			// 업로드 경로 테스트중
-//			String testPath = request.getSession().getServletContext().getRealPath("/resources/etc/uploadImage");
-//			fileobj.setFile_path(testPath + "/" + filename);
-//			System.out.println(servletContext.getRealPath("/"));
-//			System.out.println("이게 경로 ? : " + request.getSession().getServletContext().getResourcePaths("/resources/etc/uploadImage"));
-//			System.out.println("경로 테스트 : " + request.getSession().getServletContext().getRealPath("/resources"));
-//			System.out.println("업로드 될 실제 경로 : " + testPath);
-//			System.out.println("업로드 될 경로 + 이름 :" + fileobj.getFile_path());
-			
-			// /mvc/resources...
-//			System.out.println(request.getSession().getServletContext());
-//			System.out.println(request.getSession());
-//			System.out.println("테스트~ : " + testPath.substring(1, testPath.indexOf(".metadata")));
-//			String realPath = testPath.substring(1, testPath.indexOf(".metadata")) + "Final_Project/src/main/webapp/resources/etc/uploadImage";
-//			System.out.println("저장되어야 할 곳 : " + realPath);
 			
 			//	12. 위의 path의 경로를 가진 파일 저장소 생성
 			//File storage = new File(testPath);
@@ -245,8 +179,6 @@ public class UploadController implements ServletContextAware {
 		}
 		
 		//	15. model에 fileobj로 저장
-//		model.addAttribute("fileobj", fileobj);
-		
 		model.addAttribute("list",biz.selectList("쌀밥류"));
 		
 		//	16. uploadFile.jsp로 이동

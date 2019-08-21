@@ -37,7 +37,7 @@
 		<div class="list-group list-group-horizontal" style="margin-bottom: 4em;">
 		
 			<div class="colcol-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center;">
-				<p onclick="location.href='dosirak_list.do'" class="text-dark" style="font-size: 36px; padding: 8%;">장바구니</p>
+				<p onclick="location.href='getCookie.do'" class="text-dark" style="font-size: 36px; padding: 8%;">장바구니</p>
 			</div>
 			
 			<div class="col-el-5 col-lg-5 col-md-5 list-group-item mx-5" style="height:150px; background-color: #F5FFFA; line-height: 7rem; text-align: center;">
