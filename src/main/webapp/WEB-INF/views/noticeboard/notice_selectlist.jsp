@@ -21,7 +21,14 @@
    }
    
 </script>
-
+<style type="text/css">
+td>a{
+	color: black;
+}
+td>a:hover {
+	color: gray;
+}
+</style>
 
 <title>공지사항 게시판1</title>
 <%

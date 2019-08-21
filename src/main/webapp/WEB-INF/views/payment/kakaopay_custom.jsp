@@ -15,6 +15,15 @@
  	#qrcodeform{ 
  		display: none; 
  	} 
+ 	#pay{
+ 		width: 5rem;
+ 		height: 3rem;
+ 	}
+ 	.test{
+ 		margin-right: 35rem;
+ 		margin-left: 35rem;
+ 		text-align: left;
+ 	}
 </style>
 </head>
 <body>
@@ -24,11 +33,12 @@
 
 
 <!-- 바코드 이미지 태그  outerHTML-->
-	<div id="qrcodeform">
+<div class="test">
+	<div id="qrcodeform" >
 		<img id="qrcode" src='' />
 	</div>
 	
-	<table>
+	<table class="table">
 		<tr>
 			<td colspan="2">[주문자 정보]</td>
 		</tr>
@@ -48,10 +58,6 @@
 			<th>상품명</th>
 			<td><input type="text" value="커스텀도시락" readonly="readonly"></td>
 		</tr>
-	</table>
-	
-	
-	<table>
 		<tr>
 			<td colspan="2">[수령인 정보]</td>
 		</tr>
@@ -87,10 +93,10 @@
 			<td><input type="text" name="price" value="${customdto.custom_price +1000}" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<td colspan="2">
+			<td colspan="2" align="right">
 				<img id="pay" alt="결제" src="resources/bootstrap/image/kakaopay_btn.png">
 				
-				<input type="button" value="취소" onclick="location.href='history.back()'">
+				<input type="button" value="취소" onclick="location.href='history.back()'" class="btn btn-outline-light" >
 			</td>
 		</tr>
 	</table>
@@ -198,7 +204,7 @@ var date = "";
 
 </script>
 	
-	
+	</div>
 <%@ include file="../footer.jsp"%>
 </body>
 </html>

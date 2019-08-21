@@ -24,8 +24,8 @@
 		<div id="chat_div">
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
-				<div style="float: right;">
-					<button type="button" id="chat_close" style = "position : fixed; z-index : 10; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>
+				<div style="float: right; padding-right: 2rem;">
+					<button type="button" id="chat_close" style = "position : fixed; z-index : 90; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>
 				</div>
 				<div id="msg_div" style = "clear : both;" >
 				</div>
@@ -37,8 +37,8 @@
 		
 		<img alt="bot" src = "${pageContext.request.contextPath }/resources/bootstrap/image/chat2.png" class = "navbar-fixed-top bot" id = "bot_btn" >
 		<div id = "bot_div">
-			<div style="float: right;">
-				<button type="button" id="bot_chat_close" style = "position : fixed; z-index : 10; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>
+			<div style="float: right; padding-right: 2rem;" >
+				<button type="button" id="bot_chat_close" style = "position : fixed; z-index : 90; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>
 				</div>
 			<div id="bot_msg_div" style = "clear : both;" >
 			</div>
