@@ -30,7 +30,7 @@
 	<input type="hidden" name="memeber_id" value="${dto.member_id }" readonly="readonly">
 	
 	<table class="table table-hover">
-	<col width="100">
+			<col width="120">
 			<col width="100">
 			<col width="100">
 			<col width="100">
@@ -45,12 +45,12 @@
 			<td colspan="2"><input type="text" name="member_name" value="${dto.member_name }" readonly="readonly"></td>
 		</tr>	
 		<tr>
-			<th>제  목</th>
+			<th>이벤트리스트</th>
 			<%-- <td colspan="2"><input type="text" name="event_title" value="${dto.event_title }" ></td> --%>
 			<td colspan="2"><textarea rows="10" cols="60"  type="text" name="event_title" class="summernote">${dto.event_title }</textarea>
 		</tr>
 		<tr>
-			<th>내  용</th>
+			<th>상세내용</th>
 			<td colspan="2"><textarea rows="10" cols="60"  type="text" name="event_content" class="summernote">${dto.event_content }</textarea></td>
 		</tr>
 		<tr>
