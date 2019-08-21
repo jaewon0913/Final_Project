@@ -90,6 +90,8 @@ $(function(){
 <div class="container">
 	<h1>자유 게시판</h1>
 	<br>
+	
+
 		<table>
 		<tr>
 			<td colspan="5" ><input type="text" id="txt_search" 

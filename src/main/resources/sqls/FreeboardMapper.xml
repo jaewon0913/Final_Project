@@ -72,11 +72,12 @@
 				)
 			</if>
 			
- 			<!-- ORDER BY FREE_POSTNUM DESC -->
+ 			
+ 			ORDER BY FREE_POSTNUM DESC
 			
 		)
 		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +
-		#{recordCountPerPage}	
+		#{recordCountPerPage}		
 	
 	</select>
 	
@@ -92,6 +93,7 @@
 					(upper(FREE_CONTENT) like '%' || upper(#{txt_search}) || '%') 
 				)
 			</if>
+			
 	</select>
 	
 	
@@ -118,7 +120,7 @@
 	
 	<insert id = "com_board_insert" parameterType="CommentDto">
 
-	 	INSERT INTO COM_BOARD (COM_NUM, FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, COM_CONTENT, com_comsq,   COM_REGDATE)
+	 	INSERT INTO COM_BOARD (COM_NUM, FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, COM_CONTENT, COM_COMSQ,   COM_REGDATE)
 	 	VALUES(COM_NUMSEQ.NEXTVAL,#{free_postnum},#{member_id}, #{member_name}, #{com_content},
 	 		(select NVL(max(COM_COMSQ)+1,1) as COM_COMSQ from COM_BOARD
 		where 1=1
