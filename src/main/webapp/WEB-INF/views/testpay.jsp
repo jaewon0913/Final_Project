@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>연습?</title>
+<title>주문자 정보 확인</title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
@@ -18,7 +18,7 @@
 <body>
 
 	<img id="pay" alt="결제" src="resources/bootstrap/image/kakaopay_btn.png"
-		style="width: 100px;">
+		style="width: 5rem;">
 
 
 	<script>

@@ -111,6 +111,7 @@
 
 .f {
 	font-size: 2rem;
+	
 }
 
 .1 {
@@ -148,9 +149,13 @@
 		$(document).on('click', '#one', function() {
 			$('#sendDiv').show()
 			$('#sendDiv2').hide()
+			$('#one').css('color','white')
+			$('#month').css('color','black')
 		}).on('click', '#month', function() {
 			$('#sendDiv2').show()
 			$('#sendDiv').hide()
+			$('#month').css('color','white')
+			$('#one').css('color','black')
 		})
 
 	})
