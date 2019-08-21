@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>연습?</title>
+    <title>주문자 정보 조회</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -13,6 +13,15 @@
  	#qrcodeform{ 
  		display: none; 
  	} 
+ 	#pay{
+ 		width: 5rem;
+ 		height: 3rem;
+ 	}
+ 	.test{
+ 		margin-right: 25rem;
+ 		margin-left: 25rem;
+ 		text-align: left;
+ 	}
 </style>
 </head>
 <body>
@@ -21,12 +30,13 @@
 <!--     <input type="button" id="pay" value="결제시스템입니다." >-->   
 
 
+<div class="test">
 <!-- 바코드 이미지 태그  outerHTML-->
 	<div id="qrcodeform">
 		<img id="qrcode" src='' />
 	</div>
 	
-	<table>
+	<table class="table">
 		<tr>
 			<td colspan="2">[주문자 정보]</td>
 		</tr>
@@ -46,10 +56,7 @@
 			<th>상품명</th>
 			<td><input type="text" value="${dto.dosirak_title }" readonly="readonly"></td>
 		</tr>
-	</table>
 	
-	
-	<table>
 		<tr>
 			<td colspan="2">[수령인 정보]</td>
 		</tr>
@@ -85,10 +92,10 @@
 			<td><input type="text" name="price" value="${dto.dosirak_price+1000}" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<td colspan="2">
+			<td colspan="2" align="right">
 				<img id="pay" alt="결제" src="resources/bootstrap/image/kakaopay_btn.png">
 				
-				<input type="button" value="취소" onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'">
+				<input type="button" value="취소" onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'" class="btn btn-outline-light" />
 			</td>
 		</tr>
 	</table>
@@ -185,7 +192,7 @@ var date = "";
 	}
 
 </script>
-	
+</div>
 	
 <%@ include file="../footer.jsp"%>
 </body>

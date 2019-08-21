@@ -18,7 +18,6 @@
 	<logger name="com.khfinal.mvc">
 		<level value="info" />
 	</logger>
-
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
@@ -42,5 +41,4 @@
 		<level value="debug" />
 		<appender-ref ref="console" />
 	</root>
-
 </log4j:configuration>

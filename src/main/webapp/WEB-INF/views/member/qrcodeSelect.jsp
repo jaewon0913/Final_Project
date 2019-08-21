@@ -12,7 +12,7 @@
 
 	
 <div class="container " style="text-align: center; margin-bottom: 10rem;">
-<h1 style="text-align: left;">QRcode 조회</h1>
+<h1 align="center" style="margin-bottom: 3%;">QRcode 조회</h1>
 	<div class="container">
 		<c:choose>
 			<c:when test="${empty list }">
