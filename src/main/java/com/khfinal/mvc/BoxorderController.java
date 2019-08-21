@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
 import com.khfinal.mvc.boxorder.dto.BoxorderDto;
 import com.khfinal.mvc.dosirak.biz.DosirakBiz;
+import com.khfinal.mvc.etc.util.CustomOrderDto;
 
 
 @Controller
@@ -34,8 +35,6 @@ public class BoxorderController {
 	
 	@RequestMapping("/dosirakorderinsert.do")
 	public String dosirakorderinsert(Model model,BoxorderDto boxorderdto) {
-		
-		
 		System.out.println(boxorderdto.getDosirak_delivery()+" "+boxorderdto.getOrdernumber());
 		int res = boxorderbiz.dosirakinsert(boxorderdto);
 		
@@ -44,6 +43,18 @@ public class BoxorderController {
 		
 		return "redirect:orderresult.do?member_id="+boxorderdto.getMember_id()+"&ordernumber="+boxorderdto.getOrdernumber();
 	}
+	
+	@RequestMapping("/dosirakorderinsert_custom.do")
+	public String dosirakorderinsert_custom(Model model,BoxorderDto boxorderdto, CustomOrderDto customdto) {
+		
+		int res = boxorderbiz.dosirakinsert(boxorderdto);
+		
+//		BoxorderDto dto = boxorderbiz.selectOne(boxorderdto.getMember_id(), boxorderdto.getOrdernumber());
+//		model.addAttribute("dto", dto);
+		
+		return "redirect:orderresult.do?member_id="+boxorderdto.getMember_id()+"&ordernumber="+boxorderdto.getOrdernumber();
+	}
+	
 	@RequestMapping("/orderresult.do")
 	public String orderresult(Model model,String member_id,String ordernumber) {
 		BoxorderDto dto = boxorderbiz.selectOne(member_id,ordernumber);
