@@ -145,6 +145,21 @@ public class LoginController {
 	public String mypage() {
 		return "member/MemberMypage";
 	}
+	
+	@RequestMapping("/returnMypage.do")
+	public String returnMypage(HttpServletResponse response) {		 
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.println("<script>alert('장바구니가 비어있습니다.');</script>");
+			 
+			out.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+		return "member/MemberMypage";
+	}
 
 	@RequestMapping("/detail.do")
 	public String detail(Model model, HttpSession session) {
@@ -263,7 +278,7 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호 재설정 페이지로 이동합니다.')</script>");
 			out.flush();
-			return "member/AccountFind";
+			return "member/pwUpdate";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('아이디와 이메일을 확인해주세요')</script>");

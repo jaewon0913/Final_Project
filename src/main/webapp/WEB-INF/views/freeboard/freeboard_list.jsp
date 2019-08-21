@@ -87,7 +87,7 @@ $(function(){
 <body>
 	<!-- header -->
 		<%@ include file="../header.jsp"%>
-
+<div class="container">
 	<h1>자유 게시판</h1>
 	<br>
 	
@@ -113,12 +113,6 @@ $(function(){
 		<c:otherwise>
 			<form action="freeboard_muldel.do" method="post" id="freeboard_muldel">
 				<table class="table table-hover">
-					<col width = "30" />
-					<col width = "50" />
-					<col width = "200" />
-					<col width = "500" />
-					<col width = "70" />
-					<col width = "100" />
 					<tr>
 						<th><input type="checkbox" name="allchk" onclick="allChk(this.checked)"></th>
 						<th>번호</th>
@@ -159,7 +153,7 @@ $(function(){
 		</c:otherwise>
 	</c:choose>
 	
-	
+</div>	
 	<br>
 	<br>
 

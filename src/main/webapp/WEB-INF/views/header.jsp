@@ -38,7 +38,7 @@ a.nav-link:hover{
 </style>
 
 
-<!-- Bootstrap core CSS -->s
+<!-- Bootstrap core CSS -->
 <link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="resources/bootstrap/css/small-business.css" rel="stylesheet">
@@ -65,7 +65,7 @@ a.nav-link:hover{
 	<header>
 		<nav class="header navbar navbar-expand-lg fixed-top " style="margin-bottom: 0px;">
 		<div style="float: left; width: 50%;">
-			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/nado2.png" onclick="location.href='mainpage.do'" style="width: 10rem; height: 10rem;">
+			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.PNG" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
 			</div>
 			<div style="float: right; width: 50%; text-align: right;" class="pull-right">
 				<c:choose>

@@ -2,13 +2,14 @@ package com.khfinal.mvc.boxorder.dto;
 
 public class BoxorderDto {
 
-	private int orderseq;
+	private int orderseq;	//	db에서 만드는거고
 	private String ordernumber;
 	private String member_id;
 	private String member_name;
 	private String member_level;
 	private String dosirak_title;
-	private String dosirak_delivery;
+	private String dosirak_delivery;	//	받을 장소 설정
+	private String dosirak_time;	//	아침
 	private int dosirak_price;
 	private String get_name;
 	private String get_phone;
@@ -24,8 +25,8 @@ public class BoxorderDto {
 	private int dan;
 	private int gi;
 	private int kcal;
-	private int price;
-	private String order_regdate;
+	private int price;	//	전체 가격
+	private String order_regdate;	//	주문 날짜
 	private String qrcode;
 	private String receivechk;
 	private String custom_status;
@@ -283,9 +284,11 @@ public class BoxorderDto {
 		this.custom_status = custom_status;
 	}
 
-	
-	
+	public String getDosirak_time() {
+		return dosirak_time;
+	}
 
-	
-	
+	public void setDosirak_time(String dosirak_time) {
+		this.dosirak_time = dosirak_time;
+	}	
 }

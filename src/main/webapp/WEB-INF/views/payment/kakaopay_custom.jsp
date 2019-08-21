@@ -1,10 +1,12 @@
 <%@page import="com.khfinal.mvc.member.dto.MemberDto"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
    language="java"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>주문자 정보 조회</title>
+    <title>연습?</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -13,15 +15,6 @@
  	#qrcodeform{ 
  		display: none; 
  	} 
- 	#pay{
- 		width: 5rem;
- 		height: 3rem;
- 	}
- 	.test{
- 		margin-right: 25rem;
- 		margin-left: 25rem;
- 		text-align: left;
- 	}
 </style>
 </head>
 <body>
@@ -30,13 +23,12 @@
 <!--     <input type="button" id="pay" value="결제시스템입니다." >-->   
 
 
-<div class="test">
 <!-- 바코드 이미지 태그  outerHTML-->
 	<div id="qrcodeform">
 		<img id="qrcode" src='' />
 	</div>
 	
-	<table class="table">
+	<table>
 		<tr>
 			<td colspan="2">[주문자 정보]</td>
 		</tr>
@@ -54,9 +46,12 @@
 		</tr>
 		<tr>
 			<th>상품명</th>
-			<td><input type="text" value="${dto.dosirak_title }" readonly="readonly"></td>
+			<td><input type="text" value="커스텀도시락" readonly="readonly"></td>
 		</tr>
+	</table>
 	
+	
+	<table>
 		<tr>
 			<td colspan="2">[수령인 정보]</td>
 		</tr>
@@ -70,7 +65,7 @@
 		</tr>
 		<tr>
 			<th>상품명</th>
-			<td><input type="text" name="dosirak_title" value="${dto.dosirak_title }" readonly="readonly"></td>
+			<td><input type="text" name="dosirak_title" value="커스텀도시락" readonly="readonly"></td>
 		</tr>
 		<tr>
 			<th>수령 장소</th>
@@ -81,7 +76,7 @@
 		</tr>
 		<tr>
 			<th>도시락 가격</th>
-			<td><input type="text" name="dosirak_price" value="${dto.dosirak_price} 원" readonly="readonly"></td>
+			<td><input type="text" name="dosirak_price" value="${customdto.custom_price } 원" readonly="readonly"></td>
 		</tr>
 		<tr>
 			<th>배송비</th>
@@ -89,13 +84,13 @@
 		</tr>
 		<tr>
 			<th>총 결제금액</th>
-			<td><input type="text" name="price" value="${dto.dosirak_price+1000}" readonly="readonly"></td>
+			<td><input type="text" name="price" value="${customdto.custom_price +1000}" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="right">
+			<td colspan="2">
 				<img id="pay" alt="결제" src="resources/bootstrap/image/kakaopay_btn.png">
 				
-				<input type="button" value="취소" onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'" class="btn btn-outline-light" />
+				<input type="button" value="취소" onclick="location.href='history.back()'">
 			</td>
 		</tr>
 	</table>
@@ -113,7 +108,6 @@ var date = "";
 		ordernumber = '${memberdto.member_id}'+date;
 		var queryStr = "?member_id=${memberdto.member_id}&ordernumber="+ordernumber +"&choe=UTF-8";
 		var googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=";
-// 		alert(encodeURIComponent(queryStr))
         $('#qrcode').attr('src', googleQRUrl +"http://192.168.110.66:8787/mvc/qrcode.do"+encodeURIComponent(queryStr));
 //         chuan();
 // 		alert(qr);
@@ -131,8 +125,8 @@ var date = "";
       pg : 'kakaopay', 
       pay_method : 'card',
       merchant_uid : 'merchant_' + new Date().getTime(),
-      name : '${dto.dosirak_title}',
-      amount : '${dto.dosirak_price+1000}',
+      name : '커스텀도시락',
+      amount : '${customdto_custom_price +1000}',
       buyer_email : 'abc',
       buyer_name : '${memberdto.member_name}',
       buyer_tel : '${memberdto.member_phone}',
@@ -155,23 +149,34 @@ var date = "";
           var get_subway = document.getElementsByName("get_subway")[0].value;
           var price = document.getElementsByName("price")[0].value;
           //컨트롤러보내고
-          document.write('<form action="dosirakorderinsert.do" id="sub_form" method="post">'+
+          document.write('<form action="dosirakorderinsert_custom.do" id="sub_form" method="post">'+
                         '<input type="hidden" name="member_id" value="${memberdto.member_id}">'+
                         '<input type="hidden" name="member_name" value="${memberdto.member_name}">'+
                         '<input type="hidden" name="member_level" value="${memberdto.member_level}">'+
-                        '<input type="hidden" name="dosirak_title" value="${dto.dosirak_title}">'+
-                        '<input type="hidden" name="dosirak_delivery" value="${dto.dosirak_delivery}">'+
-                        '<input type="hidden" name="dosirak_price" value="${dto.dosirak_price}">'+
+                        '<input type="hidden" name="dosirak_title" value="커스텀도시락">'+
+                        '<input type="hidden" name="custom_count" value="${customdto.custom_count}">'+
+                        '<input type="hidden" name="dosirak_delivery" value="${customdto.custom_delivery}">'+
+                        '<input type="hidden" name="dosirak_time" value = "${customdto.custom_time}">'+
+                        '<input type="hidden" name="dosirak_price" value="${customdto.custom_price}">'+
                         '<input type="hidden" name="get_name" value="'+get_name+'">'+
                         '<input type="hidden" name="get_phone" value="'+get_phone+'">'+
                         '<input type="hidden" name="get_subway" value="'+get_subway+'">'+
-                        '<input type="hidden" name="tan" value="${dto.tan}">'+
-                        '<input type="hidden" name="dan" value="${dto.dan}">'+
-                        '<input type="hidden" name="gi" value="${dto.gi}">'+
-                        '<input type="hidden" name="kcal" value="${dto.kcal}">'+
+                        '<input type="hidden" name="dish1" value="${customdto.custom_dish1}">'+
+                        '<input type="hidden" name="dish2" value="${customdto.custom_dish2}">'+
+                        '<input type="hidden" name="dish3" value="${customdto.custom_dish3}">'+
+                        '<input type="hidden" name="dish4" value="${customdto.custom_dish4}">'+
+                        '<input type="hidden" name="dish5" value="${customdto.custom_dish5}">'+
+                        '<input type="hidden" name="dish6" value="${customdto.custom_dish6}">'+
+                        '<input type="hidden" name="dish7" value="${customdto.custom_dish7}">'+
+                        '<input type="hidden" name="dosirak_delivery_date" value="${customdto.custom_delivery}">'+
+                        '<input type="hidden" name="tan" value="${customdto.custom_tan}">'+
+                        '<input type="hidden" name="dan" value="${customdto.custom_dan}">'+
+                        '<input type="hidden" name="gi" value="${customdto.custom_zi}">'+
+                        '<input type="hidden" name="kcal" value="${customdto.custom_kal}">'+
                         '<input type="hidden" name="price" value="'+price+'">'+
                         '<input type="hidden" name="ordernumber" value="'+ordernumber+'">'+
                         '<input type="hidden" name="qrcode" value="'+qrcode+'">'+
+                        '<input type="hidden" name="custom_status" value="Y">'+
                         '</form>');
           document.getElementById("sub_form").submit();
           //컨트롤러에서 정보 다 디비에 저장하고 그걸다시 selectone(아이디,sysdate(현재날자)(주문내역)
@@ -192,7 +197,7 @@ var date = "";
 	}
 
 </script>
-</div>
+	
 	
 <%@ include file="../footer.jsp"%>
 </body>
