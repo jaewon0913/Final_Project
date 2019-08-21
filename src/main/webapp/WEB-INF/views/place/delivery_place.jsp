@@ -6,82 +6,86 @@
 <meta charset="UTF-8">
 <title>Delivery Place</title>
 <style type="text/css">
-body {
+/* body {
 	margin-top: 0px;
 	margin-left: 0px;
 	margin-bottom: 0px;
 	height: 99%;
 	font-size: 1.0rem;
-}
+} */
 
-#map{
+#map {
 	width: 100%;
 	height: 100%;
 	position: relative;
 	overflow: hidden;
-	border: 3px solid;	
+	border: 3px solid;
+	margin-bottom: 2rem;
 }
 
-#buttons {
+/* #buttons {
 	position: absolute;
 	top: 3px;
 	left: 3px;
 	z-index: 1;
-}
+} */
 
-#content{
+#content {
 	width: 110%;
 }
 
-.btn-outline-light{
-	background-color: #A3E4DC;
-	color: black;
-	border-radius: 10px;
+.mmap{
+height: 80rem;
+margin-bottom: 5rem;
+
 }
 
 </style>
 </head>
 <body>
+	<!-- ------------------------헤더-------------------------------------------- -->
+	<%@ include file="../header.jsp"%>
+	<!-- ------------------------헤더-------------------------------------------- -->
+	<div class="mmap">
+	<div id="buttons">
+		<input type="button" value="지도 초기화" onclick="mapReset()" id="abutton" class="btn btn-outline-light" /> 
+		<input type="button" value="메인 페이지로" onclick="location.href='mainpage.do'" id="bbutton" class="btn btn-outline-light" />
+	</div>
 	
-		<div id="map"></div>
-		<div id="buttons">
-			<input type="button" value="지도 초기화" onclick="mapReset()" id="abutton" class="btn-outline-light"/>
-			<input type="button" value="메인 페이지로" onclick="location.href='mainpage.do'" id="bbutton" class="btn-outline-light"/>
-		</div>
-		
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=51191c741f7e20835fa12c73414cc9e6&libraries=services"></script>
+	
+
+	<div id="map"></div>
+
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=51191c741f7e20835fa12c73414cc9e6&libraries=services"></script>
 	<script>
 		//페이지 접속시실행
-		 window.onload = function () {
-			 if (window.Notification) {
-	                Notification.requestPermission();
-	            }
-			 calculate();			 
+		window.onload = function() {
+			if (window.Notification) {
+				Notification.requestPermission();
+			}
+			calculate();
 		}
-		
-		 function calculate() {
-	            setTimeout(function () {
-	                notify();
-	            }, 500);
-	        }
-	 	 
-		 
-		 
-	     function notify() {
-	            if (Notification.permission !== 'granted') {
-	                alert('notification is disabled');
-	            }
-	            else {
-	                var notification = new Notification('배달장소 확인', {
-	                    icon: 'resources/bootstrap/image/map1.jpg',
-	                    body: '배달 장소는 6곳입니다.\n마커 클릭 시 지도가 확대됩니다.',
-	                });	
 
-	            }
-	            
-	        }
+		function calculate() {
+			setTimeout(function() {
+				notify();
+			}, 500);
+		}
 
-	
+		function notify() {
+			if (Notification.permission !== 'granted') {
+				alert('notification is disabled');
+			} else {
+				var notification = new Notification('배달장소 확인', {
+					icon : 'resources/bootstrap/image/map1.jpg',
+					body : '배달 장소는 6곳입니다.\n마커 클릭 시 지도가 확대됩니다.',
+				});
+
+			}
+
+		}
+
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(37.411405, 126.897654), // 지도의 중심좌표 37.566826, 126.9786567
@@ -122,7 +126,7 @@ body {
 			latlng : new kakao.maps.LatLng(37.534604, 126.973411),
 			clickable : true
 		} ];
-		
+
 		// 마커 이미지의 이미지 주소입니다
 		//var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 		var imageSrc = "resources/bootstrap/image/gmap.png";
@@ -138,32 +142,33 @@ body {
 				map : map, // 마커를 표시할 지도
 				position : positions[i].latlng, // 마커를 표시할 위치
 				//title : positions[i].title,// 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다 
-				image : markerImage	// 마커 이미지 
+				image : markerImage
+			// 마커 이미지 
 			});
-			
-			var infowindow = new kakao.maps.InfoWindow({
-		        content: positions[i].content // 인포윈도우에 표시할 내용
-		    });
 
-			(function(marker,infowindow) {
+			var infowindow = new kakao.maps.InfoWindow({
+				content : positions[i].content
+			// 인포윈도우에 표시할 내용
+			});
+
+			(function(marker, infowindow) {
 				// 마커에 click 이벤트를 등록하고 마우스 클릭 시 중심좌표 변경 및 확대를합니다.
 				kakao.maps.event.addListener(marker, 'click', function() {
 					zoomIn();
 					setCenter(marker.getPosition());
 				});
-				
-				// 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-		        kakao.maps.event.addListener(marker, 'mouseover', function() {
-		            infowindow.open(map, marker);
-		        });
 
-		        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-		        kakao.maps.event.addListener(marker, 'mouseout', function() {
-		            infowindow.close();
-		        });
-				
-				
-			})(marker,infowindow);
+				// 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+				kakao.maps.event.addListener(marker, 'mouseover', function() {
+					infowindow.open(map, marker);
+				});
+
+				// 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+				kakao.maps.event.addListener(marker, 'mouseout', function() {
+					infowindow.close();
+				});
+
+			})(marker, infowindow);
 		}
 
 		function mapReset() {
@@ -202,7 +207,11 @@ body {
 			// 지도 중심을 이동 시킵니다
 			map.setCenter(moveLatLon);
 		}
-		
 	</script>
+	</div>
+	
+	<!-- ------------------------헤더-------------------------------------------- -->
+	<%@ include file="../footer.jsp"%>
+	<!-- ------------------------헤더-------------------------------------------- -->
 </body>
 </html>
