@@ -101,18 +101,27 @@ td>a:hover {
 	<div class="container">
 		<h1>자유 게시판</h1>
 		<br>
-		<div class="container col-sm-12 text-center">
+		<div class = "container col-sm-12 text-center">
 			<table>
 				<tr>
-					<td colspan="5"><input type="text" id="txt_search"
-						value="${txt_search }"> <input type="button" value="검색"
+					<td colspan="5" ><input type="text" id="txt_search" 
+						value="${txt_search }"> <input type="button" value="검색"   
 						onclick="javascript:PageMove(${paging.pageNo})"
 						class="btn btn-outline-light"></td>
 				</tr>
 			</table>
 			<br>
-			<form action="freeboard_muldel.do" method="post"
-				id="freeboard_muldel">
+
+	<c:choose>
+		<c:when test="${empty freeboard_list }">
+			<h3>고객 정보가 없습니다. ㅜ.ㅜ...</h3>
+			<!-- 사용여부결정해야함 0810 -->
+			<tr>
+					<td colspan="3">===== 작성된 글이 없습니다 ====</td>
+			</tr>
+		</c:when>
+		<c:otherwise>
+			<form action="freeboard_muldel.do" method="post" id="freeboard_muldel">
 				<table class="table table-hover">
 					<tr>
 						<th><input type="checkbox" name="allchk"

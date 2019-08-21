@@ -46,7 +46,7 @@ public class FreeController {
 		int page = (paramMap.get("page") != null ? Integer.parseInt(paramMap.get("page").toString()) : 1);
 
 		Paging paging = biz.getTotalCount(txt_search, page); // 게시판 리스트의 갯수를 가져온다.
-		paging.setPageSize(10); // 페이징 사이즈를 결정한다.
+	//	paging.setPageSize(10); // 페이징 사이즈를 결정한다.
 		model.addAttribute("freeboard_list", paging); // 게시판 리스트를 전달하기 위해 모델에 담는다.
 
 		List<FreeboardDto> list = biz.selectListPaging(paging, txt_search); // 게시판 리스트를 가져온다.
