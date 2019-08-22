@@ -101,7 +101,7 @@
 		</tr>
 	</table>
 	<script>
-var IMP = window.IMP; 
+var IMP = window.IMP;
 IMP.init('imp15057713');
 var ordernumber = "";
 var date = "";
@@ -154,6 +154,14 @@ var date = "";
           var get_phone = document.getElementsByName("get_phone")[0].value;
           var get_subway = document.getElementsByName("get_subway")[0].value;
           var price = document.getElementsByName("price")[0].value;
+          
+          console.log(get_name);
+          console.log(get_phone);
+          console.log(get_subway);
+          console.log(price);
+          console.log(qrcode);
+          console.log(ordernumber);
+          
           //컨트롤러보내고
           document.write('<form action="dosirakorderinsert_custom.do" id="sub_form" method="post">'+
                         '<input type="hidden" name="member_id" value="${memberdto.member_id}">'+
