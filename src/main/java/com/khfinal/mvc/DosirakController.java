@@ -47,7 +47,10 @@ public class DosirakController {
 	@RequestMapping("/kakaopay_custom.do")
 	public String kakaopay_custom(CustomOrderDto custom_dto, Model model,HttpSession session, HttpServletRequest request) {
 		MemberDto memberdto = (MemberDto)session.getAttribute("logindto");
-				
+		
+		System.out.println(custom_dto.getCustom_kal());
+		custom_dto.setCustom_kal(request.getParameter("custom_kal"));
+		
 		if(custom_dto.getCustom_count().equals("4")) {
 			custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
 			custom_dto.setCustom_dish2(request.getParameter("sideDish2"));

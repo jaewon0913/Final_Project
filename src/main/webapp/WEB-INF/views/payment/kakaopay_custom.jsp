@@ -89,7 +89,6 @@
 		<tr>
 			<td colspan="2">
 				<img id="pay" alt="결제" src="resources/bootstrap/image/kakaopay_btn.png">
-				
 				<input type="button" value="취소" onclick="location.href='history.back()'">
 			</td>
 		</tr>
@@ -148,6 +147,14 @@ var date = "";
           var get_phone = document.getElementsByName("get_phone")[0].value;
           var get_subway = document.getElementsByName("get_subway")[0].value;
           var price = document.getElementsByName("price")[0].value;
+          
+          console.log(get_name);
+          console.log(get_phone);
+          console.log(get_subway);
+          console.log(price);
+          console.log(qrcode);
+          console.log(ordernumber);
+          
           //컨트롤러보내고
           document.write('<form action="dosirakorderinsert_custom.do" id="sub_form" method="post">'+
                         '<input type="hidden" name="member_id" value="${memberdto.member_id}">'+

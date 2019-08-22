@@ -59,7 +59,7 @@
 <body>
 
 	<!-- header.jsp -->
-	<%@ include file="WEB-INF/views/header.jsp"%>
+	<%@ include file="header.jsp"%>
 
 
 <!-- -----------------슬라이드 이미지-------------------------------------------- -->
@@ -230,7 +230,7 @@
 	<!-- /.container -->
 
 
-	<%@ include file="WEB-INF/views/footer.jsp"%>
+	<%@ include file="footer.jsp"%>
 
 
 

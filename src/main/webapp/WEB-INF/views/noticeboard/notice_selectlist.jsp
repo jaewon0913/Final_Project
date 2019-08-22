@@ -66,6 +66,7 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
+				
 				<c:choose>
 					<c:when test="${logindto.member_id ne null}">
 						<tr>

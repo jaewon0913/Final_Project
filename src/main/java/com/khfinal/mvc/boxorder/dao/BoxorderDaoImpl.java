@@ -50,7 +50,7 @@ public class BoxorderDaoImpl implements BoxorderDao {
 		
 		int res = sqlSession.insert(namespace+"dosirakinsert",dto);
 		
-		return 0;
+		return res;
 	}
 
 	@Override

@@ -22,15 +22,13 @@ import com.khfinal.mvc.member.dto.MemberDto;
  */
 @Controller
 public class HomeController {
-
-	@Autowired
-	private MemberBiz memberbiz;
-
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@RequestMapping("/mainpage.do")
 	public String main() {
-		return "redirect:mainpage.jsp";
+		
+		
+		return "mainpage";
 	}
 
 	@RequestMapping("/chat.do")

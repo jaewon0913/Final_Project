@@ -1,5 +1,6 @@
 package com.khfinal.mvc;
 
+import java.lang.reflect.Field;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -47,10 +48,22 @@ public class BoxorderController {
 	@RequestMapping("/dosirakorderinsert_custom.do")
 	public String dosirakorderinsert_custom(Model model,BoxorderDto boxorderdto, CustomOrderDto customdto) {
 		
+		System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+		try{
+	        Object obj=boxorderdto;
+	        for (Field field : obj.getClass().getDeclaredFields()){
+	            field.setAccessible(true);
+	            Object value=field.get(obj);
+	            System.out.println(field.getName()+","+value);
+	        }
+	    }catch (Exception e){
+	        e.printStackTrace();
+	    }
+		
 		int res = boxorderbiz.dosirakinsert(boxorderdto);
 		
-//		BoxorderDto dto = boxorderbiz.selectOne(boxorderdto.getMember_id(), boxorderdto.getOrdernumber());
-//		model.addAttribute("dto", dto);
+		System.out.println("요까지도 온건가???");
+
 		
 		return "redirect:orderresult.do?member_id="+boxorderdto.getMember_id()+"&ordernumber="+boxorderdto.getOrdernumber();
 	}

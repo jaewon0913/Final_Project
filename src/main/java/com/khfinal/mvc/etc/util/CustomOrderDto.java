@@ -13,8 +13,8 @@ public class CustomOrderDto {
 	private String custom_dish5;
 	private String custom_dish6;
 	private String custom_dish7;
-	private String custom_delivery;
-	private String custom_time;
+	private String custom_delivery;	// 날짜?
+	private String custom_time;	//	아침 or 저녁
 	private String custom_count;
 	
 	public String getCustom_price() {
