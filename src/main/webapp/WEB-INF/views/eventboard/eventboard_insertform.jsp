@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- include libraries(jQuery, bootstrap )-->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<!-- include summernote css/js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+
 </head>
 <%
 String member_id = "test";
@@ -13,11 +19,8 @@ int member_level = 0;
 
 <body>
 		
-	<!--header -->
-	<%@ include file="../header.jsp"%>
-		
-	
-		
+	<h1>이벤트 글쓰기</h1>
+
 	<form action="eventboard_insert.do" method="post">
 	
 	<%-- <input type="hidden" name="member_id" value="${member_id }" readonly="readonly"><!--  세션에서 가져와야함 -->
@@ -39,11 +42,11 @@ int member_level = 0;
 			</tr>
 			<tr>
 				<th>제  목</th>
-				<td><input type="text"	name="event_title" placeholder="졔목을 작성해 주세요"></td>
+				<td><textarea name="event_title" class="summernote" ></textarea></td>
 			</tr>
 			<tr>
 				<th>글 내용</th>
-				<td><textarea row="100" cols="60" name="event_content" placeholder="글을 작성해 주세요"  ></textarea></td>
+				<td colspan="2"><textarea name = "event_content" class="summernote"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -57,6 +60,24 @@ int member_level = 0;
 	<br>
 	<br>
 	
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>	
+
+<script type="text/javascript">
+$(document).ready(function() {
+	  $('.summernote').summernote({
+	    	placeholder: 'content',
+	        minHeight: 370,
+	        maxHeight: null,
+	        focus: true, 
+	        lang : 'ko-KR'
+	  });
+	});
+
+
+</script>
+
 	<!--footer-->
 	<%@ include file="../footer.jsp"%>
 

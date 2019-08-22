@@ -56,7 +56,6 @@
 			<th>상품명</th>
 			<td><input type="text" value="${dto.dosirak_title }" readonly="readonly"></td>
 		</tr>
-	
 		<tr>
 			<td colspan="2">[수령인 정보]</td>
 		</tr>

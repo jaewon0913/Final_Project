@@ -35,15 +35,22 @@ public class BoxorderController {
 
 	
 	@RequestMapping("/dosirakorderinsert.do")
-	public String dosirakorderinsert(Model model,BoxorderDto boxorderdto) {
-		System.out.println(boxorderdto.getDosirak_delivery()+" "+boxorderdto.getOrdernumber());
-		int res = boxorderbiz.dosirakinsert(boxorderdto);
-		
-//		BoxorderDto dto = boxorderbiz.selectOne(boxorderdto.getMember_id(), boxorderdto.getOrdernumber());
-//		model.addAttribute("dto", dto);
-		
-		return "redirect:orderresult.do?member_id="+boxorderdto.getMember_id()+"&ordernumber="+boxorderdto.getOrdernumber();
-	}
+	   public String dosirakorderinsert(Model model,BoxorderDto boxorderdto) {
+	      
+	      
+	      System.out.println(boxorderdto.getDosirak_delivery()+" "+boxorderdto.getOrdernumber());
+	      boxorderdto.setDish1("없음");
+	      boxorderdto.setDish2("없음");
+	      boxorderdto.setDish3("없음");
+	      boxorderdto.setDish4("없음");
+	      boxorderdto.setDish5("없음");
+	      boxorderdto.setDish6("없음");
+	      boxorderdto.setDish7("없음");
+	      boxorderdto.setCustom_status("N");
+	      int res = boxorderbiz.dosirakinsert(boxorderdto);
+	            
+	      return "redirect:orderresult.do?member_id="+boxorderdto.getMember_id()+"&ordernumber="+boxorderdto.getOrdernumber();
+	   }
 	
 	@RequestMapping("/dosirakorderinsert_custom.do")
 	public String dosirakorderinsert_custom(Model model,BoxorderDto boxorderdto, CustomOrderDto customdto) {

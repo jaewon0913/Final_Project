@@ -100,8 +100,8 @@
 	position: fixed;
 	right: 0px;
 	margin-bottom: 30rem;
-	height: 30rem;
-	width: 20rem;
+	height: 35rem;
+	width: 22rem;
 	background-color: white;
 }
 
@@ -173,7 +173,7 @@
 	</div>
 	<hr />
 	
-	<div class="payback" style = "top : 174px;">
+	<div class="payback" style = "top : 20rem; overflow: auto;">
 		<ul class="nav nav-tabs">
 			<li class="mint line font" style="width: 50%">
 				<input class="btn " type="button" id="one" value="1회 구매" style="width: 10rem" />
@@ -183,8 +183,8 @@
 			</li>
 		</ul>
 		
-		<form action="kakaopay_custom.do" method = "POST">
-		<div class="container" id="sendDiv">
+		<form action="kakaopay_custom.do" method = "POST" style=" overflow: auto;">
+		<div class="container" id="sendDiv" >
 			<hr/>
 			<p class="font">탄수화물 : <span id = "tan_span">0</span>g</p>
 			<input type = "hidden" id = "input_tan" name = "custom_tan" value =""/>
