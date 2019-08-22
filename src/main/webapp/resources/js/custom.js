@@ -7,9 +7,9 @@ function createCookie(count){
 	var cookie_tan = jb("#tan_span").text();
 	var cookie_dan = jb("#dan_span").text();
 	var cookie_zi = jb("#zi_span").text();
-	var cookie_price = jb("#price_span").text();
+	var cookie_price = jb("#price_input").val();
 	var cookie_count = count;
-	
+		
 	var cookie_src = new Array();
 	jb(".copydish").each(function (){
 		cookie_src.push(jb(this).attr("src"));
@@ -55,7 +55,7 @@ function createCookie(count){
 				dish3 : cookie_dish[2], src3 : cookie_src[2],
 				dish4 : cookie_dish[3], src4 : cookie_src[3],
 				dish5 : cookie_dish[4], src5 : cookie_src[4],
-				dish6 : cookie_dish[5], src5 : cookie_src[5],
+				dish6 : cookie_dish[5], src6 : cookie_src[5],
 				count : cookie_count,
 				cal : cookie_cal,
 				tan : cookie_tan,
@@ -82,8 +82,8 @@ function createCookie(count){
 				dish3 : cookie_dish[2], src3 : cookie_src[2],
 				dish4 : cookie_dish[3], src4 : cookie_src[3],
 				dish5 : cookie_dish[4], src5 : cookie_src[4],
-				dish6 : cookie_dish[5], src5 : cookie_src[5],
-				dish7 : cookie_dish[6], src5 : cookie_src[6],
+				dish6 : cookie_dish[5], src6 : cookie_src[5],
+				dish7 : cookie_dish[6], src7 : cookie_src[6],
 				count : cookie_count,
 				cal : cookie_cal,
 				tan : cookie_tan,
@@ -101,8 +101,6 @@ function createCookie(count){
 			}
 		});
 	}
-	
-	
 }
 
 var contextPath = '${pageContext.request.contextPath }';
@@ -152,7 +150,7 @@ function drop_handler(event){
 	
 	//	데이터 추가하기
 	one_data(original.id, original.name, event.target.childNodes[1]);	//	1회 구매창
-	multi_data(original.id, original.name);	//	정기 구매창
+	multi_data(original.id, original.name, event.target.childNodes[1]);	//	정기 구매창
 	
 	event.target.appendChild(copyimg);
 	copyimg.setAttribute("style","width : 15rem; height : 15rem;");
@@ -329,13 +327,13 @@ function one_data(msg, name, data){
 	}
 }
 
-function multi_data(msg, name){
+function multi_data(msg, name , data){
 	
 	var data_name = name;
 	
 	var tag = "<div id = '"+ msg +"copy_sendDiv2'>" +
 			"<span class = 'font' id = '"+ msg  + "'>"+data_name+"</span>" +
-			"<input type ='button' value ='x' id ='' style = 'float : right; font-size : 1rem;'>" +
+			"<input type ='button' value ='x' id ='' style = 'float : right; font-size : 1rem;'>" + data.outerHTML + 
 			"</div>";
 	
 	jb("#sendDiv2").prepend(tag);

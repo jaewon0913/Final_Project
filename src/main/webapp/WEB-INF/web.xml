@@ -16,7 +16,7 @@
 	
 	<!-- 시작페이지 설정 -->
  	<welcome-file-list>
-		<welcome-file>mainpage.jsp</welcome-file>
+		<welcome-file>startpage.jsp</welcome-file>
 	</welcome-file-list>
 	
 	<!-- 타이틀설정 -->
