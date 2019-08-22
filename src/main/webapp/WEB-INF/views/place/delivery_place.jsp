@@ -64,16 +64,10 @@ margin-bottom: 5rem;
 			if (window.Notification) {
 				Notification.requestPermission();
 			}
-			calculate();
+			notify01();
 		}
 
-		function calculate() {
-			setTimeout(function() {
-				notify();
-			}, 500);
-		}
-
-		function notify() {
+		function notify01() {
 			if (Notification.permission !== 'granted') {
 				alert('notification is disabled');
 			} else {
@@ -81,6 +75,10 @@ margin-bottom: 5rem;
 					icon : 'resources/bootstrap/image/map1.jpg',
 					body : '배달 장소는 6곳입니다.\n마커 클릭 시 지도가 확대됩니다.',
 				});
+				
+				notification.onclick = function() {
+					notification.close();
+				};
 
 			}
 

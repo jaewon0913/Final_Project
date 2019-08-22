@@ -116,19 +116,21 @@ a.nav-link:hover{
 		</nav>
 		
 	<script type="text/javascript">
-			var EndEvent = new Date('March 14, 09:12:30');
+			var EndEvent = new Date('March 14, 14:29:00');
 			End_hours = EndEvent.getHours();
 			End_minutes = EndEvent.getMinutes();
 			End_seconds = EndEvent.getSeconds();
 
-			var StartEvent = new Date('March 14, 09:11:40');
+			//강연시 시간을 변경할것
+			var StartEvent = new Date('March 14, 14:26:40');
 			Start_hours = StartEvent.getHours();
 			Start_minutes = StartEvent.getMinutes();
 			Start_seconds = StartEvent.getSeconds();
 
-			
+			if(window.location.href != 'http://localhost:8787/mvc/eventboard_list.do'){
 			var EVT = setInterval("Event_Time()", 1000);
-
+			}
+			
 			function Event_Time() {
 				var now = new Date();
 				hours = now.getHours();
@@ -217,7 +219,7 @@ a.nav-link:hover{
 			function calculate() {
 				setTimeout(function() {
 					notify();
-				}, 500);
+				}, 100);
 				clearInterval(EVT);
 			}
 
@@ -227,11 +229,11 @@ a.nav-link:hover{
 				} else {
 					var notification = new Notification('Event', {
 						icon : 'resources/bootstrap/image/Event.jpg',
-						body : '이벤트의 내용을 적어 주세요',
+						body : '이벤트의 내용을 적어 주세요\n클릭시 이벤트 페이지로 이동',
 					});
 
 					notification.onclick = function() {
-						//location.href = 'mainpage.do';
+						location.href = 'eventboard_list.do';
 						notification.close();
 					};
 				}
