@@ -101,62 +101,63 @@ td>a:hover {
 	<div class="container">
 		<h1>자유 게시판</h1>
 		<br>
-		<div class = "container col-sm-12 text-center">
+		<div class="container col-sm-12 text-center">
 			<table>
 				<tr>
-					<td colspan="5" ><input type="text" id="txt_search" 
-						value="${txt_search }"> <input type="button" value="검색"   
+					<td colspan="5"><input type="text" id="txt_search"
+						value="${txt_search }"> <input type="button" value="검색"
 						onclick="javascript:PageMove(${paging.pageNo})"
 						class="btn btn-outline-light"></td>
 				</tr>
 			</table>
 			<br>
 
-	<c:choose>
-		<c:when test="${empty freeboard_list }">
-			<h3>고객 정보가 없습니다. ㅜ.ㅜ...</h3>
-			<!-- 사용여부결정해야함 0810 -->
-			<tr>
-					<td colspan="3">===== 작성된 글이 없습니다 ====</td>
-			</tr>
-		</c:when>
-		<c:otherwise>
-			<form action="freeboard_muldel.do" method="post" id="freeboard_muldel">
-				<table class="table table-hover">
+			<c:choose>
+				<c:when test="${empty freeboard_list }">
+					<h3>고객 정보가 없습니다. ㅜ.ㅜ...</h3>
+					<!-- 사용여부결정해야함 0810 -->
 					<tr>
-						<th><input type="checkbox" name="allchk"
-							onclick="allChk(this.checked)"></th>
-						<th>번호</th>
-						<th>작성자</th>
-						<th>제목</th>
-						<th>조회수</th>
-						<th>작성일</th>
+						<td colspan="3">===== 작성된 글이 없습니다 ====</td>
 					</tr>
-					<c:choose>
-						<c:when test="${empty freeboard_list }">
-							<h3>고객 정보가 없습니다. ㅜ.ㅜ...</h3>
-							<!-- 사용여부결정해야함 0810 -->
+				</c:when>
+				<c:otherwise>
+					<form action="freeboard_muldel.do" method="post"
+						id="freeboard_muldel">
+						<table class="table table-hover">
 							<tr>
-								<td colspan="3">===== 작성된 글이 없습니다 ====</td>
+								<th><input type="checkbox" name="allchk"
+									onclick="allChk(this.checked)"></th>
+								<th>번호</th>
+								<th>작성자</th>
+								<th>제목</th>
+								<th>조회수</th>
+								<th>작성일</th>
 							</tr>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${freeboard_list }" var="dto">
-								<tr>
-									<%-- <td><input type="checkbox" name="free_chk" value="${dto.member_name} }"></td> --%>
-									<td><input type="checkbox" name="free_chk"
-										value="${dto.free_postnum}"></td>
-									<td>${dto.free_postnum }</td>
-									<td>${dto.member_name }</td>
-									<td><a
-										href="freeboard_detail.do?free_postnum=${dto.free_postnum }">${dto.free_title }</a></td>
-									<td>${dto.free_views }</td>
-									<td>${dto.free_regdate }</td>
-								</tr>
-							</c:forEach>
-							</c:otherwise>
-			</c:choose>
-							
+							<c:choose>
+								<c:when test="${empty freeboard_list }">
+									<h3>고객 정보가 없습니다. ㅜ.ㅜ...</h3>
+									<!-- 사용여부결정해야함 0810 -->
+									<tr>
+										<td colspan="3">===== 작성된 글이 없습니다 ====</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${freeboard_list }" var="dto">
+										<tr>
+											<%-- <td><input type="checkbox" name="free_chk" value="${dto.member_name} }"></td> --%>
+											<td><input type="checkbox" name="free_chk"
+												value="${dto.free_postnum}"></td>
+											<td>${dto.free_postnum }</td>
+											<td>${dto.member_name }</td>
+											<td><a
+												href="freeboard_detail.do?free_postnum=${dto.free_postnum }">${dto.free_title }</a></td>
+											<td>${dto.free_views }</td>
+											<td>${dto.free_regdate }</td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+
 							<tr>
 								<td colspan="6" align="right"><input type="button"
 									value="처음으로" onclick="location.href='mainpage.do'"
@@ -172,9 +173,10 @@ td>a:hover {
 
 								</td>
 							</tr>
-				</table>
-			</form>
-			
+						</table>
+					</form>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<br> <br>
 
@@ -191,27 +193,26 @@ td>a:hover {
 	</table> --%>
 
 
-		
-<!-- Pagination -->
-	<div class="container text-center " style="font-size: 3rem;">
-	<span>
-		<a href="javascript:PageMove(${paging.firstPageNo})"  class="page">&laquo;</a> <a
-			href="javascript:PageMove(${paging.prevPageNo})" class="page">&lt;</a>
-		<c:forEach var="i" begin="${paging.startPageNo}"
-			end="${paging.endPageNo}" step="1">
-			<c:choose>
-				<c:when test="${i eq paging.pageNo}">
-					<a href="javascript:PageMove(${i})" class="page">${i}</a>
-				</c:when>
-				<c:otherwise>
-					<a href="javascript:PageMove(${i})" class="page">${i}</a>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		<a href="javascript:PageMove(${paging.nextPageNo})" class="page">&gt;</a> <a
-			href="javascript:PageMove(${paging.finalPageNo})" class="page">&raquo;</a>
-	</span>
-	</div>
+
+		<!-- Pagination -->
+		<div class="container text-center " style="font-size: 3rem;">
+			<span> <a href="javascript:PageMove(${paging.firstPageNo})"
+				class="page">&laquo;</a> <a
+				href="javascript:PageMove(${paging.prevPageNo})" class="page">&lt;</a>
+				<c:forEach var="i" begin="${paging.startPageNo}"
+					end="${paging.endPageNo}" step="1">
+					<c:choose>
+						<c:when test="${i eq paging.pageNo}">
+							<a href="javascript:PageMove(${i})" class="page">${i}</a>
+						</c:when>
+						<c:otherwise>
+							<a href="javascript:PageMove(${i})" class="page">${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach> <a href="javascript:PageMove(${paging.nextPageNo})" class="page">&gt;</a>
+				<a href="javascript:PageMove(${paging.finalPageNo})" class="page">&raquo;</a>
+			</span>
+		</div>
 		<!-- /Pagination -->
 
 
