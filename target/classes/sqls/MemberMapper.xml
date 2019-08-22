@@ -64,4 +64,5 @@
 		FROM MEMBER
 		WHERE MEMBER_EMAIL = #{member_email}
 	</select>
+	
 </mapper>

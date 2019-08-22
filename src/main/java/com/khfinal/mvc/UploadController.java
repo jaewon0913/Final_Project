@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
 import com.khfinal.mvc.etc.biz.UploadBiz;
@@ -40,13 +43,6 @@ public class UploadController implements ServletContextAware {
 	
 	@Autowired
 	private FileValidator fileValidator;
-	
-	@RequestMapping("/custom.do")
-	public String custom(Model model) {
-		model.addAttribute("list",biz.selectList("쌀밥류"));
-		
-		return "custom/CustomPage";
-	}
 
 	//	2. form을 받아서 uploadForm.jsp 로 페이지 이동하라
 	@RequestMapping("/dishinsert_form.do")
@@ -69,11 +65,17 @@ public class UploadController implements ServletContextAware {
 			name = "샐러드류";
 		} else if(dishname.equals("sidedish")) {
 			name = "반찬류";
+		} else if(dishname.equals("kimchi")) {
+			name = "김치류";
+		} else if(dishname.equals("fish")) {
+			name = "생선류";
 		}
 		
 		List<UploadFile> list = new ArrayList<UploadFile>();
 		
 		list = biz.selectList(name);
+		
+		model.addAttribute("list",list);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
@@ -83,8 +85,7 @@ public class UploadController implements ServletContextAware {
 	
 	//	6. uploadForm.jsp 에서 submit을 눌렀을 경우 실행
 	@RequestMapping(value="/upload.do")
-	public String fileUpload(HttpServletRequest request, Model model, 
-			UploadFile uploadFile, BindingResult result) {
+	public String fileUpload(HttpServletRequest request, Model model, UploadFile uploadFile, BindingResult result) {
 		//	BindingResult : uploadForm.jsp 에서 modelAttribute 를 이용해 매개변수를 Bean에 binding 할 때 발생한 오류 정보를 받는다.
 		
 		//	7.	업로드 파일 데이터 저장 (FileValidator.java 로 이동)
@@ -102,7 +103,7 @@ public class UploadController implements ServletContextAware {
 		
 		//	9. 새로운 UploadFile.class 생성 후 위에서 저장시킨 데이터 다시 저장
 		
-		System.out.println("disth_tan : " + uploadFile.getDish_tan());
+		System.out.println("dish_tan : " + uploadFile.getDish_tan());
 		
 		UploadFile fileobj = new UploadFile();
 		fileobj.setFile_name(filename);
@@ -123,12 +124,15 @@ public class UploadController implements ServletContextAware {
 		try {
 			//	11. request.getSession().getServletContext()에서 /storage 폴더 까지 경로 저장
 			inputStream = file.getInputStream();
-			String path = servletContext.getRealPath("/resources");
-			fileobj.setFile_path(path + "/" + filename);
+			
+			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/etc/upload");
+			
 			System.out.println("업로드 될 실제 경로 : " + path);
-			System.out.println("업로드 될 경로 + 이름 :" + fileobj.getFile_path());
+			System.out.println("servletcontext : " + servletContext.getRealPath("resources/etc/upload"));
+			fileobj.setFile_path(path + "/" + filename);
 			
 			//	12. 위의 path의 경로를 가진 파일 저장소 생성
+			//File storage = new File(testPath);
 			File storage = new File(path);
 			
 			//	12-1. 만약 저장소가 존재 하지 않으면 저장소를 만든다.
@@ -137,7 +141,8 @@ public class UploadController implements ServletContextAware {
 			}
 			
 			//	13. 위의 path의 경로에 새로운 파일 생성
-			File newfile = new File(path + "/" + filename);
+			//File newfile = new File(testPath + "/" + filename);
+			File newfile = new File(path +"/"+ filename);
 			
 			//	13-1. 경로에 파일이 없으면 파일을 만든다.
 			if(!newfile.exists()) {
@@ -174,8 +179,6 @@ public class UploadController implements ServletContextAware {
 		}
 		
 		//	15. model에 fileobj로 저장
-//		model.addAttribute("fileobj", fileobj);
-		
 		model.addAttribute("list",biz.selectList("쌀밥류"));
 		
 		//	16. uploadFile.jsp로 이동

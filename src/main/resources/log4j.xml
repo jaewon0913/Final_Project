@@ -9,21 +9,25 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
-	
+
+	<Logger name="jdbc.sqlonly" level="DEBUG" additivity="false">
+		<AppenderRef ref="console" />
+	</Logger>
+
 	<!-- Application Loggers -->
 	<logger name="com.khfinal.mvc">
 		<level value="info" />
 	</logger>
-	
+
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
 	</logger>
-	
+
 	<logger name="org.springframework.beans">
 		<level value="info" />
 	</logger>
-	
+
 	<logger name="org.springframework.context">
 		<level value="info" />
 	</logger>
@@ -34,8 +38,9 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<!-- <priority value="warn" /> -->
+		<level value="debug" />
 		<appender-ref ref="console" />
 	</root>
-	
+
 </log4j:configuration>

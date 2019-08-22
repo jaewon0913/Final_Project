@@ -3,14 +3,26 @@
 <mapper namespace="noticeboard">
 
 	<select id = "NoticeSelectlist" resultType="NoticeDto"> <!-- 목록 -->
-		SELECT 
-			NOTICE_POSTNUM,
-			MEMBER_ID,
-			NOTICE_TITLE,
-			NOTICE_REGDATE,
-			NOTICE_VIEWS
+	SELECT *
+		FROM (SELECT ROWNUM AS RNUM, P.*
+		FROM ( SELECT *
 		FROM NOTICEBOARD
+		<if test="txt_search != null">
+			WHERE upper(NOTICE_TITLE) like '%' || upper(#{txt_search}) || '%'
+		</if>
+		ORDER BY NOTICE_POSTNUM
+		) P
+		)
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +
+		#{recordCountPerPage}
+	</select>
 	
+	<select id="totalcount" parameterType="map" resultType="Integer">
+		SELECT count(*)
+		FROM NOTICEBOARD
+		<if test="txt_search != null">
+			WHERE upper(NOTICE_TITLE) like '%' || upper(#{txt_search}) || '%'
+		</if>
 	</select>
 	
 	<select id = "NoticeSelectOne" parameterType="map" resultType="NoticeDto"><!-- 상세보기 -->
