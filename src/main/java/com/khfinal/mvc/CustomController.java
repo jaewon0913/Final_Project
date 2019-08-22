@@ -61,13 +61,13 @@ public class CustomController {
 		Cookie setCookie_price = new Cookie("cookiePrice", dto.getPrice());
 		Cookie setCookie_count = new Cookie("cookieCount", dto.getCount());
 		
-		setCookie_name.setMaxAge(60);
-		setCookie_tan.setMaxAge(60);
-		setCookie_dan.setMaxAge(60);
-		setCookie_zi.setMaxAge(60);
-		setCookie_cal.setMaxAge(60);
-		setCookie_price.setMaxAge(60);
-		setCookie_count.setMaxAge(60);
+		setCookie_name.setMaxAge(60*60*24);
+		setCookie_tan.setMaxAge(60*60*24);
+		setCookie_dan.setMaxAge(60*60*24);
+		setCookie_zi.setMaxAge(60*60*24);
+		setCookie_cal.setMaxAge(60*60*24);
+		setCookie_price.setMaxAge(60*60*24);
+		setCookie_count.setMaxAge(60*60*24);
 		
 		response.addCookie(setCookie_name);
 		response.addCookie(setCookie_tan);
@@ -84,11 +84,11 @@ public class CustomController {
 			Cookie setCookie_dish4 = new Cookie("cookieDish4", dto.getDish4());
 			Cookie setCookie_dish5 = new Cookie("cookieDish5", dto.getDish5());
 			
-			setCookie_dish1.setMaxAge(60);
-			setCookie_dish2.setMaxAge(60);
-			setCookie_dish3.setMaxAge(60);
-			setCookie_dish4.setMaxAge(60);
-			setCookie_dish5.setMaxAge(60);
+			setCookie_dish1.setMaxAge(60*60*24);
+			setCookie_dish2.setMaxAge(60*60*24);
+			setCookie_dish3.setMaxAge(60*60*24);
+			setCookie_dish4.setMaxAge(60*60*24);
+			setCookie_dish5.setMaxAge(60*60*24);
 			
 			response.addCookie(setCookie_dish1);
 			response.addCookie(setCookie_dish2);

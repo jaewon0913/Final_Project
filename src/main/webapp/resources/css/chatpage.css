@@ -9,6 +9,7 @@
 		width: 60rem; 
 		height: 30rem;
 		top : 17rem;
+		border-radius: 15px;
 	}
 	#send_div{
 		z-index : 10;
@@ -19,6 +20,7 @@
 		left : 5rem;
 		width: 60rem; 
 		top : 47rem;
+		border-radius: 15px;
 	}
 	#send_btn{
 		width : 10rem;
@@ -50,6 +52,7 @@
 	height: 30rem;
 	top: 22rem;
 	overflow : scroll;
+	border-radius: 15px;
 }
 
 #bot_send_div {
@@ -61,6 +64,7 @@
 	left: 5rem;
 	width: 55rem;
 	top: 52rem;
+	border-radius: 15px;
 }
 
 #bot_send_btn {
@@ -72,6 +76,7 @@
 #bot_message {
 	width: 435px;
 	margin-right: 6px;
+	border-radius: 30px;
 }
 
 .arrow_box {

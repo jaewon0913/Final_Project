@@ -74,10 +74,10 @@ td>a:hover {
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
-					<c:when test="${logindto.member_id ne null}">
+					<c:when test="${logindto.member_id eq 'admin'}">
 						<tr>
 							<td colspan="5" align="right"><input
-								class="btn btn-outline-dark" type="button" value="글쓰기"
+								class="btn btn-outline-light" type="button" value="글쓰기"
 								onclick="location.href='notice_insertform.do'"></td>
 						</tr>
 					</c:when>

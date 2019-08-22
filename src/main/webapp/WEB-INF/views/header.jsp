@@ -64,10 +64,27 @@ a.nav-link:hover{
 <body>
 	<header>
 		<nav class="header navbar navbar-expand-lg fixed-top " style="margin-bottom: 0px;">
-		<div style="float: left; width: 50%;">
+		<div class="col-md-4">
 			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
 			</div>
-			<div style="float: right; width: 50%; text-align: right;" class="pull-right">
+			<!-- search bar -->
+		<div class="col-md-4  ">
+			<table class="pull-right search">
+				<tr>
+					<td>
+						<div class="form-group form-inline search">
+							<input type="text" id="txt_search" value="${txt_search }"
+								style="border-radius: 5px;">
+							<button type="button"
+								onclick="javascript:PageMove(${paging.pageNo})"
+								class="btn btn-outline-light">검색하기</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!-- search bar -->
+			<div  class="pull-right col-md-6">
 				<c:choose>
 					<c:when test="${empty logindto}">
 							<span class="loginbutton btn" onclick="location.href='loginMain.do'">로그인</span>
@@ -108,7 +125,7 @@ a.nav-link:hover{
 						<li class="nav-item"><a class="nav-link" href="freeboard_list.do">자유 게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="eventboard_list.do">이벤트 게시판</a>
 						</li>
-						<li class="nav-item "><a class="nav-link" href="delivery_place.do">배달장소 확인</a>
+						<li class="nav-item "><a class="nav-link" href="notice_list.do">공지사항 게시판</a>
 						</li>
 					</ul>
 				</div>

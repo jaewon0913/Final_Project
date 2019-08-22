@@ -16,7 +16,7 @@
 .iii {
 	width: 25rem; 
 	height : 25rem; 
-	transition: width 1s, height 1s;
+	transition: width 0.5s, height 0.5s;
 }
 
 .iii:hover {
@@ -39,18 +39,30 @@
 	opacity: 0.8;
 	
 }
+.event{
+	width: 70%;
+	height: 20rem;
+}
 .event:hover{
+	width: 70%;
+	height: 20rem;
 	opacity: 0.8;
 }
 .search{
 margin-top: 1rem;
 }
-
+.bar{
+margin-top: 8rem;
+}
+.logo2{
+	width: 20rem;
+	height: 8rem;
+}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
    function PageMove(page) {
-      location.href = "dosirak_listpagig.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
+      location.href = "dosirak_listpagig.do?page=" + page;
    }
    
 	function allChk(val){
@@ -77,39 +89,27 @@ margin-top: 1rem;
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
-	<div class="container">
-<div class="col-md-5">
-<img alt="evevt" src="resources/bootstrap/image/event.png" onclick="location.href='eventboard_list.do'" class="event">
-</div>
-<!-- search bar -->
-	<div class="col-md-5 pull-right">
-		<table class="pull-right search">
-			<tr>
-				<td>
-					<div class="form-group form-inline search" >
-						<input type="text" id="txt_search" value="${txt_search }" style="border-radius: 5px;">
-						<button type="button"
-							onclick="javascript:PageMove(${paging.pageNo})" class="btn btn-outline-light">검색하기</button>
-					</div>
-				</td>
-			</tr>
-		</table>
-	</div>
-<!-- search bar -->
+	<div class="container text-center center" >
+<img alt="evevt" src="resources/bootstrap/image/event3.png" onclick="location.href='eventboard_list.do'" class="event">
 </div>
 <!-- ------------------best3------------------ -->
 	<div class="container best3 center ">
-		<h1 style="text-align: center;">Best 3</h1>
+		<h1>Best 3</h1>
 		<br/><br/><br/>
+		
 		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
 			<img alt="test" src="resources/bootstrap/image/do1.jpg" class="iii">
 		</div>
+		
 		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
 			<img alt="test" src="resources/bootstrap/image/do1.jpg" class="iii">
 		</div>
+		
 		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
 			<img alt="test" src="resources/bootstrap/image/do1.jpg" class="iii">
 		</div>
+		
+		
 	</div>
 
 <!-- ------------------best3------------------ -->

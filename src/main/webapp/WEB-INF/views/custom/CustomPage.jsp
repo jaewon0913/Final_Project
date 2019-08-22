@@ -425,7 +425,7 @@
 		<p>반찬선택</p>
 		<c:if test="${logindto.member_id eq 'admin' }">
 			<!-- 글작성 테스트 -->
-			<input type="button" value="반찬 등록" onclick="location.href='dishinsert_form.do'">
+			<input type="button" value="반찬 등록" onclick="location.href='dishinsert_form.do'" class="btn btn-outline-light">
 		</c:if>
 		<div class="container" style="text-align: center;">
         		<img alt="밥" src="${pageContext.request.contextPath }/resources/bootstrap/image/rice.png" class="iconbtn" onclick = "changeDish('rice')" />&emsp;

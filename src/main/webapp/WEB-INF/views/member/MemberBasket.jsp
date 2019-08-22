@@ -17,15 +17,22 @@
 <link href="resources/bootstrap/css/small-business.css" rel="stylesheet">
 
 
+<style type="text/css">
+
+.em{
+	padding-left: 15rem;
+	padding-right: 15rem;
+}
+</style>
+
 </head>
 <body>
 	<!-- header.jsp -->
 	<%@ include file="../header.jsp"%>
 	
+	<div class="em">
 	<!-- Body -->
-	<table>
-		<col width = "300px">
-		<col width = "200px">
+	<table class="table ">
 	
 		<c:choose>
 			<c:when test="${empty cookiedto}">
@@ -44,7 +51,7 @@
 				<c:when test="${cookiedto.count == 4 }">
 					<tr>
 						<th>${cookiedto.dish1 }</th>
-						<th rowspan = "5">
+						<th rowspan = "5" class="border center">
 							칼로리 : ${cookiedto.cal }<br>
 							탄수화물 : ${cookiedto.tan }<br>
 							단백질 : ${cookiedto.dan }<br>
@@ -74,7 +81,7 @@
 	</table>
 
 
-
+</div>
 
 
 
