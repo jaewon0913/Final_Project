@@ -8,6 +8,7 @@ public interface DosirakBiz {
 
 	public List<DosirakDto> selectList();
 	public DosirakDto selectOne(int dosirak_postnum);
+	public DosirakDto selecttest(int dosirak_postnum);
 	
 	//페이징
 	public List<DosirakDto> selectListPaging(int firstIndex, int recordCountPerPage, String txt_search);

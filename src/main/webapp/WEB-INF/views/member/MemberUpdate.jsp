@@ -17,31 +17,31 @@
 	<table class="table">
 		<tr>
 			<td>이름</td>
-			<th><input type="text" name="member_name" value="${login.member_name}" readonly="readonly"/></th>
+			<th><input type="text" name="member_name" value="${memberdto.member_name}" readonly="readonly"/></th>
 		</tr>
 		<tr>
 			<td>ID</td>
-			<th><input type="text" name="member_id" value="${login.member_id}" readonly="readonly"/></th>
+			<th><input type="text" name="member_id" value="${memberdto.member_id}" readonly="readonly"/></th>
 		</tr>
 		<tr>
 			<td>PW</td>
-			<th><input type="password" name="member_pw" value="${login.member_pw}"/></th>
+			<th><input type="password" name="member_pw" value="${memberdto.member_pw}"/></th>
 		</tr>
 		<tr>
 			<td>전화번호</td>
-			<th><input type="text" name="member_phone" value="${login.member_phone}"></th>
+			<th><input type="text" name="member_phone" value="${memberdto.member_phone}"></th>
 		</tr>
 		<tr>
 			<td>이메일</td>
-			<th><input type="email" name="member_email" value="${login.member_email}"/></th>
+			<th><input type="email" name="member_email" value="${memberdto.member_email}"/></th>
 		</tr>
 		<tr>
 			<td>주소</td>
-			<th><input type="text" name="member_address" value="${login.member_address}"/></th>
+			<th><input type="text" name="member_address" value="${memberdto.member_address}"/></th>
 		</tr>
 		<tr>
 			<td>지하철 역</td>
-			<th><input type="text" name="member_subway" value="${login.member_subway}"/></th>
+			<th><input type="text" name="member_subway" value="${memberdto.member_subway}"/></th>
 		</tr>
 		<tr >
 			<td colspan="2" align="right"><input type="submit" value="수정하기" class="btn btn-outline-dark" >

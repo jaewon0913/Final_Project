@@ -1,7 +1,9 @@
 package com.khfinal.mvc;
 
-
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khfinal.mvc.dosirak.biz.DosirakBiz;
 import com.khfinal.mvc.dosirak.dto.DosirakDto;
+import com.khfinal.mvc.etc.util.CustomOrderDto;
+import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.paging.Paging;
 
 @Controller
@@ -21,11 +25,60 @@ public class DosirakController {
 	@Autowired
 	private DosirakBiz dosirakbiz;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	@RequestMapping("/dosiraktest.do")
+	public String dosiraktest(Model model) {
+		DosirakDto dosirakdto = dosirakbiz.selecttest(1);
+		model.addAttribute("dosirakdto", dosirakdto);
+		
+		return "payment/dosiraktest";
+	}
 	
-	/*
-	 * @RequestMapping("/mainpage.do") public String main() { return
-	 * "redirect:mainpage.jsp"; }
-	 */
+	@RequestMapping("/kakaopay.do")
+	public String kakaopay(DosirakDto dto, Model model,HttpSession session) {
+		System.out.println("kakaopay들어옴");
+		MemberDto memberdto = (MemberDto)session.getAttribute("logindto");
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("memberdto",memberdto);
+		return "payment/kakaopay";
+	}
+	
+	@RequestMapping("/kakaopay_custom.do")
+	public String kakaopay_custom(CustomOrderDto custom_dto, Model model,HttpSession session, HttpServletRequest request) {
+		MemberDto memberdto = (MemberDto)session.getAttribute("logindto");
+				
+		if(custom_dto.getCustom_count().equals("4")) {
+			custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+			custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
+			custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
+			custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
+			custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
+			custom_dto.setCustom_dish6(null);
+			custom_dto.setCustom_dish7(null);
+		} else if (custom_dto.getCustom_count().equals("5")) {
+			custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+			custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
+			custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
+			custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
+			custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
+			custom_dto.setCustom_dish6(request.getParameter("sideDish6"));
+			custom_dto.setCustom_dish7(null);
+		} else {
+			custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+			custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
+			custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
+			custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
+			custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
+			custom_dto.setCustom_dish6(request.getParameter("sideDish6"));
+			custom_dto.setCustom_dish7(request.getParameter("sideDish7"));
+		}
+				
+		model.addAttribute("customdto", custom_dto);
+		model.addAttribute("memberdto",memberdto);
+		return "payment/kakaopay_custom";
+	}
+	
 
 	@RequestMapping("/dosirak_list.do")
 	public String dosiraklist(Model model) {
@@ -37,7 +90,6 @@ public class DosirakController {
 	public String dosiraklistpaging(Model model, String txt_search, String page) {
 		
 		String txt_s = txt_search;
-	
 	      
 	         // 페이징하기
 	         int totalCount = dosirakbiz.totalcount(txt_s);
@@ -62,7 +114,9 @@ public class DosirakController {
 	@RequestMapping("/dosirak_selectone.do")
 	public String dosirakselectOne(Model model, @RequestParam int dosirak_postnum) {
 		System.out.println(dosirak_postnum + "도시락번호12313123");
-		model.addAttribute("dto", dosirakbiz.selectOne(dosirak_postnum));
+		
+		DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
+		model.addAttribute("dosirakdto", dosirakdto);
 		return "dosirak/dosirak_selectone";
 	}
 	

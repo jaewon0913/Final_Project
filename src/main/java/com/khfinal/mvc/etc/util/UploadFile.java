@@ -3,7 +3,7 @@ package com.khfinal.mvc.etc.util;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UploadFile {
-
+	private int upload_no;
 	private String dish_name;
 	private String dish_tan;
 	private String dish_dan;
@@ -14,7 +14,7 @@ public class UploadFile {
 	private MultipartFile file;
 	private String file_name;
 	private String file_path;
-	
+		
 	public String getFile_name() {
 		return file_name;
 	}
@@ -74,5 +74,11 @@ public class UploadFile {
 	}
 	public void setFile(MultipartFile file) {
 		this.file = file;
+	}
+	public int getUpload_no() {
+		return upload_no;
+	}
+	public void setUpload_no(int upload_no) {
+		this.upload_no = upload_no;
 	}
 }
