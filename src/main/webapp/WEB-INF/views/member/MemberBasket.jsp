@@ -23,11 +23,20 @@
 	}
 </style>
 
+<style type="text/css">
+
+.em{
+	padding-left: 15rem;
+	padding-right: 15rem;
+}
+</style>
+
 </head>
 <body>
 	<!-- header.jsp -->
 	<%@ include file="../header.jsp"%>
 	
+	<div class="em">
 	<!-- Body -->
 		<table border = "1" align = "center">
 		<form action="kakaopay_custom.do" method = "POST">

@@ -7,9 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+</style>
 </head>
 <body>
-	<h1>커스텀 도시락 반찬 등록 페이지</h1>
+<%@ include file="../header.jsp"%>
 	<%-- <form name="fileForm" action="cloudUpload.do" method="post" enctype="multipart/form-data">            
                   <input multiple="multiple" type="file" name="file" id="file"/>
                   <input type="text" name="cloudcomm" />
@@ -20,8 +22,10 @@
 	<!--	 Spring이 제공해주는 form 프레임워크 
 			enctype : 인코딩 타입(파일 업로드를 위한 속성) / modelAttribute : UploadFile.java 매핑 -->
 	<!-- multipart/form-data : 브라우저에서 서버로 HTML Form의 내용을 전송 시 사용 -->
+<div class="container">
+<h1>커스텀 도시락 반찬 등록 페이지</h1>
 	<form:form id = "fileForm" method="post" enctype="multipart/form-data" modelAttribute="uploadFile" action="upload.do">
-		<table>
+		<table class="table">
 			<tr>
 				<th>반찬 이름:</th>
 				<td>
@@ -67,7 +71,7 @@
 		</table>
 		<h3>업로드 할 파일 선택(단일)</h3>
 		파일 : <!-- <input multiple="multiple" type="file" name="file" id="file"/><br/> -->
-		<input type="file" name="file" id = "dish_file"/><br/>
+		<input type="file" name="file" id = "dish_file" /><br/>
 		
 		<!-- 5-1. Error 발생시(파일 선택 없이 전송 누를 경우) 7-4 이후 출력 -->
 		<p style="color: red; font-weight: bold;">
@@ -76,7 +80,7 @@
 		</p>
 		
 		<!-- 5. 전송 누를 시 form (upload)동작 -->
-		<input type="submit" value="전송">
+		<input type="submit" value="전송" class="btn btn-outline-light pull-right">
 	</form:form>
 	<!-- 
 		spring form :  tag
@@ -90,5 +94,9 @@
 	 	2.	multipart/form-data : file upload 가능.(post)
 	 	3.	text/plain : 인코딩 안되고 그냥 넘긴다
 	  -->
+
+</div>
+
+<%@ include file="../footer.jsp"%>
 </body>
 </html>
