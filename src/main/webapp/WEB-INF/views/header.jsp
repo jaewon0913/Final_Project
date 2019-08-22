@@ -230,12 +230,12 @@
 	}
 </script> -->
 	<script type="text/javascript">
-			var EndEvent = new Date('March 14, 15:15:30');
+			var EndEvent = new Date('March 14, 09:12:30');
 			End_hours = EndEvent.getHours();
 			End_minutes = EndEvent.getMinutes();
 			End_seconds = EndEvent.getSeconds();
 
-			var StartEvent = new Date('March 14, 14:39:50');
+			var StartEvent = new Date('March 14, 09:11:40');
 			Start_hours = StartEvent.getHours();
 			Start_minutes = StartEvent.getMinutes();
 			Start_seconds = StartEvent.getSeconds();
