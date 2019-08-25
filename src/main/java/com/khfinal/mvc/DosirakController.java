@@ -31,7 +31,7 @@ public class DosirakController {
 		DosirakDto dosirakdto = dosirakbiz.selecttest(1);
 		model.addAttribute("dosirakdto", dosirakdto);
 		
-		return "payment/dosiraktest";
+		return "payment/DosirakTest";
 	}
 	
 	@RequestMapping("/kakaopay.do")
@@ -41,7 +41,7 @@ public class DosirakController {
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("memberdto",memberdto);
-		return "payment/kakaopay";
+		return "payment/Kakaopay";
 	}
 	
 	@RequestMapping("/kakaopay_custom.do")
@@ -79,14 +79,14 @@ public class DosirakController {
 				
 		model.addAttribute("customdto", custom_dto);
 		model.addAttribute("memberdto",memberdto);
-		return "payment/kakaopay_custom";
+		return "payment/KakaopayCustom";
 	}
 	
 
 	@RequestMapping("/dosirak_list.do")
 	public String dosiraklist(Model model) {
 		model.addAttribute("list",dosirakbiz.selectList());
-		return "dosirak/dosirak_list";
+		return "dosirak/DosirakList";
 	}
 	
 	@RequestMapping("/dosirak_listpagig.do")
@@ -110,7 +110,7 @@ public class DosirakController {
 	         model.addAttribute("paging", paging);
 	         model.addAttribute("txt_search", txt_s);
 	         
-	         return "dosirak/dosirak_list";
+	         return "dosirak/DosirakList";
 	         
 	}
 	
@@ -120,7 +120,7 @@ public class DosirakController {
 		
 		DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
 		model.addAttribute("dosirakdto", dosirakdto);
-		return "dosirak/dosirak_selectone";
+		return "dosirak/DosirakSelectone";
 	}
 	
 	@RequestMapping("/dosirak_cart")

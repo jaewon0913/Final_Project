@@ -1,21 +1,15 @@
 package com.khfinal.mvc;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import javax.servlet.http.HttpSession;
-
+import org.jsoup.*;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.khfinal.mvc.member.biz.MemberBiz;
-import com.khfinal.mvc.member.dto.MemberDto;
 
 /**
  * Handles requests for the application home page.
@@ -23,33 +17,26 @@ import com.khfinal.mvc.member.dto.MemberDto;
 @Controller
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
+	
 	@RequestMapping("/mainpage.do")
-	public String main() {
-		
-		
-		return "mainpage";
+	public String main() {		
+		return "MainPage";
 	}
 
-	@RequestMapping("/chat.do")
-	public String chat() {
-		return "chat/chat";
-	}
 	@RequestMapping("/loginMain.do")
 	public String loginmain() {
-		return "member/loginMain";
+		return "member/LoginMain";
 	}
 	@RequestMapping("/delivery_place.do")
 	public String delivery_place() {
-		return "place/delivery_place";
+		return "place/DeliveryPlace";
 	}
 	@RequestMapping("/popup_map.do")
 	public String popup_map() {
-		return "place/popup_map";
+		return "place/PopupMap";
 	}
 	@RequestMapping("/nutritiongraph.do")
 	public String nutritiongraph() {
-		return "graph/nutritiongraph";
+		return "graph/Nutritiongraph";
 	}
-
 }
