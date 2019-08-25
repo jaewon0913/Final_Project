@@ -10,10 +10,6 @@
 		</layout>
 	</appender>
 
-	<Logger name="jdbc.sqlonly" level="DEBUG" additivity="false">
-		<AppenderRef ref="console" />
-	</Logger>
-
 	<!-- Application Loggers -->
 	<logger name="com.khfinal.mvc">
 		<level value="info" />
@@ -34,6 +30,11 @@
 
 	<logger name="org.springframework.web">
 		<level value="info" />
+	</logger>
+	
+	<logger name="jdbc.sqlonly" additivity="false"> 
+		<level value="debug"/>
+		<appender-ref ref="console"/>
 	</logger>
 
 	<!-- Root Logger -->

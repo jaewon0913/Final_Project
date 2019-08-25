@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
 import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.member.etc.VerifyRecaptcha;
@@ -30,10 +29,7 @@ import com.khfinal.mvc.member.etc.VerifyRecaptcha;
 public class LoginController {
 
 	@Autowired
-	private MemberBiz memberbiz;
-	@Autowired
-	private BoxorderBiz boxorderbiz;
-	
+	private MemberBiz memberbiz;	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
@@ -72,7 +68,7 @@ public class LoginController {
 		if (idchk == true) {// 가입페이지로 이동
 			model.addAttribute("id", id);
 			model.addAttribute("name", name);
-			return "kakaoMemberInsert";
+			return "KakaoMemberInsert";
 		}else {//로그인으로이동
 			System.out.println("kakaologin컨틀롤러 else문");
 			MemberDto memberdto = memberbiz.login(id,id);
@@ -132,7 +128,7 @@ public class LoginController {
 	public String idChk(String member_id, Model model) {
 		boolean idnotused = memberbiz.idChk(member_id);
 		model.addAttribute("idnotused", idnotused);
-		return "member/idchk";
+		return "member/IdChk";
 	}
 	
 	@RequestMapping("/test.do")
@@ -190,7 +186,7 @@ public class LoginController {
 		String id = member_id.split(",")[1];
 		model.addAttribute("member_id",id);
 		System.out.println("넘어온아이디" + id);
-		return "member/pwUpdate";
+		return "member/PwUpdate";
 	}
 	
 	@RequestMapping("/pwupdate.do")
@@ -216,7 +212,7 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호가 변경되었습니다.')</script>");
 			out.flush();
-			return "loginMain";
+			return "LoginMain";
 		} else {
 			return "error/ErrorPage";
 		}
@@ -278,7 +274,7 @@ public class LoginController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호 재설정 페이지로 이동합니다.')</script>");
 			out.flush();
-			return "member/pwUpdate";
+			return "member/PwUpdate";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('아이디와 이메일을 확인해주세요')</script>");

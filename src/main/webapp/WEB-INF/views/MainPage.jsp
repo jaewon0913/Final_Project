@@ -19,9 +19,6 @@
 
 <title>main</title>
 
-
-
-
 <!-- Bootstrap core CSS -->
 <link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -57,10 +54,8 @@
 	MemberDto logindto = (MemberDto)session.getAttribute("logindto");
 %>
 <body>
-
 	<!-- header.jsp -->
 	<%@ include file="header.jsp"%>
-
 
 <!-- -----------------슬라이드 이미지-------------------------------------------- -->
 
