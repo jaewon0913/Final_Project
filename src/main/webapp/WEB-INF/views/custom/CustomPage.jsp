@@ -152,15 +152,17 @@
 		$(document).on('click', '#one', function() {
 			$('#sendDiv').show()
 			$('#sendDiv2').hide()
-			$('#one').css('color','white')
-			$('#one').attr('style','border : 3px solid black;')
-			$('#month').css('color','black')
+			$('#one').attr('style','color : white;')
+			$('#one').attr('style','border : 3px solid white;')
+			$('#month').attr('style','color :black;')
+			$('#month').attr('style','border : none;')
 		}).on('click', '#month', function() {
 			$('#sendDiv2').show()
 			$('#sendDiv').hide()
-			$('#month').css('color','white')
-			$('#month').css('border','3 solid black')
-			$('#one').css('color','black')
+			$('#month').attr('style','color : white;')
+			$('#month').attr('style','border : 3px solid white;')
+			$('#one').attr('style','color :black;')
+			$('#one').attr('style','border : none;')
 		})
 
 	})
