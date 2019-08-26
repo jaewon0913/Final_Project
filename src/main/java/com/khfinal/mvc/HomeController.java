@@ -39,4 +39,9 @@ public class HomeController {
 	public String nutritiongraph() {
 		return "graph/Nutritiongraph";
 	}
+	
+	@RequestMapping("/TermsAndConditions.do")
+	public String TermsAndConditions() {
+		return "member/TermsAndConditions";
+	}
 }

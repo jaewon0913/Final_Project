@@ -154,7 +154,7 @@ function PageMove_dosirak(page) {
 	</div>
 
 	<!-- Pagination -->
-	<div class="container text-center " style="font-size: 3rem;">
+	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">
 		<a href="javascript:PageMove_dosirak(${paging.firstPageNo})"  class="page">&laquo;</a> <a
 			href="javascript:PageMove_dosirak(${paging.prevPageNo})" class="page">&lt;</a>
 		<c:forEach var="i" begin="${paging.startPageNo}"
