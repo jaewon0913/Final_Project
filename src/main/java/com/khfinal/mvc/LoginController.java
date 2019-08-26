@@ -197,11 +197,11 @@ public class LoginController {
 			 * MemberDto memberdto_res = memberbiz.loginpw(dto.getMember_id(), encPassword);
 			 * session.setAttribute("logindto", memberdto_res);
 			 */
-			session.setAttribute("logindto", null);
+//			session.setAttribute("logindto", null);
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호가 변경되었습니다.')</script>");
 			out.flush();
-			return "loginMain";
+			return "member/loginMain";
 		} else {
 			return "error/ErrorPage";
 		}
@@ -259,11 +259,12 @@ public class LoginController {
 		System.out.println("id:" + dto.getMember_id() + "email: " + dto.getMember_email());
 		MemberDto memberdto = memberbiz.pwfind(dto.getMember_id(), dto.getMember_email());
 		if (memberdto != null) {
-			model.addAttribute("memberdto", memberdto);
+//			model.addAttribute("memberdto", memberdto);
+			model.addAttribute("member_id",dto.getMember_id());
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호 재설정 페이지로 이동합니다.')</script>");
 			out.flush();
-			return "member/AccountFind";
+			return "member/pwUpdate";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('아이디와 이메일을 확인해주세요')</script>");
@@ -272,6 +273,12 @@ public class LoginController {
 		}
 	}
 	
+	@RequestMapping("/withdrawal.do")
+	public String memberWithdrawal() {
+		
+		
+		return "redirect:mainpage.do";
+	}
 		
 }
 

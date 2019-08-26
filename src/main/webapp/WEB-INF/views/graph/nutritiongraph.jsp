@@ -39,15 +39,19 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 $(document).ready(function(){
-	alert("시작");
+// 	alert("시작");
 	$.ajax({
 		url:"graph.do",
 		type:"post",
 		dataType:"json",
 		success:function(data){
-			alert(data.list);
+// 			alert(data.list);
 			var list = data.list;
-			alert(list[0].tan);
+// 			alert(list[0]);
+			if(list[0].tan == 0){
+				alert("주문 정보가 없습니다. 주문 후 이용해주세요.");
+				location.href="mainpage.do";
+			}else{
 			
 			var series = ["탄수화물", "단백질","지방","칼로리"];
 			 
@@ -144,7 +148,7 @@ $(document).ready(function(){
 		          .attr("y", 9.5)
 		          .attr("dy", "0.32em")
 		          .text(function(d) { return d; });
-			
+			}
 		},error:function(){
 			alert("통신실패");
 		}

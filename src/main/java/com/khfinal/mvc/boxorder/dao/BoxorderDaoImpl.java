@@ -1,5 +1,6 @@
 package com.khfinal.mvc.boxorder.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class BoxorderDaoImpl implements BoxorderDao {
 
 	@Override
 	public int dosirakinsert(BoxorderDto dto) {
-		
+		System.out.println("daoimpl dish!!!!!!!!!!  "+dto.getDish1());
 		int res = sqlSession.insert(namespace+"dosirakinsert",dto);
 		
 		return res;
@@ -62,8 +63,47 @@ public class BoxorderDaoImpl implements BoxorderDao {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("member_id", member_id);
 		
-		List<BoxorderDto> list = sqlSession.selectList(namespace+"graphSelect",map);
+		List<BoxorderDto> list = new ArrayList<BoxorderDto>(); 
+		list = sqlSession.selectList(namespace+"graphSelect",map);
 		
+//		BoxorderDto dto = new BoxorderDto();
+//		dto.setTan(0);
+//		dto.setDan(0);
+//		dto.setGi(0);
+//		dto.setKcal(0);
+		
+		if(list == null) {
+			System.out.println("list가 null이다!!!!!");
+//			List<BoxorderDto> list2 = new ArrayList<BoxorderDto>();
+			
+			for(int i=0; i<7; i++) {
+				BoxorderDto dto = new BoxorderDto();
+				dto.setTan(0);
+				dto.setDan(0);
+				dto.setGi(0);
+				dto.setKcal(0);
+				
+				list.add(i,dto);
+			}
+//			return list;
+		}else if(list.size() != 7) {
+			
+			System.out.println("리스트 사이즈 : "+list.size());
+//			List<BoxorderDto> list2 = new ArrayList<BoxorderDto>();
+			int size = 7-(list.size());//list.size()==2(0,1)  size=5
+			System.out.println("그냥 사이즈 : "+size);
+			for(int i= list.size(); i<7 ;i++) {
+				BoxorderDto dto = new BoxorderDto();
+				dto.setTan(0);
+				dto.setDan(0);
+				dto.setGi(0);
+				dto.setKcal(0);
+				list.add(dto);
+			}
+//			return list;
+		}
+		
+		System.out.println("리스트 사이즈!!!!! : "+list.size());
 		return list;
 	}
 

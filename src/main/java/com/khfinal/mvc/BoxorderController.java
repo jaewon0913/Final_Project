@@ -37,11 +37,16 @@ public class BoxorderController {
 		
 		
 		System.out.println(boxorderdto.getDosirak_delivery()+" "+boxorderdto.getOrdernumber());
+		boxorderdto.setDish1("없음");
+		boxorderdto.setDish2("없음");
+		boxorderdto.setDish3("없음");
+		boxorderdto.setDish4("없음");
+		boxorderdto.setDish5("없음");
+		boxorderdto.setDish6("없음");
+		boxorderdto.setDish7("없음");
+		boxorderdto.setCustom_status("N");
 		int res = boxorderbiz.dosirakinsert(boxorderdto);
-		
-//		BoxorderDto dto = boxorderbiz.selectOne(boxorderdto.getMember_id(), boxorderdto.getOrdernumber());
-//		model.addAttribute("dto", dto);
-		
+				
 		return "redirect:orderresult.do?member_id="+boxorderdto.getMember_id()+"&ordernumber="+boxorderdto.getOrdernumber();
 	}
 	@RequestMapping("/orderresult.do")
@@ -88,7 +93,13 @@ public class BoxorderController {
 	public Map<String, List<BoxorderDto>> graph(Model model,Principal auth) {
 		Map<String, List<BoxorderDto>> map = new HashMap<String, List<BoxorderDto>>();
 		
+		System.out.println("1" + auth);
+		System.out.println("2" + boxorderbiz );
+		
+		
 		List<BoxorderDto> list = boxorderbiz.graphSelectList(auth.getName());
+		//7번돌려
+		
 		map.put("list", list);
 		
 		return map;

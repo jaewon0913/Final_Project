@@ -107,7 +107,7 @@ var date = "";
 		var queryStr = "?member_id=${memberdto.member_id}&ordernumber="+ordernumber +"&choe=UTF-8";
 		var googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=";
 // 		alert(encodeURIComponent(queryStr))
-        $('#qrcode').attr('src', googleQRUrl +"http://192.168.110.66:8787/mvc/qrcode.do"+encodeURIComponent(queryStr));
+        $('#qrcode').attr('src', googleQRUrl +"http://192.168.110.39:8787/mvc/qrcode.do"+encodeURIComponent(queryStr));
 //         chuan();
 // 		alert(qr);
 	});
