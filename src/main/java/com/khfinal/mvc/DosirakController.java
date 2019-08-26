@@ -1,5 +1,7 @@
 package com.khfinal.mvc;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.khfinal.mvc.dosirak.biz.DosirakBiz;
 import com.khfinal.mvc.dosirak.dto.DosirakDto;
@@ -106,7 +111,9 @@ public class DosirakController {
 	         pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
 	         List<DosirakDto> list = dosirakbiz.selectListPaging(pag, paging.getPageSize(), txt_s);
+	         List<DosirakDto> viewslist = dosirakbiz.viewslist();
 	         model.addAttribute("list", list);
+	         model.addAttribute("viewslist", viewslist);
 	         model.addAttribute("paging", paging);
 	         model.addAttribute("txt_search", txt_s);
 	         
@@ -116,17 +123,147 @@ public class DosirakController {
 	
 	@RequestMapping("/dosirak_selectone.do")
 	public String dosirakselectOne(Model model, @RequestParam int dosirak_postnum) {
-		System.out.println(dosirak_postnum + "도시락번호12313123");
-		
+		int res = 0;
 		DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
 		model.addAttribute("dosirakdto", dosirakdto);
+		
+		res = dosirakbiz.updateviews(dosirak_postnum);
+		if( res > 0) {
+			System.out.println("오긴하니?? 조회수다");
+			return "dosirak/DosirakSelectone";
+		}
 		return "dosirak/DosirakSelectone";
 	}
 	
-	@RequestMapping("/dosirak_cart")
-	public String dosirakcart() {
-
-		return null;
+	@RequestMapping("/dosirak_insertform.do")
+	public String dosirak_insertform() {
+		return "dosirak/dosirak_insert";
+	}
+	
+	@RequestMapping("/dosirak_insert.do")
+	public String dosirak_insert(Model model, DosirakDto dto, MultipartHttpServletRequest mtfRequest) {
+		
+		List<MultipartFile> fileList = mtfRequest.getFiles("file");
+		List<MultipartFile> fileList2 = mtfRequest.getFiles("file2");
+		String path = mtfRequest.getSession().getServletContext().getRealPath("resources/etc/multiupload");
+		File dir = new File(path);
+		if(!dir.isDirectory()) {
+			dir.mkdirs();
+		}
+		for(MultipartFile mf : fileList) {
+			String originFileName = mf.getOriginalFilename(); // 원본 파일
+			Long fileSize = mf.getSize(); // 파일 사이즈
+			String mainimagePath = path + "/" + originFileName; // 경로
+			String mainimage = originFileName;
+			dto.setmainimage(mainimage);
+			System.out.println("경로  : " + mainimage);
+			System.out.println("originFileName : " + originFileName);
+			System.out.println("fileSize : " + fileSize);
+			try {
+				mf.transferTo(new File(mainimagePath));
+			} catch(IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		for(MultipartFile mf2 : fileList2) {
+			String originFileName = mf2.getOriginalFilename(); // 원본 파일
+			Long fileSize = mf2.getSize(); // 파일 사이즈
+			String thumbnailPath = path + "/" + originFileName; // 경로
+			String thumbnail = originFileName;
+			dto.setthumbnail(thumbnail);
+			System.out.println("경로  : " + thumbnail);
+			System.out.println("originFileName : " + originFileName);
+			System.out.println("fileSize : " + fileSize);
+			try {
+				mf2.transferTo(new File(thumbnailPath));
+			} catch(IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		int res = dosirakbiz.insert(dto);
+		model.addAttribute("list",dosirakbiz.selectList());
+		
+		if(res > 0) {
+			return "redirect:dosirak_listpaging.do";
+		} else {
+			return "error/ErrorPage";
+		}
+	}
+	
+	@RequestMapping("dosirak_delete.do")
+	public String dosirakdelete(@RequestParam String dosirak_name) {
+		int res = dosirakbiz.delete(dosirak_name);
+		if(res > 0) {
+			return "redirect:dosirak_listpaging.do";
+		} else {
+			return "error/ErrorPage";
+		}
+	}
+	
+	@RequestMapping("dosirak_updateform.do")
+	public String dosirak_updateform(Model model, int dosirak_postnum) {
+		DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
+		model.addAttribute("dosirakdto", dosirakdto);
+		return "dosirak/dosirak_update";
+	}
+	
+	@RequestMapping("dosirak_update.do")
+	public String dosirak_update(@ModelAttribute DosirakDto dto, Model model, MultipartHttpServletRequest mtfRequest) {
+		
+		List<MultipartFile> fileList = mtfRequest.getFiles("file");
+		List<MultipartFile> fileList2 = mtfRequest.getFiles("file2");
+		String path = mtfRequest.getSession().getServletContext().getRealPath("resources/etc/multiupload");
+		File dir = new File(path);
+		if(!dir.isDirectory()) {
+			dir.mkdirs();
+		}
+		for(MultipartFile mf : fileList) {
+			String originFileName = mf.getOriginalFilename(); // 원본 파일
+			Long fileSize = mf.getSize(); // 파일 사이즈
+			String mainimagePath = path + "/" + originFileName; // 경로
+			String mainimage = originFileName;
+			dto.setmainimage(mainimage);
+			System.out.println("경로  : " + mainimage);
+			System.out.println("originFileName : " + originFileName);
+			System.out.println("fileSize : " + fileSize);
+			try {
+				mf.transferTo(new File(mainimagePath));
+			} catch(IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		for(MultipartFile mf2 : fileList2) {
+			String originFileName = mf2.getOriginalFilename(); // 원본 파일
+			Long fileSize = mf2.getSize(); // 파일 사이즈
+			String thumbnailPath = path + "/" + originFileName; // 경로
+			String thumbnail = originFileName;
+			dto.setthumbnail(thumbnail);
+			System.out.println("경로  : " + thumbnail);
+			System.out.println("originFileName : " + originFileName);
+			System.out.println("fileSize : " + fileSize);
+			try {
+				mf2.transferTo(new File(thumbnailPath));
+			} catch(IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		int res = dosirakbiz.update(dto);
+		 model.addAttribute("list",dosirakbiz.selectList()); 
+		if(res > 0) {
+			return "redirect:dosirak_listpaging.do";
+		} else {
+			return "error/ErrorPage";
+		}
 	}
 	
 	@RequestMapping("/dorirak_monthpay.do")

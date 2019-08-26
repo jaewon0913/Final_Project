@@ -60,6 +60,7 @@
 		</tr>
 	</table>
 	
+
 	<br>
 
 	<c:choose>
@@ -141,9 +142,6 @@
 			
 		</c:otherwise>
 	</c:choose>
-
-
-
 
 		<!-- Pagination -->
 	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">
