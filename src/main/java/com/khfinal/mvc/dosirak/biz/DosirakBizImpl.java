@@ -23,28 +23,35 @@ public class DosirakBizImpl implements DosirakBiz{
 	public List<DosirakDto> selectList() {
 		return dao.selectList();
 	}
+	
+	@Override
+	public List<DosirakDto> viewslist() {
+		return dao.viewslist();
+	}
 
 	@Override
 	public DosirakDto selectOne(int dosirak_postnum) {
 		return dao.selectOne(dosirak_postnum);
 	}
+	
+	@Override
+	public int updateviews(int dosirak_postnum) {
+		return dao.updateviews(dosirak_postnum);
+	}
 
 	@Override
 	public int insert(DosirakDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.insert(dto);
 	}
 
 	@Override
 	public int update(DosirakDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(dto);
 	}
 
 	@Override
 	public int delete(String dosirak_name) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.delete(dosirak_name);
 	}
 
 	@Override
@@ -56,7 +63,5 @@ public class DosirakBizImpl implements DosirakBiz{
 	public int totalcount(String txt_search) {
 		return dao.totalcount(txt_search);
 	}
-
-
 
 }
