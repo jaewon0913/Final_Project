@@ -11,12 +11,15 @@
 	background-color: #ebf7f1;
 	line-height: 7rem;
 	text-align: center;
+	cursor: pointer;
 }
 .mp:hover{
 	height: auto;
-	background-color: #ebf7f1;
+	background-color: #D3DED8;
 	line-height: 7rem;
 	text-align: center;
+	opacity: 0.8;
+	
 	
 	
 }

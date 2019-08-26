@@ -61,9 +61,9 @@ margin-top: 8rem;
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-   function PageMove(page) {
-      location.href = "dosirak_listpagig.do?page=" + page;
-   }
+function PageMove_dosirak(page) {
+    location.href = "dosirak_listpaging.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
+ }
    
 	function allChk(val){
 		var chks = document.getElementsByName('chk');
@@ -124,6 +124,7 @@ margin-top: 8rem;
 					<c:choose>
 						<c:when test="${empty list}">
 							<h3>판매중인 도시락이 없습니다.</h3>
+							<input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='#'">
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${list}" var="dto">
@@ -154,21 +155,21 @@ margin-top: 8rem;
 
 	<!-- Pagination -->
 	<div class="container text-center " style="font-size: 3rem;">
-		<a href="javascript:PageMove(${paging.firstPageNo})"  class="page">&laquo;</a> <a
-			href="javascript:PageMove(${paging.prevPageNo})" class="page">&lt;</a>
+		<a href="javascript:PageMove_dosirak(${paging.firstPageNo})"  class="page">&laquo;</a> <a
+			href="javascript:PageMove_dosirak(${paging.prevPageNo})" class="page">&lt;</a>
 		<c:forEach var="i" begin="${paging.startPageNo}"
 			end="${paging.endPageNo}" step="1">
 			<c:choose>
 				<c:when test="${i eq paging.pageNo}">
-					<a href="javascript:PageMove(${i})" class="page">${i}</a>
+					<a href="javascript:PageMove_dosirak(${i})" class="page">${i}</a>
 				</c:when>
 				<c:otherwise>
-					<a href="javascript:PageMove(${i})" class="page">${i}</a>
+					<a href="javascript:PageMove_dosirak(${i})" class="page">${i}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<a href="javascript:PageMove(${paging.nextPageNo})" class="page">&gt;</a> <a
-			href="javascript:PageMove(${paging.finalPageNo})" class="page">&raquo;</a>
+		<a href="javascript:PageMove_dosirak(${paging.nextPageNo})" class="page">&gt;</a> <a
+			href="javascript:PageMove_dosirak(${paging.finalPageNo})" class="page">&raquo;</a>
 	</div>
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="../footer.jsp"%>
