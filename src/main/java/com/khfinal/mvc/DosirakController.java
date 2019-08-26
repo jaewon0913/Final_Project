@@ -89,7 +89,7 @@ public class DosirakController {
 		return "dosirak/DosirakList";
 	}
 	
-	@RequestMapping("/dosirak_listpagig.do")
+	@RequestMapping("/dosirak_listpaging.do")
 	public String dosiraklistpaging(Model model, String txt_search, String page) {
 		
 		String txt_s = txt_search;
