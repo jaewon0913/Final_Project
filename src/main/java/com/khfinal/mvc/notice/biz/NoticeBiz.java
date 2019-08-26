@@ -22,9 +22,11 @@ public interface NoticeBiz {
 
 	public int NoticeViews(int notice_postnum);// 조회수
 	
+	public List<NoticeDto> NoticemainSelect();//메인에띄울쿼리
+	
 	//페이징
-		public List<NoticeDto> NoticeSelectlist(int firstIndex, int recordCountPerPage, String txt_search);
-		
-		public int totalcount(String txt_search);
+	public List<NoticeDto> NoticeSelectlist(int firstIndex, int recordCountPerPage, String txt_search);
+	
+	public int totalcount(String txt_search);
 
 }

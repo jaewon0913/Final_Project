@@ -124,6 +124,9 @@
 	border: 5 solid black;
 	border-radius: 50%;
 }
+.payback, .btn{
+	z-index: 9999;
+}
 </style>
 <!-- kakaopay -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -150,11 +153,13 @@
 			$('#sendDiv').show()
 			$('#sendDiv2').hide()
 			$('#one').css('color','white')
+			$('#one').attr('style','border : 3px solid black;')
 			$('#month').css('color','black')
 		}).on('click', '#month', function() {
 			$('#sendDiv2').show()
 			$('#sendDiv').hide()
 			$('#month').css('color','white')
+			$('#month').css('border','3 solid black')
 			$('#one').css('color','black')
 		})
 
@@ -227,7 +232,7 @@
 			</p>
 			<br /> 
 			<input type="button" value="장바구니" onclick="createCookie(${count })" class="mintbtn " /> 
-			<input type="submit" value="결제하기" class="btn btn-outline-light">
+			<input type="submit" value="결제하기" class="btn btn-outline-light" >
 		</div>
 		</form>
 
@@ -276,7 +281,7 @@
 			</p>
 			<br />
 			<input type="button" value="장바구니" onclick="location.href='createCookie(${count })'" class="mintbtn " /> 
-			<input type="submit" value="결제하기" class="btn btn-outline-light"> 
+			<input type="submit" value="결제하기" class="btn btn-outline-light" > 
 		</div>
 		</form>
 	</div>

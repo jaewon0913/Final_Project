@@ -1,5 +1,7 @@
 package com.khfinal.mvc.member.biz;
 
+import java.util.List;
+
 import com.khfinal.mvc.member.dto.MemberDto;
 
 public interface MemberBiz {
@@ -16,4 +18,7 @@ public interface MemberBiz {
 	public boolean idChk(String member_id);
 	public boolean emailChk(String member_email);
 	public MemberDto loginsuccess(String id);
+	public int memberWithdrawal(String member_id);
+	
+	public List<MemberDto> pwChangedate();
 }

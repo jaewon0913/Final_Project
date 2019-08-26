@@ -24,12 +24,8 @@
 	<%@ include file="../header.jsp"%>
 
 	<h2>자유게시판 상세보기</h2>
-	<table class="table table-hover">
+	<table class="table">
 	
-		<col width="100">
-		<col width="300">
-		<col width="200">
-		<col width="300">
 	
 
 		<tr>
@@ -57,13 +53,13 @@
 			
 
 		<tr>
-			<td colspan="3">
-					<input type="button" value=" 목록으로 " onclick="location.href='freeboard_list.do'">
+			<td colspan="3" align="right">
+					<input type="button" value=" 목록으로 " onclick="location.href='freeboard_list.do'" class="btn btn-outline-light">
 					<c:choose>
 					<c:when test="${logindto.member_id ne null }">
-					<input type="button" value=" 글수정 " onclick="location.href='freeboard_updateform.do?free_postnum=${dto.free_postnum }'">
+					<input type="button" value=" 글수정 " onclick="location.href='freeboard_updateform.do?free_postnum=${dto.free_postnum }'" class="btn btn-outline-light">
 					<%-- <input type="button" value=" 삭  제 " onclick="location.href='freeboard_delete.do?free_postnum=${dto.free_postnum }'"> --%>
-					<input type="button" value=" 삭  제 " onclick="removeCheck()">
+					<input type="button" value=" 삭  제 " onclick="removeCheck()" class="btn btn-outline-light">
 					</c:when>
 					</c:choose>
 			</td>
@@ -93,12 +89,7 @@
 	<h3>&lt; 댓글보기 &gt;</h3>
 
 			
-				<table class="table table-hover">
-				
-					<col width = "100" />
-					<col width = "500" />
-					<col width = "100" />
-					<col width = "80" />
+				<table class="table">
 					
 					<tr>
 						<th>작성자</th>
@@ -175,8 +166,8 @@
 			</tr>
 			<c:choose>
 				<c:when test="${logindto.member_id ne null }">
-					<tr>
-						<td colspan="2"><input type="submit" value="저  장"></td>
+					<tr align="right">
+						<td colspan="2"><input type="submit" value="저  장" class="btn btn-outline-light"></td>
 					</tr>
 				</c:when>
 			</c:choose>

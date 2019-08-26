@@ -61,9 +61,16 @@ margin-top: 8rem;
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-   function PageMove_dosirak(page) {
-      location.href = "dosirak_listpaging.do?page=" + page;
-   }
+function PageMove_dosirak(page) {
+    location.href = "dosirak_listpaging.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
+ }
+   
+	function allChk(val){
+		var chks = document.getElementsByName('chk');
+			for(var i=0 ; i<chks.length ; i++){
+				chks[i].checked = val;
+	}
+}
 </script>
 <title>도시락 list</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -120,6 +127,7 @@ margin-top: 8rem;
 					<c:choose>
 						<c:when test="${empty list}">
 							<h3>판매중인 도시락이 없습니다.</h3>
+							<input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='#'">
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${list}" var="dto">
@@ -149,7 +157,7 @@ margin-top: 8rem;
 	</div>
 
 	<!-- Pagination -->
-	<div class="container text-center " style="font-size: 3rem;">
+	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">
 		<a href="javascript:PageMove_dosirak(${paging.firstPageNo})"  class="page">&laquo;</a> <a
 			href="javascript:PageMove_dosirak(${paging.prevPageNo})" class="page">&lt;</a>
 		<c:forEach var="i" begin="${paging.startPageNo}"

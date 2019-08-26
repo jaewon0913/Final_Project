@@ -29,11 +29,7 @@
 	
 	<input type="hidden" name="memeber_id" value="${dto.member_id }" readonly="readonly">
 	
-	<table class="table table-hover">
-			<col width="120">
-			<col width="100">
-			<col width="100">
-			<col width="100">
+	<table class="table">
 		<tr>
 			<th> 날 짜 </th>
 			<td colspan="2" readonly="readonly">${dto.event_regdate }</td>
@@ -54,9 +50,9 @@
 			<td colspan="2"><textarea rows="10" cols="60"  type="text" name="event_content" class="summernote">${dto.event_content }</textarea></td>
 		</tr>
 		<tr>
-			<td colspan="3">
-				<input type="button" value="취  소" onclick="location.href='eventboard_detail.do?event_postnum=${dto.event_postnum }'">
-				<input type="submit" value="저 장" >
+			<td colspan="3" align="right">
+				<input type="button" value="취  소" onclick="location.href='eventboard_detail.do?event_postnum=${dto.event_postnum }'" class="btn btn-outline-light">
+				<input type="submit" value="저 장" class="btn btn-outline-light" >
 			</td>	
 		</tr>
 		
