@@ -18,7 +18,6 @@ import com.khfinal.mvc.common.util.Paging;
 import com.khfinal.mvc.free.biz.FreeboardBiz;
 import com.khfinal.mvc.free.dto.CommentDto;
 import com.khfinal.mvc.free.dto.FreeboardDto;
-import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 
 @Controller
@@ -28,7 +27,6 @@ public class FreeController {
 
 	@Autowired
 	private FreeboardBiz biz;
-	private MemberBiz memberbiz;
 
 	@RequestMapping("/freeboard_list.do")
 	public String selectList(@RequestParam Map<String, Object> paramMap, Model model) {
@@ -46,7 +44,7 @@ public class FreeController {
 		int page = (paramMap.get("page") != null ? Integer.parseInt(paramMap.get("page").toString()) : 1);
 
 		Paging paging = biz.getTotalCount(txt_search, page); // 게시판 리스트의 갯수를 가져온다.
-		paging.setPageSize(10); // 페이징 사이즈를 결정한다.
+	//	paging.setPageSize(10); // 페이징 사이즈를 결정한다.
 		model.addAttribute("freeboard_list", paging); // 게시판 리스트를 전달하기 위해 모델에 담는다.
 
 		List<FreeboardDto> list = biz.selectListPaging(paging, txt_search); // 게시판 리스트를 가져온다.
@@ -59,7 +57,7 @@ public class FreeController {
 
 		// model.addAttribute("freeboard_list",biz.selectList());
 
-		return "freeboard/freeboard_list"; // 이동할 jsp 파일명
+		return "freeboard/FreeboardList"; // 이동할 jsp 파일명
 	}
 
 	// 게시판 상세  
@@ -81,7 +79,7 @@ public class FreeController {
 		List<CommentDto> commentList = biz.com_selectList(free_postnum); // 게시판 리스트를 가져온다.
 		model.addAttribute("cmt", commentList); // 모델에 코멘트 리스트를 넣다.
 		
-		return "freeboard/freeboard_detail";
+		return "freeboard/FreeboardDetail";
 	}
 
 	@RequestMapping("/freeboard_insertform.do")
@@ -89,7 +87,7 @@ public class FreeController {
 		MemberDto logindto = (MemberDto) session.getAttribute("logindto");
 		model.addAttribute("logindto", logindto);
 
-		return "freeboard/freeboard_insertform";
+		return "freeboard/FreeboardInsertform";
 	}
 
 	@RequestMapping("/freeboard_insert.do")
@@ -106,7 +104,7 @@ public class FreeController {
 	public String selectOne(@RequestParam int free_postnum, Model model) {
 		FreeboardDto dto = biz.selectOne(free_postnum);
 		model.addAttribute("dto", dto);
-		return "freeboard/freeboard_detail";
+		return "freeboard/FreeboardDetail";
 
 	}
 
@@ -117,7 +115,7 @@ public class FreeController {
 		model.addAttribute("dto", dto);
 		// model.addAttribute("dto", biz.selectOne(free_postnum));
 
-		return "freeboard/freeboard_updateform";
+		return "freeboard/FreeboardUpdateForm";
 	}
 
 	@RequestMapping("/freeboard_update.do")
@@ -171,14 +169,14 @@ public class FreeController {
 	public String selectList(@RequestParam int free_postnum,Model model) {
 		logger.info("<<<com__list>>>");
 		model.addAttribute("com_list", biz.com_selectList(free_postnum));
-		return "freeboard/com_list";
+		return "freeboard/ComList";
 	}
 
 	@RequestMapping("/com__selectOne.do")
 	public String com__selectOne(@RequestParam int com_num, Model model) {
 		CommentDto dto = biz.com_selectOne(com_num);
 		model.addAttribute("dto", dto);
-		return "freeboard/com_board_detail";
+		return "freeboard/ComBoardDetail";
 
 	}
 	
@@ -188,7 +186,7 @@ public class FreeController {
 		MemberDto logindto = (MemberDto) session.getAttribute("logindto");
 		model.addAttribute("logindto", logindto);
 
-		return "freeboard/com_board_insertform";
+		return "freeboard/ComBoardInsertForm";
 	}
 
 	@RequestMapping("/com_board_insert.do")
@@ -213,7 +211,7 @@ public class FreeController {
 		model.addAttribute("cmt", cmt);
 		// model.addAttribute("dto", biz.selectOne(free_postnum));
 
-		return "freeboard/com_board_updateform";
+		return "freeboard/ComBoardUpdateForm";
 	}
 
 	@RequestMapping("/com_board_update.do")

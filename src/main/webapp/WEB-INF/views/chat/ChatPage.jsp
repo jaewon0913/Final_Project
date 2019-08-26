@@ -24,28 +24,28 @@
 		<div id="chat_div">
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
-				<div style="float: right;">
-					<button type="button" id="chat_close" style = "position : fixed; right : 850px; z-index : 10; width : 2rem; font-size : 1rem;">x</button>
+				<div style="float: right; padding-right: 2rem;">
+					<button type="button" id="chat_close" style = "position : fixed; z-index : 90; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>
 				</div>
 				<div id="msg_div" style = "clear : both;" >
 				</div>
 			</div>
 		<div id = "send_div">
 			<input type="text" id="message" onkeyup = "enterkey();"/> 
-			<input type="button" id="send_btn" value="전송"/>
+			<input type="button" id="send_btn" value="전송" class="btn btn-outline-light"/>
 		</div>
 		
-		<img alt="bot" src = "${pageContext.request.contextPath }/resources/bootstrap/image/bot1.png" class = "navbar-fixed-top bot" id = "bot_btn" >
+		<img alt="bot" src = "${pageContext.request.contextPath }/resources/bootstrap/image/chat2.png" class = "navbar-fixed-top bot" id = "bot_btn" >
 		<div id = "bot_div">
-			<div style="float: right;">
-				<button type="button" id="bot_chat_close" style = "position : fixed; right : 850px; z-index : 10; width : 2rem; font-size : 1rem;">x</button>
-			</div>
+			<div style="float: right; padding-right: 2rem;" >
+				<button type="button" id="bot_chat_close" style = "position : fixed; z-index : 90; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>
+				</div>
 			<div id="bot_msg_div" style = "clear : both;" >
 			</div>
 		</div>
 		<div id = "bot_send_div">
 			<input type="text" id="bot_message" onkeyup = "bot_enterkey();"/> 
-			<input type="button" id="bot_send_btn" value="전송"/>
+			<input type="button" id="bot_send_btn" value="전송" class="btn btn-outline-light"/>
 		</div>
 	</div>
 

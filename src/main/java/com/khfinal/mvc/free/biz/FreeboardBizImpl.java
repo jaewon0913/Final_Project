@@ -68,7 +68,7 @@ public class FreeboardBizImpl implements FreeboardBiz{
 	public Paging getTotalCount(String txt_search, int page) {
 		Paging paging = new Paging();
 		paging.setPageNo(page); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
-		paging.setPageSize(5); // 한페이지에 불러낼 게시물의 개수 지정
+		paging.setPageSize(10); // 한페이지에 불러낼 게시물의 개수 지정
 		
 		int totalCount = dao.getTotalCount(txt_search);
 		paging.setTotalCount(totalCount);

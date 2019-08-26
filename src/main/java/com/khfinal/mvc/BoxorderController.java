@@ -1,5 +1,6 @@
 package com.khfinal.mvc;
 
+import java.lang.reflect.Field;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -17,14 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
 import com.khfinal.mvc.boxorder.dto.BoxorderDto;
-import com.khfinal.mvc.dosirak.biz.DosirakBiz;
+import com.khfinal.mvc.etc.util.CustomOrderDto;
 
 
 @Controller
 public class BoxorderController {
-
-	@Autowired
-	private DosirakBiz dosirakbiz;
 	
 	@Autowired
 	private BoxorderBiz boxorderbiz;
@@ -33,8 +31,35 @@ public class BoxorderController {
 
 	
 	@RequestMapping("/dosirakorderinsert.do")
-	public String dosirakorderinsert(Model model,BoxorderDto boxorderdto) {
+	   public String dosirakorderinsert(Model model,BoxorderDto boxorderdto) {
+	      
+	      System.out.println(boxorderdto.getDosirak_delivery()+" "+boxorderdto.getOrdernumber());
+	      boxorderdto.setDish1("없음");
+	      boxorderdto.setDish2("없음");
+	      boxorderdto.setDish3("없음");
+	      boxorderdto.setDish4("없음");
+	      boxorderdto.setDish5("없음");
+	      boxorderdto.setDish6("없음");
+	      boxorderdto.setDish7("없음");
+	      boxorderdto.setCustom_status("N");
+	      int res = boxorderbiz.dosirakinsert(boxorderdto);
+	            
+	      return "redirect:orderresult.do?member_id="+boxorderdto.getMember_id()+"&ordernumber="+boxorderdto.getOrdernumber();
+	   }
+	
+	@RequestMapping("/dosirakorderinsert_custom.do")
+	public String dosirakorderinsert_custom(Model model,BoxorderDto boxorderdto, CustomOrderDto customdto) {
 		
+		try{
+	        Object obj=boxorderdto;
+	        for (Field field : obj.getClass().getDeclaredFields()){
+	            field.setAccessible(true);
+	            Object value=field.get(obj);
+	            System.out.println(field.getName()+","+value);
+	        }
+	    }catch (Exception e){
+	        e.printStackTrace();
+	    }
 		
 		System.out.println(boxorderdto.getDosirak_delivery()+" "+boxorderdto.getOrdernumber());
 		boxorderdto.setDish1("없음");
@@ -49,35 +74,32 @@ public class BoxorderController {
 				
 		return "redirect:orderresult.do?member_id="+boxorderdto.getMember_id()+"&ordernumber="+boxorderdto.getOrdernumber();
 	}
+	
 	@RequestMapping("/orderresult.do")
 	public String orderresult(Model model,String member_id,String ordernumber) {
 		BoxorderDto dto = boxorderbiz.selectOne(member_id,ordernumber);
 		model.addAttribute("dto", dto);
 		
-		return "payment/orderresult";
+		return "payment/OrderResult";
 	}
 	
 	@RequestMapping("/qrcode.do")
 	public String qrcoderesult(Model model,HttpServletRequest request) {
-		System.out.println("!!#!@#!@#!@#!@#qrcode.do 들어옴~!!!!!");
 		String member_id = request.getParameter("member_id");
 		String ordernumber = request.getParameter("ordernumber");
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!"+member_id+" "+ordernumber);
 		BoxorderDto dto = boxorderbiz.selectOne(member_id, ordernumber);
 		model.addAttribute("dto", dto);
-		System.out.println(dto.getDosirak_delivery());		
-		return "payment/qrcoderesult";
+		return "payment/QrcodeResult";
 	}
 	
 	@RequestMapping("/receive.do")
 	public String receive(BoxorderDto dto,Model model) {
-		System.out.println("receive 들어옴");
 		int res = boxorderbiz.receiveUpdate(dto);
 		
 		BoxorderDto resultdto = boxorderbiz.selectOne(dto.getMember_id(),dto.getOrdernumber());
 		model.addAttribute("dto", resultdto);
 		
-		return "payment/receiveresult";
+		return "payment/ReceiveResult";
 	}
 	
 	@RequestMapping("/qrcodeSelect.do")
@@ -85,7 +107,7 @@ public class BoxorderController {
 		List<BoxorderDto> list = boxorderbiz.qrcodeSelect(auth.getName());
 		model.addAttribute("list", list);
 		
-		return "member/qrcodeSelect";
+		return "member/QrcodeSelect";
 	}
 	
 	@RequestMapping("/graph.do")

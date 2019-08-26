@@ -43,12 +43,12 @@ public class EventboardBizImpl implements EventboardBiz {
 
 	}
 
-	@Override
-	//public int eventboard_muldel(String[] event_chk) {
-	public int eventboard_muldel(Integer[] event_chk) {
-		return dao.eventboard_muldel(event_chk);
-	}
-
+	//체크삭제 없애기로 함 0821
+	/*
+	 * @Override //public int eventboard_muldel(String[] event_chk) { public int
+	 * eventboard_muldel(Integer[] event_chk) { return
+	 * dao.eventboard_muldel(event_chk); }
+	 */
 	
 
 	@Override

@@ -34,7 +34,11 @@
     min-width: 30px;
 }
 </style>
-<svg width="700" height="320"></svg>
+
+
+<body>
+<div class="container text-center center">
+<svg style="width:700; height:320;" ></svg>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
@@ -156,13 +160,7 @@ $(document).ready(function(){
 });
 
 </script>
-<script>
-    
-
-</script>
-
-<body>
-
+</div>
 
 <%@ include file="../footer.jsp"%>
 </body>

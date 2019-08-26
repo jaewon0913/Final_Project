@@ -99,27 +99,23 @@ public class EventboardDaoImpl implements EventboardDao {
 		return res;
 	}
 
-	@Override
-	//public int eventboard_muldel(String[] event_chk) {
-	public int eventboard_muldel(Integer[] event_chk) {
-		
-		int res = 0;
-		
-		List<String> eventboard_list = new ArrayList<String>();
-		List<Integer> delList = new ArrayList<Integer>();
-		//for(String str : event_chk) {
-		for(Integer str : event_chk) {
-			//eventboard_list.add(str);
-			//delList.add( Integer.parseInt(str));
-			delList.add( str);
-			// 리스트에 담는게 아니고 리스트 개수 만큼 반복해서 지워야함
-			//int res2 = sqlSession.delete(namespace + "eventboard_muldel",str);
-			//res += res2;
-		}
-		//res = sqlSession.delete(namespace + "eventboard_muldel",eventboard_list);
-		res = sqlSession.delete(namespace + "eventboard_muldel",delList);
-		return res;
-	}
+	
+	//체크삭제는 없애기로 함 0821
+	/*
+	 * @Override //public int eventboard_muldel(String[] event_chk) { public int
+	 * eventboard_muldel(Integer[] event_chk) {
+	 * 
+	 * int res = 0;
+	 * 
+	 * List<String> eventboard_list = new ArrayList<String>(); List<Integer> delList
+	 * = new ArrayList<Integer>(); //for(String str : event_chk) { for(Integer str :
+	 * event_chk) { //eventboard_list.add(str); //delList.add(
+	 * Integer.parseInt(str)); delList.add( str); // 리스트에 담는게 아니고 리스트 개수 만큼 반복해서
+	 * 지워야함 //int res2 = sqlSession.delete(namespace + "eventboard_muldel",str);
+	 * //res += res2; } //res = sqlSession.delete(namespace +
+	 * "eventboard_muldel",eventboard_list); res = sqlSession.delete(namespace +
+	 * "eventboard_muldel",delList); return res; }
+	 */
 
 	
 	/* 조회수 */

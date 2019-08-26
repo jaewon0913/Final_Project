@@ -19,28 +19,43 @@ $("#formtag").submit(function() {
 		}
 }); 
 </script>
+<style type="text/css">
+.nu{
+	margin-bottom: 5rem;
+	margin-top: 5rem;
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
-	
-	<h1>비밀번호 재설정</h1>
-	
-	<form id="formtag" action="pwupdate.do" method="post">
-		
-		<input type="hidden" name="member_id" value="${member_id}">
-		
-		<input type="password" name="member_pw" value="" required="required"/></br>
-	
-		<input type="password" name="member_pw1" value="" required="required"/><br>
-	
-	<input type="submit" value="수정하기">
-	
-	<input type="button" value="취소하기" onclick="location.href='mypage.do'">
-	
-	</form>
-	
+	<div class="container nu center">
+		<h1>비밀번호 재설정</h1>
+
+		<form id="formtag" action="pwupdate.do" method="post">
+			<table class="table center" style="text-align: center;">
+				<tr>
+				
+					<td>
+					<input type="hidden" name="member_id" value="${member_id}">
+					<input type="password" name="member_pw" value=""
+						required="required" /></td>
+				</tr>
+				<tr>
+					<td><input type="password" name="member_pw1" value=""
+						required="required" /></td>
+				</tr>
+				<tr>
+					<td colspan="1"><input type="submit" value="수정하기"
+						class="btn btn-outline-light"> <input type="button"
+						value="취소하기" class="btn btn-outline-light"
+						onclick="location.href='mypage.do'"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
 	<!-- ------------------------푸터-------------------------------------------- -->
 	<%@ include file="../footer.jsp"%>
 	<!-- ------------------------푸터-------------------------------------------- -->

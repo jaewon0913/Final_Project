@@ -1,6 +1,7 @@
 package com.khfinal.mvc.boxorder.dao;
 
 import java.util.ArrayList;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,23 @@ public class BoxorderDaoImpl implements BoxorderDao {
 	@Override
 	public int dosirakinsert(BoxorderDto dto) {
 		System.out.println("daoimpl dish!!!!!!!!!!  "+dto.getDish1());
+		
+		Object obj = dto;
+		for(Field field : obj.getClass().getDeclaredFields()) {
+			field.setAccessible(true);
+			try {
+				Object value = field.get(obj);
+				System.out.println(field.getName()+ ": ," + value);
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
 		int res = sqlSession.insert(namespace+"dosirakinsert",dto);
 		
 		return res;

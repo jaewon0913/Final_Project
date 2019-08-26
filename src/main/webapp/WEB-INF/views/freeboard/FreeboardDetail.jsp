@@ -10,18 +10,22 @@
 <!-- <META HTTP-EQUIV="refresh" CONTENT="10"> 10초마다 새로고침-->
 <meta charset="UTF-8">
 <title>detail</title>
+
+<!-- include libraries(jQuery, bootstrap )-->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<!-- include summernote css/js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+
+
 </head>
 <body>
 
+	<!-- header -->
 	<%@ include file="../header.jsp"%>
 
 	<h2>자유게시판 상세보기</h2>
-	<table class="table table-hover">
+	<table class="table">
 	
-		<col width="100">
-		<col width="300">
-		<col width="200">
-		<col width="300">
 	
 
 		<tr>
@@ -43,18 +47,19 @@
 		</tr>
 		<tr>
 			<th>내   용</th>
-			<td><textarea readonly="readonly">${dto.free_content }</textarea></td>
+			<td>${dto.free_content }</td>
+		
 		</tr>
 			
 
 		<tr>
-			<td colspan="3">
-					<input type="button" value=" 목록으로 " onclick="location.href='freeboard_list.do'">
+			<td colspan="3" align="right">
+					<input type="button" value=" 목록으로 " onclick="location.href='freeboard_list.do'" class="btn btn-outline-light">
 					<c:choose>
 					<c:when test="${logindto.member_id ne null }">
-					<input type="button" value=" 글수정 " onclick="location.href='freeboard_updateform.do?free_postnum=${dto.free_postnum }'">
+					<input type="button" value=" 글수정 " onclick="location.href='freeboard_updateform.do?free_postnum=${dto.free_postnum }'" class="btn btn-outline-light">
 					<%-- <input type="button" value=" 삭  제 " onclick="location.href='freeboard_delete.do?free_postnum=${dto.free_postnum }'"> --%>
-					<input type="button" value=" 삭  제 " onclick="removeCheck()">
+					<input type="button" value=" 삭  제 " onclick="removeCheck()" class="btn btn-outline-light">
 					</c:when>
 					</c:choose>
 			</td>
@@ -81,16 +86,10 @@
 	
 	<!---- 댓 글 ---------------------------------------------------------------------------------------------->
 	
-	
-			<h3>댓글보기</h3>
-			<br>
+	<h3>&lt; 댓글보기 &gt;</h3>
+
 			
-				<table class="table table-hover">
-				
-					<col width = "100" />
-					<col width = "500" />
-					<col width = "100" />
-					<col width = "80" />
+				<table class="table">
 					
 					<tr>
 						<th>작성자</th>
@@ -130,10 +129,10 @@
 					</c:forEach>
 					
 				</table>
-					<script type="text/javascript">
-	
+				
+			
+			
 
-	</script>
 	<br>
 	<br>
 	<br>
@@ -165,20 +164,36 @@
 				<th>댓글쓰기</th>
 				<td><textarea row="300" cols="100" name="com_content" placeholder="댓글을 작성해 주세요"  ></textarea></td>
 			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="저  장">
-				</td> 
-			</tr>
+			<c:choose>
+				<c:when test="${logindto.member_id ne null }">
+					<tr align="right">
+						<td colspan="2"><input type="submit" value="저  장" class="btn btn-outline-light"></td>
+					</tr>
+				</c:when>
+			</c:choose>
 		</table>
 	</form>
 	<br>
 	<br>	
 	
 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>	
 	
-	
-	
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('#summernote').summernote({
+			placeholder : 'content',
+			minHeight : 370,
+			maxHeight : null,
+			airMode : true,
+			focus : true,
+			lang : 'ko-KR'
+		});
+	});
+</script>	
 
 	
 	

@@ -17,8 +17,8 @@ public interface EventboardBiz {
 	//조회수
 	public int evupdateViews(int event_postnum);
 	
-	//public int eventboard_muldel(String[] event_chk);
-	public int eventboard_muldel(Integer[] event_chk);
+	
+	//public int eventboard_muldel(Integer[] event_chk);
 	
 	
 	//  댓  글

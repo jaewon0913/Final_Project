@@ -16,12 +16,19 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-   function PageMove(page) {
+   function PageMove_notice(page) {
       location.href = "notice_list.do?page=" + page ;
    }
    
 </script>
-
+<style type="text/css">
+td>a{
+	color: black;
+}
+td>a:hover {
+	color: gray;
+}
+</style>
 
 <title>공지사항 게시판1</title>
 <%
@@ -52,6 +59,15 @@
 							<td colspan="5" align="center">=======작성된 글이 존재하지
 								않습니다.=======</td>
 						</tr>
+						<c:choose>
+					<c:when test="${logindto.member_id eq 'admin'}">
+						<tr>
+							<td colspan="5" align="right"><input
+								class="btn btn-outline-light" type="button" value="글쓰기"
+								onclick="location.href='notice_insertform.do'"></td>
+						</tr>
+					</c:when>
+				</c:choose>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${ list}" var="NoticeDto">
@@ -66,11 +82,12 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
+				
 				<c:choose>
-					<c:when test="${logindto.member_id ne null}">
+					<c:when test="${logindto.member_id eq 'admin'}">
 						<tr>
 							<td colspan="5" align="right"><input
-								class="btn btn-outline-dark" type="button" value="글쓰기"
+								class="btn btn-outline-light" type="button" value="글쓰기"
 								onclick="location.href='notice_insertform.do'"></td>
 						</tr>
 					</c:when>
@@ -86,22 +103,22 @@
 	</div>
 
 <!-- Pagination -->
-	<div class="container text-center " style="font-size: 3rem;">
-		<a href="javascript:PageMove(${paging.firstPageNo})"  class="page">&laquo;</a> <a
-			href="javascript:PageMove(${paging.prevPageNo})" class="page">&lt;</a>
+	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">
+		<a href="javascript:PageMove_notice(${paging.firstPageNo})"  class="page">&laquo;</a> <a
+			href="javascript:PageMove_notice(${paging.prevPageNo})" class="page">&lt;</a>
 		<c:forEach var="i" begin="${paging.startPageNo}"
 			end="${paging.endPageNo}" step="1">
 			<c:choose>
 				<c:when test="${i eq paging.pageNo}">
-					<a href="javascript:PageMove(${i})" class="page">${i}</a>
+					<a href="javascript:PageMove_notice(${i})" class="page">${i}</a>
 				</c:when>
 				<c:otherwise>
-					<a href="javascript:PageMove(${i})" class="page">${i}</a>
+					<a href="javascript:PageMove_notice(${i})" class="page">${i}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<a href="javascript:PageMove(${paging.nextPageNo})" class="page">&gt;</a> <a
-			href="javascript:PageMove(${paging.finalPageNo})" class="page">&raquo;</a>
+		<a href="javascript:PageMove_notice(${paging.nextPageNo})" class="page">&gt;</a> <a
+			href="javascript:PageMove_notice(${paging.finalPageNo})" class="page">&raquo;</a>
 	</div>
 		<!-- /Pagination -->
 

@@ -17,12 +17,14 @@ CREATE TABLE COM_BOARD(
 	MEMBER_NAME VARCHAR2(200),
 	COM_CONTENT VARCHAR2(2000) NOT NULL,
 	COM_CONTAB NUMBER, -- 대댓글 contentTAB 주기
-	COM_COMNO NUMBER NOT NULL, --그룹 대신 com_comno  // 댓글번호
+	COM_COMNO NUMBER , --그룹 대신 com_comno  // 댓글번호
 	COM_COMSQ NUMBER ,  -- 댓글도 여러개 달릴수 있으니깐요 댓글에서의 순번입니다.  //댓글 순서
 	COM_REGDATE DATE
 
 );
 
+SELECT count( *) FROM FREEBOARD WHERE 1=1
+;
 
 
 
@@ -33,11 +35,11 @@ SELECT * FROM COM_BOARD WHERE COM_NUM = 1
  
  select nvl(max(COM_COMSQ)+1,1) as COM_COMSQ from COM_BOARD
 where 1=1
-and FREE_POSTNUM = 63
+and FREE_POSTNUM = 141
 ;
 
 
-INSERT INTO COM_BOARD VALUES(COM_NUMSEQ.NEXTVAL,63,'yumi','홍유미',' 첫번째 답글입니다. ',0,COM_COMNO.NEXTVAL,1,SYSDATE);
+INSERT INTO COM_BOARD VALUES(COM_NUMSEQ.NEXTVAL,141,'yumi','홍유미',' 첫번째 답글입니다. ',0,COM_COMNO.NEXTVAL,1,SYSDATE);
 
 INSERT INTO COM_BOARD VALUES(COM_NUMSEQ.NEXTVAL,63,'yumi','홍유미',' 두번째 답글입니다. ',0,  
 		(select nvl(max(COM_COMSQ)+1,1) as COM_COMSQ from COM_BOARD

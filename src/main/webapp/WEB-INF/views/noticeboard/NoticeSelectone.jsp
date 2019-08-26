@@ -27,47 +27,51 @@
 			<table class="table ">
 				
 				<tr>
-					<th>번 호</th>
-					<td id="notice_postnum">${NoticeDto.notice_postnum}</td>
+					<th>제 목</th>
+					<td>${NoticeDto.notice_title}</td>
+					<th>작성자</th>
+					<td>${NoticeDto.member_id }</td>
+					
 				</tr>
-				<tr>
+				<%-- <tr>
 					<th>작성자</th>
 					<td>${NoticeDto.member_id }</td>
 				</tr>
 				<tr>
 					<th>제 목</th>
 					<td>${NoticeDto.notice_title}</td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<th>내 용</th>
-					<td>
-					<textarea rows="5" cols="60" readonly="readonly">${NoticeDto.notice_content}</textarea></td>
+					<td colspan="6">
+					<textarea rows="8" cols="80" readonly="readonly">${NoticeDto.notice_content}</textarea></td>
 				</tr>
 				<tr>	
-					<th>작성일</th>
+					<th colspan="1">작성일</th >
 					<td>${NoticeDto.notice_regdate}</td>
-				</tr>
-				<tr>
-					<th>조회수</th>
+					<th colspan="1">조회수</th>
 					<td>${NoticeDto.notice_views}</td>
 				</tr>
+				<%-- <tr>
+					<th>조회수</th>
+					<td>${NoticeDto.notice_views}</td>
+				</tr> --%>
 
 							
 				<tr>
-					<td colspan="5" align="right">
+					<td colspan="7" align="right">
 					<c:choose>
-					<c:when test="${logindto.member_id eq NoticeDto.member_id}">
-						<tr>
-							<td colspan="5" align="right">
-								<input class="btn" type="submit" value="수정" onclick="location.href='notice_updateform.do?notice_postnum=${NoticeDto.notice_postnum}'">
-								<input class="btn" type="button" value="삭제" onclick="location.href='notice_delete.do?notice_postnum=${NoticeDto.notice_postnum}'">
-								<input class="btn" type="button" value="목록" onclick="location.href='notice_list.do'">
-							</td>
-						</tr>
+					<c:when test="${logindto.member_id eq 'admin'}">
+								<input class="btn btn-outline-light" type="submit" value="수정" onclick="location.href='notice_updateform.do?notice_postnum=${NoticeDto.notice_postnum}'">
+								<input class="btn btn-outline-light" type="button" value="삭제" onclick="location.href='notice_delete.do?notice_postnum=${NoticeDto.notice_postnum}'">
+								<input class="btn btn-outline-light" type="button" value="목록" onclick="location.href='notice_list.do'">
 					</c:when>
+					<c:otherwise>
+						<input class="btn btn-outline-light" type="button" value="목록" onclick="location.href='notice_list.do'">
+					</c:otherwise>
 				</c:choose>
 					
-					<input class="btn" type="button" value="목록" onclick="location.href='notice_list.do'">
+					
 					</td>
 				</tr>
 			</table>

@@ -52,8 +52,8 @@
 							
 				<tr>
 					<td colspan="5" align="right">
-					<input class="btn" type="submit" value="수정">
-					<input class="btn" type="button" value="취소" onclick="location.href='notice_list.do'">
+					<input class="btn btn-outline-light" type="submit" value="수정" >
+					<input class="btn btn-outline-light" type="button" value="취소" onclick="location.href='notice_list.do'">
 					</td>
 				</tr>
 			</table>

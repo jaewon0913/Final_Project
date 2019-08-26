@@ -1,44 +1,41 @@
 @charset "UTF-8";
-
-#chat_div {
-	z-index: 10;
-	display: none;
-	position: fixed;
-	background-color: white;
-	border: 1px solid;
-	right: 850px;
-	width: 500px;
-	height: 300px;
-	top: 167px;
-	overflow: scroll;
-}
-
-#send_div {
-	z-index: 10;
-	display: none;
-	position: fixed;
-	background-color: white;
-	border: 1px solid;
-	right: 850px;
-	width: 500px;
-	top: 467px;
-}
-
-#send_btn {
-	width: 57px;
-	float: right;
-}
-
-#chat_close {
-	width : 57px;
-	float : right;
-}
-
-#message {
-	width: 435px;
-	margin-right: 6px;
-}
-
+	#chat_div{
+		z-index : 10;
+		display: none; 
+		position : fixed;
+		background-color : white;
+		border : 1px solid;
+		left : 5rem;
+		width: 60rem; 
+		height: 30rem;
+		top : 17rem;
+		border-radius: 15px;
+	}
+	#send_div{
+		z-index : 10;
+		display: none; 
+		position : fixed;
+		background-color : white;
+		border : 1px solid;
+		left : 5rem;
+		width: 60rem; 
+		top : 47rem;
+		border-radius: 15px;
+	}
+	#send_btn{
+		width : 10rem;
+		float : right;
+		margin-right: 0.5rem
+	}
+	#message{
+		width :45rem;
+		margin-left : 0.5rem;
+		border-radius: 30px;
+	}
+	#bot_chat_close,#chat_close{
+	margin: 2px 0 7px -5px;
+    
+	}
 .arrow_box {
 	position: relative;
 	background: #88b7d5;
@@ -53,11 +50,12 @@
 	position: fixed;
 	background-color: white;
 	border: 1px solid;
-	right: 850px;
-	width: 500px;
-	height: 300px;
-	top: 245px;
+	left: 5rem;
+	width: 55rem;
+	height: 30rem;
+	top: 22rem;
 	overflow : scroll;
+	border-radius: 15px;
 }
 
 #bot_send_div {
@@ -66,9 +64,10 @@
 	position: fixed;
 	background-color: white;
 	border: 1px solid;
-	right: 850px;
-	width: 500px;
-	top: 544px;
+	left: 5rem;
+	width: 55rem;
+	top: 52rem;
+	border-radius: 15px;
 }
 
 #bot_send_btn {
@@ -76,9 +75,11 @@
 	float: right;
 }
 
+
 #bot_message {
 	width: 435px;
 	margin-right: 6px;
+	border-radius: 30px;
 }
 
 .arrow_box {
