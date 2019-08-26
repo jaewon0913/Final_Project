@@ -43,7 +43,11 @@
 	<tx:annotation-driven/>
 	
 	<!-- 해당 태그들은 크론탭을 설정에 필요한 태그들 --> 
-	<task:scheduler id="jobScheduler" pool-size="10" /> 
-	<task:annotation-driven scheduler="jobScheduler" />
+<!-- 	<task:scheduler id="jobScheduler" pool-size="10" />  -->
+<!-- 	<task:annotation-driven scheduler="jobScheduler" /> -->
+	<!-- Scheduler -->
+	<task:annotation-driven/>
+
+
 
 </beans:beans>

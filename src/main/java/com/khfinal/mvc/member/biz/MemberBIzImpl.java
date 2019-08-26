@@ -1,5 +1,7 @@
 package com.khfinal.mvc.member.biz;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +67,17 @@ public class MemberBIzImpl implements MemberBiz {
 	@Override
 	public MemberDto loginsuccess(String id) {
 		return memberdao.loginsuccess(id);
+	}
+
+	@Override
+	public List<MemberDto> pwChangedate() {
+		return memberdao.pwChangedate();
+	}
+
+	@Override
+	public int memberWithdrawal(String member_id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
