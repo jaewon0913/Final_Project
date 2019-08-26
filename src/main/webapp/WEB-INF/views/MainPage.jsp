@@ -56,6 +56,8 @@
 <body>
 	<!-- header.jsp -->
 	<%@ include file="header.jsp"%>
+	
+	<input type = "button" value = "테스트버튼" onclick = "location.href='testpage.do'">
 
 <!-- -----------------슬라이드 이미지-------------------------------------------- -->
 
@@ -227,11 +229,129 @@
 	<!-- /.container -->
 
 
-	<%@ include file="footer.jsp"%>
-
-
-
-	
+	<%@ include file="footer.jsp"%>	
 </body>
+
+<!-- <script type="text/javascript">
+	var EndEvent = new Date('March 14, 14:29:00');
+	End_hours = EndEvent.getHours();
+	End_minutes = EndEvent.getMinutes();
+	End_seconds = EndEvent.getSeconds();
+
+	//강연시 시간을 변경할것
+	var StartEvent = new Date('March 14, 09:56:55');
+	Start_hours = StartEvent.getHours();
+	Start_minutes = StartEvent.getMinutes();
+	Start_seconds = StartEvent.getSeconds();
+
+	if (window.location.href != 'http://localhost:8787/mvc/eventboard_list.do') {
+		var EVT = setInterval("Event_Time()", 1000);
+	}
+
+	function Event_Time() {
+		var now = new Date();
+		hours = now.getHours();
+		minutes = now.getMinutes();
+		seconds = now.getSeconds();
+
+		if (End_hours > Start_hours) {
+			if (End_hours < hours) {
+				clearInterval(EVT);
+			}
+
+			else if (End_hours == hours) {
+				if (End_minutes < minutes) {
+					clearInterval(EVT);
+				} else if (End_minutes == minutes) {
+					if (End_seconds < seconds) {
+						clearInterval(EVT);
+					} else if (End_seconds >= seconds) {
+						calculate();
+					}
+				} else if (End_minutes > minutes) {
+					calculate();
+				}
+			}
+
+			else if (End_hours > hours && hours > Start_hours) {
+				calculate();
+			}
+
+			else if (Start_hours == hours) {
+				if (Start_minutes < minutes) {
+					calculate();
+				} else if (Start_minutes == minutes) {
+					if (Start_seconds <= seconds) {
+						calculate();
+					} else if (Start_seconds > seconds) {
+
+					}
+				} else if (Start_minutes > minutes) {
+
+				}
+			}
+
+			else if (Start_hours > hours) {
+
+			}
+		}
+
+		else if (End_hours == Start_hours) {
+			if (End_hours < hours) {
+				clearInterval(EVT);
+			} else if (End_hours == hours && Start_hours == hours) {
+				if (End_minutes < minutes) {
+					clearInterval(EVT);
+				} else if (End_minutes > minutes && Start_minutes < minutes) {
+					calculate();
+				} else if (End_minutes == minutes && Start_minutes == minutes) {
+					if (End_seconds > seconds && Start_seconds < seconds) {
+						calculate();
+					} else if (End_seconds < seconds) {
+						clearInterval(EVT);
+					} else if (Start_seconds > seconds) {
+
+					}
+				} else if (End_minutes == minutes) {
+					if (End_seconds >= seconds) {
+						calculate();
+					}
+				} else if (Start_minutes == minutes) {
+					if (Start_seconds <= seconds) {
+						calculate();
+					}
+				} else if (Start_minutes > minutes) {
+
+				}
+
+			} else if (Start_hours > hours) {
+
+			}
+		}
+	}
+
+	function calculate() {
+		setTimeout(function() {
+			notify();
+		}, 5000);
+		clearInterval(EVT);
+	}
+
+	function notify() {
+		if (Notification.permission !== 'granted') {
+			alert('notification is disabled');
+		} else {
+			var notification = new Notification('Event', {
+				icon : 'resources/bootstrap/image/Event.jpg',
+				body : '이벤트의 내용을 적어 주세요\n클릭시 이벤트 페이지로 이동',
+			});
+
+			notification.onclick = function() {
+				location.href = 'eventboard_list.do';
+				notification.close();
+			};
+		}
+	}
+</script> -->
 
 </html>
