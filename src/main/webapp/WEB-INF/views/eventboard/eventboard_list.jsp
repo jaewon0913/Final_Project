@@ -75,7 +75,7 @@
  </script> -->
  
 <script type="text/javascript">
-	function PageMove(page, data) {
+	function PageMove_event(page, data) {
 		location.href = "eventboard_list.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
 		
 	
@@ -99,11 +99,12 @@
 		<tr>
 			<td><input type="hidden" id="txt_search"
 				value="${txt_search }"> <input type="hidden" 
-				value="검색"  onclick="javascript:PageMove(${paging.pageNo})">
+				value="검색"  onclick="javascript:PageMove_event(${paging.pageNo})">
 			</td>
 		</tr>
 	</table>
 	
+
 	<br>
 
 	<c:choose>
@@ -195,26 +196,26 @@
 
 	<!-- Pagination -->
 	<div class="pagination">
-		<a href="javascript:PageMove(${paging.firstPageNo})"
+		<a href="javascript:PageMove_event(${paging.firstPageNo})"
 			class="button previous">&laquo;</a> <a
-			href="javascript:PageMove(${paging.prevPageNo})"
+			href="javascript:PageMove_event(${paging.prevPageNo})"
 			class="button previous">&lt;</a>
 		<div class="pages">
 			<c:forEach var="i" begin="${paging.startPageNo}"
 				end="${paging.endPageNo}" step="1">
 				<c:choose>
 					<c:when test="${i eq paging.pageNo}">
-						<a href="javascript:PageMove(${i})" class="active">${i}</a>
+						<a href="javascript:PageMove_event(${i})" class="active">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="javascript:PageMove(${i})">${i}</a>
+						<a href="javascript:PageMove_event(${i})">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 		</div>
-		<a href="javascript:PageMove(${paging.nextPageNo})"
+		<a href="javascript:PageMove_event(${paging.nextPageNo})"
 			class="button next">&gt;</a> <a
-			href="javascript:PageMove(${paging.finalPageNo})" class="button next">&raquo;</a>
+			href="javascript:PageMove_event(${paging.finalPageNo})" class="button next">&raquo;</a>
 	</div>
 
 	

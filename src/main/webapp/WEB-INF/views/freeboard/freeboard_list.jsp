@@ -75,7 +75,7 @@ $(function(){
  </script>
 
 <script type="text/javascript">
-   function PageMove(page, data) {
+   function PageMove_free(page, data) {
       location.href = "freeboard_list.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
       
    
@@ -106,7 +106,7 @@ td>a:hover {
             <tr>
                <td colspan="5"><input type="text" id="txt_search"
                   value="${txt_search }"> <input type="button" value="검색"
-                  onclick="javascript:PageMove(${paging.pageNo})"
+                  onclick="javascript:PageMove_free(${paging.pageNo})"
                   class="btn btn-outline-light"></td>
             </tr>
          </table>
@@ -198,21 +198,21 @@ td>a:hover {
 
    <!-- Pagination -->
    <div class="container text-center " style="font-size: 3rem;">
-      <span> <a href="javascript:PageMove(${paging.firstPageNo})"
+      <span> <a href="javascript:PageMove_free(${paging.firstPageNo})"
          class="page">&laquo;</a> <a
-         href="javascript:PageMove(${paging.prevPageNo})" class="page">&lt;</a>
+         href="javascript:PageMove_free(${paging.prevPageNo})" class="page">&lt;</a>
          <c:forEach var="i" begin="${paging.startPageNo}"
             end="${paging.endPageNo}" step="1">
             <c:choose>
                <c:when test="${i eq paging.pageNo}">
-                  <a href="javascript:PageMove(${i})" class="page">${i}</a>
+                  <a href="javascript:PageMove_free(${i})" class="page">${i}</a>
                </c:when>
                <c:otherwise>
-                  <a href="javascript:PageMove(${i})" class="page">${i}</a>
+                  <a href="javascript:PageMove_free(${i})" class="page">${i}</a>
                </c:otherwise>
             </c:choose>
-         </c:forEach> <a href="javascript:PageMove(${paging.nextPageNo})" class="page">&gt;</a>
-         <a href="javascript:PageMove(${paging.finalPageNo})" class="page">&raquo;</a>
+         </c:forEach> <a href="javascript:PageMove_free(${paging.nextPageNo})" class="page">&gt;</a>
+         <a href="javascript:PageMove_free(${paging.finalPageNo})" class="page">&raquo;</a>
       </span>
    </div>
    <!-- /Pagination -->

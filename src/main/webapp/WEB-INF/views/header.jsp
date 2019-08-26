@@ -112,7 +112,7 @@ a.nav-link:hover{
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item ">
-						<a class="nav-link" href="dosirak_listpagig.do">도시락 주문 <span class="sr-only">(current)</span>
+						<a class="nav-link" href="dosirak_listpaging.do">도시락 주문 <span class="sr-only">(current)</span>
 						</a></li>
 						<!-- 둘중 선택 <li class="nav-item active"><a class="nav-link" href="dosiraktest.do">도시락
 							주문 <span class="sr-only">(current)</span>
@@ -253,6 +253,10 @@ a.nav-link:hover{
 					};
 				}
 			}
+			
+			function PageMove(page) {
+			      location.href = "dosirak_listpaging.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
+			   }
 		</script>
 	</header>
 </body>

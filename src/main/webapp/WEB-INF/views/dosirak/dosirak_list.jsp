@@ -61,16 +61,9 @@ margin-top: 8rem;
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-   function PageMove(page) {
-      location.href = "dosirak_listpagig.do?page=" + page;
+   function PageMove_dosirak(page) {
+      location.href = "dosirak_listpaging.do?page=" + page;
    }
-   
-	function allChk(val){
-		var chks = document.getElementsByName('chk');
-			for(var i=0 ; i<chks.length ; i++){
-				chks[i].checked = val;
-	}
-}
 </script>
 <title>도시락 list</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -97,18 +90,21 @@ margin-top: 8rem;
 		<h1>Best 3</h1>
 		<br/><br/><br/>
 		
-		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
-			<img alt="test" src="resources/bootstrap/image/do1.jpg" class="iii">
-		</div>
-		
-		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
-			<img alt="test" src="resources/bootstrap/image/do1.jpg" class="iii">
-		</div>
-		
-		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
-			<img alt="test" src="resources/bootstrap/image/do1.jpg" class="iii">
-		</div>
-		
+		<c:choose>
+			<c:when test="${empty viewslist}">
+				<h3>베스트메뉴 도시락이 없습니다.</h3>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${viewslist}" var="viewsdto">
+					<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
+					<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${viewsdto.dosirak_postnum}'">
+					<img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="iii">
+					<input type="hidden" name="dosirak_postnum" value="${viewsdto.dosirak_postnum}">
+					</div>
+					</div>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 		
 	</div>
 
@@ -130,7 +126,7 @@ margin-top: 8rem;
 								<div
 									class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
 									<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'"> 
-										<img alt="이미지" src="https://dosirakmall.wisacdn.com/_data/product/201901/11/214bf675538ebab78e937949a977544e.jpg" style="width: 20rem; height: 20rem;" />
+										<img alt="이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" style="width: 20rem; height: 20rem; border-radius: 50%;" />
 										<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
 										<div style="text-align: center;">
 											<p>${dto.dosirak_name}/${dto.dosirak_price}원</p>
@@ -145,8 +141,8 @@ margin-top: 8rem;
 					
 				</div>
 				<div style="float: right; margin: 3%;">
-					<input type="button" value="메인화면" onclick="location.href='mainpage.jsp'" class="btn btn-outline-light"> 
-					<input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='#'">
+					<input type="button" value="메인화면" onclick="location.href='startpage.jsp'" class="btn btn-outline-light"> 
+					<input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='dosirak_insertform.do'">
 				</div>
 			</div>
 		
@@ -154,21 +150,21 @@ margin-top: 8rem;
 
 	<!-- Pagination -->
 	<div class="container text-center " style="font-size: 3rem;">
-		<a href="javascript:PageMove(${paging.firstPageNo})"  class="page">&laquo;</a> <a
-			href="javascript:PageMove(${paging.prevPageNo})" class="page">&lt;</a>
+		<a href="javascript:PageMove_dosirak(${paging.firstPageNo})"  class="page">&laquo;</a> <a
+			href="javascript:PageMove_dosirak(${paging.prevPageNo})" class="page">&lt;</a>
 		<c:forEach var="i" begin="${paging.startPageNo}"
 			end="${paging.endPageNo}" step="1">
 			<c:choose>
 				<c:when test="${i eq paging.pageNo}">
-					<a href="javascript:PageMove(${i})" class="page">${i}</a>
+					<a href="javascript:PageMove_dosirak(${i})" class="page">${i}</a>
 				</c:when>
 				<c:otherwise>
-					<a href="javascript:PageMove(${i})" class="page">${i}</a>
+					<a href="javascript:PageMove_dosirak(${i})" class="page">${i}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<a href="javascript:PageMove(${paging.nextPageNo})" class="page">&gt;</a> <a
-			href="javascript:PageMove(${paging.finalPageNo})" class="page">&raquo;</a>
+		<a href="javascript:PageMove_dosirak(${paging.nextPageNo})" class="page">&gt;</a> <a
+			href="javascript:PageMove_dosirak(${paging.finalPageNo})" class="page">&raquo;</a>
 	</div>
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="../footer.jsp"%>

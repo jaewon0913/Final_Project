@@ -39,6 +39,20 @@ public class DosirakDaoImpl implements DosirakDao {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<DosirakDto> viewslist() {
+		List<DosirakDto> list = new ArrayList<DosirakDto>();
+		
+		try {
+			list = sqlSession.selectList(namespace + "viewslist");
+		} catch (Exception e) {
+			System.out.println("select viewslist error");
+			e.printStackTrace();
+		}
+		
+		return list;
+	}	
 
 	@Override
 	public List<DosirakDto> selectListPaging(int firstIndex, int recordCountPerPage, String txt_search) {
@@ -66,20 +80,41 @@ public class DosirakDaoImpl implements DosirakDao {
 
 	@Override
 	public int insert(DosirakDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(namespace + "insert", dto);
+		} catch (Exception e) {
+			System.out.println("insert 에러");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public int update(DosirakDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = 0;
+		try {
+			res = sqlSession.update(namespace + "update", dto);
+		} catch (Exception e) {
+			System.out.println("update 에러");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public int delete(String dosirak_name) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = 0;
+		System.out.println("아예안오니");
+		try {
+			res = sqlSession.delete(namespace + "delete", dosirak_name);
+		} catch (Exception e) {
+			System.out.println("delete 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 	@Override
@@ -95,6 +130,17 @@ public class DosirakDaoImpl implements DosirakDao {
 		}
 		return dto;
 	}
-	
-	
+
+	@Override
+	public int updateviews(int dosirak_postnum) {
+		int res = 0;
+		try {
+		res = sqlSession.update(namespace + "updateviews", dosirak_postnum);
+		} catch (Exception e) {
+			System.out.println("updateViews error");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }

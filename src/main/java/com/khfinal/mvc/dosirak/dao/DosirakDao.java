@@ -9,8 +9,10 @@ public interface DosirakDao {
 	String namespace = "dosirakmapper.";
 	
 	public List<DosirakDto> selectList();
+	public List<DosirakDto> viewslist();
 	public DosirakDto selectOne(int dosirak_postnum);
 	public DosirakDto selecttest(int dosirak_postnum);
+	
 	
 	//페이징
 	public List<DosirakDto> selectListPaging(int firstIndex, int recordCountPerPage, String txt_search);
@@ -19,4 +21,6 @@ public interface DosirakDao {
 	public int insert(DosirakDto dto);
 	public int update(DosirakDto dto);
 	public int delete(String dosirak_name);
+	
+	public int updateviews(int dosirak_postnum);
 }
