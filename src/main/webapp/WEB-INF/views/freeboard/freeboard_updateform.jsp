@@ -25,11 +25,7 @@
 	
 	<input type="hidden" name="memeber_id" value="${dto.member_id }" readonly="readonly">
 	
-	<table class="table table-hover">
-	<col width="100">
-			<col width="100">
-			<col width="100">
-			<col width="100">
+	<table class="table ">
 		<tr>
 			<th> 날 짜 </th>
 			<td colspan="2" readonly="readonly">${dto.free_regdate }</td>
@@ -50,9 +46,9 @@
 		
 		</tr>
 		<tr>
-			<td colspan="3">
-				<input type="button" value="취  소" onclick="location.href='freeboard_detail.do?free_postnum=${dto.free_postnum }'">
-				<input type="submit" value="수  정" >
+			<td colspan="3" align="right">
+				<input type="button" value="취  소" onclick="location.href='freeboard_detail.do?free_postnum=${dto.free_postnum }'" class="btn btn-outline-light">
+				<input type="submit" value="수  정" class="btn btn-outline-light" >
 			</td>	
 		</tr>
 		

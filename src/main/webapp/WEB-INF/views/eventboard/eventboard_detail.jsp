@@ -21,17 +21,13 @@
 <body>
 <!-- header -->
 		<%@ include file="../header.jsp"%>
-
+<div class="container">
 
 
 	<h2>이벤트 상세보기</h2>
 	<br>
-	<table class="table table-hover">
+	<table class="table ">
 	
-		<col width="100">
-		<col width="300">
-		<col width="200">
-		<col width="300">
 	
 
 		<tr>
@@ -59,13 +55,12 @@
 			
 
 		<tr>
-			<td colspan="3">
-					<input type="button" value=" 목록으로 " onclick="location.href='eventboard_list.do'">
+			<td colspan="3" align="right">
+					<input type="button" value=" 목록으로 " onclick="location.href='eventboard_list.do'" class="btn btn-outline-light">
 					<c:choose>
 					<c:when test="${logindto.member_id ne null }">
-					<input type="button" value=" 글수정 " onclick="location.href='eventboard_updateform.do?event_postnum=${dto.event_postnum }'">
-					<%-- <input type="button" value=" 삭  제 " onclick="location.href='eventboard_delete.do?event_postnum=${dto.event_postnum }'"> --%>
-					<input type="button" value=" 삭  제 " onclick="removeCheck()">
+					<input type="button" value=" 글수정 " onclick="location.href='eventboard_updateform.do?event_postnum=${dto.event_postnum }'" class="btn btn-outline-light">
+					<input type="button" value=" 삭  제 " onclick="removeCheck()" class="btn btn-outline-light">
 					</c:when>
 					</c:choose>
 			</td>
@@ -107,7 +102,7 @@
 	});
 </script>
 
-	
+	</div>
 	<%@ include file="../footer.jsp"%>
 
 </body>
