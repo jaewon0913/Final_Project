@@ -128,4 +128,10 @@ public class DosirakController {
 
 		return null;
 	}
+	
+	@RequestMapping("/dorirak_monthpay.do")
+	public String dorirak_monthpay(Model model) {
+		model.addAttribute("dosirakdto");
+		return "payment/Dorirak_monthpay";
+	}
 }

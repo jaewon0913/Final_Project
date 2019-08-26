@@ -197,7 +197,7 @@ td>a:hover {
 
 
 	<!-- Pagination -->
-	<div class="container text-center " style="font-size: 3rem;">
+	<div class="container text-center " style="font-size: 3rem;margin-bottom: 5rem;">
 		<span> <a href="javascript:PageMove_free(${paging.firstPageNo})"
 			class="page">&laquo;</a> <a
 			href="javascript:PageMove_free(${paging.prevPageNo})" class="page">&lt;</a>

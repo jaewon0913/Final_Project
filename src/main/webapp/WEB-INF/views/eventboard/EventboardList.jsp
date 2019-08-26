@@ -25,6 +25,8 @@
 .title{
 	width: 10rem;
 }
+
+
 </style>
 
 </head>
@@ -79,7 +81,7 @@
 			</c:when>
 		<c:otherwise>
 			
-				<table class="table table-hover">
+				<table class="table table-hover " valign='middle'>
 	
 
 					<tr>
@@ -111,10 +113,10 @@
 							<td><a href="eventboard_detail.do?event_postnum=${dto.event_postnum }">${dto.event_title}</td>
 							
 							
-							<td>${dto.event_views }</td>
+							<td style="padding-top: 8rem;">${dto.event_views }</td>
 							
 							<!-- 관리자만 보이게 할계획 0819 -->
-							<td>${dto.event_regdate }</td>
+							<td style="padding-top: 8rem;">${dto.event_regdate }</td>
 							<%-- <c:choose>
 							<c:when test="${logindto.member_id ne null }">
 							<td><a href="eventboard_detail.do?event_postnum=${dto.event_postnum }">${dto.event_title }</a></td>
@@ -144,7 +146,7 @@
 
 
 		<!-- Pagination -->
-	<div class="container text-center " style="font-size: 3rem;">
+	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">
 		<a href="javascript:PageMove_event(${paging.firstPageNo})"  class="page">&laquo;</a> <a
 			href="javascript:PageMove_event(${paging.prevPageNo})" class="page">&lt;</a>
 		<c:forEach var="i" begin="${paging.startPageNo}"

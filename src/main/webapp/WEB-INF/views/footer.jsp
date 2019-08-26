@@ -11,6 +11,13 @@
 	padding-top: 5rem !important;
 	height: 25rem;
 }
+
+.col-md-6{
+z-index: 1;
+}
+div>a,div>h1,div>p{
+z-index: 5;
+}
 </style>
 <link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
