@@ -1,5 +1,6 @@
 package com.khfinal.mvc;
 
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -8,17 +9,37 @@ import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.khfinal.mvc.member.biz.MemberBiz;
+import com.khfinal.mvc.notice.biz.NoticeBiz;
+import com.khfinal.mvc.notice.dto.NoticeDto;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+
+	@Autowired
+	private MemberBiz memberbiz;
+	
+	@Autowired
+	private NoticeBiz noticebiz;
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	@RequestMapping("/startpage.do")
+	public String startpage() {
+		return "startpage";
+	}
 	
 	@RequestMapping("/mainpage.do")
-	public String main() {		
+	public String main(Model model) {
+		List<NoticeDto> list = noticebiz.NoticemainSelect();
+		model.addAttribute("noticelist", list);
+		
 		return "MainPage";
 	}
 

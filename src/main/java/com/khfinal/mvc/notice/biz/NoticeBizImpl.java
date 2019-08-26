@@ -60,4 +60,10 @@ public class NoticeBizImpl implements NoticeBiz {
 	}
 
 
+	@Override
+	public List<NoticeDto> NoticemainSelect() {
+		return noticedao.NoticemainSelect();
+	}
+
+
 }
