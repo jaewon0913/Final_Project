@@ -7,6 +7,7 @@ import com.khfinal.mvc.dosirak.dto.DosirakDto;
 public interface DosirakBiz {
 
 	public List<DosirakDto> selectList();
+	public List<DosirakDto> viewslist();
 	public DosirakDto selectOne(int dosirak_postnum);
 	public DosirakDto selecttest(int dosirak_postnum);
 	
@@ -17,4 +18,6 @@ public interface DosirakBiz {
 	public int insert(DosirakDto dto);
 	public int update(DosirakDto dto);
 	public int delete(String dosirak_name);
+	
+	public int updateviews(int dosirak_postnum);
 }

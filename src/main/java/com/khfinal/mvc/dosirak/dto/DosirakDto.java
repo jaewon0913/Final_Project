@@ -12,20 +12,21 @@ public class DosirakDto {
 	private int dosirak_price;
 	private int dosirak_num;
 	private int dosirak_afternum;
+	private int dosirak_views;
 	private int tan;
 	private int dan;
 	private int gi;
 	private int kcal;
-	private String image1;
-	private String image2;
-	private String image3;
+	private String mainimage;
+	private String thumbnail;
 	private Date dosirak_regdate;
-	
-	public DosirakDto() {}
+
+	public DosirakDto() {
+	}
 
 	public DosirakDto(int dosirak_postnum, String dosirak_name, String dosirak_title, String dosirak_content,
-			String dosirak_delivery, int dosirak_price, int dosirak_num, int dosirak_afternum, int tan, int dan, int gi,
-			int kcal, String image1, String image2, String image3, Date dosirak_regdate) {
+			String dosirak_delivery, int dosirak_price, int dosirak_num, int dosirak_afternum, int dosirak_views,
+			int tan, int dan, int gi, int kcal, String mainimage, String thumbnail, Date dosirak_regdate) {
 		super();
 		this.dosirak_postnum = dosirak_postnum;
 		this.dosirak_name = dosirak_name;
@@ -35,13 +36,13 @@ public class DosirakDto {
 		this.dosirak_price = dosirak_price;
 		this.dosirak_num = dosirak_num;
 		this.dosirak_afternum = dosirak_afternum;
+		this.dosirak_views = dosirak_views;
 		this.tan = tan;
 		this.dan = dan;
 		this.gi = gi;
 		this.kcal = kcal;
-		this.image1 = image1;
-		this.image2 = image2;
-		this.image3 = image3;
+		this.mainimage = mainimage;
+		this.thumbnail = thumbnail;
 		this.dosirak_regdate = dosirak_regdate;
 	}
 
@@ -109,6 +110,14 @@ public class DosirakDto {
 		this.dosirak_afternum = dosirak_afternum;
 	}
 
+	public int getDosirak_views() {
+		return dosirak_views;
+	}
+
+	public void setDosirak_views(int dosirak_views) {
+		this.dosirak_views = dosirak_views;
+	}
+
 	public int getTan() {
 		return tan;
 	}
@@ -141,28 +150,20 @@ public class DosirakDto {
 		this.kcal = kcal;
 	}
 
-	public String getImage1() {
-		return image1;
+	public String getmainimage() {
+		return mainimage;
 	}
 
-	public void setImage1(String image1) {
-		this.image1 = image1;
+	public void setmainimage(String mainimage) {
+		this.mainimage = mainimage;
 	}
 
-	public String getImage2() {
-		return image2;
+	public String getthumbnail() {
+		return thumbnail;
 	}
 
-	public void setImage2(String image2) {
-		this.image2 = image2;
-	}
-
-	public String getImage3() {
-		return image3;
-	}
-
-	public void setImage3(String image3) {
-		this.image3 = image3;
+	public void setthumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public Date getDosirak_regdate() {
@@ -172,6 +173,5 @@ public class DosirakDto {
 	public void setDosirak_regdate(Date dosirak_regdate) {
 		this.dosirak_regdate = dosirak_regdate;
 	}
-	
-	
+
 }

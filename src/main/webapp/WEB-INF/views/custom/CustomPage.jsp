@@ -9,122 +9,10 @@
 <meta name="viewport" maximum-scale=1.0, user-scalable=no; />
 
 <title>커스텀 도시락 주문</title>
-<style>
-.customImg {
-	width: 170px;
-	height: 220px;
-	margin: 10px;
-	padding: 10px;
-	border: none;
-	float: left;
-	display: inline-block;
-	border-radius: 50%;
-}
 
-.customContent {
-	width: 170px;
-	height: 220px;
-	border-radius: 50%;
-}
+<!-- custompage css -->
+<link href="resources/css/custompage.css" rel="stylesheet" />
 
-.customDrop {
-	border: 5px solid black; 
-	border-radius: 50%; 
-	width: 15rem; 
-	height: 15rem; 
-	margin: 5%; 
-	position : relative;
-}
-
-.copydish {
-	position : absolute;
-	top : -5px;
-	left : -5px;
-	border-radius: 50%;
-}
-
-.mint {
-	background-color: #59cab7;
-	opacity: 0.8;
-}
-
-.line {
-	border-left: 2;
-	border-left-color: white;
-}
-
-#pay:hover {
-	opacity: 0.5;
-}
-
-.iconbtn {
-	width: 5rem;
-}
-
-.iconbtn:hover {
-	width: 5rem;
-	opacity: 0.5;
-}
-
-.fix {
-	position: fixed;
-	border: none;
-	background-color: white;
-	border: 1 solid black;
-	width: 20%;
-	font-size: 1rem;
-}
-
-.mintbtn {
-	background-color: #59cab7;
-	color: white;
-	width: 8rem;
-	border: none;
-	outline: 0;
-	height: 3rem;
-	font-size: 1.5rem;
-}
-
-.mintbtn:hover {
-	background-color: #59cab7;
-	color: white;
-	width: 8rem;
-	border: none;
-	outline: 0;
-	opacity: 0.5;
-	height: 3rem;
-	font-size: 1.5rem;
-}
-
-.payback {
-	position: fixed;
-	right: 0px;
-	margin-bottom: 30rem;
-	height: 35rem;
-	width: 22rem;
-	background-color: white;
-}
-
-.font {
-	font-size: 1.5rem;
-}
-
-.f {
-	font-size: 2rem;
-	
-}
-
-.1 {
-	border: 5 solid black;
-	width: 50rem;
-	border-radius: 30px;
-}
-
-.sik1 {
-	border: 5 solid black;
-	border-radius: 50%;
-}
-</style>
 <!-- kakaopay -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -149,33 +37,20 @@
 		$(document).on('click', '#one', function() {
 			$('#sendDiv').show()
 			$('#sendDiv2').hide()
-			$('#one').css('color','white')
-			$('#month').css('color','black')
+			$('#one').attr('style','color : white;')
+			$('#one').attr('style','border : 3px solid white;')
+			$('#month').attr('style','color :black;')
+			$('#month').attr('style','border : none;')
 		}).on('click', '#month', function() {
 			$('#sendDiv2').show()
 			$('#sendDiv').hide()
-			$('#month').css('color','white')
-			$('#one').css('color','black')
+			$('#month').attr('style','color : white;')
+			$('#month').attr('style','border : 3px solid white;')
+			$('#one').attr('style','color :black;')
+			$('#one').attr('style','border : none;')
 		})
 
 	})
-
-	/*  function oneshow() {
-	  if ( $("#sendDiv").css("display") == "none" ){
-		  $("#sendDiv").show(); 
-		  
-	  }
-	  else $("#sendDiv").hide(); 
-	  };
-	  
-	  function month() {
-		  if ( $("#sendDiv2").css("display") == "none" ) $("#sendDiv2").show(); 
-
-		  else $("#sendDiv2").hide(); 
-		  };
-
-
-	 */
 </script>
 
 </head>
@@ -192,10 +67,10 @@
 	
 	<div class="payback" style = "top : 20rem; overflow: auto;">
 		<ul class="nav nav-tabs">
-			<li class="mint line font" style="width: 50%">
+			<li class="mint line font" style="width: 50%; text-align: center;">
 				<input class="btn " type="button" id="one" value="1회 구매" style="width: 10rem" />
 			</li>
-			<li class="mint line" style="width: 50%">
+			<li class="mint line" style="width: 50%; text-align: center; ">
 				<input class="btn " type="button" id="month" value="정기 구매" style="width: 10rem" />
 			</li>
 		</ul>
@@ -214,22 +89,22 @@
 				<c:when test="${count eq 4 }">
 					<input type = "hidden" value = "${count }" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
-					<input type = "hidden" value = "4000" name = "custom_price">
+					<input type = "hidden" value = "4000" name = "custom_price" id = "price_input">
 				</c:when>
 				<c:when test="${count eq 5 }">
 					<input type = "hidden" value = "${count }" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>5000원</p>
-					<input type = "hidden" value = "5000" name = "custom_price">
+					<input type = "hidden" value = "5000" name = "custom_price" id = "price_input">
 				</c:when>
 				<c:when test="${count eq 6 }">
 					<input type = "hidden" value = "${count }" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>6000원</p>
-					<input type = "hidden" value = "6000" name = "custom_price">
+					<input type = "hidden" value = "6000" name = "custom_price" id = "price_input">
 				</c:when>
 				<c:otherwise>
 					<input type = "hidden" value = "4" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
-					<input type = "hidden" value = "4000" name = "custom_price">
+					<input type = "hidden" value = "4000" name = "custom_price" id = "price_input">
 				</c:otherwise>
 			</c:choose>
 			<p class="font">총 칼로리 : <span id = "cal_span">0</span>kal</p>
@@ -243,88 +118,64 @@
 				</select>
 			</p>
 			<br /> 
-			<input type="button" value="장바구니" onclick="createCookie(${count })" class="mintbtn " /> 
-			<input type="submit" value="결제하기" class="btn btn-outline-light">
-			
+			<input type="button" value="장바구니" onclick="createCookie(${count })" class="btn btn-outline-light" /> 
+			<input type="submit" value="결제하기" class="btn btn-outline-light" >
 		</div>
 		</form>
 
-
-		<div class="container" id="sendDiv2" >
+		<form action="kakaopay_custom.do" method = "POST">
+		<div class="container" id="sendDiv2">
 			<hr/>
 			<p class="font">탄수화물 : <span id = "tan_span_multi">0</span>g</p>
+			<input type = "hidden" id = "input_tan_multi" name = "custom_tan" value =""/>
 			<p class="font">단백질 : <span id = "dan_span_multi">0</span>g</p>
+			<input type = "hidden" id = "input_dan_multi" name = "custom_dan" value =""/>
 			<p class="font">지방 : <span id = "zi_span_multi">0</span>g</p>
+			<input type = "hidden" id = "input_zi_multi" name = "custom_zi" value = ""/>
+			
 			<c:choose>
 				<c:when test="${count eq 4 }">
+					<input type = "hidden" value = "${count }" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
-					<input type = "hidden" id = "input_tan_multi" name = "custom_tan" value =""/>		
+					<input type = "hidden" value = "4000" name = "custom_price" id = "price_input">
 				</c:when>
 				<c:when test="${count eq 5 }">
+					<input type = "hidden" value = "${count }" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>5000원</p>
-					<input type = "hidden" id = "input_dan_multi" name = "custom_tan" value =""/>						
+					<input type = "hidden" value = "5000" name = "custom_price" id = "price_input">
 				</c:when>
 				<c:when test="${count eq 6 }">
+					<input type = "hidden" value = "${count }" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>6000원</p>
-					<input type = "hidden" id = "input_zi_multi" name = "custom_tan" value =""/>		
+					<input type = "hidden" value = "6000" name = "custom_price" id = "price_input">
 				</c:when>
 				<c:otherwise>
+					<input type = "hidden" value = "4" name = "custom_count">
 					<p class="font">가격 : <span id = "price_span"></span>4000원</p>
+					<input type = "hidden" value = "4000" name = "custom_price" id = "price_input">
 				</c:otherwise>
 			</c:choose>
 			<p class="font">총 칼로리 : <span id = "cal_span_multi">0</span>kal</p>
 			<input type = "hidden" id = "input_kal_multi" name = "custom_kal" value = ""/>
-			<p class = "font">수령 날짜 : <input type = "date" name = "input_delivery" id = "date"/></p> 
+						<input type = "hidden" id = "input_kal" name = "custom_kal" value = ""/>
+			<p class = "font">수령 날짜 : <input type = "date" name = "custom_delivery" id = "input_date_multi"/></p>
+			<p class = "font">수령 시간 : 
+				<select name = "custom_time">
+					<option value = "">시간 선택</option>
+					<option value = "AM">아침</option>
+					<option value = "PM">저녁</option>
+				</select>
+			</p>
 			<br />
-			<input type="button" value="장바구니" onclick="location.href='#'" class="mintbtn " /> 
-			<input type="submit" value="결제하기" class="btn btn-outline-light"> 
-			
+			<input type="button" value="장바구니" onclick="location.href='createCookie(${count })'" class="btn btn-outline-light" /> 
+			<input type="submit" value="결제하기" class="btn btn-outline-light" > 
 		</div>
+		</form>
 	</div>
 <script>
 	//date 타입 오늘 날짜 세팅
 	document.getElementById("input_date").value = new Date().toISOString().substring(0,10);
-
-
-	var jw = $.noConflict();
-	
-	var IMP = window.IMP;
-	IMP.init('imp15057713');
-	jw("#pay").click(function() {
-		
-		var length = jw("div").length;
-		
-		var before_cal = jb("#cal_span").text();
-		if(before_cal == "0"){
-			alert("도시락을 완성시켜주세요.");
-		}
-		
-		IMP.request_pay({
-			pg : 'kakaopay',
-			pay_method : 'card',
-			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : '물품 명',
-			amount : 1,
-			buyer_email : '이메일',
-			buyer_name : '이름',
-			buyer_tel : '전화번호',
-			buyer_addr : '주소',
-			buyer_postcode : '123-456',
-			m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-		}, function(rsp) {
-			if (rsp.success) {
-				var msg = '결제가 완료되었습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
-			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-			}
-			alert(msg);
-		});
-	});
+	document.getElementById("input_date_multi").value = new Date().toISOString().substring(0,10);
 </script>
 
 	<div align="center">
@@ -425,7 +276,7 @@
 		<p>반찬선택</p>
 		<c:if test="${logindto.member_id eq 'admin' }">
 			<!-- 글작성 테스트 -->
-			<input type="button" value="반찬 등록" onclick="location.href='dishinsert_form.do'">
+			<input type="button" value="반찬 등록" onclick="location.href='dishinsert_form.do'" class="btn btn-outline-light">
 		</c:if>
 		<div class="container" style="text-align: center;">
         		<img alt="밥" src="${pageContext.request.contextPath }/resources/bootstrap/image/rice.png" class="iconbtn" onclick = "changeDish('rice')" />&emsp;

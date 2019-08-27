@@ -1,6 +1,7 @@
 package com.khfinal.mvc.member.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -162,5 +163,13 @@ public class MemberDaoImpl implements MemberDao {
 			emailnotused = false;
 		}
 		return emailnotused;
+	}
+
+	@Override
+	public List<MemberDto> pwChangedate() {
+		
+		List<MemberDto> list = sqlSession.selectList(namespace+"pwChangedate");
+		
+		return list;
 	}
 }

@@ -13,12 +13,14 @@ public class MemberDto {
 	private String member_enabled;
 	private String member_level;
 	private Date member_regdate;
+	private Date member_pw_change;
 	
-	public MemberDto() {} 
-	
+	public MemberDto() {}
+
 	public MemberDto(String member_id, String member_pw, String member_name, String member_phone, String member_address,
-			String member_subway, String member_email, String member_enabled, String member_level,
-			Date member_regdate) {
+			String member_subway, String member_email, String member_enabled, String member_level, Date member_regdate,
+			Date member_pw_change) {
+		super();
 		this.member_id = member_id;
 		this.member_pw = member_pw;
 		this.member_name = member_name;
@@ -29,6 +31,7 @@ public class MemberDto {
 		this.member_enabled = member_enabled;
 		this.member_level = member_level;
 		this.member_regdate = member_regdate;
+		this.member_pw_change = member_pw_change;
 	}
 
 	public String getMember_id() {
@@ -110,6 +113,15 @@ public class MemberDto {
 	public void setMember_regdate(Date member_regdate) {
 		this.member_regdate = member_regdate;
 	}
+
+	public Date getMember_pw_change() {
+		return member_pw_change;
+	}
+
+	public void setMember_pw_change(Date member_pw_change) {
+		this.member_pw_change = member_pw_change;
+	} 
+	
 	
 	
 	

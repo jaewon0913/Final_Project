@@ -1,5 +1,7 @@
 package com.khfinal.mvc.member.dao;
 
+import java.util.List;
+
 import com.khfinal.mvc.member.dto.MemberDto;
 
 public interface MemberDao {
@@ -17,4 +19,6 @@ public interface MemberDao {
 	public boolean idChk(String member_id);
 	public boolean emailChk(String member_email);
 	public MemberDto loginsuccess(String id);
+	
+	public List<MemberDto> pwChangedate();
 }

@@ -2,14 +2,11 @@
 
 img.chat{
 	border: none;
-	margin-top: 15rem;
-	
-
-	
+	margin-top: 18rem;	
 }
 img.chat:hover{
 	border: none;
-	margin-top: 15rem;
+	margin-top: 18rem;
 	opacity:0.4;
 }
 img.bot{
@@ -23,19 +20,24 @@ img.bot:hover{
 }
 
 .page{
-	color: #59CAB7;
-	border: 1 solid gray;
-	border-radius: 10px; 
-	font-size: 1.5rem;
+	color: white;
+	background-color:#59CAB7;
+	font-size: 2rem;
+	width: 7rem;
+	padding: 1rem;
+	margin-bottom: 5rem;
 }
 .page:hover{
-	color: white;
-	border: 1 solid gray;
-	background-color: #59CAB7;
-	border-radius: 10px; 
+	color: #59CAB7;
+	background-color: white;
 	opacity: 0.5;
-	font-size: 1.5rem;
+	font-size: 2rem;
+	width: 7rem;
+	padding: 1rem;
+	margin-bottom: 5rem;
 }
 
-
+.searchbar:hover{
+	opacity: 0.5;
+}
 
