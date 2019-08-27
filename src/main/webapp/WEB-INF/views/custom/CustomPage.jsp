@@ -152,15 +152,17 @@
 		$(document).on('click', '#one', function() {
 			$('#sendDiv').show()
 			$('#sendDiv2').hide()
-			$('#one').css('color','white')
-			$('#one').attr('style','border : 3px solid black;')
-			$('#month').css('color','black')
+			$('#one').attr('style','color : white;')
+			$('#one').attr('style','border : 3px solid white;')
+			$('#month').attr('style','color :black;')
+			$('#month').attr('style','border : none;')
 		}).on('click', '#month', function() {
 			$('#sendDiv2').show()
 			$('#sendDiv').hide()
-			$('#month').css('color','white')
-			$('#month').css('border','3 solid black')
-			$('#one').css('color','black')
+			$('#month').attr('style','color : white;')
+			$('#month').attr('style','border : 3px solid white;')
+			$('#one').attr('style','color :black;')
+			$('#one').attr('style','border : none;')
 		})
 
 	})
@@ -180,10 +182,10 @@
 	
 	<div class="payback" style = "top : 20rem; overflow: auto;">
 		<ul class="nav nav-tabs">
-			<li class="mint line font" style="width: 50%">
+			<li class="mint line font" style="width: 50%; text-align: center;">
 				<input class="btn " type="button" id="one" value="1회 구매" style="width: 10rem" />
 			</li>
-			<li class="mint line" style="width: 50%">
+			<li class="mint line" style="width: 50%; text-align: center; ">
 				<input class="btn " type="button" id="month" value="정기 구매" style="width: 10rem" />
 			</li>
 		</ul>
@@ -231,7 +233,7 @@
 				</select>
 			</p>
 			<br /> 
-			<input type="button" value="장바구니" onclick="createCookie(${count })" class="mintbtn " /> 
+			<input type="button" value="장바구니" onclick="createCookie(${count })" class="btn btn-outline-light" /> 
 			<input type="submit" value="결제하기" class="btn btn-outline-light" >
 		</div>
 		</form>
@@ -280,7 +282,7 @@
 				</select>
 			</p>
 			<br />
-			<input type="button" value="장바구니" onclick="location.href='createCookie(${count })'" class="mintbtn " /> 
+			<input type="button" value="장바구니" onclick="location.href='createCookie(${count })'" class="btn btn-outline-light" /> 
 			<input type="submit" value="결제하기" class="btn btn-outline-light" > 
 		</div>
 		</form>

@@ -52,7 +52,7 @@
                <td colspan="2" align="center">
 <!--                   <button type="submit" class="btn">로그인</button> -->
              <input class="btn" type="submit" value="로그인" /> 
-                  <input class="btn"  type="button" value="회원가입" onclick="location.href='insertform.do'"/> 
+                  <input class="btn"  type="button" value="회원가입" onclick="location.href='TermsAndConditions.do'"/> 
                   <input class="btn" type="button" value="취소" onclick="location.href='mainpage.do'" />
                    <input class="btn" type="button" value="아이디 비밀번호 찾기" onclick="location.href='accountfind.do'"/>
                </td>
