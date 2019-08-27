@@ -32,9 +32,6 @@ a.nav-link:hover{
 	color: white;
 	opacity: 0.5;
 }
-#txt_search{
-	
-}
 
 
 
@@ -67,17 +64,16 @@ a.nav-link:hover{
 <body>
 	<header>
 		<nav class="header navbar navbar-expand-lg fixed-top " style="margin-bottom: 0px;">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
 			</div>
 			<!-- search bar -->
-		<div class="col-md-4 center " style="text-align: center;">
-			<table class="pull-right search">
+			<table class=" search col-md-4 center" >
 				<tr>
 					<td>
-						<div class="form-group form-inline search">
+						<div class="form-group form-inline search" style="width: 100%;">
 							<input type="text" id="txt_search" value="${txt_search }"
-								style="border-radius: 5px;width: 30rem;">
+								style="border-radius: 5px;width: 75%;">
 								<span>
 								<img alt="search" src="${pageContext.request.contextPath }/resources/bootstrap/image/searchbar.png" 
 								onclick="javascript:PageMove(${paging.pageNo})" style="width: 3rem; height: 3rem;" class="searchbar">
@@ -87,7 +83,6 @@ a.nav-link:hover{
 					</td>
 				</tr>
 			</table>
-		</div>
 		<!-- search bar -->
 			<div  class="pull-right col-md-4"  style="text-align: right;">
 				<c:choose>
@@ -243,25 +238,6 @@ a.nav-link:hover{
 				clearInterval(EVT);
 			}
 
-		/* 	function notify() {
-				if (Notification.permission !== 'granted') {
-					alert('notification is disabled');
-				} else {
-					var notification = new Notification('Event', {
-						icon : 'resources/bootstrap/image/Event.jpg',
-						body : '이벤트의 내용을 적어 주세요',
-					});
-
-					notification.onclick = function() {
-						//location.href = 'mainpage.do';
-						notification.close();
-					};
-				}
-			} */
-			
-			/* function PageMove(page) {
-	               location.href = "dosirak_listpaging.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
-	            } */
 		</script>
 	</header>
 </body>

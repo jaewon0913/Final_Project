@@ -182,10 +182,10 @@
 	
 	<div class="payback" style = "top : 20rem; overflow: auto;">
 		<ul class="nav nav-tabs">
-			<li class="mint line font" style="width: 50%">
+			<li class="mint line font" style="width: 50%; text-align: center;">
 				<input class="btn " type="button" id="one" value="1회 구매" style="width: 10rem" />
 			</li>
-			<li class="mint line" style="width: 50%">
+			<li class="mint line" style="width: 50%; text-align: center; ">
 				<input class="btn " type="button" id="month" value="정기 구매" style="width: 10rem" />
 			</li>
 		</ul>
@@ -233,7 +233,7 @@
 				</select>
 			</p>
 			<br /> 
-			<input type="button" value="장바구니" onclick="createCookie(${count })" class="mintbtn " /> 
+			<input type="button" value="장바구니" onclick="createCookie(${count })" class="btn btn-outline-light" /> 
 			<input type="submit" value="결제하기" class="btn btn-outline-light" >
 		</div>
 		</form>
@@ -282,7 +282,7 @@
 				</select>
 			</p>
 			<br />
-			<input type="button" value="장바구니" onclick="location.href='createCookie(${count })'" class="mintbtn " /> 
+			<input type="button" value="장바구니" onclick="location.href='createCookie(${count })'" class="btn btn-outline-light" /> 
 			<input type="submit" value="결제하기" class="btn btn-outline-light" > 
 		</div>
 		</form>
