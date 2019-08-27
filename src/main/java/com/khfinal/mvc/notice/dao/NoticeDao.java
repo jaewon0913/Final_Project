@@ -23,6 +23,8 @@ public interface NoticeDao {
 
 	public int NoticeViews(int notice_postnum);// 조회수
 	
+	public List<NoticeDto> NoticemainSelect();//메인에 띄울 쿼리
+	
 	//페이징
 	public List<NoticeDto> NoticeSelectlist(int firstIndex, int recordCountPerPage, String txt_search);
 	

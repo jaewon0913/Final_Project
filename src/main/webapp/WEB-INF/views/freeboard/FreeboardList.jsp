@@ -106,7 +106,7 @@ td>a:hover {
             <tr>
                <td colspan="5"><input type="text" id="txt_search"
                   value="${txt_search }"> <input type="button" value="검색"
-                  onclick="javascript:PageMove(${paging.pageNo})"
+                  onclick="javascript:PageMove_free(${paging.pageNo})"
                   class="btn btn-outline-light"></td>
             </tr>
          </table>
@@ -197,7 +197,7 @@ td>a:hover {
 
 
 	<!-- Pagination -->
-	<div class="container text-center " style="font-size: 3rem;">
+	<div class="container text-center " style="font-size: 3rem;margin-bottom: 5rem;">
 		<span> <a href="javascript:PageMove_free(${paging.firstPageNo})"
 			class="page">&laquo;</a> <a
 			href="javascript:PageMove_free(${paging.prevPageNo})" class="page">&lt;</a>

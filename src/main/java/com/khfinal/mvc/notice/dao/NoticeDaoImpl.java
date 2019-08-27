@@ -138,4 +138,17 @@ public class NoticeDaoImpl implements NoticeDao {
 		return res;
 	}
 
+
+	@Override
+	public List<NoticeDto> NoticemainSelect() {
+		
+		List<NoticeDto> list = sqlSession.selectList(namespace+"noticemainselect");
+		System.out.println("daoimpl!!!! : "+list.get(0).getNotice_title());
+		
+		
+		return list;
+	}
+	
+
+
 }

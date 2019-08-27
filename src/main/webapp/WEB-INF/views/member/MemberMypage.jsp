@@ -24,7 +24,7 @@
 	
 }
 
-div>p {
+.text-dark {
 	font-size: 36px;
 	padding: 8%;
 	margin: 0;

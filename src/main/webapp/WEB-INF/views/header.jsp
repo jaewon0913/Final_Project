@@ -32,9 +32,6 @@ a.nav-link:hover{
 	color: white;
 	opacity: 0.5;
 }
-#txt_search{
-	
-}
 
 
 
@@ -67,7 +64,7 @@ a.nav-link:hover{
 <body>
 	<header>
 		<nav class="header navbar navbar-expand-lg fixed-top " style="margin-bottom: 0px;">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
 			</div>
 			
@@ -87,19 +84,20 @@ a.nav-link:hover{
 					</td>
 				</tr>
 			</table>
-		</div>
 		<!-- search bar -->
 		
 			<div  class="pull-right col-md-4"  style="text-align: right;">
 				<c:choose>
 					<c:when test="${empty logindto}">
-							<span class="loginbutton btn" onclick="location.href='loginMain.do'">로그인</span>
-							<span class="insertbutton btn" onclick="location.href='insertform.do'">회원가입</span>
+							<span class="loginbutton btn btn-outline-light" onclick="location.href='loginMain.do'">로그인</span>
+							<span class="insertbutton btn btn-outline-light" onclick="location.href='TermsAndConditions.do'">회원가입</span>
 					</c:when>
 					<c:otherwise>
 							<span>안녕하세요. ${logindto.member_name }님</span>
-							<span class="mypagebutton btn" onclick="location.href='mypage.do'">마이페이지</span>
-							<span class="logoutbutton btn" onclick="logout('${logindto.member_id}')">로그아웃</span>
+							<span class="mypagebutton btn btn-outline-light" onclick="location.href='mypage.do'">마이페이지</span>
+							<span class="logoutbutton btn btn-outline-light" onclick="logout('${logindto.member_id}')">로그아웃</span>
+						
+						
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -242,25 +240,6 @@ a.nav-link:hover{
 				clearInterval(EVT);
 			}
 
-		/* 	function notify() {
-				if (Notification.permission !== 'granted') {
-					alert('notification is disabled');
-				} else {
-					var notification = new Notification('Event', {
-						icon : 'resources/bootstrap/image/Event.jpg',
-						body : '이벤트의 내용을 적어 주세요',
-					});
-
-					notification.onclick = function() {
-						//location.href = 'mainpage.do';
-						notification.close();
-					};
-				}
-			} */
-			
-			/* function PageMove(page) {
-	               location.href = "dosirak_listpaging.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
-	            } */
 		</script>
 	</header>
 </body>

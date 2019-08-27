@@ -1,42 +1,41 @@
 @charset "UTF-8";
-
-#chat_div {
-	z-index: 10;
-	display: none;
-	position: fixed;
-	background-color: white;
-	border: 1px solid;
-	left: 5rem;
-	width: 60rem;
-	height: 30rem;
-	top: 17rem;
-	border-radius: 15px;
-}
-
-#send_div {
-	z-index: 10;
-	display: none;
-	position: fixed;
-	background-color: white;
-	border: 1px solid;
-	left: 5rem;
-	width: 60rem;
-	top: 47rem;
-	border-radius: 15px;
-}
-
-#send_btn {
-	width: 10rem;
-	float: right;
-	margin-right: 0.5rem
-}
-
-#message {
-	width: 45rem;
-	margin-left: 0.5rem;
-	border-radius: 30px;
-}
-
+	#chat_div{
+		z-index : 10;
+		display: none; 
+		position : fixed;
+		background-color : white;
+		border : 1px solid;
+		left : 5rem;
+		width: 60rem; 
+		height: 30rem;
+		top : 17rem;
+		border-radius: 15px;
+	}
+	#send_div{
+		z-index : 10;
+		display: none; 
+		position : fixed;
+		background-color : white;
+		border : 1px solid;
+		left : 5rem;
+		width: 60rem; 
+		top : 47rem;
+		border-radius: 15px;
+	}
+	#send_btn{
+		width : 10rem;
+		float : right;
+		margin-right: 0.5rem
+	}
+	#message{
+		width :45rem;
+		margin-left : 0.5rem;
+		border-radius: 30px;
+	}
+	#bot_chat_close,#chat_close{
+	margin: 2px 0 7px -5px;
+    
+	}
 .arrow_box {
 	position: relative;
 	background: #88b7d5;

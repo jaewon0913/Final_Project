@@ -1,5 +1,6 @@
 package com.khfinal.mvc;
 
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.khfinal.mvc.dosirak.dto.DosirakDto;
 import com.khfinal.mvc.etc.biz.EtcBiz;
 import com.khfinal.mvc.free.dto.FreeboardDto;
+import com.khfinal.mvc.member.biz.MemberBiz;
+import com.khfinal.mvc.notice.biz.NoticeBiz;
 import com.khfinal.mvc.notice.dto.NoticeDto;
 
 /**
@@ -26,13 +29,28 @@ import com.khfinal.mvc.notice.dto.NoticeDto;
  */
 @Controller
 public class HomeController {
+
+	@Autowired
+	private MemberBiz memberbiz;
+	
+	@Autowired
+	private NoticeBiz noticebiz;
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	@RequestMapping("/startpage.do")
+	public String startpage() {
+		return "startpage";
+	}
 	
 	@Autowired
 	private EtcBiz etcBiz;
 	
 	@RequestMapping("/mainpage.do")
-	public String main() {		
+	public String main(Model model) {
+		List<NoticeDto> list = noticebiz.NoticemainSelect();
+		model.addAttribute("noticelist", list);
+		
 		return "MainPage";
 	}
 
@@ -53,6 +71,10 @@ public class HomeController {
 		return "graph/Nutritiongraph";
 	}
 	
+	@RequestMapping("/TermsAndConditions.do")
+	public String TermsAndConditions() {
+		return "member/TermsAndConditions";
+	}
 	
 	@RequestMapping("/testpage.do")
 	public String test() {

@@ -7,9 +7,11 @@
 <head>
 
 <!-- 파비콘 -->
+
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/bootstrap/image/favicon.ico" type="image/x-icon">
 
 <!-- 파비콘 -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -25,6 +27,8 @@
 
 <!-- Bootstrap core CSS -->
 <link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
