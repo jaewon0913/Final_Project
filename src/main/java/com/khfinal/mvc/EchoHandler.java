@@ -24,7 +24,7 @@ public class EchoHandler extends TextWebSocketHandler {
 		logger.info("{} 연결됨", session.getId());
 		
 		if(session.getPrincipal() == null) {
-			System.out.println(session.getId());
+			//System.out.println(session.getId());
 		} else {
 			System.out.println("채팅방 입장자: " + session.getPrincipal().getName());
 		}

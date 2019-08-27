@@ -95,11 +95,6 @@ td>a:hover {
 			</table>
 
 		</div>
-		
-		
-		
-		
-
 	</div>
 
 <!-- Pagination -->

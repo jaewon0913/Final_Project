@@ -70,17 +70,17 @@ a.nav-link:hover{
 		<div class="col-md-3">
 			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
 			</div>
-			<!-- search bar -->
+			
+		<!-- search bar -->
 		<div class="col-md-4 center " style="text-align: center;">
 			<table class="pull-right search">
 				<tr>
 					<td>
 						<div class="form-group form-inline search">
-							<input type="text" id="txt_search" value="${txt_search }"
-								style="border-radius: 5px;width: 30rem;">
+							<input type="text" id="txt_search" style= "border-radius: 5px; width: 30rem;" />
 								<span>
 								<img alt="search" src="${pageContext.request.contextPath }/resources/bootstrap/image/searchbar.png" 
-								onclick="javascript:PageMove(${paging.pageNo})" style="width: 3rem; height: 3rem;">
+								onclick="search()" style="width: 3rem; height: 3rem;">
 								</span>
 						
 						</div>
@@ -89,6 +89,7 @@ a.nav-link:hover{
 			</table>
 		</div>
 		<!-- search bar -->
+		
 			<div  class="pull-right col-md-4"  style="text-align: right;">
 				<c:choose>
 					<c:when test="${empty logindto}">
@@ -99,8 +100,6 @@ a.nav-link:hover{
 							<span>안녕하세요. ${logindto.member_name }님</span>
 							<span class="mypagebutton btn" onclick="location.href='mypage.do'">마이페이지</span>
 							<span class="logoutbutton btn" onclick="logout('${logindto.member_id}')">로그아웃</span>
-						
-						
 					</c:otherwise>
 				</c:choose>
 			</div>

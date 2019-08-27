@@ -22,8 +22,7 @@
 	<footer class="footer">
 		<div>
 			<div class="col-md-6">
-				<p class="m-0  text-white">(주)너도나도 서울특별시 강남구 강남구 테헤란로14길 6 조장 :
-					신희수</p>
+				<p class="m-0  text-white">(주)너도나도 서울특별시 강남구 강남구 테헤란로14길 6</p>
 					<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
 			
 			</div>

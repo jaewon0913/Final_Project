@@ -1,45 +1,47 @@
 @charset "UTF-8";
-	#chat_div{
-		z-index : 10;
-		display: none; 
-		position : fixed;
-		background-color : white;
-		border : 1px solid;
-		left : 5rem;
-		width: 60rem; 
-		height: 30rem;
-		top : 17rem;
-		border-radius: 15px;
-	}
-	#send_div{
-		z-index : 10;
-		display: none; 
-		position : fixed;
-		background-color : white;
-		border : 1px solid;
-		left : 5rem;
-		width: 60rem; 
-		top : 47rem;
-		border-radius: 15px;
-	}
-	#send_btn{
-		width : 10rem;
-		float : right;
-		margin-right: 0.5rem
-	}
-	#message{
-		width :45rem;
-		margin-left : 0.5rem;
-		border-radius: 30px;
-	}
+
+#chat_div {
+	z-index: 10;
+	display: none;
+	position: fixed;
+	background-color: white;
+	border: 1px solid;
+	left: 5rem;
+	width: 60rem;
+	height: 30rem;
+	top: 17rem;
+	border-radius: 15px;
+}
+
+#send_div {
+	z-index: 10;
+	display: none;
+	position: fixed;
+	background-color: white;
+	border: 1px solid;
+	left: 5rem;
+	width: 60rem;
+	top: 47rem;
+	border-radius: 15px;
+}
+
+#send_btn {
+	width: 10rem;
+	float: right;
+	margin-right: 0.5rem
+}
+
+#message {
+	width: 45rem;
+	margin-left: 0.5rem;
+	border-radius: 30px;
+}
 
 .arrow_box {
 	position: relative;
 	background: #88b7d5;
 	border: 4px solid #c2e1f5;
 }
-
-
 
 #bot_div {
 	z-index: 10;
@@ -51,7 +53,7 @@
 	width: 55rem;
 	height: 30rem;
 	top: 22rem;
-	overflow : scroll;
+	overflow: scroll;
 	border-radius: 15px;
 }
 
@@ -72,7 +74,6 @@
 	float: right;
 }
 
-
 #bot_message {
 	width: 435px;
 	margin-right: 6px;
@@ -83,8 +84,9 @@
 	position: relative;
 	background: #bbd5bf;
 	border: 4px solid #f0f55d;
-	font-size : 10pt;
+	font-size: 10pt;
 }
+
 .arrow_box:after, .arrow_box:before {
 	right: 100%;
 	top: 50%;
@@ -102,6 +104,7 @@
 	border-width: 30px;
 	margin-top: -54px;
 }
+
 .arrow_box:before {
 	border-color: rgba(240, 245, 93, 0);
 	border-right-color: #f0f55d;
@@ -109,12 +112,12 @@
 	margin-top: -60px;
 }
 
-
 .arrow_box_right {
 	position: relative;
 	background: #b5d3d5;
 	border: 4px solid #c2e1f5;
 }
+
 .arrow_box_right:after, .arrow_box_right:before {
 	left: 100%;
 	top: 50%;
@@ -132,6 +135,7 @@
 	border-width: 30px;
 	margin-top: -30px;
 }
+
 .arrow_box_right:before {
 	border-color: rgba(194, 225, 245, 0);
 	border-left-color: #c2e1f5;

@@ -12,12 +12,7 @@
 </head>
 <body>
 <%@ include file="../header.jsp"%>
-	<%-- <form name="fileForm" action="cloudUpload.do" method="post" enctype="multipart/form-data">            
-                  <input multiple="multiple" type="file" name="file" id="file"/>
-                  <input type="text" name="cloudcomm" />
-      
-                  <input type="submit" value="전송" />
-    </form> --%>
+	
 	<!-- 4. uploadForm에서 동작 -->
 	<!--	 Spring이 제공해주는 form 프레임워크 
 			enctype : 인코딩 타입(파일 업로드를 위한 속성) / modelAttribute : UploadFile.java 매핑 -->
