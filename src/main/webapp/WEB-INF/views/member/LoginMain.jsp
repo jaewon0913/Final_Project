@@ -8,7 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>login</title>
+<style type="text/css">
+.banner:hover{
+opacity: 0.5;
+}
+</style>
 </head>
+
+
 <!-- <link href="resources/bootstrap/css/login.css" rel="stylesheet"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
@@ -22,20 +29,19 @@
 
 <body>
 
-	
    <%@ include file="../header.jsp"%>
    
-   <h1 class="title1">Login</h1>
+   <div class="container">
    
    <c:url value="/login" var="loginUrl" />
-   
-   <div style="padding-bottom:10%; padding-top:10%;">
-      <div class="row border">
+   <div class="container center banner" style="text-align: center;">
+   <img alt="banner" src="resources/bootstrap/image/회원가입 할인.png" onclick="location.href='TermsAndConditions.do'" style="height: 10rem; width: 60rem;">
+   </div>
+   <div style="padding-bottom:5rem; padding-top:5rem;">
+   <h1 class="title1" style="margin-left: 8rem;">Login</h1>
+      <div class="row">
       <form:form name="f" action="${loginUrl}" method="POST" class="center-block">
-         <table style="align-content: center; border: none;" class="table" >
-         <tr>
-         <th>&nbsp;</th>
-         </tr>
+         <table style="align-content: center; margin-bottom: 5rem; margin-top: 5rem;" class="table" >
             <tr>
                <th> ID &nbsp; : &nbsp;</th>
                <td><input class="form" type="text" name="id" id="id"
@@ -108,9 +114,6 @@
 </script>
             </td>
          </tr>
-         <tr>
-         	<th>&nbsp;</th>
-         </tr>
          </table>
        </form:form>
       </div>
@@ -119,12 +122,12 @@
    
    
    <div>
-   <!-- ------------------------푸터-------------------------------------------- -->
-   <%@ include file="../footer.jsp"%>
-<!-- ------------------------푸터-------------------------------------------- -->
    </div>
+      </div>
+
+
 <script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
-</body>
+
 <script type="text/javascript">
 // $("#formtag").submit(function(){
 // 	var id = document.getElementById("id").value;
@@ -139,4 +142,8 @@
 // });
 
 </script>
+   <!-- ------------------------푸터-------------------------------------------- -->
+   <%@ include file="../footer.jsp"%>
+<!-- ------------------------푸터-------------------------------------------- -->
+</body>
 </html>

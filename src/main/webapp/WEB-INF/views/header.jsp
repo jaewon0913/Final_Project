@@ -21,16 +21,16 @@
 <style type="text/css">
 
 body, input, div, span, p, a, nav, li, ul, button {
-	font-family:'샘물';
+   font-family:'샘물';
 }
 
 a.nav-link{
-	color: white;
+   color: white;
 }
 
 a.nav-link:hover{
-	color: white;
-	opacity: 0.5;
+   color: white;
+   opacity: 0.5;
 }
 
 
@@ -62,185 +62,183 @@ a.nav-link:hover{
 </head>
 
 <body>
-	<header>
-		<nav class="header navbar navbar-expand-lg fixed-top " style="margin-bottom: 0px;">
-		<div class="col-md-4">
-			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
-			</div>
-			
-		<!-- search bar -->
-		<div class="col-md-4 center " style="text-align: center;">
-			<table class="pull-right search">
-				<tr>
-					<td>
-						<div class="form-group form-inline search">
-							<input type="text" id="txt_search" style= "border-radius: 5px; width: 30rem;" />
-								<span>
-								<img alt="search" src="${pageContext.request.contextPath }/resources/bootstrap/image/searchbar.png" 
-								onclick="search()" style="width: 3rem; height: 3rem;">
-								</span>
-						
-						</div>
-					</td>
-				</tr>
-			</table>
-		<!-- search bar -->
-		
-			<div  class="pull-right col-md-4"  style="text-align: right;">
-				<c:choose>
-					<c:when test="${empty logindto}">
-							<span class="loginbutton btn btn-outline-light" onclick="location.href='loginMain.do'">로그인</span>
-							<span class="insertbutton btn btn-outline-light" onclick="location.href='TermsAndConditions.do'">회원가입</span>
-					</c:when>
-					<c:otherwise>
-							<span>안녕하세요. ${logindto.member_name }님</span>
-							<span class="mypagebutton btn btn-outline-light" onclick="location.href='mypage.do'">마이페이지</span>
-							<span class="logoutbutton btn btn-outline-light" onclick="logout('${logindto.member_id}')">로그아웃</span>
-						
-						
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</nav>
+   <header>
+      <nav class="header navbar navbar-expand-lg fixed-top " style="margin-bottom: 0px;">
+      <div class="col-md-4">
+         <img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
+         </div>
+         <!-- search bar -->
+         <table class=" search col-md-4 center" >
+            <tr>
+               <td>
+                  <div class="form-group form-inline search" style="width: 100%;">
+                     <input type="text" id="txt_search" value="${txt_search }"
+                        style="border-radius: 5px;width: 75%;">
+                        <span>
+                        <img alt="search" src="${pageContext.request.contextPath }/resources/bootstrap/image/searchbar.png" 
+                        onclick="javascript:PageMove(${paging.pageNo})" style="width: 3rem; height: 3rem;" class="searchbar">
+                        </span>
+                  
+                  </div>
+               </td>
+            </tr>
+         </table>
+      <!-- search bar -->
+         <div  class="pull-right col-md-4"  style="text-align: right;">
+            <c:choose>
+               <c:when test="${empty logindto}">
+                     <span class="loginbutton btn btn-outline-light" onclick="location.href='loginMain.do'">로그인</span>
+                     <span class="insertbutton btn btn-outline-light" onclick="location.href='TermsAndConditions.do'">회원가입</span>
+               </c:when>
+               <c:otherwise>
+                     <span>안녕하세요. ${logindto.member_name }님</span>
+                     <span class="mypagebutton btn btn-outline-light" onclick="location.href='mypage.do'">마이페이지</span>
+                     <span class="logoutbutton btn btn-outline-light" onclick="logout('${logindto.member_id}')">로그아웃</span>
+                  
+                  
+               </c:otherwise>
+            </c:choose>
+         </div>
+      </nav>
 
-		<!-- Navigation -->
-		<nav class="navbar navbar-expand-lg nav-bar-custom main_img ">
-			<div class="container">
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarResponsive" aria-controls="navbarResponsive"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item ">
-						<a class="nav-link" href="dosirak_listpaging.do">도시락 주문 <span class="sr-only">(current)</span>
-						</a></li>
-						<!-- 둘중 선택 <li class="nav-item active"><a class="nav-link" href="dosiraktest.do">도시락
-							주문 <span class="sr-only">(current)</span>
-					 	</a></li> -->
-						<li class="nav-item "><a class="nav-link" href="custom.do">커스텀 도시락
-								주문</a></li>
-						<li class="nav-item"><a class="nav-link" href="nutritiongraph.do">주간 영양정보</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">특가 도시락</a></li>
-						<li class="nav-item"><a class="nav-link" href="freeboard_list.do">자유 게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="eventboard_list.do">이벤트 게시판</a>
-						</li>
-						<li class="nav-item "><a class="nav-link" href="notice_list.do">공지사항 게시판</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		
-	<script type="text/javascript">
-			var EndEvent = new Date('March 14, 15:15:30');
-			End_hours = EndEvent.getHours();
-			End_minutes = EndEvent.getMinutes();
-			End_seconds = EndEvent.getSeconds();
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg nav-bar-custom main_img ">
+         <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+               data-target="#navbarResponsive" aria-controls="navbarResponsive"
+               aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item ">
+                  <a class="nav-link" href="dosirak_listpaging.do">도시락 주문 <span class="sr-only">(current)</span>
+                  </a></li>
+                  <!-- 둘중 선택 <li class="nav-item active"><a class="nav-link" href="dosiraktest.do">도시락
+                     주문 <span class="sr-only">(current)</span>
+                   </a></li> -->
+                  <li class="nav-item "><a class="nav-link" href="custom.do">커스텀 도시락
+                        주문</a></li>
+                  <li class="nav-item"><a class="nav-link" href="nutritiongraph.do">주간 영양정보</a>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="#">특가 도시락</a></li>
+                  <li class="nav-item"><a class="nav-link" href="freeboard_list.do">자유 게시판</a></li>
+                  <li class="nav-item"><a class="nav-link" href="eventboard_list.do">이벤트 게시판</a>
+                  </li>
+                  <li class="nav-item "><a class="nav-link" href="notice_list.do">공지사항 게시판</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      
+   <script type="text/javascript">
+         var EndEvent = new Date('March 14, 15:15:30');
+         End_hours = EndEvent.getHours();
+         End_minutes = EndEvent.getMinutes();
+         End_seconds = EndEvent.getSeconds();
 
-			var StartEvent = new Date('March 14, 14:39:50');
-			Start_hours = StartEvent.getHours();
-			Start_minutes = StartEvent.getMinutes();
-			Start_seconds = StartEvent.getSeconds();
+         var StartEvent = new Date('March 14, 14:39:50');
+         Start_hours = StartEvent.getHours();
+         Start_minutes = StartEvent.getMinutes();
+         Start_seconds = StartEvent.getSeconds();
 
-			
-			var EVT = setInterval("Event_Time()", 1000);
+         
+         var EVT = setInterval("Event_Time()", 1000);
 
-			function Event_Time() {
-				var now = new Date();
-				hours = now.getHours();
-				minutes = now.getMinutes();
-				seconds = now.getSeconds();
+         function Event_Time() {
+            var now = new Date();
+            hours = now.getHours();
+            minutes = now.getMinutes();
+            seconds = now.getSeconds();
 
-				if (End_hours > Start_hours) {
-					if (End_hours < hours) {
-						clearInterval(EVT);
-					}
+            if (End_hours > Start_hours) {
+               if (End_hours < hours) {
+                  clearInterval(EVT);
+               }
 
-					else if (End_hours == hours) {
-						if (End_minutes < minutes) {
-							clearInterval(EVT);
-						} else if (End_minutes == minutes) {
-							if (End_seconds < seconds) {
-								clearInterval(EVT);
-							} else if (End_seconds >= seconds) {
-								calculate();
-							}
-						} else if (End_minutes > minutes) {
-							calculate();
-						}
-					}
+               else if (End_hours == hours) {
+                  if (End_minutes < minutes) {
+                     clearInterval(EVT);
+                  } else if (End_minutes == minutes) {
+                     if (End_seconds < seconds) {
+                        clearInterval(EVT);
+                     } else if (End_seconds >= seconds) {
+                        calculate();
+                     }
+                  } else if (End_minutes > minutes) {
+                     calculate();
+                  }
+               }
 
-					else if (End_hours > hours && hours > Start_hours) {
-						calculate();
-					}
+               else if (End_hours > hours && hours > Start_hours) {
+                  calculate();
+               }
 
-					else if (Start_hours == hours) {
-						if (Start_minutes < minutes) {
-							calculate();
-						} else if (Start_minutes == minutes) {
-							if (Start_seconds <= seconds) {
-								calculate();
-							} else if (Start_seconds > seconds) {
+               else if (Start_hours == hours) {
+                  if (Start_minutes < minutes) {
+                     calculate();
+                  } else if (Start_minutes == minutes) {
+                     if (Start_seconds <= seconds) {
+                        calculate();
+                     } else if (Start_seconds > seconds) {
 
-							}
-						} else if (Start_minutes > minutes) {
+                     }
+                  } else if (Start_minutes > minutes) {
 
-						}
-					}
+                  }
+               }
 
-					else if (Start_hours > hours) {
+               else if (Start_hours > hours) {
 
-					}
-				}
+               }
+            }
 
-				else if (End_hours == Start_hours) {
-					if (End_hours < hours) {
-						clearInterval(EVT);
-					} else if (End_hours == hours && Start_hours == hours) {
-						if (End_minutes < minutes) {
-							clearInterval(EVT);
-						} else if (End_minutes > minutes
-								&& Start_minutes < minutes) {
-							calculate();
-						} else if (End_minutes == minutes
-								&& Start_minutes == minutes) {
-							if (End_seconds > seconds
-									&& Start_seconds < seconds) {
-								calculate();
-							} else if (End_seconds < seconds) {
-								clearInterval(EVT);
-							} else if (Start_seconds > seconds) {
+            else if (End_hours == Start_hours) {
+               if (End_hours < hours) {
+                  clearInterval(EVT);
+               } else if (End_hours == hours && Start_hours == hours) {
+                  if (End_minutes < minutes) {
+                     clearInterval(EVT);
+                  } else if (End_minutes > minutes
+                        && Start_minutes < minutes) {
+                     calculate();
+                  } else if (End_minutes == minutes
+                        && Start_minutes == minutes) {
+                     if (End_seconds > seconds
+                           && Start_seconds < seconds) {
+                        calculate();
+                     } else if (End_seconds < seconds) {
+                        clearInterval(EVT);
+                     } else if (Start_seconds > seconds) {
 
-							}
-						} else if (End_minutes == minutes) {
-							if (End_seconds >= seconds) {
-								calculate();
-							}
-						} else if (Start_minutes == minutes) {
-							if (Start_seconds <= seconds) {
-								calculate();
-							}
-						} else if (Start_minutes > minutes) {
+                     }
+                  } else if (End_minutes == minutes) {
+                     if (End_seconds >= seconds) {
+                        calculate();
+                     }
+                  } else if (Start_minutes == minutes) {
+                     if (Start_seconds <= seconds) {
+                        calculate();
+                     }
+                  } else if (Start_minutes > minutes) {
 
-						}
+                  }
 
-					} else if (Start_hours > hours) {
+               } else if (Start_hours > hours) {
 
-					}
-				}
-			}
+               }
+            }
+         }
 
-			function calculate() {
-				setTimeout(function() {
-					notify();
-				}, 500);
-				clearInterval(EVT);
-			}
+         function calculate() {
+            setTimeout(function() {
+               notify();
+            }, 500);
+            clearInterval(EVT);
+         }
 
-		</script>
-	</header>
+      </script>
+   </header>
 </body>
 </html>

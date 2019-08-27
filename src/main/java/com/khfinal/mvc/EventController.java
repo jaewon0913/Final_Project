@@ -82,7 +82,7 @@ public class EventController {
 			MemberDto logindto = (MemberDto) session.getAttribute("logindto");
 			model.addAttribute("logindto", logindto);
 
-			return "eventboard/EventboardInsertForm";
+			return "eventboard/EventboardInsertform";
 		}
 
 		@RequestMapping("/eventboard_insert.do")

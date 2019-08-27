@@ -77,7 +77,8 @@
 				<p onclick="location.href='delivery_place.do'" class="text-dark" >배달장소 확인</p>
 			</div>
 			
-			<div class="col-el-5 col-lg-5 col-md-5 mx-5 ">
+			<div class="col-el-5 col-lg-5 col-md-5 mx-5 mp border">
+			<p onclick="location.href=''" class="text-dark" >회원 탈퇴</p>
 			</div>
 		</div>
 	</div>
