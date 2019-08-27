@@ -67,16 +67,17 @@ a.nav-link:hover{
 		<div class="col-md-4">
 			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
 			</div>
-			<!-- search bar -->
-			<table class=" search col-md-4 center" >
+			
+		<!-- search bar -->
+		<div class="col-md-4 center " style="text-align: center;">
+			<table class="pull-right search">
 				<tr>
 					<td>
-						<div class="form-group form-inline search" style="width: 100%;">
-							<input type="text" id="txt_search" value="${txt_search }"
-								style="border-radius: 5px;width: 75%;">
+						<div class="form-group form-inline search">
+							<input type="text" id="txt_search" style= "border-radius: 5px; width: 30rem;" />
 								<span>
 								<img alt="search" src="${pageContext.request.contextPath }/resources/bootstrap/image/searchbar.png" 
-								onclick="javascript:PageMove(${paging.pageNo})" style="width: 3rem; height: 3rem;" class="searchbar">
+								onclick="search()" style="width: 3rem; height: 3rem;">
 								</span>
 						
 						</div>
@@ -84,6 +85,7 @@ a.nav-link:hover{
 				</tr>
 			</table>
 		<!-- search bar -->
+		
 			<div  class="pull-right col-md-4"  style="text-align: right;">
 				<c:choose>
 					<c:when test="${empty logindto}">

@@ -26,10 +26,7 @@ public class NoticeController {
 	 */
 	@Autowired
 	private NoticeBiz noticebiz;
-
-	@Autowired
-	private NoticeDao noticedao;
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/*
@@ -78,7 +75,7 @@ public class NoticeController {
 		res = noticebiz.NoticeViews(notice_postnum);
 
 		if (res > 0) {
-			return "noticeboard/notice_selectone";
+			return "noticeboard/NoticeSelectone";
 		}
 		return "noticeboard/NoticeSelectone";
 	}

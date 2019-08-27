@@ -35,3 +35,9 @@ function login(){
 		});
 	}
 }
+
+function search(){
+	var search_text = $("#txt_search").val();
+		
+	location.href = "search.do?text=" + search_text;
+}
