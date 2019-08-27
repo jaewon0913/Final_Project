@@ -162,13 +162,14 @@ td>a:hover {
                         <td colspan="6" align="right"><input type="button"
                            value="처음으로" onclick="location.href='mainpage.do'"
                            class="btn btn-outline-light"> <c:choose>
-                              <c:when test="${logindto.member_id ne null }">
+                              <c:when test="${logindto.member_id eq 'admin'}">
                                  <input type="button" value="글쓰기"
                                     onclick="location.href='freeboard_insertform.do'"
                                     class="btn btn-outline-light">
+                                    <input type="submit" value="삭제"
+                           onclick="removeChk()" class="btn btn-outline-light">
                               </c:when>
-                           </c:choose> <!-- 취소를 선택해도 삭제됨 --> <input type="submit" value="삭제"
-                           onclick="removeChk()" class="btn btn-outline-light"> <%-- <input type="button" value="삭  제" onclick="location.href='freeboard_delete.do?free_postnum=${dto.free_postnum}'"> --%>
+                           </c:choose> <!-- 취소를 선택해도 삭제됨 -->  <%-- <input type="button" value="삭  제" onclick="location.href='freeboard_delete.do?free_postnum=${dto.free_postnum}'"> --%>
 
 
                         </td>

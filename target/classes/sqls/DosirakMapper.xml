@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
-	
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >   
+   
 <mapper namespace="dosirakmapper">
 
-	<select id = "selecttest" parameterType="map"  resultType = "dosirakdto">
-		SELECT * FROM DOSIRAK WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
-	</select>
-	<select id="selectlist" resultType="dosirakdto">
-		SELECT *
-		FROM DOSIRAK
- 	</select>
+   <select id = "selecttest" parameterType="map"  resultType = "dosirakdto">
+      SELECT * FROM DOSIRAK WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
+   </select>
+   <select id="selectlist" resultType="dosirakdto">
+      SELECT *
+      FROM DOSIRAK
+    </select>
 
-	<select id="selectlistpaging" parameterType="map"
-		resultType="dosirakdto">
-		SELECT *
-		FROM (SELECT ROWNUM AS RNUM, P.*
-		FROM ( SELECT *
-		FROM DOSIRAK
-		<if test="txt_search != null">
-			WHERE upper(DOSIRAK_NAME) like '%' || upper(#{txt_search}) || '%'
-		</if>
-		ORDER BY DOSIRAK_POSTNUM
-		) P
-		)
-		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +
-		#{recordCountPerPage}
-	</select>
+   <select id="selectlistpaging" parameterType="map"
+      resultType="dosirakdto">
+      SELECT *
+      FROM (SELECT ROWNUM AS RNUM, P.*
+      FROM ( SELECT *
+      FROM DOSIRAK
+      <if test="txt_search != null">
+         WHERE upper(DOSIRAK_NAME) like '%' || upper(#{txt_search}) || '%'
+      </if>
+      ORDER BY DOSIRAK_POSTNUM
+      ) P
+      )
+      WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +
+      #{recordCountPerPage}
+   </select>
 
-	<select id="totalcount" parameterType="map" resultType="Integer">
-		SELECT count(*)
-		FROM DOSIRAK
-		<if test="txt_search != null">
-			WHERE upper(DOSIRAK_NAME) like '%' || upper(#{txt_search}) || '%'
-		</if>
-	</select>
+   <select id="totalcount" parameterType="map" resultType="Integer">
+      SELECT count(*)
+      FROM DOSIRAK
+      <if test="txt_search != null">
+         WHERE upper(DOSIRAK_NAME) like '%' || upper(#{txt_search}) || '%'
+      </if>
+   </select>
 
-	<select id="selectone" parameterType="map" resultType="dosirakdto">
-		SELECT *
-		FROM DOSIRAK
-		WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
-	</select>
-	
-	<!-- 조회수 증가 -->
-	<update id= "updateviews">
-		UPDATE DOSIRAK SET DOSIRAK_VIEWS = DOSIRAK_VIEWS + 1 WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
-	</update>
+   <select id="selectone" parameterType="map" resultType="dosirakdto">
+      SELECT *
+      FROM DOSIRAK
+      WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
+   </select>
+   
+   <!-- 조회수 증가 -->
+   <update id= "updateviews">
+      UPDATE DOSIRAK SET DOSIRAK_VIEWS = DOSIRAK_VIEWS + 1 WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
+   </update>
 
-	<insert id="insert" parameterType="dosirakdto">
-		INSERT INTO DOSIRAK
-		VALUES(DOSIRAK_POSTNUM.NEXTVAL, #{dosirak_name}, #{dosirak_title}, #{dosirak_content}, #{dosirak_delivery},
-		#{dosirak_price}, 1, #{dosirak_afternum}, #{dosirak_views}, #{tan}, #{dan}, #{gi}, #{kcal}, #{mainimage}, #{thumbnail}, SYSDATE)
-	</insert>
+   <insert id="insert" parameterType="dosirakdto">
+      INSERT INTO DOSIRAK
+      VALUES(DOSIRAK_POSTNUM.NEXTVAL, #{dosirak_name}, #{dosirak_title}, #{dosirak_content}, #{dosirak_delivery},
+      #{dosirak_price}, 1, #{dosirak_afternum}, #{dosirak_views}, #{tan}, #{dan}, #{gi}, #{kcal}, #{mainimage}, #{thumbnail}, SYSDATE)
+   </insert>
 
-	<update id="update" parameterType="dosirakdto">
-		UPDATE DOSIRAK SET DOSIRAK_NAME = #{dosirak_name}, DOSIRAK_TITLE = #{dosirak_title},
-		DOSIRAK_CONTENT = #{dosirak_content}, DOSIRAK_delivery = #{dosirak_delivery},
-		DOSIRAK_PRICE = #{dosirak_price}, TAN = #{tan}, DAN = #{dan}, GI = #{gi}, KCAL = #{kcal},
-		MAINIMAGE = #{mainimage}, THUMBNAIL = #{thumbnail}
-		WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
-	</update>
+   <update id="update" parameterType="dosirakdto">
+      UPDATE DOSIRAK SET DOSIRAK_NAME = #{dosirak_name}, DOSIRAK_TITLE = #{dosirak_title},
+      DOSIRAK_CONTENT = #{dosirak_content}, DOSIRAK_delivery = #{dosirak_delivery},
+      DOSIRAK_PRICE = #{dosirak_price}, TAN = #{tan}, DAN = #{dan}, GI = #{gi}, KCAL = #{kcal},
+      MAINIMAGE = #{mainimage}, THUMBNAIL = #{thumbnail}
+      WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
+   </update>
 
-	<delete id="delete" parameterType="dosirakdto">
-		DELETE FROM DOSIRAK WHERE DOSIRAK_NAME = #{dosirak_name}
-	</delete>
-	
-	<select id="viewslist" parameterType="map" resultType="dosirakdto">
-	<![CDATA[
+   <delete id="delete" parameterType="dosirakdto">
+      DELETE FROM DOSIRAK WHERE DOSIRAK_NAME = #{dosirak_name}
+   </delete>
+   
+   <select id="viewslist" parameterType="map" resultType="dosirakdto">
+   <![CDATA[
       SELECT * FROM (SELECT * FROM DOSIRAK ORDER BY DOSIRAK_VIEWS DESC) WHERE ROWNUM<=3
       ]]>
       </select>
