@@ -26,10 +26,7 @@ public class NoticeController {
 	 */
 	@Autowired
 	private NoticeBiz noticebiz;
-
-	@Autowired
-	private NoticeDao noticedao;
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/*

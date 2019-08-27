@@ -20,7 +20,6 @@ CREATE TABLE COM_BOARD(
 	COM_COMNO NUMBER , --그룹 대신 com_comno  // 댓글번호
 	COM_COMSQ NUMBER ,  -- 댓글도 여러개 달릴수 있으니깐요 댓글에서의 순번입니다.  //댓글 순서
 	COM_REGDATE DATE
-
 );
 
 SELECT count( *) FROM FREEBOARD WHERE 1=1

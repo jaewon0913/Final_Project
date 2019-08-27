@@ -23,6 +23,7 @@
 		<mapper resource="/sqls/BoxorderMapper.xml"/>
 		<mapper resource="/sqls/DosirakMapper.xml"/>
 		<mapper resource="/sqls/UploadMapper.xml"/>
+		<mapper resource="/sqls/EtcMapper.xml"/>
 	</mappers>
 
 </configuration>
