@@ -143,7 +143,7 @@
 			<tr>
 				<td colspan="16" align="right">
 				<input type="submit" value="1회 결제하기" class="btn btn-outline-light">
-				<input type="button" value="정기 결제하기" onclick="location.href='dorirak_monthpay.do'"  class="btn btn-outline-light"> 
+				<input type="button" value="정기 결제하기" onclick="location.href='dorirak_monthpay.do?dto=${dosirakdto}'"  class="btn btn-outline-light"> 
 				<input type="button" value="수 정" onclick=""  class="btn btn-outline-light"/> 
 				<input type="button" value="삭 제" onclick="" class="btn btn-outline-light"/> 
 				<input type="button" value="이 전" onclick="location.href='dosirak_list.do'" class="btn btn-outline-light"/></td>

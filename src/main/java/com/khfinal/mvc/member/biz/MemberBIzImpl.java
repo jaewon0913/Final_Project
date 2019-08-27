@@ -76,8 +76,12 @@ public class MemberBIzImpl implements MemberBiz {
 
 	@Override
 	public int memberWithdrawal(String member_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberdao.memberWithdrawal(member_id);
+	}
+
+	@Override
+	public MemberDto pwChk(String member_id) {
+		return memberdao.pwChk(member_id);
 	}
 
 }
