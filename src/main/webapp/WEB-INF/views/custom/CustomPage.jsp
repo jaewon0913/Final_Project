@@ -9,125 +9,10 @@
 <meta name="viewport" maximum-scale=1.0, user-scalable=no; />
 
 <title>커스텀 도시락 주문</title>
-<style>
-.customImg {
-	width: 170px;
-	height: 220px;
-	margin: 10px;
-	padding: 10px;
-	border: none;
-	float: left;
-	display: inline-block;
-	border-radius: 50%;
-}
 
-.customContent {
-	width: 170px;
-	height: 220px;
-	border-radius: 50%;
-}
+<!-- custompage css -->
+<link href="resources/css/custompage.css" rel="stylesheet" />
 
-.customDrop {
-	border: 5px solid black; 
-	border-radius: 50%; 
-	width: 15rem; 
-	height: 15rem; 
-	margin: 5%; 
-	position : relative;
-}
-
-.copydish {
-	position : absolute;
-	top : -5px;
-	left : -5px;
-	border-radius: 50%;
-}
-
-.mint {
-	background-color: #59cab7;
-	opacity: 0.8;
-}
-
-.line {
-	border-left: 2;
-	border-left-color: white;
-}
-
-#pay:hover {
-	opacity: 0.5;
-}
-
-.iconbtn {
-	width: 5rem;
-}
-
-.iconbtn:hover {
-	width: 5rem;
-	opacity: 0.5;
-}
-
-.fix {
-	position: fixed;
-	border: none;
-	background-color: white;
-	border: 1 solid black;
-	width: 20%;
-	font-size: 1rem;
-}
-
-.mintbtn {
-	background-color: #59cab7;
-	color: white;
-	width: 8rem;
-	border: none;
-	outline: 0;
-	height: 3rem;
-	font-size: 1.5rem;
-}
-
-.mintbtn:hover {
-	background-color: #59cab7;
-	color: white;
-	width: 8rem;
-	border: none;
-	outline: 0;
-	opacity: 0.5;
-	height: 3rem;
-	font-size: 1.5rem;
-}
-
-.payback {
-	position: fixed;
-	right: 0px;
-	margin-bottom: 30rem;
-	height: 35rem;
-	width: 22rem;
-	background-color: white;
-}
-
-.font {
-	font-size: 1.5rem;
-}
-
-.f {
-	font-size: 2rem;
-	
-}
-
-.1 {
-	border: 5 solid black;
-	width: 50rem;
-	border-radius: 30px;
-}
-
-.sik1 {
-	border: 5 solid black;
-	border-radius: 50%;
-}
-.payback, .btn{
-	z-index: 9999;
-}
-</style>
 <!-- kakaopay -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -152,15 +37,17 @@
 		$(document).on('click', '#one', function() {
 			$('#sendDiv').show()
 			$('#sendDiv2').hide()
-			$('#one').css('color','white')
-			$('#one').attr('style','border : 3px solid black;')
-			$('#month').css('color','black')
+			$('#one').attr('style','color : white;')
+			$('#one').attr('style','border : 3px solid white;')
+			$('#month').attr('style','color :black;')
+			$('#month').attr('style','border : none;')
 		}).on('click', '#month', function() {
 			$('#sendDiv2').show()
 			$('#sendDiv').hide()
-			$('#month').css('color','white')
-			$('#month').css('border','3 solid black')
-			$('#one').css('color','black')
+			$('#month').attr('style','color : white;')
+			$('#month').attr('style','border : 3px solid white;')
+			$('#one').attr('style','color :black;')
+			$('#one').attr('style','border : none;')
 		})
 
 	})
@@ -180,10 +67,10 @@
 	
 	<div class="payback" style = "top : 20rem; overflow: auto;">
 		<ul class="nav nav-tabs">
-			<li class="mint line font" style="width: 50%">
+			<li class="mint line font" style="width: 50%; text-align: center;">
 				<input class="btn " type="button" id="one" value="1회 구매" style="width: 10rem" />
 			</li>
-			<li class="mint line" style="width: 50%">
+			<li class="mint line" style="width: 50%; text-align: center; ">
 				<input class="btn " type="button" id="month" value="정기 구매" style="width: 10rem" />
 			</li>
 		</ul>
@@ -231,7 +118,7 @@
 				</select>
 			</p>
 			<br /> 
-			<input type="button" value="장바구니" onclick="createCookie(${count })" class="mintbtn " /> 
+			<input type="button" value="장바구니" onclick="createCookie(${count })" class="btn btn-outline-light" /> 
 			<input type="submit" value="결제하기" class="btn btn-outline-light" >
 		</div>
 		</form>
@@ -280,7 +167,7 @@
 				</select>
 			</p>
 			<br />
-			<input type="button" value="장바구니" onclick="location.href='createCookie(${count })'" class="mintbtn " /> 
+			<input type="button" value="장바구니" onclick="location.href='createCookie(${count })'" class="btn btn-outline-light" /> 
 			<input type="submit" value="결제하기" class="btn btn-outline-light" > 
 		</div>
 		</form>

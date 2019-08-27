@@ -47,7 +47,8 @@
 		</tr>
 		<tr>
 			<th>내   용</th>
-			<td>${dto.free_content }</td>
+			<td colspan="6">
+			<textarea rows="8" cols="80" readonly="readonly">${dto.free_content }</textarea>
 		
 		</tr>
 			
@@ -56,7 +57,7 @@
 			<td colspan="3" align="right">
 					<input type="button" value=" 목록으로 " onclick="location.href='freeboard_list.do'" class="btn btn-outline-light">
 					<c:choose>
-					<c:when test="${logindto.member_id ne null }">
+					<c:when test="${logindto.member_id eq dto.member_id }">
 					<input type="button" value=" 글수정 " onclick="location.href='freeboard_updateform.do?free_postnum=${dto.free_postnum }'" class="btn btn-outline-light">
 					<%-- <input type="button" value=" 삭  제 " onclick="location.href='freeboard_delete.do?free_postnum=${dto.free_postnum }'"> --%>
 					<input type="button" value=" 삭  제 " onclick="removeCheck()" class="btn btn-outline-light">
@@ -88,7 +89,7 @@
 	
 	<h3>&lt; 댓글보기 &gt;</h3>
 
-			
+			<div id="commtable">
 				<table class="table">
 					
 					<tr>
@@ -129,7 +130,7 @@
 					</c:forEach>
 					
 				</table>
-				
+			</div>
 			
 			
 
@@ -144,7 +145,6 @@
 	
 	
 	<!-- COM_NUM, FREE_POSTNUM, MEMBER_ID, MEMBER_NAME, COM_CONTENT, COM_CONTAB, COM_COMNO, COM_COMSQ, COM_REGDATE -->
-	<form action="com_board_insert.do" method="post">
 	
 	<input type="hidden" name="member_id" value="${logindto.member_id }" >
 	<input type="hidden" name="free_postnum" value="${dto.free_postnum }" >
@@ -167,12 +167,13 @@
 			<c:choose>
 				<c:when test="${logindto.member_id ne null }">
 					<tr align="right">
-						<td colspan="2"><input type="submit" value="저  장" class="btn btn-outline-light"></td>
+						<td colspan="2">
+							<input type="button" value="저  장" id="comminsert" class="btn btn-outline-light">
+						</td>
 					</tr>
 				</c:when>
 			</c:choose>
 		</table>
-	</form>
 	<br>
 	<br>	
 	
@@ -193,11 +194,63 @@
 			lang : 'ko-KR'
 		});
 	});
+	
+$("#comminsert").click(function(){
+	alert("comminsert 함수 실행");
+	var com_content = document.getElementsByName("com_content")[0].value;
+	var free_postnum = ${dto.free_postnum };
+	
+	if(com_content != ""){
+		$.ajax({
+			url:"com_board_insert.do",
+			type:"post",
+			data:"com_content="+com_content+"&free_postnum="+free_postnum,
+			dataType:"json",
+			success:function(data){
+				var list = data.list;
+				$("#commtable").children('.table').remove();
+				
+// 				var test = "<div id='commtable_res'></div>";
+				
+				$.each(list, function(idx,val){
+// 					console.log(idx+" "+val.com_content);
+// 					alert(idx+" "+val.com_content);
+					
+					
+					$("#commtable").append(
+						"<table class='table'>"+
+							"<tr>"+
+								"<th>작성자</th>"+
+								"<th>댓글</th>"+
+								"<th>작성일</th>"+
+								"<th></th>"+
+							"</tr>"+
+							"<tr>"+
+								"<td>"+val.member_name+"</td>"+
+								"<td>"+val.com_content+"</td>"+
+								"<td>"+val.com_regdate+"</td>"+
+								"<td>"+
+									"<c:choose>"+
+										
+									"</c:choose>"+
+								"</td>"+
+							"</tr>"+
+						"</table>"		
+					);
+				});
+				
+				
+			},error:function(){
+				alert("댓글을 입력해 주세요.");
+			}
+		});
+	}
+});
 </script>	
 
 	
+	</div>
 	
-</div>	
 	<%@ include file="../footer.jsp"%>
 
 </body>

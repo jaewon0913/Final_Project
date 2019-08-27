@@ -1,10 +1,13 @@
 package com.khfinal.mvc;
 
-import java.util.List;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.khfinal.mvc.dosirak.biz.DosirakBiz;
 import com.khfinal.mvc.dosirak.dto.DosirakDto;
+import com.khfinal.mvc.etc.biz.EtcBiz;
+import com.khfinal.mvc.free.dto.FreeboardDto;
 import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.notice.biz.NoticeBiz;
 import com.khfinal.mvc.notice.dto.NoticeDto;
@@ -40,6 +45,9 @@ public class HomeController {
 	public String startpage() {
 		return "startpage";
 	}
+	
+	@Autowired
+	private EtcBiz etcBiz;
 	
 	@RequestMapping("/mainpage.do")
 	public String main(Model model) {
@@ -74,33 +82,18 @@ public class HomeController {
 		return "member/TermsAndConditions";
 	}
 	
-	@RequestMapping("/testpage.do")
-	public String test() {
-		
-		try {
-			System.out.println("크롤링테스트중");
-			URL url = new URL("https://www.instagram.com/explore/tags/도시락/");
-			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			
-			BufferedReader br = new BufferedReader (new InputStreamReader(con.getInputStream()));
-			
-			String temp;
-			System.out.println("여기까진 오고");
-			while ((temp = br.readLine()) != null) {
-				//System.out.println(temp);
+	@RequestMapping("/search.do")
+	public String search(Model model, HttpServletRequest request, HttpServletResponse response) {
+		String text = request.getParameter("text");
 				
-				if(temp.contains("display_url")){
-					System.out.println(temp);
-					System.out.println("야호야호");
-				}
-			}
-			con.disconnect();
-			br.close();
-			System.out.println("여기까지는 왓는가?");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<NoticeDto> noticelist = etcBiz.NoticeSelectList(text);
+		List<FreeboardDto> freelist = etcBiz.FreeSelectList(text);
+		List<DosirakDto> dosiraklist = etcBiz.DosirakSelectList(text);
 		
-		return "testpage";
+		model.addAttribute("noticelist",noticelist);
+		model.addAttribute("freelist",freelist);
+		model.addAttribute("dosiraklist",dosiraklist);
+		
+		return "search/SearchPage";
 	}
 }

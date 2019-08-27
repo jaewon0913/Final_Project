@@ -14,7 +14,7 @@
 	<!-- ------------------------헤더-------------------------------------------- -->
 		<div class="container">
 			<form:form action="dosirak_insert.do" method="post" enctype="multipart/form-data">
-		<table class="table ">
+		<table class="table table-hover">
 			
 			<tr>
 				<th>도시락이름</th>
@@ -78,25 +78,25 @@
 	</form:form>
 	
 
-		
-		</div>	
-	
-	<!-- ------------------------푸터-------------------------------------------- -->
-	<%@ include file="../footer.jsp"%>
-	<!-- ------------------------푸터-------------------------------------------- -->
+      
+      </div>   
+   
+   <!-- ------------------------푸터-------------------------------------------- -->
+   <%@ include file="../footer.jsp"%>
+   <!-- ------------------------푸터-------------------------------------------- -->
 
 
 </body>
 </html>
 
-			
+         
 
-	<!-- <form name="multifileupload" action="multifileupload.do" method="post" enctype="multipart/form-data">
-		<label>썸네일이미지</label>
-		
-		<input multiple="multiple" type="file" name="multifile">
-		
-		<input type="text" name="multisrc">
-		
-		<input type="submit" value="전송">
-	</form> -->
+   <!-- <form name="multifileupload" action="multifileupload.do" method="post" enctype="multipart/form-data">
+      <label>썸네일이미지</label>
+      
+      <input multiple="multiple" type="file" name="multifile">
+      
+      <input type="text" name="multisrc">
+      
+      <input type="submit" value="전송">
+   </form> -->

@@ -24,12 +24,11 @@
 		<div id="chat_div">
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
-				<div style="float: right; padding-right: 2rem;">
-					<button type="button" id="chat_close" style = "position : fixed; z-index : 90; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>
-				</div>
-				<div id="msg_div" style = "clear : both;" >
-				</div>
+			<div style="float: right; padding-right: 2rem;">
+				<button type="button" id="chat_close" style = "position : fixed; z-index : 90; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>
 			</div>
+			<div id="msg_div" style = "clear : both;" ></div>
+		</div>
 		<div id = "send_div">
 			<input type="text" id="message" onkeyup = "enterkey();"/> 
 			<input type="button" id="send_btn" value="전송" class="btn btn-outline-light"/>
@@ -39,7 +38,7 @@
 		<div id = "bot_div">
 			<div style="float: right; padding-right: 2rem;" >
 				<button type="button" id="bot_chat_close" style = "position : fixed; z-index : 90; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>
-				</div>
+			</div>
 			<div id="bot_msg_div" style = "clear : both;" >
 			</div>
 		</div>

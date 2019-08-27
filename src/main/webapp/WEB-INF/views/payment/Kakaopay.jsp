@@ -93,7 +93,6 @@
 		<tr>
 			<td colspan="2" align="right">
 				<img id="pay" alt="결제" src="resources/bootstrap/image/kakaopay_btn.png">
-				
 				<input type="button" value="취소" onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'" class="btn btn-outline-light" />
 			</td>
 		</tr>
