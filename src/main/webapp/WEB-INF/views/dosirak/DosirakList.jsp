@@ -121,7 +121,7 @@ function pageMove_dosirak(page) {
 	<div class="container">
 	<h1 align="center">메	뉴</h1>
 		
-			<div style="border: 1px solid salmon; width: 100%;">
+			<div style="border: 1 solid gray; width: 100%;">
 				<div class="row">
 				<table>
 					<c:choose>

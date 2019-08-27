@@ -47,7 +47,7 @@
 			<td colspan="2" align="right">
 				<input type="submit" value="수정하기" class="btn btn-outline-dark" >
 				<input type="button" value="취소하기" onclick="location.href='mypage.do'" class="btn btn-outline-dark" >
-				<input type="button" value="탈퇴하기" onclick="location.href='withdrawal.do?member_id=${memberdto.member_id}'" class="btn btn-outline-dark">
+				
 			</td>
 		</tr>
 	</table>
