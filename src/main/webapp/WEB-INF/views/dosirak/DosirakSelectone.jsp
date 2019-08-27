@@ -109,7 +109,7 @@
 			</li>
 		</ul>
 		
-		<form action="kakaopay_custom.do" method = "POST" style=" overflow: auto;">
+		<form action="kakaopay.do" method = "POST" style=" overflow: auto;">
 		<div class="container" id="sendDiv" >
 			<hr/>
 			<p class="font">탄수화물 : <span id = "tan_span">${dosirakdto.tan}</span>g</p>
@@ -134,12 +134,12 @@
 				</select>
 			</p>
 			<br /> 
-			<input type="button" value="장바구니" onclick="createCookie(${count })" class="btn btn-outline-light" /> 
+			<input type="button" value="장바구니" class="btn btn-outline-light" onclick="createCookie(${count })"/> 
 			<input type="submit" value="결제하기" class="btn btn-outline-light" >
 		</div>
 		</form>
 
-		<form action="kakaopay_custom.do" method = "POST">
+		<form action="kakaopay.do" method = "POST">
 		<div class="container" id="sendDiv2">
 			<hr/>
 			<p class="font">탄수화물 : <span id = "tan_span">${dosirakdto.tan}</span>g</p>

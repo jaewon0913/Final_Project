@@ -30,9 +30,7 @@
 		UPDATE MEMBER SET MEMBER_PW = #{member_pw}, MEMBER_PW_CHANGE = SYSDATE
 		WHERE MEMBER_ID = #{member_id}
 	</update>
-	
-	
-	
+
 	<insert id="insert" parameterType="memberdto">
 		INSERT INTO MEMBER 
 		VALUES(#{member_id},#{member_pw},#{member_name},#{member_phone},#{member_address},#{member_subway},#{member_email},1,'USER',SYSDATE,SYSDATE)
