@@ -231,7 +231,9 @@ $("#comminsert").click(function(){
 								"<td>"+val.com_regdate+"</td>"+
 								"<td>"+
 									"<c:choose>"+
-										
+										"<c:when test='${logindto.member_id eq cmt.member_id}'>"+
+											"<input type='button' value='삭제' onclick=''>"+
+										"</c:when>"+
 									"</c:choose>"+
 								"</td>"+
 							"</tr>"+
