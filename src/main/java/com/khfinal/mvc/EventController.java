@@ -72,7 +72,7 @@ public class EventController {
 			res = biz.evupdateViews(event_postnum);
 			if (res > 0) {
 				System.out.println("이베트 카운드 업데이트");
-				return "eventboard/eventboard_detail";
+				return "eventboard/EventboardDetail";
 			}
 			return "eventboard/EventboardDetail";
 		}

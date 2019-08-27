@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean class = "org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<!-- classpath : src/main/resource 를 자동으로 잡아준다 -->
-				<value>classpath:properties/db.properties</value>
-			</list>
-		</property>
-	</bean>
-	
-	<bean id = "dataSource" class = "org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value = "${driver}"></property>
-		<property name="url" value = "${url}"></property>
-		<property name="username" value = "${username}"></property>
-		<property name="password" value = "${password}"></property>
-	</bean>
-	
-	<bean id ="sqlSession" class = "org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref= "dataSource"></property>
-		<property name="configLocation" value ="WEB-INF/spring/sqls/config.xml"></property>
-	</bean>
-	
-	<bean id = "sqlSessionTemplate" class = "org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref = "sqlSession"></constructor-arg>
-	</bean>
-	
-	<!-- 멀티파트 리졸버 -->
-	<bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   <bean class = "org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="locations">
+         <list>
+            <!-- classpath : src/main/resource 를 자동으로 잡아준다 -->
+            <value>classpath:properties/db.properties</value>
+         </list>
+      </property>
+   </bean>
+   
+   <bean id = "dataSource" class = "org.apache.commons.dbcp.BasicDataSource">
+      <property name="driverClassName" value = "${driver}"></property>
+      <property name="url" value = "${url}"></property>
+      <property name="username" value = "${username}"></property>
+      <property name="password" value = "${password}"></property>
+   </bean>
+   
+   <bean id ="sqlSession" class = "org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref= "dataSource"></property>
+      <property name="configLocation" value ="WEB-INF/spring/sqls/config.xml"></property>
+   </bean>
+   
+   <bean id = "sqlSessionTemplate" class = "org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg ref = "sqlSession"></constructor-arg>
+   </bean>
+   
+   <!-- 멀티파트 리졸버 -->
+   <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
          <!-- 최대업로드 가능한 바이트크기 -->
          <property name="maxUploadSize" value="52428800" />
          <!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할수있는 최대 바이트 크기 -->
          <property name="maxInMemorySize" value="52428800" />
          <!-- defaultEncoding -->
          <property name="defaultEncoding" value="utf-8" />
-	</bean>
-	
-	<!-- transaction -->
-	<bean id = "transactionManger" class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref = "dataSource"></property>
-	</bean>
+   </bean>
+   
+   <!-- transaction -->
+   <bean id = "transactionManger" class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref = "dataSource"></property>
+   </bean>
 
-	
+   
 
 </beans>

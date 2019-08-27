@@ -19,10 +19,10 @@
 	width: 50%;
 
 }
-
 .doim{
-	margin-top: 15rem;
+ max-width: 40rem;
 }
+
 .mintbtn {
 	background-color: #59cab7;
 	color: white;
@@ -92,7 +92,7 @@
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
-
+<div class="container" style="margin-bottom: 5rem; margin-top: 5rem;">
 	<h1>도시락 상세 보기</h1>
 <div class="container" >
 <div class="dosirakimg" >
@@ -111,6 +111,7 @@
 		
 		<form action="kakaopay.do" method = "POST" style=" overflow: auto;">
 		<div class="container" id="sendDiv" >
+		<input type="hidden" name="dosirak_title" value="${dosirakdto.dosirak_title }">
 			<hr/>
 			<p class="font">탄수화물 : <span id = "tan_span">${dosirakdto.tan}</span>g</p>
 			<input type = "hidden" id = "input_tan" name = "custom_tan" value =""/>
@@ -120,12 +121,12 @@
 			<input type = "hidden" id = "input_zi" name = "custom_zi" value = ""/>
 			
 			<input type = "hidden" value = "4" name = "custom_count">
-			<p class="font">가격 : <span id = "price_span"></span>4000원</p>
-			<input type = "hidden" value = "4000" name = "custom_price" id = "price_input">
+			<p class="font">가격 : <span id = "price_span"></span>${dosirakdto.dosirak_price}원</p>
+			<input type = "hidden" value = "${dosirakdto.dosirak_price}" name = "dosirak_price" id = "price_input">
 					
 			<p class="font">총 칼로리 : <span id = "cal_span">${dosirakdto.kcal}</span>kal</p>
 			<input type = "hidden" id = "input_kal" name = "custom_kal" value = ""/>
-			<p class = "font">수령 날짜 : <input type = "date" name = "custom_delivery" id = "input_date"/></p>
+			<p class = "font">수령 날짜 : <input type = "date" name = "dosirak_delivery" id = "input_date"/></p>
 			<p class = "font">수령 시간 : 
 				<select name = "custom_time">
 					<option value = "">시간 선택</option>
@@ -141,6 +142,7 @@
 
 		<form action="kakaopay.do" method = "POST">
 		<div class="container" id="sendDiv2">
+		<input type="hidden" name="dosirak_title" value="${dosirakdto.dosirak_title }">
 			<hr/>
 			<p class="font">탄수화물 : <span id = "tan_span">${dosirakdto.tan}</span>g</p>
 			<input type = "hidden" id = "input_tan" name = "custom_tan" value =""/>
@@ -181,7 +183,7 @@
 			<tr>
 				<th>도시락이름</th>
 				<td>
-					<p>${dosirakdto.dosirak_name}</p>
+					<p>${dosirakdto.dosirak_title}</p>
 				</td>
 			</tr>
 
@@ -213,14 +215,27 @@
 					<fmt:formatDate value="${dosirakdto.dosirak_regdate}" pattern="yyyy-MM-hh"/>
 				</td>
 			</tr>
+			<c:choose>
+					<c:when test="${logindto.member_id eq 'admin'}">
 			<tr>
 				<td colspan="16" align="left">
 				<input type="button" value="수 정" onclick="location.href='dosirak_updateform.do?dosirak_postnum=${dosirakdto.dosirak_postnum}'"  class="btn btn-outline-light"/> 
 				<input type="button" value="삭 제" onclick="location.href='dosirak_delete.do?dosirak_name=${dosirakdto.dosirak_name}'" class="btn btn-outline-light"/> 
 				<input type="button" value="이 전" onclick="location.href='dosirak_list.do'" class="btn btn-outline-light"/></td>
 			</tr>
+			</c:when>
+			<c:otherwise>
+			<tr>
+			<td>
+			<input type="button" value="이 전" onclick="location.href='dosirak_list.do'" class="btn btn-outline-light"/></td>
+			</tr>
+			</c:otherwise>
+			</c:choose>
+			
 		</table>
 	</div>
+</div>
+
 </div>
 	<%@ include file="../footer.jsp"%>
 </body>

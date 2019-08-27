@@ -131,7 +131,7 @@
 					<tr>
 						<td colspan="6" align="right">
 							<c:choose>
-							<c:when test="${logindto.member_id ne null }">
+							<c:when test="${logindto.member_id eq 'admin'}">
 							<input type="button" value="글쓰기" onclick="location.href='eventboard_insertform.do'" class="btn btn-outline-light">
 							</c:when>
 							</c:choose>
