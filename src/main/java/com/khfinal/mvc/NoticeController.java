@@ -143,11 +143,4 @@ public class NoticeController {
 	}
 	
 
-	// 카카오페이 테스트
-	@RequestMapping("/testa.do")
-	public String testa(Model model) {
-		return "Testa";
-	}
-	// 페이징
-
 }

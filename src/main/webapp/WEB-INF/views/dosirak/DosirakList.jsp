@@ -127,7 +127,6 @@ function PageMove_dosirak(page) {
 					<c:choose>
 						<c:when test="${empty list}">
 							<h3>판매중인 도시락이 없습니다.</h3>
-							<input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='#'">
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${list}" var="dto">
@@ -148,16 +147,33 @@ function PageMove_dosirak(page) {
 					</table>
 					
 				</div>
+				<div>
+				<br/>
+				<br/>
+				</div>
+				<c:choose>
+					<c:when test="${logindto.member_id eq 'admin'}">
 				<div style="float: right; margin: 3%;">
 					<input type="button" value="메인화면" onclick="location.href='startpage.jsp'" class="btn btn-outline-light"> 
 					<input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='dosirak_insertform.do'">
 				</div>
+				</c:when>
+				<c:otherwise>
+					<div style="float: right; margin: 3%;">
+					<input type="button" value="메인화면" onclick="location.href='startpage.jsp'" class="btn btn-outline-light"> 
+					
+					</div>
+				
+				</c:otherwise>
+				</c:choose>
+				
+				
 			</div>
 		
 	</div>
 
 	<!-- Pagination -->
-	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">
+	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem; margin-top: 3rem;">
 		<a href="javascript:PageMove_dosirak(${paging.firstPageNo})"  class="page">&laquo;</a> <a
 			href="javascript:PageMove_dosirak(${paging.prevPageNo})" class="page">&lt;</a>
 		<c:forEach var="i" begin="${paging.startPageNo}"
