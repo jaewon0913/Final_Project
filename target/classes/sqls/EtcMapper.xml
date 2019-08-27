@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+	
+<mapper namespace="etcmapper">
+	
+	<select id="dosirakselectlist" parameterType="map" resultType="dosirakdto">
+		SELECT * FROM DOSIRAK WHERE DOSIRAK_TITLE LIKE '%'||#{text}||'%'
+ 	</select>
+ 	
+ 	<select id="freeselectlist" parameterType="map" resultType="FreeboardDto">
+		SELECT * FROM FREEBOARD WHERE FREE_TITLE LIKE '%'||#{text}||'%'
+ 	</select>
+ 	
+ 	<select id="noticeselectlist" parameterType="map" resultType="NoticeDto">
+		SELECT * FROM NOTICEBOARD WHERE NOTICE_TITLE LIKE '%'||#{text}||'%'
+ 	</select>
+
+</mapper>

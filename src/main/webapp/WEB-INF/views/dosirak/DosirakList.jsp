@@ -97,18 +97,21 @@ function PageMove_dosirak(page) {
 		<h1>Best 3</h1>
 		<br/><br/><br/>
 		
-		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
-			<img alt="test" src="resources/bootstrap/image/do1.jpg" class="iii">
-		</div>
-		
-		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
-			<img alt="test" src="resources/bootstrap/image/do1.jpg" class="iii">
-		</div>
-		
-		<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
-			<img alt="test" src="resources/bootstrap/image/do1.jpg" class="iii">
-		</div>
-		
+		<c:choose>
+			<c:when test="${empty viewslist}">
+				<h3>베스트메뉴 도시락이 없습니다.</h3>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${viewslist}" var="viewsdto">
+					<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
+					<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${viewsdto.dosirak_postnum}'">
+					<img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="iii">
+					<input type="hidden" name="dosirak_postnum" value="${viewsdto.dosirak_postnum}">
+					</div>
+					</div>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 		
 	</div>
 
@@ -124,14 +127,13 @@ function PageMove_dosirak(page) {
 					<c:choose>
 						<c:when test="${empty list}">
 							<h3>판매중인 도시락이 없습니다.</h3>
-							<input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='#'">
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${list}" var="dto">
 								<div
 									class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
 									<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'"> 
-										<img alt="이미지" src="https://dosirakmall.wisacdn.com/_data/product/201901/11/214bf675538ebab78e937949a977544e.jpg" style="width: 20rem; height: 20rem;" />
+										<img alt="이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" style="width: 20rem; height: 20rem; border-radius: 50%;" />
 										<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
 										<div style="text-align: center;">
 											<p>${dto.dosirak_name}/${dto.dosirak_price}원</p>
@@ -145,16 +147,33 @@ function PageMove_dosirak(page) {
 					</table>
 					
 				</div>
-				<div style="float: right; margin: 3%;">
-					<input type="button" value="메인화면" onclick="location.href='mainpage.jsp'" class="btn btn-outline-light"> 
-					<input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='#'">
+				<div>
+				<br/>
+				<br/>
 				</div>
+				<c:choose>
+					<c:when test="${logindto.member_id eq 'admin'}">
+				<div style="float: right; margin: 3%;">
+					<input type="button" value="메인화면" onclick="location.href='startpage.jsp'" class="btn btn-outline-light"> 
+					<input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='dosirak_insertform.do'">
+				</div>
+				</c:when>
+				<c:otherwise>
+					<div style="float: right; margin: 3%;">
+					<input type="button" value="메인화면" onclick="location.href='startpage.jsp'" class="btn btn-outline-light"> 
+					
+					</div>
+				
+				</c:otherwise>
+				</c:choose>
+				
+				
 			</div>
 		
 	</div>
 
 	<!-- Pagination -->
-	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">
+	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem; margin-top: 3rem;">
 		<a href="javascript:PageMove_dosirak(${paging.firstPageNo})"  class="page">&laquo;</a> <a
 			href="javascript:PageMove_dosirak(${paging.prevPageNo})" class="page">&lt;</a>
 		<c:forEach var="i" begin="${paging.startPageNo}"

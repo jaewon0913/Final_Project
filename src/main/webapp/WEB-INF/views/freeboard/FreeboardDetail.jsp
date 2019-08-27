@@ -22,7 +22,7 @@
 
 	<!-- header -->
 	<%@ include file="../header.jsp"%>
-
+<div class="container">
 	<h2>자유게시판 상세보기</h2>
 	<table class="table">
 	
@@ -47,7 +47,8 @@
 		</tr>
 		<tr>
 			<th>내   용</th>
-			<td>${dto.free_content }</td>
+			<td colspan="6">
+			<textarea rows="8" cols="80" readonly="readonly">${dto.free_content }</textarea>
 		
 		</tr>
 			
@@ -56,7 +57,7 @@
 			<td colspan="3" align="right">
 					<input type="button" value=" 목록으로 " onclick="location.href='freeboard_list.do'" class="btn btn-outline-light">
 					<c:choose>
-					<c:when test="${logindto.member_id ne null }">
+					<c:when test="${logindto.member_id eq dto.member_id }">
 					<input type="button" value=" 글수정 " onclick="location.href='freeboard_updateform.do?free_postnum=${dto.free_postnum }'" class="btn btn-outline-light">
 					<%-- <input type="button" value=" 삭  제 " onclick="location.href='freeboard_delete.do?free_postnum=${dto.free_postnum }'"> --%>
 					<input type="button" value=" 삭  제 " onclick="removeCheck()" class="btn btn-outline-light">
@@ -248,7 +249,7 @@ $("#comminsert").click(function(){
 </script>	
 
 	
-	
+	</div>
 	
 	<%@ include file="../footer.jsp"%>
 

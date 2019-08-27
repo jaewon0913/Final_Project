@@ -33,14 +33,6 @@
 					<td>${NoticeDto.member_id }</td>
 					
 				</tr>
-				<%-- <tr>
-					<th>작성자</th>
-					<td>${NoticeDto.member_id }</td>
-				</tr>
-				<tr>
-					<th>제 목</th>
-					<td>${NoticeDto.notice_title}</td>
-				</tr> --%>
 				<tr>
 					<th>내 용</th>
 					<td colspan="6">
@@ -52,10 +44,6 @@
 					<th colspan="1">조회수</th>
 					<td>${NoticeDto.notice_views}</td>
 				</tr>
-				<%-- <tr>
-					<th>조회수</th>
-					<td>${NoticeDto.notice_views}</td>
-				</tr> --%>
 
 							
 				<tr>

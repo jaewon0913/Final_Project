@@ -1,3 +1,9 @@
+function enterkey() {
+	if(window.event.keyCode == 13){
+		search();
+	}
+}
+
 function loginform(){
 	$("#loginform").show();
 }
@@ -41,4 +47,10 @@ function login(){
 			}
 		});
 	}
+}
+
+function search(){
+	var search_text = $("#txt_search").val();
+		
+	location.href = "search.do?text=" + search_text;
 }

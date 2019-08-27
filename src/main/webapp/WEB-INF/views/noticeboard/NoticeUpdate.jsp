@@ -49,7 +49,6 @@
 					<td>${NoticeDto.notice_views}</td>
 				</tr>
 
-							
 				<tr>
 					<td colspan="5" align="right">
 					<input class="btn btn-outline-light" type="submit" value="수정" >

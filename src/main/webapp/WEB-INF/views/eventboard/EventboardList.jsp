@@ -60,6 +60,7 @@
 		</tr>
 	</table>
 	
+
 	<br>
 
 	<c:choose>
@@ -130,7 +131,7 @@
 					<tr>
 						<td colspan="6" align="right">
 							<c:choose>
-							<c:when test="${logindto.member_id ne null }">
+							<c:when test="${logindto.member_id eq 'admin'}">
 							<input type="button" value="글쓰기" onclick="location.href='eventboard_insertform.do'" class="btn btn-outline-light">
 							</c:when>
 							</c:choose>
@@ -141,9 +142,6 @@
 			
 		</c:otherwise>
 	</c:choose>
-
-
-
 
 		<!-- Pagination -->
 	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">
