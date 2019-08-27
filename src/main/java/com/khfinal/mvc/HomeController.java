@@ -76,36 +76,6 @@ public class HomeController {
 		return "member/TermsAndConditions";
 	}
 	
-	@RequestMapping("/testpage.do")
-	public String test() {
-		
-		try {
-			System.out.println("크롤링테스트중");
-			URL url = new URL("https://www.instagram.com/explore/tags/도시락/");
-			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			
-			BufferedReader br = new BufferedReader (new InputStreamReader(con.getInputStream()));
-			
-			String temp;
-			System.out.println("여기까진 오고");
-			while ((temp = br.readLine()) != null) {
-				//System.out.println(temp);
-				
-				if(temp.contains("display_url")){
-					System.out.println(temp);
-					System.out.println("야호야호");
-				}
-			}
-			con.disconnect();
-			br.close();
-			System.out.println("여기까지는 왓는가?");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "testpage";
-	}
-	
 	@RequestMapping("/search.do")
 	public String search(Model model, HttpServletRequest request, HttpServletResponse response) {
 		String text = request.getParameter("text");

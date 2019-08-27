@@ -135,7 +135,7 @@
 				</select>
 			</p>
 			<br /> 
-			<input type="button" value="장바구니" onclick="createCookie(${count })" class="btn btn-outline-light" /> 
+			<input type="button" value="장바구니" class="btn btn-outline-light" onclick="createCookie(${count })"/> 
 			<input type="submit" value="결제하기" class="btn btn-outline-light" >
 		</div>
 		</form>
