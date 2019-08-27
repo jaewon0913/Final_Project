@@ -129,7 +129,6 @@ public class DosirakController {
 		
 		res = dosirakbiz.updateviews(dosirak_postnum);
 		if( res > 0) {
-			System.out.println("오긴하니?? 조회수다");
 			return "dosirak/DosirakSelectone";
 		}
 		return "dosirak/DosirakSelectone";
@@ -137,7 +136,7 @@ public class DosirakController {
 	
 	@RequestMapping("/dosirak_insertform.do")
 	public String dosirak_insertform() {
-		return "dosirak/dosirak_insert";
+		return "dosirak/DosirakInsert";
 	}
 	
 	@RequestMapping("/dosirak_insert.do")
@@ -209,7 +208,7 @@ public class DosirakController {
 	public String dosirak_updateform(Model model, int dosirak_postnum) {
 		DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
 		model.addAttribute("dosirakdto", dosirakdto);
-		return "dosirak/dosirak_update";
+		return "dosirak/Dosirakupdate";
 	}
 	
 	@RequestMapping("dosirak_update.do")

@@ -14,10 +14,10 @@
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
 
-	<div>
+	<div class="container">
 		<form:form action="dosirak_update.do" method="post" enctype="multipart/form-data" >
 			<input type="hidden" name="dosirak_postnum" value="${dosirakdto.dosirak_postnum}" />
-			<table class="table table-hover">
+			<table class="table">
 				<tr>
 					<th>도시락이름</th>
 					<td><input type="text" name="dosirak_name" value="${dosirakdto.dosirak_name}"></td>
@@ -99,8 +99,8 @@
 				</tr>
 
 				<tr>
-					<td colspan="14"><input type="submit" value="수	정">
-						<input type="button" value="취	소" onclick="location.href='dosirak_listpaging.do'">
+					<td colspan="14" align="right"><input type="submit" value="수	정" class="btn btn-outline-light" />
+						<input type="button" value="취	소" onclick="location.href='dosirak_listpaging.do'" class="btn btn-outline-light" />
 					</td>
 				</tr>
 			</table>

@@ -3,9 +3,7 @@
 	
 <mapper namespace="dosirakmapper">
 
-	<select id = "selecttest" parameterType="map"  resultType = "dosirakdto">
-		SELECT * FROM DOSIRAK WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
-	</select>
+
 	<select id="selectlist" resultType="dosirakdto">
 		SELECT *
 		FROM DOSIRAK
@@ -45,6 +43,13 @@
 	<update id= "updateviews">
 		UPDATE DOSIRAK SET DOSIRAK_VIEWS = DOSIRAK_VIEWS + 1 WHERE DOSIRAK_POSTNUM = #{dosirak_postnum}
 	</update>
+	
+	<!-- 조회수 베스트3 -->
+	<select id="viewslist" parameterType="map" resultType="dosirakdto">
+		<![CDATA[
+			SELECT * FROM (SELECT * FROM DOSIRAK ORDER BY DOSIRAK_VIEWS DESC) WHERE ROWNUM<=3
+		]]>
+     </select>
 
 	<insert id="insert" parameterType="dosirakdto">
 		INSERT INTO DOSIRAK
@@ -64,9 +69,4 @@
 		DELETE FROM DOSIRAK WHERE DOSIRAK_NAME = #{dosirak_name}
 	</delete>
 	
-	<select id="viewslist" parameterType="map" resultType="dosirakdto">
-	<![CDATA[
-      SELECT * FROM (SELECT * FROM DOSIRAK ORDER BY DOSIRAK_VIEWS DESC) WHERE ROWNUM<=3
-      ]]>
-      </select>
 </mapper>

@@ -255,13 +255,13 @@ a.nav-link:hover{
 					notification.onclick = function() {
 						//location.href = 'mainpage.do';
 						notification.close();
-					};
+					}
 				}
 			} */
 			
-			/* function PageMove(page) {
+			function PageMove(page) {
 	               location.href = "dosirak_listpaging.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
-	            } */
+	            }
 		</script>
 	</header>
 </body>

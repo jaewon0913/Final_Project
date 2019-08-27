@@ -12,9 +12,9 @@
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
-		<div>
+		<div class="container">
 			<form:form action="dosirak_insert.do" method="post" enctype="multipart/form-data">
-		<table class="table table-hover">
+		<table class="table ">
 			
 			<tr>
 				<th>도시락이름</th>
@@ -69,9 +69,9 @@
 				<td><input multiple="multiple" type="file" name="file2" required="required"></td>				
 			</tr>
 			<tr>
-				<td colspan="12">
-					<input class="btn" type="submit" value="작 성" >
-					<input class="btn" type="button" value="취 소">
+				<td colspan="12" align="right">
+					<input class="btn btn-outline-light" type="submit" value="작 성" />
+					<input class="btn btn-outline-light" type="button" value="취 소">
 				</td>
 			</tr>
 		</table>

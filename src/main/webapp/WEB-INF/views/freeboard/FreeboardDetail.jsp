@@ -22,7 +22,7 @@
 
 	<!-- header -->
 	<%@ include file="../header.jsp"%>
-
+<div class="container">
 	<h2>자유게시판 상세보기</h2>
 	<table class="table">
 	
@@ -197,7 +197,7 @@
 
 	
 	
-	
+</div>	
 	<%@ include file="../footer.jsp"%>
 
 </body>

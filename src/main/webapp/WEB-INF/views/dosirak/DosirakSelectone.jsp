@@ -147,7 +147,7 @@
 					<fmt:formatDate value="${dosirakdto.dosirak_regdate}" pattern="yyyy-MM-hh"/>
 				</td>
 			</tr>
-			<tr>
+			<tr>	
 				<td colspan="16" align="right">
 				<input type="submit" value="1회 결제하기" class="btn btn-outline-light">
 				<input type="button" value="정기 결제하기" onclick="location.href='dorirak_monthpay.do'"  class="btn btn-outline-light"> 
