@@ -172,4 +172,26 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return list;
 	}
+
+	@Override
+	public int memberWithdrawal(String member_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		
+		int res = sqlSession.update(namespace+"memberWithdrawal",map);
+		
+		return res;
+	}
+
+	@Override
+	public MemberDto pwChk(String member_id) {
+		boolean pwchk = false;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		
+		MemberDto memberdto = new MemberDto();
+		memberdto = sqlSession.selectOne(namespace+"pwChk",map);
+		
+		return memberdto;
+	}
 }

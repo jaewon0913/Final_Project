@@ -27,7 +27,7 @@ opacity: 0.5;
 
 </style>
 
-<body>
+<body >
 
    <%@ include file="../header.jsp"%>
    
@@ -54,6 +54,9 @@ opacity: 0.5;
                <td><input class="form" type="password" name="password" id="password"
                   placeholder="비밀번호를 입력해주세요" /></td>
             </tr>
+            <c:if test="${param.error != null}">
+                  <p style="color:red;">아이디와 비밀번호가 잘못되었습니다.</p>
+            </c:if>
             <tr>
                <td colspan="2" align="center">
 <!--                   <button type="submit" class="btn">로그인</button> -->
@@ -74,14 +77,11 @@ opacity: 0.5;
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',
       success: function(authObj) {
-        alert(JSON.stringify(authObj));
         //setCookie("kakao_login","done",1);//쿠키생성(로그인)
-        alert("로그인 성공");
         // 로그인 성공시, API를 호출합니다.
         Kakao.API.request({
           url: '/v1/user/me',
           success: function(res) {//로그인되자마자 실행되는 구간
-           alert("로그인 성공1111");
             console.log(JSON.stringify(res.kaccount_email));
             console.log(JSON.stringify(res.id));
             console.log(JSON.stringify(res.properties.profile_image));

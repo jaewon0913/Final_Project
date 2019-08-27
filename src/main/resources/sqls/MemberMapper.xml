@@ -30,9 +30,7 @@
 		UPDATE MEMBER SET MEMBER_PW = #{member_pw}, MEMBER_PW_CHANGE = SYSDATE
 		WHERE MEMBER_ID = #{member_id}
 	</update>
-	
-	
-	
+
 	<insert id="insert" parameterType="memberdto">
 		INSERT INTO MEMBER 
 		VALUES(#{member_id},#{member_pw},#{member_name},#{member_phone},#{member_address},#{member_subway},#{member_email},1,'USER',SYSDATE,SYSDATE)
@@ -58,6 +56,12 @@
 		SELECT MEMBER_ID 
 		FROM MEMBER
 		WHERE MEMBER_ID=#{member_id} AND MEMBER_ENABLED=1
+	</select>
+	
+	<select id="pwChk" parameterType="map" resultType="memberdto">
+		SELECT MEMBER_PW
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id} AND MEMBER_ENABLED=1
 	</select>
 	
 	<select id="emailChk" parameterType="map" resultType="memberdto">

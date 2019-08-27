@@ -34,6 +34,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script type="text/javascript">	
 // 	$(document).ready(function() {
@@ -131,61 +132,39 @@
 <!-- -----------------인스타 크롤링-------------------------------------------- -->
 		<!-- Content Row -->
 		<div class="row">
-			<div class="col-md-4 mb-5">
-				<div class="card h-100">
-					<div class="card-body">
-						<h2 class="card-title">인스타 크롤링1</h2>
-						<p class="card-text">
 							<c:choose>
-								<c:when test="${empty logindto}">
-									<h3>로그인 세션 없음.</h3>
-								</c:when>
-								<c:otherwise>
-									<h3>${logindto.member_id }</h3>
-									<h3>${logindto.member_name }</h3>
-									<h3>${logindto.member_phone }</h3>
-									<h3>${logindto.member_address }</h3>
-									<h3>${logindto.member_subway }</h3>
-								</c:otherwise>
-							</c:choose>
-						</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary btn-sm">More Info</a>
-					</div>
-				</div>
-			</div>
-			<!-- /.col-md-4 -->
+			<c:when test="${empty viewslist}">
+				<h3>베스트메뉴 도시락이 없습니다.</h3>
+			</c:when>
+			
+			<c:otherwise>
+				<c:forEach items="${viewslist}" var="viewsdto">
+				
 			<div class="col-md-4 mb-5">
 				<div class="card h-100">
 					<div class="card-body">
-						<h2 class="card-title">인스타 크롤링</h2>
-						<p class="card-text">위하여, 풀밭에 없는 풍부하게 스며들어 가는 수 이것이다. 능히 청춘은
-							그들에게 유소년에게서 두기 같이, 봄바람이다. 꽃이 트고, 얼음 길을 소금이라 이상의 낙원을 대중을 이 있는가? 하는
-							심장은 우리의 너의 우리 쓸쓸하랴? 용기가 이것을 품으며, 설산에서 앞이 인류의 봄바람이다. 싸인 이것을 피가
-							반짝이는 아니다.</p>
+						<h2 class="card-title">베스트 도시락</h2>
+						<div class="card-text">
+					<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
+					<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${viewsdto.dosirak_postnum}'">
+					<img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="iii">
+					<input type="hidden" name="dosirak_postnum" value="${viewsdto.dosirak_postnum}">
+					</div>
+					</div>
+					</div>
 					</div>
 					<div class="card-footer">
 						<a href="#" class="btn btn-primary btn-sm">More Info</a>
 					</div>
 				</div>
 			</div>
-			<!-- /.col-md-4 -->
-			<div class="col-md-4 mb-5">
-				<div class="card h-100">
-					<div class="card-body">
-						<h2 class="card-title">인스타 크롤링</h2>
-						<p class="card-text">위하여, 풀밭에 없는 풍부하게 스며들어 가는 수 이것이다. 능히 청춘은
-							그들에게 유소년에게서 두기 같이, 봄바람이다. 꽃이 트고, 얼음 길을 소금이라 이상의 낙원을 대중을 이 있는가? 하는
-							심장은 우리의 너의 우리 쓸쓸하랴? 용기가 이것을 품으며, 설산에서 앞이 인류의 봄바람이다. 싸인 이것을 피가
-							반짝이는 아니다.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary btn-sm">More Info</a>
-					</div>
-				</div>
-			</div>
-
+			
+				</c:forEach>
+			</c:otherwise>
+		
+		</c:choose>
+			</div>				
+			
 <!-- -----------------인스타 크롤링-------------------------------------------- -->
 
 
