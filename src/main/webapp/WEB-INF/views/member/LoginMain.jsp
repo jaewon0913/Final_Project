@@ -8,7 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>login</title>
+<style type="text/css">
+.banner:hover{
+opacity: 0.5;
+}
+</style>
 </head>
+
+
 <!-- <link href="resources/bootstrap/css/login.css" rel="stylesheet"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
@@ -20,22 +27,21 @@
 
 </style>
 
-<body>
+<body >
 
-	
    <%@ include file="../header.jsp"%>
    
-   <h1 class="title1">Login</h1>
+   <div class="container">
    
    <c:url value="/login" var="loginUrl" />
-   
-   <div style="padding-bottom:10%; padding-top:10%;">
-      <div class="row border">
+   <div class="container center banner" style="text-align: center;">
+   <img alt="banner" src="resources/bootstrap/image/회원가입 할인.png" onclick="location.href='TermsAndConditions.do'" style="height: 10rem; width: 60rem;">
+   </div>
+   <div style="padding-bottom:5rem; padding-top:5rem;">
+   <h1 class="title1" style="margin-left: 8rem;">Login</h1>
+      <div class="row">
       <form:form name="f" action="${loginUrl}" method="POST" class="center-block">
-         <table style="align-content: center; border: none;" class="table" >
-         <tr>
-         <th>&nbsp;</th>
-         </tr>
+         <table style="align-content: center; margin-bottom: 5rem; margin-top: 5rem;" class="table" >
             <tr>
                <th> ID &nbsp; : &nbsp;</th>
                <td><input class="form" type="text" name="id" id="id"
@@ -48,6 +54,9 @@
                <td><input class="form" type="password" name="password" id="password"
                   placeholder="비밀번호를 입력해주세요" /></td>
             </tr>
+            <c:if test="${param.error != null}">
+                  <p style="color:red;">아이디와 비밀번호가 잘못되었습니다.</p>
+            </c:if>
             <tr>
                <td colspan="2" align="center">
 <!--                   <button type="submit" class="btn">로그인</button> -->
@@ -68,14 +77,11 @@
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',
       success: function(authObj) {
-        alert(JSON.stringify(authObj));
         //setCookie("kakao_login","done",1);//쿠키생성(로그인)
-        alert("로그인 성공");
         // 로그인 성공시, API를 호출합니다.
         Kakao.API.request({
           url: '/v1/user/me',
           success: function(res) {//로그인되자마자 실행되는 구간
-           alert("로그인 성공1111");
             console.log(JSON.stringify(res.kaccount_email));
             console.log(JSON.stringify(res.id));
             console.log(JSON.stringify(res.properties.profile_image));
@@ -108,9 +114,6 @@
 </script>
             </td>
          </tr>
-         <tr>
-         	<th>&nbsp;</th>
-         </tr>
          </table>
        </form:form>
       </div>
@@ -119,12 +122,12 @@
    
    
    <div>
-   <!-- ------------------------푸터-------------------------------------------- -->
-   <%@ include file="../footer.jsp"%>
-<!-- ------------------------푸터-------------------------------------------- -->
    </div>
+      </div>
+
+
 <script src="${pageContext.request.contextPath }/resources/js/mainpage.js"></script>
-</body>
+
 <script type="text/javascript">
 // $("#formtag").submit(function(){
 // 	var id = document.getElementById("id").value;
@@ -139,4 +142,8 @@
 // });
 
 </script>
+   <!-- ------------------------푸터-------------------------------------------- -->
+   <%@ include file="../footer.jsp"%>
+<!-- ------------------------푸터-------------------------------------------- -->
+</body>
 </html>
