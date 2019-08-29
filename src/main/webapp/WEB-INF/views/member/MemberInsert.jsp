@@ -173,7 +173,7 @@ function execPostCode() {
 				<td colspan="2" align="center">
 				    <div class="g-recaptcha" data-sitekey="6Lcjlq8UAAAAAIl-9rG38Ko_2AHNrSzvUe4FA0V-" style="width: 350px; margin-right: 1px;"></div>
 <!--     				<button id="btn" title="n">테스트 버튼</button> -->
-    				<span><input type="button" value="테스트 버튼" id="btn" name="btn" title="n" class="btn btn-outline-light"></span>
+    				<span><input type="button" value="로봇이 아닙니다." id="btn" name="btn" title="n" class="btn btn-outline-light"></span>
 				</td>
 			</tr>
 			<tr>
