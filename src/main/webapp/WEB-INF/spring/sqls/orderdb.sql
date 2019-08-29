@@ -35,6 +35,8 @@ CREATE TABLE BOXORDER(
 	CUSTOM_STATUS VARCHAR2(2) NOT NULL
 );
 
+SELECT * FROM boxorder WHERE member_id='aa' ORDER BY order_regdate;
+
 SELECT * FROM BOXORDER WHERE MEMBER_ID = 'ej' AND ORDERNUMBER = 'ej2019813135414';
 
 delete from BOXORDER where member_id = 'bb';

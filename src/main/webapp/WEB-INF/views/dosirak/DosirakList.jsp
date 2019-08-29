@@ -79,6 +79,25 @@ margin-top: 8rem;
    width: 25rem;
    height: 25rem;
 }
+.number{
+	display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    padding-top: 9px;
+    background: rgba(89,202,183,0.45);
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    line-height: 100%;
+}
+.dosirakimg{
+	width: 25rem;
+	height: 25rem;
+}
 </style>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -142,9 +161,11 @@ function pageMove_dosirak(page) {
 	
 
 	<div class="container">
-	<h1 align="center">메	뉴</h1>
+	<div class="conrainer">
+		<h1 align="center">메	뉴</h1>
+	</div>
 		
-			<div style="border: 1px solid salmon; width: 100%;">
+			<div style="border: 1 solid gray; width: 100%;">
 				<div class="row">
 				<table>
 					<c:choose>
@@ -156,10 +177,12 @@ function pageMove_dosirak(page) {
 								<div
 									class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
 									<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'"> 
-										<img alt="이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" style="width: 20rem; height: 20rem; border-radius: 50%;" />
+										<img alt="이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" class="dosirakimg" />
 										<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
 										<div style="text-align: center;">
-											<p>${dto.dosirak_name}/${dto.dosirak_price}원</p>
+											<h1>${dto.dosirak_name}</h1>
+											<p>${dto.dosirak_content }</p>
+											<h3>${dto.dosirak_price}원</h3>
 										</div>
 									</div>
 								</div>

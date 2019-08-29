@@ -26,7 +26,10 @@
 	width: 10rem;
 }
 
-
+p>img{
+	max-height: 15rem;
+	
+}
 </style>
 
 </head>
@@ -82,7 +85,7 @@
 			</c:when>
 		<c:otherwise>
 			
-				<table class="table table-hover " valign='middle'>
+				<table class="table " valign='middle'>
 	
 
 					<tr>
@@ -111,7 +114,7 @@
 							<%-- <td>${dto.event_postnum }</td>
 							<td>${dto.member_name }</td> --%>
 							
-							<td><a href="eventboard_detail.do?event_postnum=${dto.event_postnum }">${dto.event_title}</td>
+							<td><a href="eventboard_detail.do?event_postnum=${dto.event_postnum }" >${dto.event_title}</td>
 							
 							
 							<td style="padding-top: 8rem;">${dto.event_views }</td>

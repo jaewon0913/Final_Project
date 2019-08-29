@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>UpdateForm</title>
+<title>자유게시판 업데이트</title>
 
 <!-- include libraries(jQuery, bootstrap )-->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -42,7 +42,7 @@
 		</tr>
 		<tr>
 			<th>내  용</th>
-			<td colspan="2"><textarea rows="10" cols="60"  type="text" name="free_content" class="summernote">${dto.free_content }"</textarea></td>
+			<td colspan="2"><textarea rows="60" cols="100"  type="text" name="free_content" class="summernote">${dto.free_content }"</textarea></td>
 		
 		</tr>
 		<tr>

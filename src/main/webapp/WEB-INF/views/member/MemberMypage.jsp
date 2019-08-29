@@ -53,7 +53,7 @@
 			</div>
 			
 			<div class="col-el-5 col-lg-5 col-md-5 mx-5 mp border">
-				<p onclick="location.href='#'" class="text-dark " >결제내역</p>
+				<p onclick="location.href='orderresultpage.do'" class="text-dark " >결제내역</p>
 			</div>
 		</div>
 		
@@ -77,14 +77,24 @@
 				<p onclick="location.href='delivery_place.do'" class="text-dark" >배달장소 확인</p>
 			</div>
 			
-			<div class="col-el-5 col-lg-5 col-md-5 mx-5 ">
+			<div class="col-el-5 col-lg-5 col-md-5 mx-5 mp border">
+			<p onclick="realchk()" class="text-dark" >회원 탈퇴</p>
 			</div>
 		</div>
 	</div>
 	</div>	
 	
-	
 	<%@ include file="../footer.jsp"%>
+
+<script>
+	function realchk(){
+		var check = confirm("정말 회원탈퇴를 하시겠습니까???");
+		if(check){
+			location.href="withdrawal.do";
+			alert("회원탈퇴 되었습니다.");
+		}
+	}
+</script>
 
 </body>
 </html>

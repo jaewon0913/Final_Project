@@ -19,16 +19,16 @@
 <title>main</title>
 <style type="text/css">
 body, input, div, span, p, a, nav, li, ul, button {
-	font-family: '샘물';
+   font-family:'샘물';
 }
 
-a.nav-link {
-	color: white;
+a.nav-link{
+   color: white;
 }
 
-a.nav-link:hover {
-	color: white;
-	opacity: 0.5;
+a.nav-link:hover{
+   color: white;
+   opacity: 0.5;
 }
 </style>
 
