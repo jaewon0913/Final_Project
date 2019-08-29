@@ -8,6 +8,9 @@
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%
+	MemberDto logindto = (MemberDto)session.getAttribute("logindto");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +42,7 @@
    
 }
 .event{
-   width: 100%;
+   width: 100%;	
    height: 20rem;
 }
 .event:hover{
@@ -77,6 +80,7 @@ margin-top: 8rem;
    height: 25rem;
 }
 </style>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 function pageMove_dosirak(page) {
@@ -104,94 +108,92 @@ function pageMove_dosirak(page) {
 </head>
 
 <body>
-   <!-- ------------------------헤더-------------------------------------------- -->
-   <%@ include file="../header.jsp"%>
-   <!-- ------------------------헤더-------------------------------------------- -->
-   <div class="container text-center center" >
-<img alt="evevt" src="resources/bootstrap/image/보물찾기_이벤트.png" onclick="location.href='eventboard_list.do'" class="event">
-</div>
+	<!-- ------------------------헤더-------------------------------------------- -->
+	<%@ include file="../header.jsp"%>
+	<!-- ------------------------헤더-------------------------------------------- -->
+	<div class="container text-center center" >
+	<img alt="evevt" src="resources/bootstrap/image/보물찾기_이벤트.png" onclick="location.href='eventboard_list.do'" class="event">
+	</div>
 <!-- ------------------best3------------------ -->
-   <div class="container best3 center border-bottom   ">
-      
-      <c:choose>
-         <c:when test="${empty viewslist}">
-            <h3>베스트메뉴 도시락이 없습니다.</h3>
-         </c:when>
-         <c:otherwise>
-            <c:forEach items="${viewslist}" var="viewsdto">
-               <div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
-               <div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${viewsdto.dosirak_postnum}'">
-               <div class="number">${viewsdto.bestnum }<p>Best</p></div>
-               <img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="best3img">
-               <input type="hidden" name="dosirak_postnum" value="${viewsdto.dosirak_postnum}">
-               </div>
-               </div>
-            </c:forEach>
-         </c:otherwise>
-      </c:choose>
-      
-   </div>
+	<div class="container best3 center border-bottom">
+		<h1>Best 3</h1>
+		<br/><br/><br/>
+		
+		<c:choose>
+			<c:when test="${empty viewslist}">
+				<h3>베스트메뉴 도시락이 없습니다.</h3>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${viewslist}" var="viewsdto">
+					<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
+					<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${viewsdto.dosirak_postnum}'">
+					<div class="number">${viewsdto.bestnum}<p>Best</p></div>
+					
+					<img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="best3img">
+					<input type="hidden" name="dosirak_postnum" value="${viewsdto.dosirak_postnum}">
+					</div>
+					</div>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+	</div>
 
 <!-- ------------------best3------------------ -->
    
 
-   <div class="container">
-   <div class="conrainer">
-      <h1 align="center">메   뉴</h1>
-   </div>
-      
-         <div style="border: 1 solid gray; width: 100%;">
-            <div class="row">
-            <table>
-               <c:choose>
-                  <c:when test="${empty list}">
-                     <h3>판매중인 도시락이 없습니다.</h3>
-                  </c:when>
-                  <c:otherwise>
-                     <c:forEach items="${list}" var="dto">
-                        <div
-                           class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
-                           <div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'"> 
-                              <img alt="이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" class="dosirakimg" />
-                              <input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
-                              <div style="text-align: center;">
-                                 <h1>${dto.dosirak_name}</h1>
-                                 <p>${dto.dosirak_content }</p>
-                                 <h3>${dto.dosirak_price}원</h3>
-                              </div>
-                           </div>
-                        </div>
-                     </c:forEach>
-                  </c:otherwise>
-               </c:choose>
-                        
-               </table>
-               
-            </div>
-            <div>
-            <br/>
-            <br/>
-            </div>
-            <c:choose>
-               <c:when test="${logindto.member_id eq 'admin'}">
-            <div style="float: right; margin: 3%;">
-               <input type="button" value="메인화면" onclick="location.href='startpage.jsp'" class="btn btn-outline-light"> 
-               <input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='dosirak_insertform.do'">
-            </div>
-            </c:when>
-            <c:otherwise>
-               <div style="float: right; margin: 3%;">
-               <input type="button" value="메인화면" onclick="location.href='startpage.jsp'" class="btn btn-outline-light"> 
-               
-               </div>
-            
-            </c:otherwise>
-            </c:choose>
-            
-            
-         </div>
-      
-   </div>
+	<div class="container">
+	<div class="conrainer">
+		<h1 align="center">메	뉴</h1>
+	</div>
+		
+			<div style="border: 1 solid gray; width: 100%;">
+				<div class="row">
+				<table>
+					<c:choose>
+						<c:when test="${empty list}">
+							<h3>판매중인 도시락이 없습니다.</h3>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list}" var="dto">
+								<div
+									class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
+									<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'"> 
+										<img alt="이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" class="dosirakimg" />
+										<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
+										<div style="text-align: center;">
+											<h1>${dto.dosirak_name}</h1>
+											<p>${dto.dosirak_content }</p>
+											<h3>${dto.dosirak_price}원</h3>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+								
+					</table>
+					
+				</div>
+				<div>
+				<br/>
+				<br/>
+				</div>
+				<c:choose>
+					<c:when test="${logindto.member_id eq 'admin'}">
+				<div style="float: right; margin: 3%;">
+					<input type="button" value="메인화면" onclick="location.href='startpage.jsp'" class="btn btn-outline-light"> 
+					<input type="button" value="작성하기" class="btn btn-outline-light" onclick="location.href='dosirak_insertform.do'">
+				</div>
+				</c:when>
+				<c:otherwise>
+					<div style="float: right; margin: 3%;">
+					<input type="button" value="메인화면" onclick="location.href='startpage.jsp'" class="btn btn-outline-light"> 
+					</div>
+				
+				</c:otherwise>
+				</c:choose>
+			</div>
+	</div>
 
    <!-- Pagination -->
    <div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">

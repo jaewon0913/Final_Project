@@ -95,7 +95,7 @@ public class DosirakController {
    }
    
    @RequestMapping("/dosirak_listpaging.do")
-   public String dosiraklistpaging(Model model, String txt_search, String page) {
+   public String dosiraklistpaging(Model model, String txt_search, String page, HttpSession session) {
       
       String txt_s = txt_search;
          
@@ -109,30 +109,33 @@ public class DosirakController {
             paging.setPageSize(9); // 한페이지에 불러낼 게시물의 개수 지정
             paging.setTotalCount(totalCount);
             pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
-
-	         List<DosirakDto> list = dosirakbiz.selectListPaging(pag, paging.getPageSize(), txt_s);
-	         List<DosirakDto> viewslist = dosirakbiz.viewslist();
-	         model.addAttribute("list", list);
-	         model.addAttribute("viewslist", viewslist);
-	         model.addAttribute("paging", paging);
-	         model.addAttribute("txt_search", txt_s);
-	         
+            
+            MemberDto logindto = (MemberDto) session.getAttribute("logindto");
+			model.addAttribute("logindto", logindto);
+            
+	        List<DosirakDto> list = dosirakbiz.selectListPaging(pag, paging.getPageSize(), txt_s);
+	        List<DosirakDto> viewslist = dosirakbiz.viewslist();
+	        
+	        model.addAttribute("list", list);
+	        model.addAttribute("viewslist", viewslist);
+	        model.addAttribute("paging", paging);
+	        model.addAttribute("txt_search", txt_s);
 	         return "dosirak/DosirakList";
 	         
 	}
 	
    @RequestMapping("/dosirak_selectone.do")
-   public String dosirakselectOne(Model model, @RequestParam int dosirak_postnum) {
-      int res = 0;
-      DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
-      model.addAttribute("dosirakdto", dosirakdto);
-      
-      res = dosirakbiz.updateviews(dosirak_postnum);
-      if( res > 0) {
-         return "dosirak/DosirakSelectone";
-      }
-      return "dosirak/DosirakSelectone";
-   }
+	public String dosirakselectOne(Model model, @RequestParam int dosirak_postnum) {
+		int res = 0;
+		DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
+		model.addAttribute("dosirakdto", dosirakdto);
+		
+		res = dosirakbiz.updateviews(dosirak_postnum);
+		if( res > 0) {
+			return "dosirak/DosirakSelectone";
+		}
+		return "dosirak/DosirakSelectone";
+	}
 	
 	@RequestMapping("/dosirak_insertform.do")
 	public String dosirak_insertform() {

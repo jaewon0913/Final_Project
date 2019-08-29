@@ -71,7 +71,7 @@
 			<tr>
 				<td colspan="12" align="right">
 					<input class="btn btn-outline-light" type="submit" value="작 성" />
-					<input class="btn btn-outline-light" type="button" value="취 소">
+					<input class="btn btn-outline-light" type="button" value="취 소" onclick="location.href='dosirak_listpaging.do'">
 				</td>
 			</tr>
 		</table>
