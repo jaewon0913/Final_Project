@@ -39,4 +39,9 @@ public class BoxorderBizImpl implements BoxorderBiz {
 		return boxorderdao.graphSelectList(member_id);
 	}
 
+	@Override
+	public List<BoxorderDto> orderresult(String member_id) {
+		return boxorderdao.orderresult(member_id);
+	}
+
 }

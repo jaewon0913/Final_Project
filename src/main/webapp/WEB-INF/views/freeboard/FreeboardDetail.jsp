@@ -91,38 +91,26 @@
 
 			<div id="commtable">
 				<table class="table">
+					<col width="100">
+					<col width="100">
+					<col width="100">
+					<col width="300">
+					<col width="100">
 					
-					<tr>
-						<th>작성자</th>
-						<th>댓글</th>
-						<th>작성일</th>
-						<th></th>
-					</tr>
 					<c:forEach items="${cmt }" var="cmt">
 						<tr>
-							<%-- <td>${dto.member_name }</td --%>					
+							<th>작성자</th>				
 							<td>${logindto.member_name }</td>
+							<th>댓글</th>
 							<td>${cmt.com_content }</td>
+							<th>작성일</th>
 							<td>${cmt.com_regdate }</td>
-							<td>
+							<td colspan="2">
 							<c:choose>
 								<c:when test="${logindto.member_id eq cmt.member_id }">
-								
-								<input  type="button" value="수정1(일반)" onclick="location.href='com_board_updateform.do?com_num=${cmt.com_num}'">
-								<%-- <input  type="button" value="수정3(큰새창)" onclick="window.open('com_board_updateform.do?com_num=${cmt.com_num}')"> --%>								
-								<input  type="button" value="수정2(새창)"onclick="window.open('com_board_updateform.do?com_num=${cmt.com_num}', 'search', 'top=150px, left=400px, width=650, height=400')">
-								
-				
-								<input  type="button" value="삭 제 " onclick="location.href='com_board_delete.do?com_num=${cmt.com_num}&free_postnum=${cmt.free_postnum}'">
-								<!-- <input  type="button" value="삭 제 " > -->
-							
-								
-								<!-- 새로고침 -->
-								<input type="button" value="수정댓글확인" onClick="window.location.reload()">
-									<!--오류:"수정1"로 할 경우 바로 저장된 화면이 적용 되지만 새창을 뛰울때에는 새로고침을 눌러야 적용이 됩니다." -->
-								
-								
-								
+								<input  type="button" value="수 정" onclick="location.href='com_board_updateform.do?com_num=${cmt.com_num}'">
+								<input  type="button" value="삭 제 " onclick="commdelete(${cmt.com_num})">
+								<input type="hidden" id="comnum${cmt.com_num }" value="${cmt.com_num }">
 								</c:when>
 							</c:choose>
 							</td>	
@@ -181,7 +169,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>	
-	
+
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -196,11 +184,13 @@
 	});
 	
 $("#comminsert").click(function(){
-	alert("comminsert 함수 실행");
+// 	alert("comminsert 함수 실행");
 	var com_content = document.getElementsByName("com_content")[0].value;
 	var free_postnum = ${dto.free_postnum };
 	
-	if(com_content != ""){
+	if(com_content == ""){
+		alert("댓글을 입력해주세요!");
+	}else if(com_content != ""){
 		$.ajax({
 			url:"com_board_insert.do",
 			type:"post",
@@ -210,42 +200,120 @@ $("#comminsert").click(function(){
 				var list = data.list;
 				$("#commtable").children('.table').remove();
 				
-// 				var test = "<div id='commtable_res'></div>";
+				var tbl = $("<table class='table'>")
+				var col1 = $("<col>").attr("width","100")
+				var col2 = $("<col>").attr("width","100")
+				var col3 = $("<col>").attr("width","100")
+				var col4 = $("<col>").attr("width","300")
+				var col5 = $("<col>").attr("width","100")
+				tbl.append(col1);
+				tbl.append(col2);
+				tbl.append(col3);
+				tbl.append(col4);
+				tbl.append(col5);
 				
 				$.each(list, function(idx,val){
-// 					console.log(idx+" "+val.com_content);
-// 					alert(idx+" "+val.com_content);
+					var tr = $("<tr>")
+					var th1 = $("<th>")
+					var th2 = $("<th>")
+					var th3 = $("<th>")
+					var td1 = $("<td>")
+					var td2 = $("<td>")
+					var td3 = $("<td>")
+					var td4 = $("<td>")
+					var button = $("<input>").attr("type","button").attr("value","삭제").attr("onclick","commdelete("+val.com_num+")")
 					
+					th1.append("작성자");
+					td1.append(val.member_name);
+					th2.append("내용");
+					td2.append(val.com_content);
+					th3.append("작성일");
+					td3.append(val.com_regdate);
 					
-					$("#commtable").append(
-						"<table class='table'>"+
-							"<tr>"+
-								"<th>작성자</th>"+
-								"<th>댓글</th>"+
-								"<th>작성일</th>"+
-								"<th></th>"+
-							"</tr>"+
-							"<tr>"+
-								"<td>"+val.member_name+"</td>"+
-								"<td>"+val.com_content+"</td>"+
-								"<td>"+val.com_regdate+"</td>"+
-								"<td>"+
-									"<c:choose>"+
-										
-									"</c:choose>"+
-								"</td>"+
-							"</tr>"+
-						"</table>"		
-					);
+					if(val.member_id == '${logindto.member_id}'){
+						td4.append(button);
+					}
+					tr.append(th1);
+				   tr.append(td1);
+				   tr.append(th2);
+				   tr.append(td2);
+				   tr.append(th3);
+				   tr.append(td3);
+				   tr.append(td4);
+					
+					tbl.append(tr);
 				});
-				
-				
+				$("#commtable").append(tbl);
+				document.getElementsByName("com_content")[0].value="";
 			},error:function(){
 				alert("댓글을 입력해 주세요.");
 			}
 		});
 	}
 });
+
+function commdelete(com_num){
+	alert(com_num);
+	var free_postnum = ${dto.free_postnum };
+	
+	$.ajax({
+		url:"com_board_delete.do",
+		type:"post",
+		data:"com_num="+com_num+"&free_postnum="+free_postnum,
+		dataType:"json",
+		success:function(data){
+			var list = data.list;
+			$("#commtable").children('.table').remove();
+			
+			var tbl = $("<table class='table'>")
+			var col1 = $("<col>").attr("width","100")
+			var col2 = $("<col>").attr("width","100")
+			var col3 = $("<col>").attr("width","100")
+			var col4 = $("<col>").attr("width","300")
+			var col5 = $("<col>").attr("width","100")
+			tbl.append(col1);
+			tbl.append(col2);
+			tbl.append(col3);
+			tbl.append(col4);
+			tbl.append(col5);
+			
+			$.each(list, function(idx,val){
+				var tr = $("<tr>")
+				var th1 = $("<th>")
+				var th2 = $("<th>")
+				var th3 = $("<th>")
+				var td1 = $("<td>")
+				var td2 = $("<td>")
+				var td3 = $("<td>")
+				var td4 = $("<td>")
+				var button = $("<input>").attr("type","button").attr("value","삭제").attr("onclick","commdelete("+val.com_num+")")
+				
+				th1.append("작성자");
+				td1.append(val.member_name);
+				th2.append("내용");
+				td2.append(val.com_content);
+				th3.append("작성일");
+				td3.append(val.com_regdate);
+				
+				if(val.member_id == '${logindto.member_id}'){
+					td4.append(button);
+				}
+				tr.append(th1);
+			   tr.append(td1);
+			   tr.append(th2);
+			   tr.append(td2);
+			   tr.append(th3);
+			   tr.append(td3);
+			   tr.append(td4);
+				
+				tbl.append(tr);
+			});
+			$("#commtable").append(tbl);
+		},error:function(){
+			alert("통신에러");
+		}
+	});
+}
 </script>	
 
 	

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
 import com.khfinal.mvc.boxorder.dto.BoxorderDto;
 import com.khfinal.mvc.etc.util.CustomOrderDto;
+import com.khfinal.mvc.member.dto.MemberDto;
 
 
 @Controller
@@ -125,6 +127,17 @@ public class BoxorderController {
 		map.put("list", list);
 		
 		return map;
+	}
+	
+	@RequestMapping("/orderresultpage.do")
+	public String orderresult(Model model,HttpSession session) {
+		MemberDto logindto = (MemberDto) session.getAttribute("logindto");
+		System.out.println(logindto.getMember_id());
+		List<BoxorderDto> list = boxorderbiz.orderresult(logindto.getMember_id());
+		
+		model.addAttribute("list", list);
+		
+		return "member/orderresult";
 	}
 }
 
