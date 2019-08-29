@@ -98,17 +98,17 @@
 					<col width="100">
 					
 					<c:forEach items="${cmt }" var="cmt">
-						<tr>
+						<tr id="comm_commTextF${cmt.com_num }">
 							<th>작성자</th>				
 							<td>${logindto.member_name }</td>
 							<th>댓글</th>
-							<td>${cmt.com_content }</td>
+							<td id="content${cmt.com_num }">${cmt.com_content }</td>
 							<th>작성일</th>
 							<td>${cmt.com_regdate }</td>
 							<td colspan="2">
 							<c:choose>
 								<c:when test="${logindto.member_id eq cmt.member_id }">
-								<input  type="button" value="수 정" onclick="location.href='com_board_updateform.do?com_num=${cmt.com_num}'">
+								<input  type="button" value="수 정" onclick="commUpdateForm(${cmt.com_num})">
 								<input  type="button" value="삭 제 " onclick="commdelete(${cmt.com_num})">
 								<input type="hidden" id="comnum${cmt.com_num }" value="${cmt.com_num }">
 								</c:when>
@@ -156,7 +156,7 @@
 				<c:when test="${logindto.member_id ne null }">
 					<tr align="right">
 						<td colspan="2">
-							<input type="button" value="저  장" id="comminsert" class="btn btn-outline-light">
+							<input type="button" value="저  장"  id="comminsert" class="btn btn-outline-light">
 						</td>
 					</tr>
 				</c:when>
@@ -213,15 +213,16 @@ $("#comminsert").click(function(){
 				tbl.append(col5);
 				
 				$.each(list, function(idx,val){
-					var tr = $("<tr>")
+					var tr = $("<tr id='comm_commTextF"+val.com_num+"'>")
 					var th1 = $("<th>")
 					var th2 = $("<th>")
 					var th3 = $("<th>")
 					var td1 = $("<td>")
-					var td2 = $("<td>")
+					var td2 = $("<td id='content"+val.com_num+"'>")
 					var td3 = $("<td>")
 					var td4 = $("<td>")
 					var button = $("<input>").attr("type","button").attr("value","삭제").attr("onclick","commdelete("+val.com_num+")")
+					var button2 = $("<input>").attr("type","button").attr("value","수정").attr("onclick","commUpdateForm("+val.com_num+")")
 					
 					th1.append("작성자");
 					td1.append(val.member_name);
@@ -231,6 +232,7 @@ $("#comminsert").click(function(){
 					td3.append(val.com_regdate);
 					
 					if(val.member_id == '${logindto.member_id}'){
+						td4.append(button2);
 						td4.append(button);
 					}
 					tr.append(th1);
@@ -278,15 +280,16 @@ function commdelete(com_num){
 			tbl.append(col5);
 			
 			$.each(list, function(idx,val){
-				var tr = $("<tr>")
+				var tr = $("<tr id='comm_commTextF"+val.com_num+"'>")
 				var th1 = $("<th>")
 				var th2 = $("<th>")
 				var th3 = $("<th>")
 				var td1 = $("<td>")
-				var td2 = $("<td>")
+				var td2 = $("<td id='content"+val.com_num+"'>")
 				var td3 = $("<td>")
 				var td4 = $("<td>")
 				var button = $("<input>").attr("type","button").attr("value","삭제").attr("onclick","commdelete("+val.com_num+")")
+				var button2 = $("<input>").attr("type","button").attr("value","수정").attr("onclick","commUpdateForm("+val.com_num+")")
 				
 				th1.append("작성자");
 				td1.append(val.member_name);
@@ -296,6 +299,7 @@ function commdelete(com_num){
 				td3.append(val.com_regdate);
 				
 				if(val.member_id == '${logindto.member_id}'){
+					td4.append(button2);
 					td4.append(button);
 				}
 				tr.append(th1);
@@ -313,6 +317,102 @@ function commdelete(com_num){
 			alert("통신에러");
 		}
 	});
+}
+function commUpdate(com_num){
+	var free_postnum = ${dto.free_postnum };
+	var content = $("#updatecontent"+com_num+"").val();
+	alert(content);
+	
+	$.ajax({
+		url:"com_board_update.do",
+		type:"post",
+		data:"com_num="+com_num+"&free_postnum="+free_postnum+"&com_content="+content,
+		dataType:"json",
+		success:function(data){
+			
+			var list = data.list;
+			$("#commtable").children('.table').remove();
+			
+			var tbl = $("<table class='table'>")
+			var col1 = $("<col>").attr("width","100")
+			var col2 = $("<col>").attr("width","100")
+			var col3 = $("<col>").attr("width","100")
+			var col4 = $("<col>").attr("width","300")
+			var col5 = $("<col>").attr("width","100")
+			tbl.append(col1);
+			tbl.append(col2);
+			tbl.append(col3);
+			tbl.append(col4);
+			tbl.append(col5);
+			
+			$.each(list, function(idx,val){
+				var tr = $("<tr id='comm_commTextF"+val.com_num+"'>")
+				var th1 = $("<th>")
+				var th2 = $("<th>")
+				var th3 = $("<th>")
+				var td1 = $("<td>")
+				var td2 = $("<td id='content"+val.com_num+"'>")
+				var td3 = $("<td>")
+				var td4 = $("<td>")
+				var button = $("<input>").attr("type","button").attr("value","삭제").attr("onclick","commdelete("+val.com_num+")")
+				var button2 = $("<input>").attr("type","button").attr("value","수정").attr("onclick","commUpdateForm("+val.com_num+")")
+				
+				th1.append("작성자");
+				td1.append(val.member_name);
+				th2.append("내용");
+				td2.append(val.com_content);
+				th3.append("작성일");
+				td3.append(val.com_regdate);
+				
+				if(val.member_id == '${logindto.member_id}'){
+					td4.append(button2);
+					td4.append(button);
+				}
+				tr.append(th1);
+			   tr.append(td1);
+			   tr.append(th2);
+			   tr.append(td2);
+			   tr.append(th3);
+			   tr.append(td3);
+			   tr.append(td4);
+				
+				tbl.append(tr);
+			});
+			$("#commtable").append(tbl);
+		},error:function(){
+			alert("통신에러");
+		}
+	});
+}
+function commUpdateForm(com_num){
+	var content = $("#comm_commTextF"+com_num+"").children("#content"+com_num+"");
+	var test = $("#content"+com_num).text();
+	
+// 	var span=$("<span>");
+	var td = $("<td>").attr("colspan","5")
+	var td2 = $("<td>")
+	var th = $("<th>")
+	var td3 = $("<td>")
+	var textarea = $("<textarea>").attr("cols","80").attr("id","updatecontent"+com_num+"")
+	var button = $("<input>").attr("type","button").attr("value","수정").attr("onclick","commUpdate("+com_num+")")
+	
+// 	$("#comm_commTextF"+com_num+"").children("#content"+com_num+"").hide();
+	$("#comm_commTextF"+com_num+"").children().hide();
+// 	$("#comm_commTextF"+com_num+"").attr("colspan","2")
+	
+	textarea.append(test);
+// 	span.append(textarea);
+// 	span.append(button);
+	th.append("작성자")
+	td3.append("${logindto.member_id}")
+	
+	td.append(textarea);
+	td2.append(button);
+	$("#comm_commTextF"+com_num+"").append(th);
+	$("#comm_commTextF"+com_num+"").append(td3);
+	$("#comm_commTextF"+com_num+"").append(td);
+	$("#comm_commTextF"+com_num+"").append(td2);
+// 	$("#comm_commTextF"+com_num+"").attr("colspan","2").append(button);
 }
 </script>	
 

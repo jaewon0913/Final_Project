@@ -60,7 +60,7 @@ opacity: 0.5;
             <tr>
                <td colspan="2" align="center">
 <!--                   <button type="submit" class="btn">로그인</button> -->
-             <input class="btn" type="submit" value="로그인" /> 
+             <input class="btn" type="submit" value="로그인" onclick="login()" /> 
                   <input class="btn"  type="button" value="회원가입" onclick="location.href='TermsAndConditions.do'"/> 
                   <input class="btn" type="button" value="취소" onclick="location.href='mainpage.do'" />
                    <input class="btn" type="button" value="아이디 비밀번호 찾기" onclick="location.href='accountfind.do'"/>
@@ -68,8 +68,8 @@ opacity: 0.5;
             </tr>
             <tr>
             <td colspan="2" align="center">
-               <a id="kakao-login-btn"></a>
-               <script type='text/javascript'>
+   <a id="kakao-login-btn"></a>
+   <script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('417b6197d543e8ff274fa9c9db0ca421');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
@@ -77,9 +77,11 @@ opacity: 0.5;
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',
       success: function(authObj) {
+    	  alert("성공함수");
         //setCookie("kakao_login","done",1);//쿠키생성(로그인)
         // 로그인 성공시, API를 호출합니다.
         Kakao.API.request({
+        	alert("성공2");
           url: '/v1/user/me',
           success: function(res) {//로그인되자마자 실행되는 구간
             console.log(JSON.stringify(res.kaccount_email));
