@@ -92,8 +92,6 @@ opacity: 0.5;
 	<!-- header.jsp -->
 	<%@ include file="header.jsp"%>
 	
-	<input type = "button" value = "테스트버튼" onclick = "location.href='testpage.do'">
-
 <!-- -----------------슬라이드 이미지-------------------------------------------- -->
 
 	<!-- Page Content -->

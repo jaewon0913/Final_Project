@@ -1,4 +1,4 @@
-function enterkey() {
+function searchenterkey() {
 	if(window.event.keyCode == 13){
 		search();
 	}
