@@ -258,10 +258,10 @@
   ② “몰”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.
 	
 	</textarea>
-			<div align="right">
-				<br /> <span>동의함<input type="checkbox" value="동의함" name="ok"></span>
-				<span>동의안함<input type="checkbox" value="동의안함" name="no"></span>
-			</div>
+		<div align="right">
+			<span>동의&nbsp;&nbsp;<input type="checkbox" value="동의함" id = "chk1" name="ok"></span>
+		</div>
+		<br/>
 	<textarea rows="20" cols="160">
 	ㅁ개인정보의 수집 및 이용
 
@@ -287,27 +287,36 @@
  
 						
 	</textarea>		
-	<div align="right">
-				<br /> <span>동의함<input type="checkbox" value="동의함" name="ok"></span>
-				<span>동의안함<input type="checkbox" value="동의안함" name="no"></span>
-			</div>
-			<div align="right" style="text-align: right;">
-				<input type="button" class="btn btn-outline-light" value="회원가입"
-					onclick="location.href='insertform.do'"> <input
-					type="button" class="btn btn-outline-light" value="취소"
-					onclick="location.href='mainpage.do'">
-			</div>
+		<div align="right">
+			<span>동의&nbsp;&nbsp;<input type="checkbox" value="동의함" id = "chk2" name="ok"></span>
 		</div>
-
+		<br/>
+		<div align="right" style="text-align: right;">
+			<input type="button" class="btn btn-outline-light" value="회원가입" onclick="check()"> 
+			<input type="button" class="btn btn-outline-light" value="취소" onclick="location.href='mainpage.do'">
+		</div>
 	</div>
+</div>
 
-
-
-
-
-
-
-
+<script type="text/javascript">
+	function check(){
+		var chkbox = document.getElementsByName('ok');
+		var chk = false;
+		for (var i = 0 ; i < chkbox.length ; i++ ){
+			if(chkbox[i].checked){
+				chk = true;
+			} else {
+				chk = false;
+			}
+		}
+		
+		if (chk){
+			location.href = "insertform.do";
+		} else {
+			alert("모든 약관에 동의를 눌러주세요.");
+		}
+	}
+</script>
 
 	<!-- ------------------------------헤더----------------------------------- -->
 	<%@ include file="../footer.jsp"%>

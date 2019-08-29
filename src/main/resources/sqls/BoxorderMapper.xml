@@ -23,4 +23,7 @@
 	<select id="graphSelect" parameterType="map" resultType="boxorderdto">
 		SELECT * FROM BOXORDER WHERE ROWNUM <![CDATA[<]]>= 7 AND MEMBER_ID=#{member_id} ORDER BY ORDER_REGDATE DESC
 	</select>
+	<select id="orderresult" parameterType="map" resultType="boxorderdto">
+		SELECT * FROM BOXORDER WHERE MEMBER_ID=#{member_id} ORDER BY ORDER_REGDATE
+	</select>
 </mapper>
