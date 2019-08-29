@@ -9,7 +9,7 @@
 <head>
 <!-- <META HTTP-EQUIV="refresh" CONTENT="10"> 10초마다 새로고침-->
 <meta charset="UTF-8">
-<title>detail</title>
+<title>자유게시판 상세보기</title>
 
 <!-- include libraries(jQuery, bootstrap )-->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -48,7 +48,7 @@
 		<tr>
 			<th>내   용</th>
 			<td colspan="6">
-			<textarea rows="8" cols="80" readonly="readonly">${dto.free_content }</textarea>
+			<textarea rows="60" cols="100" readonly="readonly">${dto.free_content }</textarea>
 		
 		</tr>
 			
@@ -229,11 +229,7 @@ $("#comminsert").click(function(){
 								"<td>"+val.member_name+"</td>"+
 								"<td>"+val.com_content+"</td>"+
 								"<td>"+val.com_regdate+"</td>"+
-								"<td>"+
-									"<c:choose>"+
-										
-									"</c:choose>"+
-								"</td>"+
+							
 							"</tr>"+
 						"</table>"		
 					);

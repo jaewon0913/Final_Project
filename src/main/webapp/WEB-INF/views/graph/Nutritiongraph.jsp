@@ -33,24 +33,20 @@
     font-size: 12px;
     min-width: 30px;
 }
+svg{
+	width: 80rem;
+	height: 50rem;
+}
+svg>g>text{
+x:3;
+}
 </style>
 
 
 <body>
 <div class="container text-center center">
-<div class="border" style="width: 20rem;">
-<div class="pull-left">
-<img alt="?" src="resources/bootstrap/image/q&a.png" style="width: 3rem; height: 3rem;">
-</div>
-<br/>
-<br/>
-<div style="text-align: left; ">
-2000Kcal 기준<br/>
-한끼 권장 칼로리는<br/>
-아침 : 400Kcal<br/>
-점심, 저녁 : 800Kcal 입니다.</div>
-</div>
-<svg style="width:700; height:320;" ></svg>
+
+<svg></svg>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
@@ -172,8 +168,11 @@ $(document).ready(function(){
 });
 
 </script>
+
+<br/>
+<div class="container col-md-10" style="margin-bottom: 5rem; margin-top: 5rem;">
 <h1 style="text-align: left; margin-top: 5rem; ">칼로리 계산기</h1>
-<div class="container" style="margin-bottom: 5rem; margin-top: 5rem;">
+<div class="container col-md-10" style="margin-bottom: 5rem; margin-top: 5rem;">
 
 <div class="col-md-6" style="text-align: left;">
 
@@ -198,7 +197,11 @@ $(document).ready(function(){
 <br/>
 <h3>한끼 권장 칼로리 : </h3><span>하루권장 칼로리 / 3</span>
 </div>
+<div class="col-md-6" style="text-align: left;">
+<img alt="" src="">
 
+</div>
+</div>
 </div>
 </div>
 <%@ include file="../footer.jsp"%>

@@ -17,11 +17,6 @@
  		width: 5rem;
  		height: 3rem;
  	}
- 	.test{
- 		margin-right: 25rem;
- 		margin-left: 25rem;
- 		text-align: left;
- 	}
 </style>
 </head>
 <body>
@@ -30,7 +25,7 @@
 <!--     <input type="button" id="pay" value="결제시스템입니다." >-->   
 
 
-<div class="test">
+<div class="container">
 <!-- 바코드 이미지 태그  outerHTML-->
 	<div id="qrcodeform">
 		<img id="qrcode" src='' />
