@@ -38,10 +38,8 @@
 	
 	<div class="em">
 	<!-- Body -->
-		<table border = "1" align = "center">
+		<table class="table">
 		<form action="kakaopay_custom.do" method = "POST">
-			<col width = "500rem">
-			<col width = "350rem">
 		
 			<c:choose>
 				<c:when test="${empty cookiedto}">

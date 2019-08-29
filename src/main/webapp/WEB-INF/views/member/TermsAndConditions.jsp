@@ -16,7 +16,7 @@
 	<div class="container">
 
 		<div>
-			<textarea rows="20" cols="160" style="overflow: auto;">
+			<textarea rows="20" cols="130" style="overflow: auto;">
 제1조(목적) 이 약관은 너도나도 회사(전자상거래 사업자)가 운영하는 너도나도 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
 
   ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
@@ -258,11 +258,11 @@
   ② “몰”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.
 	
 	</textarea>
-			<div align="right">
-				<br /> <span>동의함<input type="checkbox" value="동의함" name="ok"></span>
-				<span>동의안함<input type="checkbox" value="동의안함" name="no"></span>
-			</div>
-	<textarea rows="20" cols="160">
+		<div align="right">
+			<span>동의&nbsp;&nbsp;<input type="checkbox" value="동의함" id = "chk1" name="ok"></span>
+		</div>
+		<br/>
+	<textarea rows="20" cols="130">
 	ㅁ개인정보의 수집 및 이용
 
 1. 개인정보의 수집ㆍ이용 목적
@@ -287,27 +287,36 @@
  
 						
 	</textarea>		
-	<div align="right">
-				<br /> <span>동의함<input type="checkbox" value="동의함" name="ok"></span>
-				<span>동의안함<input type="checkbox" value="동의안함" name="no"></span>
-			</div>
-			<div align="right" style="text-align: right;">
-				<input type="button" class="btn btn-outline-light" value="회원가입"
-					onclick="location.href='insertform.do'"> <input
-					type="button" class="btn btn-outline-light" value="취소"
-					onclick="location.href='mainpage.do'">
-			</div>
+		<div align="right">
+			<span>동의&nbsp;&nbsp;<input type="checkbox" value="동의함" id = "chk2" name="ok"></span>
 		</div>
-
+		<br/>
+		<div align="right" style="text-align: right;">
+			<input type="button" class="btn btn-outline-light" value="회원가입" onclick="check()"> 
+			<input type="button" class="btn btn-outline-light" value="취소" onclick="location.href='mainpage.do'">
+		</div>
 	</div>
+</div>
 
-
-
-
-
-
-
-
+<script type="text/javascript">
+	function check(){
+		var chkbox = document.getElementsByName('ok');
+		var chk = false;
+		for (var i = 0 ; i < chkbox.length ; i++ ){
+			if(chkbox[i].checked){
+				chk = true;
+			} else {
+				chk = false;
+			}
+		}
+		
+		if (chk){
+			location.href = "insertform.do";
+		} else {
+			alert("모든 약관에 동의를 눌러주세요.");
+		}
+	}
+</script>
 
 	<!-- ------------------------------헤더----------------------------------- -->
 	<%@ include file="../footer.jsp"%>

@@ -142,3 +142,7 @@
 	border-width: 36px;
 	margin-top: -36px;
 }
+.chat,.bot{
+	width: 5rem;
+	height: 5rem;
+}
