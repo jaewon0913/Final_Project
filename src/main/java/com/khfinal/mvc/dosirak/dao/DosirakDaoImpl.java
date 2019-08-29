@@ -46,6 +46,8 @@ public class DosirakDaoImpl implements DosirakDao {
 		
 		try {
 			list = sqlSession.selectList(namespace + "viewslist");
+			System.out.println("asdsdsadsa"+list.get(0).getBestnum());
+			System.out.println(list.get(0).getDosirak_postnum());
 		} catch (Exception e) {
 			System.out.println("select viewslist error");
 			e.printStackTrace();

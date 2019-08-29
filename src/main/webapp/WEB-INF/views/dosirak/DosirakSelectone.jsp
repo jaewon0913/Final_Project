@@ -87,6 +87,7 @@
 			$(this).parent().append(newDate)
 		})
 	})
+	
 </script>
 
 </head>
@@ -226,7 +227,7 @@
 			</c:when>
 			<c:otherwise>
 			<tr>
-				<td colspan="16" align="left">
+				<td colspan="16" align="right">
 				<input type="button" value="이 전" onclick="location.href='dosirak_listpaging.do'" class="btn btn-outline-light"/></td>
 			</tr>
 			</c:otherwise>
