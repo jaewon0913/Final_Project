@@ -12,6 +12,11 @@
 .banner:hover{
 opacity: 0.5;
 }
+.logo2{
+width: 20em;
+height: 10em;
+margin-left: 10%;
+}
 </style>
 </head>
 
@@ -35,13 +40,20 @@ opacity: 0.5;
    
    <c:url value="/login" var="loginUrl" />
    <div class="container center banner" style="text-align: center;">
-   <img alt="banner" src="resources/bootstrap/image/회원가입 할인.png" onclick="location.href='TermsAndConditions.do'" style="height: 10rem; width: 60rem;">
+   <img alt="banner" src="resources/bootstrap/image/회원가입 할인.png" onclick="location.href='TermsAndConditions.do'" style=" width: 100%;">
    </div>
    <div style="padding-bottom:5rem; padding-top:5rem;">
-   <h1 class="title1" style="margin-left: 8rem;">Login</h1>
+  
       <div class="row">
       <form:form name="f" action="${loginUrl}" method="POST" class="center-block">
          <table style="align-content: center; margin-bottom: 5rem; margin-top: 5rem;" class="table" >
+        <tr>
+        	<th colspan="2" align="center"><img alt="logo2" src="resources/bootstrap/image/logo_2.png" class="logo2"></th>
+        </tr>
+        
+         <tr>
+         	<td colspan="2" align="center">LOGIN</td>
+         </tr>
             <tr>
                <th> ID &nbsp; : &nbsp;</th>
                <td><input class="form" type="text" name="id" id="id"
@@ -60,7 +72,7 @@ opacity: 0.5;
             <tr>
                <td colspan="2" align="center">
 <!--                   <button type="submit" class="btn">로그인</button> -->
-             <input class="btn" type="submit" value="로그인" /> 
+             <input class="btn" type="submit" value="로그인" onclick="login()" /> 
                   <input class="btn"  type="button" value="회원가입" onclick="location.href='TermsAndConditions.do'"/> 
                   <input class="btn" type="button" value="취소" onclick="location.href='mainpage.do'" />
                    <input class="btn" type="button" value="아이디 비밀번호 찾기" onclick="location.href='accountfind.do'"/>
@@ -68,8 +80,8 @@ opacity: 0.5;
             </tr>
             <tr>
             <td colspan="2" align="center">
-               <a id="kakao-login-btn"></a>
-               <script type='text/javascript'>
+   <a id="kakao-login-btn"></a>
+   <script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('417b6197d543e8ff274fa9c9db0ca421');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
@@ -77,9 +89,11 @@ opacity: 0.5;
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',
       success: function(authObj) {
+    	  alert("성공함수");
         //setCookie("kakao_login","done",1);//쿠키생성(로그인)
         // 로그인 성공시, API를 호출합니다.
         Kakao.API.request({
+        	alert("성공2");
           url: '/v1/user/me',
           success: function(res) {//로그인되자마자 실행되는 구간
             console.log(JSON.stringify(res.kaccount_email));

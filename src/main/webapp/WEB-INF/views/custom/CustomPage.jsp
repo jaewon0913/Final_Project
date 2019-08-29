@@ -28,31 +28,6 @@
 
 <script src="resources/js/custom.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
-   $(function() {
-      $('#sendDiv').show()
-      $('#sendDiv2').hide()
-
-      $(document).on('click', '#one', function() {
-         $('#sendDiv').show()
-         $('#sendDiv2').hide()
-         $('#one').attr('style','color : white;')
-         $('#one').attr('style','border : 3px solid white;')
-         $('#month').attr('style','color :black;')
-         $('#month').attr('style','border : none;')
-      }).on('click', '#month', function() {
-         $('#sendDiv2').show()
-         $('#sendDiv').hide()
-         $('#month').attr('style','color : white;')
-         $('#month').attr('style','border : 3px solid white;')
-         $('#one').attr('style','color :black;')
-         $('#one').attr('style','border : none;')
-      })
-
-   })
-</script>
-
 </head>
 <body>
 
@@ -65,17 +40,8 @@
    </div>
    <hr />
    
-   <div class="payback" style = "top : 20rem; overflow: auto;">
-      <ul class="nav nav-tabs">
-         <li class="mint line font" style="width: 50%; text-align: center;">
-            <input class="btn " type="button" id="one" value="1회 구매" style="width: 10rem" />
-         </li>
-         <li class="mint line" style="width: 50%; text-align: center; ">
-            <input class="btn " type="button" id="month" value="정기 구매" style="width: 10rem" />
-         </li>
-      </ul>
-      
-      <form action="kakaopay_custom.do" method = "POST" style=" overflow: auto;">
+   <div class="payback mint line font" style = "top : 100px; overflow: auto; width: 25rem; text-align: left; border: 1 solid #59cab7;">
+       <form action="kakaopay_custom.do" method = "POST" style=" overflow: auto;">
       <div class="container" id="sendDiv" >
          <hr/>
          <p class="font">탄수화물 : <span id = "tan_span">0</span>g</p>
@@ -121,57 +87,10 @@
          <input type="button" value="장바구니" onclick="createCookie(${count })" class="btn btn-outline-light" /> 
          <input type="submit" value="결제하기" class="btn btn-outline-light" >
       </div>
-      </form>
-
-      <form action="kakaopay_custom.do" method = "POST">
-      <div class="container" id="sendDiv2">
-         <hr/>
-         <p class="font">탄수화물 : <span id = "tan_span_multi">0</span>g</p>
-         <input type = "hidden" id = "input_tan_multi" name = "custom_tan" value =""/>
-         <p class="font">단백질 : <span id = "dan_span_multi">0</span>g</p>
-         <input type = "hidden" id = "input_dan_multi" name = "custom_dan" value =""/>
-         <p class="font">지방 : <span id = "zi_span_multi">0</span>g</p>
-         <input type = "hidden" id = "input_zi_multi" name = "custom_zi" value = ""/>
-         
-         <c:choose>
-            <c:when test="${count eq 4 }">
-               <input type = "hidden" value = "${count }" name = "custom_count">
-               <p class="font">가격 : <span id = "price_span"></span>4000원</p>
-               <input type = "hidden" value = "4000" name = "custom_price" id = "price_input">
-            </c:when>
-            <c:when test="${count eq 5 }">
-               <input type = "hidden" value = "${count }" name = "custom_count">
-               <p class="font">가격 : <span id = "price_span"></span>5000원</p>
-               <input type = "hidden" value = "5000" name = "custom_price" id = "price_input">
-            </c:when>
-            <c:when test="${count eq 6 }">
-               <input type = "hidden" value = "${count }" name = "custom_count">
-               <p class="font">가격 : <span id = "price_span"></span>6000원</p>
-               <input type = "hidden" value = "6000" name = "custom_price" id = "price_input">
-            </c:when>
-            <c:otherwise>
-               <input type = "hidden" value = "4" name = "custom_count">
-               <p class="font">가격 : <span id = "price_span"></span>4000원</p>
-               <input type = "hidden" value = "4000" name = "custom_price" id = "price_input">
-            </c:otherwise>
-         </c:choose>
-         <p class="font">총 칼로리 : <span id = "cal_span_multi">0</span>kal</p>
-         <input type = "hidden" id = "input_kal_multi" name = "custom_kal" value = ""/>
-                  <input type = "hidden" id = "input_kal" name = "custom_kal" value = ""/>
-         <p class = "font">수령 날짜 : <input type = "date" name = "custom_delivery" id = "input_date_multi"/></p>
-         <p class = "font">수령 시간 : 
-            <select name = "custom_time">
-               <option value = "">시간 선택</option>
-               <option value = "AM">아침</option>
-               <option value = "PM">저녁</option>
-            </select>
-         </p>
-         <br />
-         <input type="button" value="장바구니" onclick="location.href='createCookie(${count })'" class="btn btn-outline-light" /> 
-         <input type="submit" value="결제하기" class="btn btn-outline-light" > 
-      </div>
-      </form>
+</form>
    </div>
+
+
 <script>
    //date 타입 오늘 날짜 세팅
    document.getElementById("input_date").value = new Date().toISOString().substring(0,10);
@@ -306,7 +225,8 @@
             </div>
          </c:forEach>
       </div>
-      <br/>
+      </div>
+
    <!-- ------------------------푸터-------------------------------------------- -->
    <%@ include file="../footer.jsp"%>
    <!-- ------------------------푸터-------------------------------------------- -->

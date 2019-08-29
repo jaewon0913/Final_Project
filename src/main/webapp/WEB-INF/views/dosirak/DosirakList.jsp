@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("UTF-8");
+   request.setCharacterEncoding("UTF-8");
 %>
 <%
-	response.setContentType("text/html; charset=UTF-8");
+   response.setContentType("text/html; charset=UTF-8");
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -79,25 +79,6 @@ margin-top: 8rem;
    width: 25rem;
    height: 25rem;
 }
-.number{
-	display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    width: 60px;
-    height: 60px;
-    padding-top: 9px;
-    background: rgba(89,202,183,0.45);
-    text-align: center;
-    font-size: 20px;
-    color: #fff;
-    line-height: 100%;
-}
-.dosirakimg{
-	width: 25rem;
-	height: 25rem;
-}
 </style>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -106,11 +87,11 @@ function pageMove_dosirak(page) {
     location.href = "dosirak_listpaging.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
  }
    
-	function allChk(val){
-		var chks = document.getElementsByName('chk');
-			for(var i=0 ; i<chks.length ; i++){
-				chks[i].checked = val;
-	}
+   function allChk(val){
+      var chks = document.getElementsByName('chk');
+         for(var i=0 ; i<chks.length ; i++){
+            chks[i].checked = val;
+   }
 }
 </script>
 <title>도시락 list</title>
@@ -158,7 +139,7 @@ function pageMove_dosirak(page) {
 	</div>
 
 <!-- ------------------best3------------------ -->
-	
+   
 
 	<div class="container">
 	<div class="conrainer">
@@ -214,26 +195,26 @@ function pageMove_dosirak(page) {
 			</div>
 	</div>
 
-	<!-- Pagination -->
-	<div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">
-		<a href="javascript:pageMove_dosirak(${paging.firstPageNo})"  class="page">&laquo;</a> <a
-			href="javascript:pageMove_dosirak(${paging.prevPageNo})" class="page">&lt;</a>
-		<c:forEach var="i" begin="${paging.startPageNo}"
-			end="${paging.endPageNo}" step="1">
-			<c:choose>
-				<c:when test="${i eq paging.pageNo}">
-					<a href="javascript:pageMove_dosirak(${i})" class="page">${i}</a>
-				</c:when>
-				<c:otherwise>
-					<a href="javascript:pageMove_dosirak(${i})" class="page">${i}</a>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		<a href="javascript:pageMove_dosirak(${paging.nextPageNo})" class="page">&gt;</a> <a
-			href="javascript:pageMove_dosirak(${paging.finalPageNo})" class="page">&raquo;</a>
-	</div>
-	<!-- ------------------------푸터-------------------------------------------- -->
-	<%@ include file="../footer.jsp"%>
-	<!-- ------------------------푸터-------------------------------------------- -->
+   <!-- Pagination -->
+   <div class="container text-center " style="font-size: 3rem; margin-bottom: 5rem;">
+      <a href="javascript:pageMove_dosirak(${paging.firstPageNo})"  class="page">&laquo;</a> <a
+         href="javascript:pageMove_dosirak(${paging.prevPageNo})" class="page">&lt;</a>
+      <c:forEach var="i" begin="${paging.startPageNo}"
+         end="${paging.endPageNo}" step="1">
+         <c:choose>
+            <c:when test="${i eq paging.pageNo}">
+               <a href="javascript:pageMove_dosirak(${i})" class="page">${i}</a>
+            </c:when>
+            <c:otherwise>
+               <a href="javascript:pageMove_dosirak(${i})" class="page">${i}</a>
+            </c:otherwise>
+         </c:choose>
+      </c:forEach>
+      <a href="javascript:pageMove_dosirak(${paging.nextPageNo})" class="page">&gt;</a> <a
+         href="javascript:pageMove_dosirak(${paging.finalPageNo})" class="page">&raquo;</a>
+   </div>
+   <!-- ------------------------푸터-------------------------------------------- -->
+   <%@ include file="../footer.jsp"%>
+   <!-- ------------------------푸터-------------------------------------------- -->
 </body>
 </html>

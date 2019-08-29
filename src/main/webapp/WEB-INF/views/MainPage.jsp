@@ -9,11 +9,15 @@
 .mint{
 background-color: #59CAB7 ! important;
 }
-.best3img{
-width: 33rem; 
-	height : 33rem; 
-
+.best3img {
+   width: 25rem; 
+   height : 25rem; 
 }
+
+.best3img:hover {
+opacity: 0.8;
+}
+
 
 .number{
 	display: block;
@@ -174,13 +178,13 @@ opacity: 0.5;
 			<c:otherwise>
 				<c:forEach items="${viewslist}" var="viewsdto">
 				
-			<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5 best3" >
-					<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${viewsdto.dosirak_postnum}'" >
-					<div class="number">${viewsdto.bestnum }<p>Best</p></div>
-					<img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="best3img">
-					<input type="hidden" name="dosirak_postnum" value="${viewsdto.dosirak_postnum}">
-					</div>
-					</div>
+			<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
+               <div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${viewsdto.dosirak_postnum}'">
+               <div class="number">${viewsdto.bestnum }<p>Best</p></div>
+               <img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="best3img">
+               <input type="hidden" name="dosirak_postnum" value="${viewsdto.dosirak_postnum}">
+               </div>
+               </div>
 			
 				</c:forEach>
 			</c:otherwise>
@@ -204,7 +208,7 @@ opacity: 0.5;
 <!-- -----------------공지사항 게시판-------------------------------------------- -->
 <!-- -----------------이벤트 게시판-------------------------------------------- -->
 			<div class="Notice">
-				<a href="testa.do">자유 게시판</a>
+				<a href="testa.do" class="btn">자유 게시판</a>
 				<ul>
 					<li>자유</li>
 					<li>자유</li>
