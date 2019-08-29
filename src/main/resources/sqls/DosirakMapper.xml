@@ -47,9 +47,22 @@
 	<!-- 조회수 베스트3 -->
 	<select id="viewslist" parameterType="map" resultType="dosirakdto">
 		<![CDATA[
-			SELECT * FROM (SELECT * FROM DOSIRAK ORDER BY DOSIRAK_VIEWS DESC) WHERE ROWNUM<=3
+			SELECT ROW_NUMBER() OVER(ORDER BY DOSIRAK_VIEWS DESC) AS BESTNUM,DOSIRAK_TITLE,MAINIMAGE,DOSIRAK_CONTENT,DOSIRAK_POSTNUM 
+      		FROM (SELECT * FROM DOSIRAK ORDER BY DOSIRAK_VIEWS DESC) 
+      		WHERE ROWNUM<=3
 		]]>
      </select>
+     <!--  SELECT * FROM (SELECT * FROM DOSIRAK ORDER BY DOSIRAK_VIEWS DESC) WHERE ROWNUM<=3 -->
+	<!-- 
+     <select id="viewslist" parameterType="map" resultType="dosirakdto">
+      <![CDATA[
+      SELECT ROW_NUMBER() OVER(ORDER BY DOSIRAK_VIEWS DESC) AS BESTNUM,DOSIRAK_TITLE,MAINIMAGE,DOSIRAK_CONTENT 
+      FROM (SELECT * FROM DOSIRAK ORDER BY DOSIRAK_VIEWS DESC) 
+      WHERE ROWNUM<=3
+
+      ]]>
+     </select>
+      -->
 
    <insert id="insert" parameterType="dosirakdto">
       INSERT INTO DOSIRAK
