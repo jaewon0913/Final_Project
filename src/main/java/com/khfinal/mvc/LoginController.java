@@ -3,6 +3,8 @@ package com.khfinal.mvc;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.khfinal.mvc.boxorder.biz.BoxorderBiz;
 import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.member.etc.VerifyRecaptcha;
@@ -30,10 +31,7 @@ import com.khfinal.mvc.member.etc.VerifyRecaptcha;
 public class LoginController {
 
 	@Autowired
-	private MemberBiz memberbiz;
-	@Autowired
-	private BoxorderBiz boxorderbiz;
-	
+	private MemberBiz memberbiz;	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
@@ -41,18 +39,48 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@RequestMapping("/login.do")
-	public String login(String id, String password) {
-		String encPassword = bcryptPasswordEncoder.encode(password);
-		System.out.println("암호화된 비밀번호 : "+encPassword);
+	@ResponseBody
+	public Map<String, Boolean> login(String id, String password) {
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		
-		MemberDto memberdto = memberbiz.login(id,encPassword);
+//		System.out.println("암호화된 비밀번호 : "+encPassword);
 		
-		if(memberdto != null) {
-			return "redirect: mainpage.do";
-		}else {
-			return "redirect: loginMain.do";
+//		MemberDto memberdto = memberbiz.login(id,encPassword);
+		String encPassword = "";
+		MemberDto memberdto = new MemberDto();
+		
+		//fasle가 있는거
+		boolean idchk = memberbiz.idChk(id);
+		if(idchk == false) {
+			memberdto = memberbiz.pwChk(id);
+//			encPassword = bcryptPasswordEncoder.encode(password);
+			
 		}
 		
+//		bcryptPasswordEncoder.matches(memberdto.getMember_pw(), encPassword);
+		System.out.println("matches함수 결과 : "+bcryptPasswordEncoder.matches(password,memberdto.getMember_pw()));
+		
+		
+		if(idchk == false && (bcryptPasswordEncoder.matches(password,memberdto.getMember_pw())) == true) {
+			map.put("loginchk", true);
+			System.out.println("1");
+		}else if(idchk == true) {
+			map.put("idchk", false);//아이디없음
+			map.put("loginchk", false);
+			System.out.println("2");
+		}else if(idchk == false && bcryptPasswordEncoder.matches(password, encPassword) == false) {
+			map.put("idchk", true);//아이디는 있음
+			map.put("loginchk", false);//비밀번호가틀림
+			System.out.println("3");
+		}
+		
+//		if(memberdto != null) {
+//			map.put("loginchk", true);
+//		}else {
+//			map.put("loginchk", false);
+//		}
+		
+		return map;
 	}
 	@RequestMapping("/loginsuccess.do")
 	public String loginsuccess(Principal auth,HttpSession session) {
@@ -72,7 +100,7 @@ public class LoginController {
 		if (idchk == true) {// 가입페이지로 이동
 			model.addAttribute("id", id);
 			model.addAttribute("name", name);
-			return "kakaoMemberInsert";
+			return "KakaoMemberInsert";
 		}else {//로그인으로이동
 			System.out.println("kakaologin컨틀롤러 else문");
 			MemberDto memberdto = memberbiz.login(id,id);
@@ -132,7 +160,7 @@ public class LoginController {
 	public String idChk(String member_id, Model model) {
 		boolean idnotused = memberbiz.idChk(member_id);
 		model.addAttribute("idnotused", idnotused);
-		return "member/idchk";
+		return "member/IdChk";
 	}
 	
 	@RequestMapping("/test.do")
@@ -190,7 +218,7 @@ public class LoginController {
 		String id = member_id.split(",")[1];
 		model.addAttribute("member_id",id);
 		System.out.println("넘어온아이디" + id);
-		return "member/pwUpdate";
+		return "member/PwUpdate";
 	}
 	
 	@RequestMapping("/pwupdate.do")
@@ -212,11 +240,11 @@ public class LoginController {
 			 * MemberDto memberdto_res = memberbiz.loginpw(dto.getMember_id(), encPassword);
 			 * session.setAttribute("logindto", memberdto_res);
 			 */
-			session.setAttribute("logindto", null);
+//			session.setAttribute("logindto", null);
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호가 변경되었습니다.')</script>");
 			out.flush();
-			return "loginMain";
+			return "member/LoginMain";
 		} else {
 			return "error/ErrorPage";
 		}
@@ -274,11 +302,12 @@ public class LoginController {
 		System.out.println("id:" + dto.getMember_id() + "email: " + dto.getMember_email());
 		MemberDto memberdto = memberbiz.pwfind(dto.getMember_id(), dto.getMember_email());
 		if (memberdto != null) {
-			model.addAttribute("memberdto", memberdto);
+//			model.addAttribute("memberdto", memberdto);
+			model.addAttribute("member_id",dto.getMember_id());
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호 재설정 페이지로 이동합니다.')</script>");
 			out.flush();
-			return "member/pwUpdate";
+			return "member/PwUpdate";
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('아이디와 이메일을 확인해주세요')</script>");
@@ -287,6 +316,28 @@ public class LoginController {
 		}
 	}
 	
+	@RequestMapping("/withdrawal.do")
+	public void memberWithdrawal(HttpServletResponse response, HttpServletRequest request,HttpSession session) throws IOException {
+		String member_id = request.getParameter("member_id");
+		System.out.println(member_id);
+		int res = memberbiz.memberWithdrawal(member_id);
+		if(res > 0) {
+			session.setAttribute("logindto", null);
+			
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>"
+					+ "alert('탈퇴가 완료되었습니다.');"
+					+ "location.href='mainpage.do';"
+					+ "</script>");
+			out.flush();
+		}else {
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('탈퇴 실패');location.href='mainpage.do'</script>");
+			out.flush();
+		}		
+	}
 		
 }
 

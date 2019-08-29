@@ -1,5 +1,6 @@
 package com.khfinal.mvc;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,12 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khfinal.mvc.common.util.Paging;
 import com.khfinal.mvc.free.biz.FreeboardBiz;
 import com.khfinal.mvc.free.dto.CommentDto;
 import com.khfinal.mvc.free.dto.FreeboardDto;
-import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.member.dto.MemberDto;
 
 @Controller
@@ -28,7 +29,6 @@ public class FreeController {
 
 	@Autowired
 	private FreeboardBiz biz;
-	private MemberBiz memberbiz;
 
 	@RequestMapping("/freeboard_list.do")
 	public String selectList(@RequestParam Map<String, Object> paramMap, Model model) {
@@ -59,7 +59,7 @@ public class FreeController {
 
 		// model.addAttribute("freeboard_list",biz.selectList());
 
-		return "freeboard/freeboard_list"; // 이동할 jsp 파일명
+		return "freeboard/FreeboardList"; // 이동할 jsp 파일명
 	}
 
 	// 게시판 상세  
@@ -81,7 +81,7 @@ public class FreeController {
 		List<CommentDto> commentList = biz.com_selectList(free_postnum); // 게시판 리스트를 가져온다.
 		model.addAttribute("cmt", commentList); // 모델에 코멘트 리스트를 넣다.
 		
-		return "freeboard/freeboard_detail";
+		return "freeboard/FreeboardDetail";
 	}
 
 	@RequestMapping("/freeboard_insertform.do")
@@ -89,7 +89,7 @@ public class FreeController {
 		MemberDto logindto = (MemberDto) session.getAttribute("logindto");
 		model.addAttribute("logindto", logindto);
 
-		return "freeboard/freeboard_insertform";
+		return "freeboard/FreeboardInsertForm";
 	}
 
 	@RequestMapping("/freeboard_insert.do")
@@ -106,7 +106,7 @@ public class FreeController {
 	public String selectOne(@RequestParam int free_postnum, Model model) {
 		FreeboardDto dto = biz.selectOne(free_postnum);
 		model.addAttribute("dto", dto);
-		return "freeboard/freeboard_detail";
+		return "freeboard/FreeboardDetail";
 
 	}
 
@@ -117,7 +117,7 @@ public class FreeController {
 		model.addAttribute("dto", dto);
 		// model.addAttribute("dto", biz.selectOne(free_postnum));
 
-		return "freeboard/freeboard_updateform";
+		return "freeboard/FreeboardUpdateForm";
 	}
 
 	@RequestMapping("/freeboard_update.do")
@@ -171,14 +171,14 @@ public class FreeController {
 	public String selectList(@RequestParam int free_postnum,Model model) {
 		logger.info("<<<com__list>>>");
 		model.addAttribute("com_list", biz.com_selectList(free_postnum));
-		return "freeboard/com_list";
+		return "freeboard/ComList";
 	}
 
 	@RequestMapping("/com__selectOne.do")
 	public String com__selectOne(@RequestParam int com_num, Model model) {
 		CommentDto dto = biz.com_selectOne(com_num);
 		model.addAttribute("dto", dto);
-		return "freeboard/com_board_detail";
+		return "freeboard/ComBoardDetail";
 
 	}
 	
@@ -188,20 +188,25 @@ public class FreeController {
 		MemberDto logindto = (MemberDto) session.getAttribute("logindto");
 		model.addAttribute("logindto", logindto);
 
-		return "freeboard/com_board_insertform";
+		return "freeboard/ComBoardInsertForm";
 	}
 
 	@RequestMapping("/com_board_insert.do")
-	public String com_board_insert(@ModelAttribute CommentDto dto,Model model) {
+	@ResponseBody
+	public Map<String, List<CommentDto>> com_board_insert(String com_content,int free_postnum,HttpSession session) {
+		Map<String, List<CommentDto>> map = new HashMap<String, List<CommentDto>>();
+		MemberDto logindto = (MemberDto) session.getAttribute("logindto");
+		
+		CommentDto dto = new CommentDto(0,free_postnum,logindto.getMember_id(),logindto.getMember_name(),com_content
+				,0,0,0,null);
 		int res = biz.com_board_insert(dto);
 		
-		model.addAttribute("free_postnum", dto.getFree_postnum());
-		
 		if (res > 0) {
-			return "redirect:freeboard_detail.do";
-		} else {
-			return "redirect:freeboard_detail.do";
-		}
+			List<CommentDto> list = biz.com_selectList(free_postnum);
+			map.put("list", list);
+		} 
+		
+		return map;
 	}
 
 	
@@ -213,7 +218,7 @@ public class FreeController {
 		model.addAttribute("cmt", cmt);
 		// model.addAttribute("dto", biz.selectOne(free_postnum));
 
-		return "freeboard/com_board_updateform";
+		return "freeboard/ComBoardUpdateForm";
 	}
 
 	@RequestMapping("/com_board_update.do")
@@ -231,17 +236,18 @@ public class FreeController {
 	}
 
 	@RequestMapping("/com_board_delete.do")
-	public String com_board_delete(@RequestParam int com_num,@RequestParam int free_postnum,Model model) {
+	@ResponseBody
+	public Map<String, List<CommentDto>> com_board_delete(@RequestParam int com_num,int free_postnum) {
+		Map<String, List<CommentDto>> map = new HashMap<String, List<CommentDto>>();
+		
 		int res = biz.com_board_delete(com_num);
 		
-		model.addAttribute("free_postnum", free_postnum);
-		// biz.freeboard_delete(free_postnum);
 		if (res > 0) {
-			return "redirect:freeboard_detail.do";
-		} else {
-			return "redirect:freeboard_detail.do";
-		}
-	
+			List<CommentDto> list = biz.com_selectList(free_postnum);
+			map.put("list", list);
+		} 
+			
+		return map;
 
 	}
 

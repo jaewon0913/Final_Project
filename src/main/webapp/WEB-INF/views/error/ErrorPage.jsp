@@ -48,8 +48,5 @@ body{
 </head>
 <body>
 		<input type = "button" value = "이전페이지" onclick = "history.back()" class="btn1 btn"/>
-		
-		
-
 </body>
 </html>

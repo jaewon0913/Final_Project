@@ -1,6 +1,7 @@
 package com.khfinal.mvc.member.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -162,5 +163,35 @@ public class MemberDaoImpl implements MemberDao {
 			emailnotused = false;
 		}
 		return emailnotused;
+	}
+
+	@Override
+	public List<MemberDto> pwChangedate() {
+		
+		List<MemberDto> list = sqlSession.selectList(namespace+"pwChangedate");
+		
+		return list;
+	}
+
+	@Override
+	public int memberWithdrawal(String member_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		
+		int res = sqlSession.update(namespace+"memberWithdrawal",map);
+		
+		return res;
+	}
+
+	@Override
+	public MemberDto pwChk(String member_id) {
+		boolean pwchk = false;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		
+		MemberDto memberdto = new MemberDto();
+		memberdto = sqlSession.selectOne(namespace+"pwChk",map);
+		
+		return memberdto;
 	}
 }

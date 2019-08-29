@@ -3,7 +3,8 @@
 <mapper namespace="membermapper">
 	
 	<select id = "login" parameterType = "map" resultType = "memberdto">
-		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id} AND MEMBER_PW = #{pw}
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id} AND MEMBER_PW = #{pw} 
+		AND MEMBER_ENABLED=1
 	</select>
 	
 	<select id = "loginpw" parameterType = "map" resultType = "memberdto">
@@ -21,20 +22,18 @@
 	<update id="update" parameterType="memberdto">
 		UPDATE MEMBER SET MEMBER_PW = #{member_pw}, MEMBER_PHONE = #{member_phone},
 		MEMBER_EMAIL = #{member_email}, MEMBER_ADDRESS = #{member_address},
-		MEMBER_SUBWAY = #{member_subway} 
+		MEMBER_SUBWAY = #{member_subway} , MEMBER_PW_CHANGE = SYSDATE
 		WHERE MEMBER_ID = #{member_id}
 	</update>
 	
 	<update id="pwupdate" parameterType="map">
-		UPDATE MEMBER SET MEMBER_PW = #{member_pw}
+		UPDATE MEMBER SET MEMBER_PW = #{member_pw}, MEMBER_PW_CHANGE = SYSDATE
 		WHERE MEMBER_ID = #{member_id}
 	</update>
-	
-	
-	
+
 	<insert id="insert" parameterType="memberdto">
 		INSERT INTO MEMBER 
-		VALUES(#{member_id},#{member_pw},#{member_name},#{member_phone},#{member_address},#{member_subway},#{member_email},1,'USER',SYSDATE)
+		VALUES(#{member_id},#{member_pw},#{member_name},#{member_phone},#{member_address},#{member_subway},#{member_email},1,'USER',SYSDATE,SYSDATE)
 	</insert>
 	
 	<insert id="insertAuthorities" parameterType="map">
@@ -59,10 +58,24 @@
 		WHERE MEMBER_ID=#{member_id} AND MEMBER_ENABLED=1
 	</select>
 	
+	<select id="pwChk" parameterType="map" resultType="memberdto">
+		SELECT MEMBER_PW
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id} AND MEMBER_ENABLED=1
+	</select>
+	
 	<select id="emailChk" parameterType="map" resultType="memberdto">
 		SELECT MEMBER_EMAIL
 		FROM MEMBER
 		WHERE MEMBER_EMAIL = #{member_email}
 	</select>
 	
+	<update id="memberWithdrawal" parameterType="map">
+		UPDATE MEMBER SET MEMBER_ENABLED=2 WHERE MEMBER_ID = #{member_id}
+	</update>
+	
+	<select id="pwChangedate" resultType="memberdto">
+		SELECT * FROM MEMBER 
+		WHERE TRUNC(SYSDATE - MEMBER_PW_CHANGE) <![CDATA[>]]>= 4
+	</select>
 </mapper>

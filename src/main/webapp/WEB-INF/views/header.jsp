@@ -1,12 +1,11 @@
 <%@ page import="com.khfinal.mvc.member.dto.MemberDto"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<%@ include file="chat/ChatPage.jsp" %>
-
+<%@ include file="chat/ChatPage.jsp"%>
 
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -19,21 +18,17 @@
 
 <title>main</title>
 <style type="text/css">
-
 body, input, div, span, p, a, nav, li, ul, button {
-	font-family:'샘물';
+   font-family:'샘물';
 }
 
 a.nav-link{
-	color: white;
+   color: white;
 }
 
 a.nav-link:hover{
-	color: white;
-	opacity: 0.5;
-}
-.navbar-dark .navbar-nav .nav-link {
-   
+   color: white;
+   opacity: 0.5;
 }
 </style>
 
@@ -48,10 +43,10 @@ a.nav-link:hover{
 
 <script src="resources/js/mainpage.js"></script>
 
-<!-- jaewon -->
 <!-- jQuery, bootstrap CDN -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script> <!-- msie 문제 해결 -->
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<!-- msie 문제 해결 -->
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -64,21 +59,33 @@ a.nav-link:hover{
 <body>
 	<header>
 		<nav class="header navbar navbar-expand-lg fixed-top " style="margin-bottom: 0px;">
-		<div style="float: left; width: 50%;">
-			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
+			<div class="col-md-4">
+				<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
 			</div>
-			<div style="float: right; width: 50%; text-align: right;" class="pull-right">
+			<!-- search bar -->
+			<table class=" search col-md-4 center">
+				<tr>
+					<td>
+						<div class="form-group form-inline search" style="width: 100%;">
+							<input type="text" id="txt_search" value="${txt_search }" onkeyup="enterkey();" style="border-radius: 5px; width: 75%;">
+							<span>
+								<img alt="search" src="${pageContext.request.contextPath }/resources/bootstrap/image/searchbar.png" onclick="search()" style="width: 3rem; height: 3rem;" class="searchbar">
+							</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<!-- search bar -->
+			<div class="pull-right col-md-4" style="text-align: right;">
 				<c:choose>
 					<c:when test="${empty logindto}">
-							<span class="loginbutton btn" onclick="location.href='loginMain.do'">로그인</span>
-							<span class="insertbutton btn" onclick="location.href='insertform.do'">회원가입</span>
+						<span class="loginbutton btn btn-outline-light" onclick="location.href='loginMain.do'">로그인</span>
+						<span class="insertbutton btn btn-outline-light" onclick="location.href='TermsAndConditions.do'">회원가입</span>
 					</c:when>
 					<c:otherwise>
-							<span>안녕하세요. ${logindto.member_name }님</span>
-							<span class="mypagebutton btn" onclick="location.href='mypage.do'">마이페이지</span>
-							<span class="logoutbutton btn" onclick="logout('${logindto.member_id}')">로그아웃</span>
-						
-						
+						<span>안녕하세요. ${logindto.member_name }님</span>
+						<span class="mypagebutton btn btn-outline-light" onclick="location.href='mypage.do'">마이페이지</span>
+						<span class="logoutbutton btn btn-outline-light" onclick="logout('${logindto.member_id}')">로그아웃</span>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -87,28 +94,30 @@ a.nav-link:hover{
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg nav-bar-custom main_img ">
 			<div class="container">
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarResponsive" aria-controls="navbarResponsive"
-					aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item ">
-						<a class="nav-link" href="dosirak_listpagig.do">도시락 주문 <span class="sr-only">(current)</span>
-						</a></li>
-						<!-- 둘중 선택 <li class="nav-item active"><a class="nav-link" href="dosiraktest.do">도시락
-							주문 <span class="sr-only">(current)</span>
-					 	</a></li> -->
-						<li class="nav-item "><a class="nav-link" href="custom.do">커스텀 도시락
-								주문</a></li>
-						<li class="nav-item"><a class="nav-link" href="nutritiongraph.do">주간 영양정보</a>
+							<a class="nav-link" href="dosirak_listpaging.do">도시락 주문 <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="#">특가 도시락</a></li>
-						<li class="nav-item"><a class="nav-link" href="freeboard_list.do">자유 게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="eventboard_list.do">이벤트 게시판</a>
+						<li class="nav-item ">
+							<a class="nav-link" href="custom.do">커스텀 도시락 주문</a>
 						</li>
-						<li class="nav-item "><a class="nav-link" href="delivery_place.do">배달장소 확인</a>
+						<c:if test="${logindto ne null}">
+						<li class="nav-item">
+							<a class="nav-link" href="nutritiongraph.do">주간 영양정보</a>
+						</li>
+						</c:if>
+						<li class="nav-item">
+							<a class="nav-link" href="freeboard_list.do">자유 게시판</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="eventboard_list.do">이벤트 게시판</a>
+						</li>
+						<li class="nav-item ">
+							<a class="nav-link" href="notice_list.do">공지사항 게시판</a>
 						</li>
 					</ul>
 				</div>
