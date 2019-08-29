@@ -7,6 +7,13 @@
 <%
 	MemberDto logindto = (MemberDto) session.getAttribute("logindto");
 %>
+<style type="text/css">
+.dosirakimg{
+	width: 22rem;
+	height: 22rem;
+}
+</style>
+
 </head>
 <body>
 	<!-- ------------------------헤더-------------------------------------------- -->
@@ -119,7 +126,7 @@
 			<c:otherwise>
 				<h1>도시락 게시판</h1>
 				<br />
-				<div style="border: 1px solid salmon; width: 100%;">
+				<div style=" width: 100%;">
 					<div class="row">
 						<table>
 							<c:choose>
@@ -127,8 +134,8 @@
 									<c:forEach items="${dosiraklist}" var="dto">
 										<div class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
 											<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'">
-												<img alt="이미지" src="https://dosirakmall.wisacdn.com/_data/product/201901/11/214bf675538ebab78e937949a977544e.jpg" style="width: 20rem; height: 20rem;" /> 
-												<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
+												<img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="best3img">
+					<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
 												<div style="text-align: center;">
 													<p>${dto.dosirak_name}/${dto.dosirak_price}원</p>
 												</div>
@@ -141,8 +148,8 @@
 										begin="0" end="4">
 										<div class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
 											<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'">
-												<img alt="이미지" src="https://dosirakmall.wisacdn.com/_data/product/201901/11/214bf675538ebab78e937949a977544e.jpg" style="width: 20rem; height: 20rem;" /> 
-												<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
+												<img alt="이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" class="dosirakimg" />
+										<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
 												<div style="text-align: center;">
 													<p>${dto.dosirak_name}/${dto.dosirak_price}원</p>
 												</div>
