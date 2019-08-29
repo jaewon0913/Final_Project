@@ -53,7 +53,7 @@
 			</div>
 			
 			<div class="col-el-5 col-lg-5 col-md-5 mx-5 mp border">
-				<p onclick="location.href='#'" class="text-dark " >결제내역</p>
+				<p onclick="location.href='orderresultpage.do'" class="text-dark " >결제내역</p>
 			</div>
 		</div>
 		
@@ -78,7 +78,7 @@
 			</div>
 			
 			<div class="col-el-5 col-lg-5 col-md-5 mx-5 mp border">
-			<p onclick="location.href=''" class="text-dark" >회원 탈퇴</p>
+			<p onclick="location.href='withdrawal.do'" class="text-dark" >회원 탈퇴</p>
 			</div>
 		</div>
 	</div>

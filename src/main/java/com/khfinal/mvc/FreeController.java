@@ -236,17 +236,18 @@ public class FreeController {
 	}
 
 	@RequestMapping("/com_board_delete.do")
-	public String com_board_delete(@RequestParam int com_num,@RequestParam int free_postnum,Model model) {
+	@ResponseBody
+	public Map<String, List<CommentDto>> com_board_delete(@RequestParam int com_num,int free_postnum) {
+		Map<String, List<CommentDto>> map = new HashMap<String, List<CommentDto>>();
+		
 		int res = biz.com_board_delete(com_num);
 		
-		model.addAttribute("free_postnum", free_postnum);
-		// biz.freeboard_delete(free_postnum);
 		if (res > 0) {
-			return "redirect:freeboard_detail.do";
-		} else {
-			return "redirect:freeboard_detail.do";
-		}
-	
+			List<CommentDto> list = biz.com_selectList(free_postnum);
+			map.put("list", list);
+		} 
+			
+		return map;
 
 	}
 
