@@ -20,7 +20,7 @@
 	<!-- etc button -->
 	<div class="pull-right">
 		<!-- chat -->
-		<img alt="chat" src="${pageContext.request.contextPath }/resources/bootstrap/image/chat1.png" class="navbar-fixed-top chat" id="chat_btn">
+		<img alt="chat" src="${pageContext.request.contextPath }/resources/bootstrap/image/chat.png" class="navbar-fixed-top chat" id="chat_btn">
 		<div id="chat_div">
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
@@ -34,7 +34,7 @@
 			<input type="button" id="send_btn" value="전송" class="btn btn-outline-light"/>
 		</div>
 		
-		<img alt="bot" src = "${pageContext.request.contextPath }/resources/bootstrap/image/chat2.png" class = "navbar-fixed-top bot" id = "bot_btn" >
+		<img alt="bot" src = "${pageContext.request.contextPath }/resources/bootstrap/image/chatbot.png" class = "navbar-fixed-top bot" id = "bot_btn" >
 		<div id = "bot_div">
 			<div style="float: right; padding-right: 2rem;" >
 				<button type="button" id="bot_chat_close" style = "position : fixed; z-index : 90; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>

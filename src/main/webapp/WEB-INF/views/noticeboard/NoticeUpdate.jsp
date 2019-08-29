@@ -38,7 +38,7 @@
 				<tr>
 					<th>내 용</th>
 					<td>
-					<textarea rows="5" cols="60" name="notice_content">${NoticeDto.notice_content}</textarea></td>
+					<textarea rows="40" cols="100"  name="notice_content">${NoticeDto.notice_content}</textarea></td>
 				</tr>
 				<tr>	
 					<th>작성일</th>

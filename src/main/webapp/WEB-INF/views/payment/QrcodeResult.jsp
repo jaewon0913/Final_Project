@@ -62,7 +62,7 @@
 			<c:when test="${dto.receivechk eq 'N'}">
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="수령하기">
+						<input type="submit" value="수령하기" class="btn btn-outline-light">
 					</td>
 				</tr>
 			</c:when>

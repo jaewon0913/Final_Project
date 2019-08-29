@@ -218,22 +218,16 @@
 			<c:choose>
 				<c:when test="${logindto.member_id eq 'admin'}">			
 			<tr>	
-				<td colspan="16" align="right">
-				<input type="submit" value="1회 결제하기" class="btn btn-outline-light">
-				<input type="button" value="정기 결제하기" onclick="location.href='dorirak_monthpay.do'"  class="btn btn-outline-light"> 
+				<td colspan="16" align="left">
 				<input type="button" value="수 정" onclick="location.href='dosirak_updateform.do?dosirak_postnum=${dosirakdto.dosirak_postnum}'"  class="btn btn-outline-light"/> 
 				<input type="button" value="삭 제" onclick="location.href='dosirak_delete.do?dosirak_name=${dosirakdto.dosirak_name}'" class="btn btn-outline-light"/> 
-				<input type="button" value="이 전" onclick="location.href='dosirak_list.do'" class="btn btn-outline-light"/></td>
+				<input type="button" value="이 전" onclick="location.href='dosirak_listpaging.do'" class="btn btn-outline-light"/></td>
 			</tr>
 			</c:when>
 			<c:otherwise>
 			<tr>
-				<td colspan="16" align="right">
-				<input type="submit" value="1회 결제하기" class="btn btn-outline-light">
-				<input type="button" value="정기 결제하기" onclick="location.href='dorirak_monthpay.do?dto=${dosirakdto}'"  class="btn btn-outline-light"> 
-				<input type="button" value="수 정" onclick=""  class="btn btn-outline-light"/> 
-				<input type="button" value="삭 제" onclick="" class="btn btn-outline-light"/> 
-				<input type="button" value="이 전" onclick="location.href='dosirak_list.do'" class="btn btn-outline-light"/></td>
+				<td colspan="16" align="left">
+				<input type="button" value="이 전" onclick="location.href='dosirak_listpaging.do'" class="btn btn-outline-light"/></td>
 			</tr>
 			</c:otherwise>
 			</c:choose>
