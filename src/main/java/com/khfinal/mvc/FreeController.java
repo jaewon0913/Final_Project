@@ -89,7 +89,7 @@ public class FreeController {
 		MemberDto logindto = (MemberDto) session.getAttribute("logindto");
 		model.addAttribute("logindto", logindto);
 
-		return "freeboard/FreeboardInsertform";
+		return "freeboard/FreeboardInsertForm";
 	}
 
 	@RequestMapping("/freeboard_insert.do")

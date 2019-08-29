@@ -13,20 +13,19 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-.iii {
+.best3img {
 	width: 25rem; 
 	height : 25rem; 
 	transition: width 0.5s, height 0.5s;
 }
 
-.iii:hover {
+.best3img:hover {
 	width: 28rem; 
 	height : 28rem; 
-	
 }
 
 .best3{
-	height: 42rem;
+	height: 30rem;
 }
 
 .menu{
@@ -40,11 +39,11 @@
 	
 }
 .event{
-	width: 70%;
+	width: 100%;
 	height: 20rem;
 }
 .event:hover{
-	width: 70%;
+	width: 100%;
 	height: 20rem;
 	opacity: 0.8;
 }
@@ -57,6 +56,25 @@ margin-top: 8rem;
 .logo2{
 	width: 20rem;
 	height: 8rem;
+}
+.number{
+	display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    padding-top: 9px;
+    background: rgba(89,202,183,0.45);
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    line-height: 100%;
+}
+.dosirakimg{
+	width: 25rem;
+	height: 25rem;
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -90,12 +108,10 @@ function pageMove_dosirak(page) {
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<div class="container text-center center" >
-<img alt="evevt" src="resources/bootstrap/image/event3.png" onclick="location.href='eventboard_list.do'" class="event">
+<img alt="evevt" src="resources/bootstrap/image/보물찾기_이벤트.png" onclick="location.href='eventboard_list.do'" class="event">
 </div>
 <!-- ------------------best3------------------ -->
-	<div class="container best3 center 	">
-		<h1>Best 3</h1>
-		<br/><br/><br/>
+	<div class="container best3 center border-bottom	">
 		
 		<c:choose>
 			<c:when test="${empty viewslist}">
@@ -105,7 +121,8 @@ function pageMove_dosirak(page) {
 				<c:forEach items="${viewslist}" var="viewsdto">
 					<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
 					<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${viewsdto.dosirak_postnum}'">
-					<img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="iii">
+					<div class="number">${viewsdto.bestnum }<p>Best</p></div>
+					<img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="best3img">
 					<input type="hidden" name="dosirak_postnum" value="${viewsdto.dosirak_postnum}">
 					</div>
 					</div>
@@ -119,7 +136,9 @@ function pageMove_dosirak(page) {
 	
 
 	<div class="container">
-	<h1 align="center">메	뉴</h1>
+	<div class="conrainer">
+		<h1 align="center">메	뉴</h1>
+	</div>
 		
 			<div style="border: 1 solid gray; width: 100%;">
 				<div class="row">
@@ -133,10 +152,12 @@ function pageMove_dosirak(page) {
 								<div
 									class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
 									<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'"> 
-										<img alt="이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" style="width: 20rem; height: 20rem; border-radius: 50%;" />
+										<img alt="이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" class="dosirakimg" />
 										<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
 										<div style="text-align: center;">
-											<p>${dto.dosirak_name}/${dto.dosirak_price}원</p>
+											<h1>${dto.dosirak_name}</h1>
+											<p>${dto.dosirak_content }</p>
+											<h3>${dto.dosirak_price}원</h3>
 										</div>
 									</div>
 								</div>

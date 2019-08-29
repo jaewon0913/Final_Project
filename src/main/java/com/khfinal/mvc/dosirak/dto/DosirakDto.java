@@ -20,13 +20,14 @@ public class DosirakDto {
 	private String mainimage;
 	private String thumbnail;
 	private Date dosirak_regdate;
+	private int bestnum;
 
 	public DosirakDto() {
 	}
 
 	public DosirakDto(int dosirak_postnum, String dosirak_name, String dosirak_title, String dosirak_content,
 			String dosirak_delivery, int dosirak_price, int dosirak_num, int dosirak_afternum, int dosirak_views,
-			int tan, int dan, int gi, int kcal, String mainimage, String thumbnail, Date dosirak_regdate) {
+			int tan, int dan, int gi, int kcal, String mainimage, String thumbnail, Date dosirak_regdate,int bestnum) {
 		super();
 		this.dosirak_postnum = dosirak_postnum;
 		this.dosirak_name = dosirak_name;
@@ -44,6 +45,7 @@ public class DosirakDto {
 		this.mainimage = mainimage;
 		this.thumbnail = thumbnail;
 		this.dosirak_regdate = dosirak_regdate;
+		this.bestnum=bestnum;
 	}
 
 	public int getDosirak_postnum() {
@@ -174,4 +176,13 @@ public class DosirakDto {
 		this.dosirak_regdate = dosirak_regdate;
 	}
 
+	public int getBestnum() {
+		return bestnum;
+	}
+
+	public void setBestnum(int bestnum) {
+		this.bestnum = bestnum;
+	}
+
+	
 }

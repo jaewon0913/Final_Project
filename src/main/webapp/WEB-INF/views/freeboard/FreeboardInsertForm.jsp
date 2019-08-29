@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>자유게시판 글작성</title>
 </head>
 <%
 int member_level = 0;
@@ -42,12 +42,12 @@ int member_level = 0;
 			</tr>
 			<tr>
 				<th>글 내용</th>
-				<td><textarea row="100" cols="60" name="free_content" placeholder="글을 작성해 주세요"  ></textarea></td>
+				<td><textarea rows="60" cols="100"  name="free_content" placeholder="글을 작성해 주세요"  ></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2">
-					<input type="button" value="목록으로" onclick="location.href='freeboard_list.do'">
-					<input type="submit" value="저  장">
+				<td colspan="2" align="right">
+					<input type="button" value="목록으로" onclick="location.href='freeboard_list.do'" class="btn btn-outline-light">
+					<input type="submit" value="저  장" class="btn btn-outline-light">
 				</td> 
 			</tr>
 		</table>

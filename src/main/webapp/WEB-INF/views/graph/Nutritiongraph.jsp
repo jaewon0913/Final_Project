@@ -33,6 +33,13 @@
     font-size: 12px;
     min-width: 30px;
 }
+svg{
+	width: 80rem;
+	height: 50rem;
+}
+svg>g>text{
+x:3;
+}
 </style>
 
 
@@ -200,6 +207,8 @@ $(document).ready(function(){
 			<span>하루권장 칼로리 / 3</span>
 		</div>
 	</div>
+</div>
+</div>
 </div>
 <%@ include file="../footer.jsp"%>
 </body>
