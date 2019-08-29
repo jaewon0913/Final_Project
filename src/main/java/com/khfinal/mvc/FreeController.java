@@ -222,14 +222,21 @@ public class FreeController {
 	}
 
 	@RequestMapping("/com_board_update.do")
-	public String com_board_update(@ModelAttribute CommentDto cmt, Model model) {
-		int res = biz.com_board_update(cmt);
+	@ResponseBody
+	public Map<String, List<CommentDto>> com_board_update(int com_num,int free_postnum,String com_content, Model model) {
+		Map<String, List<CommentDto>> map = new HashMap<String, List<CommentDto>>();
+		CommentDto dto = new CommentDto(com_num,0,"","",com_content,0,0,0,null);
+		int res = biz.com_board_update(dto);
 		
-		model.addAttribute("free_postnum", cmt.getFree_postnum());
+		if(res > 0) {
+			List<CommentDto> list = biz.com_selectList(free_postnum);
+			map.put("list", list);
+		}
+//		model.addAttribute("free_postnum", free_postnum);
 		
-		System.out.println("cmt : " + cmt);
+//		System.out.println("cmt : " + cmt);
 
-		return "redirect:freeboard_detail.do";
+		return map;
 
 
 

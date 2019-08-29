@@ -100,7 +100,7 @@ public class LoginController {
 		if (idchk == true) {// 가입페이지로 이동
 			model.addAttribute("id", id);
 			model.addAttribute("name", name);
-			return "KakaoMemberInsert";
+			return "member/KakaoMemberInsert";
 		}else {//로그인으로이동
 			System.out.println("kakaologin컨틀롤러 else문");
 			MemberDto memberdto = memberbiz.login(id,id);
