@@ -121,18 +121,18 @@ public class DosirakController {
 	         
 	}
 	
-	@RequestMapping("/dosirak_selectone.do")
-	public String dosirakselectOne(Model model, @RequestParam int dosirak_postnum) {
-		int res = 0;
-		DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
-		model.addAttribute("dosirakdto", dosirakdto);
-		
-		res = dosirakbiz.updateviews(dosirak_postnum);
-		if( res > 0) {
-			return "dosirak/DosirakSelectone";
-		}
-		return "dosirak/DosirakSelectone";
-	}
+   @RequestMapping("/dosirak_selectone.do")
+   public String dosirakselectOne(Model model, @RequestParam int dosirak_postnum) {
+      int res = 0;
+      DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
+      model.addAttribute("dosirakdto", dosirakdto);
+      
+      res = dosirakbiz.updateviews(dosirak_postnum);
+      if( res > 0) {
+         return "dosirak/DosirakSelectone";
+      }
+      return "dosirak/DosirakSelectone";
+   }
 	
 	@RequestMapping("/dosirak_insertform.do")
 	public String dosirak_insertform() {
