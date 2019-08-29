@@ -12,6 +12,11 @@
 .banner:hover{
 opacity: 0.5;
 }
+.logo2{
+width: 20em;
+height: 10em;
+margin-left: 10%;
+}
 </style>
 </head>
 
@@ -35,13 +40,20 @@ opacity: 0.5;
    
    <c:url value="/login" var="loginUrl" />
    <div class="container center banner" style="text-align: center;">
-   <img alt="banner" src="resources/bootstrap/image/회원가입 할인.png" onclick="location.href='TermsAndConditions.do'" style="height: 10rem; width: 60rem;">
+   <img alt="banner" src="resources/bootstrap/image/회원가입 할인.png" onclick="location.href='TermsAndConditions.do'" style=" width: 100%;">
    </div>
    <div style="padding-bottom:5rem; padding-top:5rem;">
-   <h1 class="title1" style="margin-left: 8rem;">Login</h1>
+  
       <div class="row">
       <form:form name="f" action="${loginUrl}" method="POST" class="center-block">
          <table style="align-content: center; margin-bottom: 5rem; margin-top: 5rem;" class="table" >
+        <tr>
+        	<th colspan="2" align="center"><img alt="logo2" src="resources/bootstrap/image/logo_2.png" class="logo2"></th>
+        </tr>
+        
+         <tr>
+         	<td colspan="2" align="center">LOGIN</td>
+         </tr>
             <tr>
                <th> ID &nbsp; : &nbsp;</th>
                <td><input class="form" type="text" name="id" id="id"
