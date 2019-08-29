@@ -20,7 +20,10 @@
 			
 		<c:forEach items="${list }" var="dto">
 			<table style="float: left; width: 50%; vertical-align: center; margin-bottom: 5rem; margin-top: 3rem; margin-left: 1rem; " class="table">
-				
+					<tr>
+						<th>결제일</th>
+						<td>${dto.order_regdate }</td>
+					</tr>
 					<tr>
 						<th>상품명</th>
 						<td>${dto.dosirak_title }</td>

@@ -104,18 +104,11 @@ function execPostCode() {
 	<form id="formtag" action="kakaoinsert_res.do" method="post" class="container center-block container " style="padding-left: 10%;"
 	 >
 	 <div class="container col-sm-10">
+	 	<input type="hidden" name="member_id" value="${id }" >
+		<input type="hidden" name="member_pw" value="${id }" >
 		<table class="table">
-		
-			<tr>
-				<th>아이디</th>
-				<td>
-					<input type="text" name="member_id" value="${id }" >
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="text" name="member_pw" value="${id }" ></td>
-			</tr>
+			
+			
 			<tr>
 				<th>이   름</th>
 				<td><input type="text" name="member_name" value="${name }"></td>
@@ -169,7 +162,7 @@ function execPostCode() {
 				<td colspan="2" align="center">
 				    <div class="g-recaptcha" data-sitekey="6Lcjlq8UAAAAAIl-9rG38Ko_2AHNrSzvUe4FA0V-"></div>
 <!--     				<button id="btn" title="n">테스트 버튼</button> -->
-    				<input type="button" value="테스트 버튼" id="btn" name="btn" title="n" class="btn btn-outline-light">
+    				<input type="button" value="로봇이 아닙니다." id="btn" name="btn" title="n">
 				</td>
 			</tr>
 			<tr>
