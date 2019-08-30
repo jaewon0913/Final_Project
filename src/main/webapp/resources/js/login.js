@@ -1,10 +1,16 @@
 function idChk(){
 	var doc = document.getElementsByName("member_id")[0];//내가입력한아이디
-//	alert(doc);
+	
+	var scWidth = screen.availWidth;
+	var scHeight = screen.availHeight;
+
+	var left = (parseInt(scWidth)-650)/2;   // 창의 왼쪽 간격을
+	var top = (parseInt(scHeight)-900)/2; //창의 높이를
+	
 	if(doc.value.trim()=="" || doc.value==null){
 		alert("아이디를 입력해주세요");
 	}else{
-		open("idChk.do?member_id="+doc.value,"","width=200,height=200");
+		open("idChk.do?member_id="+doc.value,"",'width = 200,height = 200,top='+top+', left='+left);
 		//open하면서 이미 새창형태는 만들어진거고 그안에 내용은 컨트롤러에서 만든다.
 	}
 }
@@ -20,13 +26,13 @@ function emailSend(){//메일보내기
 			success:function(msg){
 // 					alert(msg.emailnotused);
 				if(msg.emailnotused == true){
-					alert("Authentication number Send Success!!.");
+					alert("이메일에 인증번호가 발송되었습니다. 확인해주세요!");
 				} else if(msg.emailnotused == false){
-					alert("overlap email.");				
+					alert("이메일 발송 실패! 다시 확인해주세요.(중복 이메일 가입 X)");				
 					doc.value="";
 				}
 			},error:function(){
-				alert("통신실패 Error");
+				alert("이메일 발송 실패! 다시 확인해주세요.(중복 이메일 가입 X)");
 			}
 		});
 	}

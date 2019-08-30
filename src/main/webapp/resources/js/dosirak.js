@@ -7,8 +7,8 @@ function createCookie(){
 	var cookie_zi = jb("#zi_span").text();
 	var cookie_price = jb("#price_span").text();
 	
-	var cookie_src = jb("#dosriak_src").val();
-	var cookie_name = jb("#doriak_name").val();
+	var cookie_src = jb("#dosirak_src").val();
+	var cookie_name = jb("#dosirak_name").val();
 	
 	jb.ajax({
 		type : "POST",

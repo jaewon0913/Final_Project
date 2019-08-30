@@ -234,54 +234,64 @@ public class CustomController {
 		        }
 		    }
 		    
-		    dto.setTan(cValue[2]);
-		    dto.setDan(cValue[3]);
-		    dto.setZi(cValue[4]);
-		    dto.setCal(cValue[5]);
-		    dto.setPrice(cValue[6]);
-		   
-		    if(dto.getCount().equals("4")) {
-		    		dto.setDish1(cValue[12]);
-		    		dto.setDish2(cValue[11]);
-		    		dto.setDish3(cValue[10]);
-		    		dto.setDish4(cValue[9]);
-		    		dto.setDish5(cValue[8]);
-		    		
-		    		dto.setSrc1(cValue[13]);
-		    		dto.setSrc2(cValue[14]);
-		    		dto.setSrc3(cValue[15]);
-		    		dto.setSrc4(cValue[16]);
-		    		dto.setSrc5(cValue[17]);
-		    } else if (dto.getCount().equals("5")) {
-		    		dto.setDish1(cValue[13]);
-			    	dto.setDish2(cValue[12]);
-		    		dto.setDish3(cValue[11]);
-		    		dto.setDish4(cValue[10]);
-		    		dto.setDish5(cValue[9]);
-		    		dto.setDish6(cValue[8]);
-		    		
-		    		dto.setSrc1(cValue[14]);
-		    		dto.setSrc2(cValue[15]);
-		    		dto.setSrc3(cValue[16]);
-		    		dto.setSrc4(cValue[17]);
-		    		dto.setSrc5(cValue[18]);
-		    		dto.setSrc6(cValue[19]);
-		    } else if (dto.getCount().equals("6")) {
-			    	dto.setDish1(cValue[14]);
-			    	dto.setDish2(cValue[13]);
-		    		dto.setDish3(cValue[12]);
-		    		dto.setDish4(cValue[11]);
-		    		dto.setDish5(cValue[10]);
-		    		dto.setDish6(cValue[9]);
-		    		dto.setDish7(cValue[8]);
-		    		
-		    		dto.setSrc1(cValue[15]);
-		    		dto.setSrc2(cValue[16]);
-		    		dto.setSrc3(cValue[17]);
-		    		dto.setSrc4(cValue[18]);
-		    		dto.setSrc5(cValue[19]);
-		    		dto.setSrc6(cValue[20]);
-		    		dto.setSrc7(cValue[21]);
+		    if(dto.getCount().equals("0")) {
+		    	dto.setTan(cValue[2]);
+			    dto.setDan(cValue[3]);
+			    dto.setZi(cValue[4]);
+			    dto.setCal(cValue[5]);
+			    dto.setPrice(cValue[6]);
+	    		dto.setDish1(cValue[8]);
+	    		dto.setSrc1(cValue[9]);
+		    } else {
+		    	dto.setTan(cValue[2]);
+			    dto.setDan(cValue[3]);
+			    dto.setZi(cValue[4]);
+			    dto.setCal(cValue[5]);
+			    dto.setPrice(cValue[6]);
+			   
+			    if(dto.getCount().equals("4")) {
+			    		dto.setDish1(cValue[12]);
+			    		dto.setDish2(cValue[11]);
+			    		dto.setDish3(cValue[10]);
+			    		dto.setDish4(cValue[9]);
+			    		dto.setDish5(cValue[8]);
+			    		
+			    		dto.setSrc1(cValue[13]);
+			    		dto.setSrc2(cValue[14]);
+			    		dto.setSrc3(cValue[15]);
+			    		dto.setSrc4(cValue[16]);
+			    		dto.setSrc5(cValue[17]);
+			    } else if (dto.getCount().equals("5")) {
+			    		dto.setDish1(cValue[13]);
+				    	dto.setDish2(cValue[12]);
+			    		dto.setDish3(cValue[11]);
+			    		dto.setDish4(cValue[10]);
+			    		dto.setDish5(cValue[9]);
+			    		dto.setDish6(cValue[8]);
+			    		
+			    		dto.setSrc1(cValue[14]);
+			    		dto.setSrc2(cValue[15]);
+			    		dto.setSrc3(cValue[16]);
+			    		dto.setSrc4(cValue[17]);
+			    		dto.setSrc5(cValue[18]);
+			    		dto.setSrc6(cValue[19]);
+			    } else if (dto.getCount().equals("6")) {
+				    	dto.setDish1(cValue[14]);
+				    	dto.setDish2(cValue[13]);
+			    		dto.setDish3(cValue[12]);
+			    		dto.setDish4(cValue[11]);
+			    		dto.setDish5(cValue[10]);
+			    		dto.setDish6(cValue[9]);
+			    		dto.setDish7(cValue[8]);
+			    		
+			    		dto.setSrc1(cValue[15]);
+			    		dto.setSrc2(cValue[16]);
+			    		dto.setSrc3(cValue[17]);
+			    		dto.setSrc4(cValue[18]);
+			    		dto.setSrc5(cValue[19]);
+			    		dto.setSrc6(cValue[20]);
+			    		dto.setSrc7(cValue[21]);
+			    }
 		    }
 			
 		    model.addAttribute("cookiedto", dto);
