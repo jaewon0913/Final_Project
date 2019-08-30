@@ -290,9 +290,11 @@ public class DosirakController {
 		Cookie setCookie_zi = new Cookie("cookieZi", dto.getZi());
 		Cookie setCookie_cal = new Cookie("cookieCal", dto.getCal());
 		Cookie setCookie_price = new Cookie("cookiePrice", dto.getPrice());
-		
 		Cookie setCookie_dish1 = new Cookie("cookieDish1", dto.getDish1());
 		Cookie setCookie_src1 = new Cookie("cookieSrc1", dto.getSrc1());
+		
+		System.out.println(dto.getTan());
+		System.out.println(dto.getDan());
 
 		setCookie_name.setMaxAge(60*3);
 		setCookie_tan.setMaxAge(60*3);

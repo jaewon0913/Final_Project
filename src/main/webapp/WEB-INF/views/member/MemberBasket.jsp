@@ -167,9 +167,16 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<td colspan = "2" align = "center">
-						======== 장바구니가 비어 있습니다. ========
-						</td>
+						<tr>
+							<th><img class = "barket_img" src = "${cookiedto.src1}">${cookiedto.dish1 }</th>
+							<th>
+								칼로리 : ${cookiedto.cal }<br>
+								탄수화물 : ${cookiedto.tan }<br>
+								단백질 : ${cookiedto.dan }<br>
+								지방 : ${cookiedto.zi }<br><br>
+								도시락 가격 : ${cookiedto.price }
+							</th>
+						</tr>
 					</c:otherwise>
 					</c:choose>
 					<tr>
