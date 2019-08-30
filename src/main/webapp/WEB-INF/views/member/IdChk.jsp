@@ -8,7 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- Bootstrap core CSS -->
+<link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="resources/bootstrap/css/small-business.css" rel="stylesheet">
+<link href="resources/bootstrap/css/header.css" rel="stylesheet">
 
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- jQuery, bootstrap CDN -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script type="text/javascript">
 	
 	onload=function(){
@@ -36,16 +46,16 @@
 %>
 
 
-	<table style="width: 200px;height: 100px;margin: auto; margin-top: 50px;">
+	<table style="width: 130px;height: 100px; margin-top: 50px;">
 		<tr>
-			<th>ID:</th>
-			<td><input type="text" name="chkid" style="background-color: snow;border: none;"></td>
+			<td style = "font-size : 20pt">ID:&nbsp;&nbsp;</td>
+			<td><input type="text" name="chkid" style="background-color: snow;border: none; font-size : 20pt; width : 130px"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><%=idnotused.equals("true")?"아이디 생성 가능":"중복된 아이디 존재" %></td>
+			<td style = "border-bottom : solid 1px; border-top : solid 1px; margin-top: 10px" colspan="2"><%=idnotused.equals("true")?"아이디 생성 가능":"중복된 아이디 존재" %></td>
 		</tr>
 		<tr >
-			<td colspan="2"><input type="button" value="확인" onclick="idConfirm('<%=idnotused%>')" style="margin-top: 20px; margin-left:45px;"></td>
+			<td colspan="2"><input type="button" class = "btn btn-outline-light" value="확인" onclick="idConfirm('<%=idnotused%>')" style="margin-top: 10px; margin-left:68px;"></td>
 									<!-- ' ' 이걸빼면 함수안에 변수형태로 들어간다. idConfirm(true) 이런식으로 변수로들어감-->
 		</tr>
 	</table>

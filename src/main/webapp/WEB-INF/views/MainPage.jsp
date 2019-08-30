@@ -165,10 +165,9 @@ opacity: 0.5;
 <!-- -----------------홈페이지 설명-------------------------------------------- -->
 <!-- -----------------BEST3-------------------------------------------- -->
 		<!-- Content Row -->
-		<div class="row" style="margin-left:2rem;">
-	
-<div>
-							<c:choose>
+		<div class="row justify-content-center">
+			<div>
+			<c:choose>
 			<c:when test="${empty viewslist}">
 				<h3>베스트메뉴 도시락이 없습니다.</h3>
 			</c:when>
@@ -198,10 +197,12 @@ opacity: 0.5;
 				<a href="notice_list.do" class="btn">공지사항 게시판</a>
 				<c:choose>
 					<c:when test="${empty noticelist }">
+					<hr/>
 						공지사항이 없습니다.
 					</c:when>
 					<c:otherwise>
-						<table>
+					<hr/>
+						<table class = "table table-hover">
 							<tr>
 								<th>제목</th>
 								<th>조회수</th>
@@ -220,27 +221,27 @@ opacity: 0.5;
 			</div>
 
 <!-- -----------------공지사항 게시판-------------------------------------------- -->
-<!-- -----------------이벤트 게시판-------------------------------------------- -->
+<!-- -----------------자유 게시판-------------------------------------------- -->
 			<div class="Notice">
 				<a href="testa.do" class="btn">자유 게시판</a>
 				<c:choose>
 					<c:when test="${empty freelist }">
+					<hr/>
 						자유게시판에 작성된 글이 없습니다.
 					</c:when>
 					<c:otherwise>
-						<table>
+					<hr/>
+						<table class="table table-hover">					
 							<tr>
-								<th>작성자</th>
 								<th>제목</th>
-								<th>조회수</th>
 								<th>작성일</th>
+								<th>조회수</th>
 							</tr>
 							<c:forEach items="${freelist }" var="dto">
 								<tr>
-									<td>${dto.member_id }</td>
 									<td><a href="freeboard_detail.do?free_postnum=${dto.free_postnum }">${dto.free_title}</a></td>
-									<td>${dto.free_views }</td>
 									<td>${dto.free_regdate }</td>
+									<td>${dto.free_views }</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -248,7 +249,7 @@ opacity: 0.5;
 				</c:choose>
 			</div>
 			
-<!-- -----------------이벤트 게시판-------------------------------------------- -->
+<!-- -----------------자유 게시판-------------------------------------------- -->
 
 </div>
 <!-- ------------------------동영상-------------------------------------------- -->

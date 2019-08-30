@@ -9,6 +9,7 @@
 		width: 55rem;
 		height: 30rem;
 		top : 17rem;
+		overflow : scroll;
 		border-radius: 15px;
 	}
 	#send_div{

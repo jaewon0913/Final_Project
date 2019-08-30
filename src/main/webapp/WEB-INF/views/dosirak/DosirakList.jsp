@@ -147,7 +147,7 @@ function pageMove_dosirak(page) {
 	</div>
 		
 			<div style="border: 1 solid gray; width: 100%;">
-				<div class="row">
+				<div class="row center">
 				<table>
 					<c:choose>
 						<c:when test="${empty list}">

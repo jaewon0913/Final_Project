@@ -60,6 +60,8 @@
 }
 
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="resources/js/dosirak.js"></script>
 
 </head>
 <body>
@@ -93,9 +95,9 @@
 			<input type = "hidden" id = "input_zi" name = "custom_zi" value = ""/>
 			
 			<input type = "hidden" value = "4" name = "custom_count">
-			<p class="font">가격 : <span id = "price_span"></span>${dosirakdto.dosirak_price}원</p>
+			<p class="font">가격 : <span id = "price_span">${dosirakdto.dosirak_price}</span>원</p>
 			<input type = "hidden" value = "${dosirakdto.dosirak_price}" name = "dosirak_price" id = "price_input">
-					
+		
 			<p class="font">총 칼로리 : <span id = "cal_span">${dosirakdto.kcal}</span>kal</p>
 			<input type = "hidden" id = "input_kal" name = "custom_kal" value = ""/>
 			<p class = "font">수령 날짜 : <input type = "date" name = "dosirak_delivery" id = "input_date"/></p>
