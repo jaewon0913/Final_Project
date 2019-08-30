@@ -210,8 +210,7 @@ $(document).ready(function(){
 <script>
 	function checkkal(){
 		var sex = $("input[name=sex]:checked").val();
-		alert(sex);
-			
+		
 		var action = document.getElementById('select_action').value;
 		
 		var tall = document.getElementById('input_tall').value;
