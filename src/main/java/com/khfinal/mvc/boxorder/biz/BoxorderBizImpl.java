@@ -44,4 +44,19 @@ public class BoxorderBizImpl implements BoxorderBiz {
 		return boxorderdao.orderresult(member_id);
 	}
 
+	@Override
+	public List<BoxorderDto> todayorderresult(String member_id) {
+		return boxorderdao.todayorderresult(member_id);
+	}
+
+	@Override
+	public List<BoxorderDto> weekorderresult(String member_id) {
+		return boxorderdao.weekorderresult(member_id);
+	}
+
+	@Override
+	public List<BoxorderDto> monthorderresult(String member_id) {
+		return boxorderdao.monthorderresult(member_id);
+	}
+
 }

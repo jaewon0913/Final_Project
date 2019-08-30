@@ -1,6 +1,6 @@
 function idChk(){
 	var doc = document.getElementsByName("member_id")[0];//내가입력한아이디
-	alert(doc);
+//	alert(doc);
 	if(doc.value.trim()=="" || doc.value==null){
 		alert("아이디를 입력해주세요");
 	}else{
@@ -42,8 +42,8 @@ function emailChk(){//메일전송된 인증번호랑 사용자가 입력한 인
 			type:"post",
 			data:"emailtext="+emailtext.value,
 			success:function(msg){
-				alert(msg);
-				alert(msg.emailchk_res);
+//				alert(msg);
+//				alert(msg.emailchk_res);
 				if(msg.emailchk_res == true){
 					document.getElementsByName("member_email")[0].title="y";
 					document.getElementById("emailresult").innerHTML="인증번호가 일치합니다.";

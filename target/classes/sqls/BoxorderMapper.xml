@@ -26,4 +26,14 @@
 	<select id="orderresult" parameterType="map" resultType="boxorderdto">
 		SELECT * FROM BOXORDER WHERE MEMBER_ID=#{member_id} ORDER BY ORDER_REGDATE
 	</select>
+	
+	<select id="todayorder" parameterType="map" resultType="boxorderdto">
+		SELECT * FROM BOXORDER WHERE MEMBER_ID=#{member_id} AND ORDER_REGDATE = SYSDATE ORDER BY ORDER_REGDATE
+	</select>
+	<select id="weekorder"  parameterType="map" resultType="boxorderdto">
+		SELECT * FROM BOXORDER WHERE MEMBER_ID=#{member_id} AND ORDER_REGDATE BETWEEN SYSDATE-7 AND SYSDATE ORDER BY ORDER_REGDATE
+	</select>
+	<select id="monthorder" parameterType="map" resultType="boxorderdto">
+		SELECT * FROM BOXORDER WHERE MEMBER_ID=#{member_id} AND ORDER_REGDATE BETWEEN SYSDATE-30 AND SYSDATE ORDER BY ORDER_REGDATE
+	</select>
 </mapper>

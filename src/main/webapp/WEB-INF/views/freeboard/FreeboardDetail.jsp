@@ -45,11 +45,9 @@
 			<th>제   목</th>
 			<td>${dto.free_title }</td>
 		</tr>
-		<tr>
+		<tr  style="height: 30rem;">
 			<th>내   용</th>
-			<td colspan="6">
-			<textarea rows="60" cols="100" readonly="readonly">${dto.free_content }</textarea>
-		
+			<td colspan="6">${dto.free_content }</td>
 		</tr>
 			
 
@@ -100,7 +98,7 @@
 					<c:forEach items="${cmt }" var="cmt">
 						<tr id="comm_commTextF${cmt.com_num }">
 							<th>작성자</th>				
-							<td>${logindto.member_name }</td>
+							<td>${cmt.member_name }</td>
 							<th>댓글</th>
 							<td id="content${cmt.com_num }">${cmt.com_content }</td>
 							<th>작성일</th>
@@ -255,7 +253,6 @@ $("#comminsert").click(function(){
 });
 
 function commdelete(com_num){
-	alert(com_num);
 	var free_postnum = ${dto.free_postnum };
 	
 	$.ajax({
@@ -321,7 +318,6 @@ function commdelete(com_num){
 function commUpdate(com_num){
 	var free_postnum = ${dto.free_postnum };
 	var content = $("#updatecontent"+com_num+"").val();
-	alert(content);
 	
 	$.ajax({
 		url:"com_board_update.do",
