@@ -95,9 +95,9 @@ public class MailController {
 				msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
 
 				// ���� ����
-				msg.setSubject("����� mail TEST (title)");
+				msg.setSubject("너도나도 가입 인증 번호 입니다.");
 				// ���� ����
-				msg.setText("���� ��ȣ�� :" + temp);
+				msg.setText("인증번호 :" + temp);
 
 				Transport.send(msg);
 				System.out.println("�̸��� ����");
@@ -169,9 +169,9 @@ public class MailController {
 	            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
 	            
 	            //���� ����
-	            msg.setSubject("����� mail TEST (title)");
+	            msg.setSubject("너도나도 가입 인증 번호 입니다.");
 	            //���� ����
-	            msg.setText("���� ��ȣ�� :"+temp);
+	            msg.setText("인증번호 :"+temp);
 	            
 	            Transport.send(msg);
 	            System.out.println("�̸��� ����");

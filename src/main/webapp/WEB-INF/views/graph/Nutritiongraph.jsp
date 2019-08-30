@@ -183,33 +183,55 @@ $(document).ready(function(){
 	<div class="container" style="margin-bottom: 5rem; margin-top: 5rem;">
 	
 		<div class="col-md-6" style="text-align: left;">
-			<form action="">
-				<input type="checkbox" name="man" value="남자">&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="checkbox" name="woman" value="여자"/>&nbsp;&nbsp;여자
-				<br/>
-				<input type="text" placeholder="키를 입력해주세요" name="tall" >
-				<span>&nbsp;&nbsp;&nbsp;&nbsp;활동량 : </span>
-				<select name="활동량">
-		  			<option value="40">많음</option>
-		  			<option value="35" selected="selected">보통</option>
-		 			 <option value="30" >적음</option>
-				</select>
-				<br/><br/>
-				<input type="submit" value="칼로리 확인하기" class="btn btn-outline-light pull-right" style="margin-right: 13rem;">
-			</form>
+			<input type="radio" id = "man" name="sex" value="man" checked>&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id = "woman" name="sex" value="woman" >&nbsp;&nbsp;여자
+			<br/>
+			<input type="text" placeholder="키를 입력해주세요" name="tall" id = "input_tall">
+			<span>&nbsp;&nbsp;&nbsp;&nbsp;활동량 : </span>
+			<select name="활동량" id = "select_action">
+		  		<option value="40">많음</option>
+		  		<option value="35" selected="selected">보통</option>
+		 		 <option value="30" >적음</option>
+			</select>
+			<br/><br/>
+			<input type="button" value="칼로리 확인하기" class="btn btn-outline-light pull-right" style="margin-right: 13rem;" onclick = "checkkal()">
 		</div>
 	
 		<div class="col-md-6" style="text-align: left;">
-			<h3>하루 권장 칼로리 : </h3>
-			<span>키*키*[남자(22) 여자(21)]*{활동[많음(40) 보통(35) 적음(30)]}</span>
+			<h3>하루 권장 칼로리 : <span id = "onedaykal"></span> </h3>
+			<span>{표준체중[키 - 100] * 0.9} * {활동[많음(40) 보통(35) 적음(30)]}</span>
 			<br/><br/>
-			<h3>한끼 권장 칼로리 : </h3>
+			<h3>한끼 권장 칼로리 : <span id = "onekal"></span></h3>
 			<span>하루권장 칼로리 / 3</span>
 		</div>
 	</div>
 </div>
-</div>
-</div>
+
+<script>
+	function checkkal(){
+		var sex = $("input[name=sex]:checked").val();
+		alert(sex);
+			
+		var action = document.getElementById('select_action').value;
+		
+		var tall = document.getElementById('input_tall').value;
+		
+		var kal;
+		var onekal;
+		
+		if(sex == 'man'){
+			kal = ((tall - 100) * 0.9) * action;
+			onekal = kal / 3;
+			$("#onedaykal").text(kal);
+			$("#onekal").text(onekal);
+		} else if (sex == 'woman'){
+			kal = ((tall - 100) * 0.9) * action;
+			onekal = kal / 3;
+			$("#onedaykal").text(kal);
+			$("#onekal").text(onekal);
+		}
+	}
+</script>
 <%@ include file="../footer.jsp"%>
 </body>
 </html>

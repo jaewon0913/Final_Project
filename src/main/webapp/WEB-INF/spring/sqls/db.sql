@@ -18,7 +18,8 @@ CREATE TABLE MEMBER(
 --비밀번호 컬럼 추가구문(기존 DB있으면 추가하면됨)
 ALTER TABLE MEMBER ADD MEMBER_PW_CHANGE DATE;
 
-
+UPDATE MEMBER SET member_email = 'gmltn0911@gmail.com' WHERE MEMBER_ID='admin';
+SELECT * FROM MEMBER;
 
 SELECT sysdate - TO_CHAR(MEMBER_REGDATE, 'YYYYMMDD')
 FROM MEMBER;
@@ -54,7 +55,7 @@ ALTER TABLE authorities_member ADD CONSTRAINT IDX_authorities_member_FK0 FOREIGN
 
 
 INSERT INTO MEMBER VALUES ('user', '1','신희수','010-1111-1111','인천','부평역','이메일',1,'user',sysdate);
-INSERT INTO MEMBER VALUES ('admin', '1','관리자','010-2222-1111','서울','강남역','관리자이메일',1,'admin',sysdate);
+INSERT INTO MEMBER VALUES ('admin', '1','관리자','010-2222-1111','서울','강남역','jaewon9937@gmail.com',1,'admin',sysdate,sysdate);
 INSERT INTO MEMBER VALUES ('yumi', 'aaaa','홍유미','010-2222-1111','서울','강남역','관리자이메일',1,'admin',sysdate);
 
 -- 회원 권한 입력
@@ -72,7 +73,8 @@ SELECT * FROM authorities_member;
 DELETE FROM MEMBER WHERE MEMBER_ID = 'admin';
 DELETE FROM authorities_member WHERE member_id='1090687081';
 DELETE FROM MEMBER WHERE MEMBER_NAME = 'test';
-DELETE FROM authorities_member WHERE member_id='aa';
+DELETE FROM authorities_member WHERE member_id='bb';
+DELETE FROM MEMBER WHERE member_id='bb';
 INSERT INTO MEMBER VALUES ('admin', 'admin', '관리자', '010-1111-1111', '서울 강남구', '강남구', '1212081@naver.com', 'Y', 'admin' ,SYSDATE);
 
 

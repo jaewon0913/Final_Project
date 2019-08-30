@@ -136,8 +136,37 @@ public class BoxorderController {
 		List<BoxorderDto> list = boxorderbiz.orderresult(logindto.getMember_id());
 		
 		model.addAttribute("list", list);
+		model.addAttribute("member_id",logindto.getMember_id());
 		
 		return "member/orderresult";
+	}
+	
+	@RequestMapping("/todayorderresult.do")
+	public String todayorderresult(Model model,String member_id) {
+		System.out.println("todayorderresult들어옴");
+		List<BoxorderDto> list = boxorderbiz.todayorderresult(member_id);
+		System.out.println(list);
+		model.addAttribute("list", list);
+		model.addAttribute("member_id", member_id);
+		
+		return "member/todayorderresult";
+	}
+	@RequestMapping("/weekorderresult.do")
+	public String weekorderresult(Model model,String member_id) {
+		List<BoxorderDto> list = boxorderbiz.weekorderresult(member_id);
+		model.addAttribute("list", list);
+		model.addAttribute("member_id", member_id);
+		
+		return "member/weekorderresult";
+	}
+	@RequestMapping("/monthorderresult.do")
+	public String monthorderresult(Model model,String member_id) {
+		List<BoxorderDto> list = boxorderbiz.monthorderresult(member_id);
+		model.addAttribute("list", list);
+		model.addAttribute("member_id", member_id);
+		
+		
+		return "member/monthorderresult";
 	}
 }
 
