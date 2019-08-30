@@ -59,10 +59,16 @@ public class DosirakController {
    public String kakaopay_custom(CustomOrderDto custom_dto, Model model,HttpSession session, HttpServletRequest request) {
       MemberDto memberdto = (MemberDto)session.getAttribute("logindto");
       
-      System.out.println(custom_dto.getCustom_kal());
       custom_dto.setCustom_kal(request.getParameter("custom_kal"));
+      System.out.println(custom_dto.getCustom_kal());
       
-      if(custom_dto.getCustom_count().equals("4")) {
+      if(custom_dto.getCustom_count().equals("0")) {
+    	 custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+    	 model.addAttribute("dto", custom_dto);
+         model.addAttribute("memberdto",memberdto);
+         return "payment/Kakaopay";
+         
+      } else if(custom_dto.getCustom_count().equals("4")) {
          custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
          custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
          custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
@@ -290,18 +296,17 @@ public class DosirakController {
 		Cookie setCookie_zi = new Cookie("cookieZi", dto.getZi());
 		Cookie setCookie_cal = new Cookie("cookieCal", dto.getCal());
 		Cookie setCookie_price = new Cookie("cookiePrice", dto.getPrice());
+		Cookie setCookie_count = new Cookie("cookieCount", "0");
 		Cookie setCookie_dish1 = new Cookie("cookieDish1", dto.getDish1());
 		Cookie setCookie_src1 = new Cookie("cookieSrc1", dto.getSrc1());
 		
-		System.out.println(dto.getTan());
-		System.out.println(dto.getDan());
-
 		setCookie_name.setMaxAge(60*3);
 		setCookie_tan.setMaxAge(60*3);
 		setCookie_dan.setMaxAge(60*3);
 		setCookie_zi.setMaxAge(60*3);
 		setCookie_cal.setMaxAge(60*3);
 		setCookie_price.setMaxAge(60*3);
+		setCookie_count.setMaxAge(60*3);
 		setCookie_dish1.setMaxAge(60*3);
 		setCookie_src1.setMaxAge(60*3);
 
@@ -311,6 +316,7 @@ public class DosirakController {
 		response.addCookie(setCookie_zi);
 		response.addCookie(setCookie_cal);
 		response.addCookie(setCookie_price);
+		response.addCookie(setCookie_count);
 		response.addCookie(setCookie_dish1);
 		response.addCookie(setCookie_src1);
 		

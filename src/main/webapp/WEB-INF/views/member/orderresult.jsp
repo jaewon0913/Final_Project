@@ -6,14 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.orderbtn{
+		width : 8rem;
+		height : 5rem;
+	}
+</style>
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
 	<div class="container">
-		<input type="button" value="오늘" onclick="location.href='todayorderresult.do?member_id=${member_id}'">
-		<input type="button" value="일주일" onclick="location.href='weekorderresult.do?member_id=${member_id}'">
-		<input type="button" value="1개월" onclick="location.href='monthorderresult.do?member_id=${member_id}'">
 	
+		<div style = "float : right">
+			<input type="button" class = "orderbtn btn btn-outline-light" style = "font-size : 2rem;" value="오늘" onclick="location.href='todayorderresult.do?member_id=${member_id}'">
+			<input type="button" class = "orderbtn btn btn-outline-light" style = "font-size : 2rem;" value="일주일" onclick="location.href='weekorderresult.do?member_id=${member_id}'">
+			<input type="button" class = "orderbtn btn btn-outline-light" style = "font-size : 2rem;" value="1개월" onclick="location.href='monthorderresult.do?member_id=${member_id}'">
+		</div>
+		<br>
 	
 		<c:choose>
 			<c:when test="${empty list }">

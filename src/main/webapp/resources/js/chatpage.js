@@ -92,7 +92,23 @@ function botSendMessage(){
 				" &nbsp 4. 실시간 상담(/상담)<br></div>" +
 				" <br style = 'clear : both' /><br>");
 	} else if(message == "/커스텀"){
-		
+		$("#bot_msg_div").append(
+				"<img alt = '손님' src = 'resources/bootstrap/image/bot2.png' style = 'width : 5rem; height: 7rem; float : right;'>" +
+				"<div class = 'arrow_box_right' style = 'width : 32rem; right : -14rem; float : left;'>" +
+				"홈페이지 상단의 커스텀 도시락을 클릭 후<br>" +
+				"1.  원하는 반찬의 개수의 식판을 클릭한다.<br>" +
+				"2. 반찬의 아이콘을 클릭하여 드래그하여 식판에 위치시킨다.<br>" +
+				"3. 중복의 반찬은 안되며 삭제를 원할 경우 식판의 이미지를 더블 클릭하거나 화면 오른쪽의 있는 리스트에 X 버튼을 누른다.<br>" +
+				"4. 다 완료가 되었으면 주문 또는 장바구니를 클릭하여 진행한다." +
+				"</div>" +
+				"<br style = 'clear : both' /><br>" +
+				"<img alt='너도나도' src='resources/bootstrap/image/nado2.png' style='width: 5rem; height: 7rem; float : left;'>" +
+				"<div class = 'arrow_box' style = 'width : 32rem; left : -14rem; float : right;'>궁금한 것을 입력해주세요.(/???)으로 입력하시면 됩니다.<br/>" +
+				" &nbsp 1. 회원가입(/회원)<br>" +
+				" &nbsp 2. 홈페이지 이용방법(/홈페이지)<br>" +
+				" &nbsp 3. 커스텀 도시락 주문방법(/커스텀)<br>" +
+				" &nbsp 4. 실시간 상담(/상담)<br></div>" +
+				" <br style = 'clear : both' /><br>");
 	} else if(message == "/상담") {
 		$("#bot_msg_div").append(
 				"<img alt = '손님' src = 'resources/bootstrap/image/bot2.png' style = 'width : 5rem; height: 7rem; float : right;'>" +

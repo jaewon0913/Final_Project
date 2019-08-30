@@ -24,6 +24,7 @@
 		<div id="chat_div">
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${logindto.member_id}' id="sessionuserid">
+			
 			<div style="float: right; padding-right: 2rem;">
 				<button type="button" id="chat_close" style = "position : fixed; z-index : 90; width : 2rem; font-size : 1rem;" class="btn btn-outline-light">x</button>
 			</div>
@@ -116,7 +117,7 @@
 				printHTML += "</div>";
 				printHTML += "</div>";
 
-				$("#msg_div").prepend(printHTML);
+				$("#msg_div").append(printHTML);
 			} else if (sessionid == currentUser_Session) {
 				//	내가 보낸걸 내 화면에
 				var printHTML = "<div>";
@@ -126,7 +127,7 @@
 				printHTML += "</div>";
 				printHTML += "</div>";
 
-				$("#msg_div").prepend(printHTML);
+				$("#msg_div").append(printHTML);
 			} else {
 				//	남이 보낸걸 내 화면에
 				//	보낸사람이 admin이면 출력
@@ -138,7 +139,7 @@
 					printHTML += "</div>";
 					printHTML += "</div>";
 
-					$("#msg_div").prepend(printHTML);
+					$("#msg_div").append(printHTML);
 				} else if (currentUser_Session == "admin") {
 					//	admin만 다른 사람이 보낸 메시지 받기
 					var printHTML = "<div>";
@@ -148,9 +149,11 @@
 					printHTML += "</div>";
 					printHTML += "</div>";
 
-					$("#msg_div").prepend(printHTML);
+					$("#msg_div").append(printHTML);
 				}
 			}
+			$("#chat_div").scrollTop($("#chat_div")[0].scrollHeight);
+
 			console.log('chatting data : ' + data);
 		}
 
