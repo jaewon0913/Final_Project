@@ -1,9 +1,5 @@
 package com.khfinal.mvc;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.khfinal.mvc.dosirak.biz.DosirakBiz;
 import com.khfinal.mvc.dosirak.dto.DosirakDto;
 import com.khfinal.mvc.etc.biz.EtcBiz;
+import com.khfinal.mvc.free.biz.FreeboardBiz;
 import com.khfinal.mvc.free.dto.FreeboardDto;
 import com.khfinal.mvc.member.biz.MemberBiz;
 import com.khfinal.mvc.notice.biz.NoticeBiz;
@@ -38,6 +35,9 @@ public class HomeController {
 	
 	@Autowired
 	private DosirakBiz dosirakbiz;
+	
+	@Autowired
+	private FreeboardBiz freeboardbiz;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -51,8 +51,11 @@ public class HomeController {
 	
 	@RequestMapping("/mainpage.do")
 	public String main(Model model) {
-		List<NoticeDto> list = noticebiz.NoticemainSelect();
-		model.addAttribute("noticelist", list);
+		List<FreeboardDto> freelist = freeboardbiz.freemainselect();
+		model.addAttribute("freelist",freelist);
+		
+		List<NoticeDto> noticelist = noticebiz.NoticemainSelect();
+		model.addAttribute("noticelist", noticelist);
 		
 		List<DosirakDto> viewslist = dosirakbiz.viewslist();
 		model.addAttribute("viewslist", viewslist);

@@ -15,6 +15,8 @@ CREATE TABLE FREEBOARD(
 	MEMBER_LEVEL VARCHAR2(50) NULL
 );
 
+SELECT * FROM FREEBOARD WHERE rownum<=3 ORDER BY free_regdate desc;
+
 INSERT INTO FREEBOARD VALUES(FREE_POSTNUM.NEXTVAL,'romantic_coding','YUMI','게시글입니다.1','1글 내용입니다.', 0, SYSDATE, '회원');
 INSERT INTO FREEBOARD VALUES(FREE_POSTNUM.NEXTVAL,'romantic_coding','YUMI','게시글입니다.2','2글 내용입니다.', 1, SYSDATE, '회원');
 INSERT INTO FREEBOARD VALUES(FREE_POSTNUM.NEXTVAL,'romantic_coding','YUMI','게시글입니다.3','3글 내용입니다.', 2, SYSDATE, '회원');

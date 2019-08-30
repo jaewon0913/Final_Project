@@ -16,6 +16,7 @@ public interface FreeboardBiz {
 	public int freeboard_insert(FreeboardDto dto);
 	public int freeboard_update(FreeboardDto dto);
 	public int freeboard_delete(int free_postnum);
+	public List<FreeboardDto> freemainselect();
 	
 	//조회수
 	public int updateViews(int free_postnum);
