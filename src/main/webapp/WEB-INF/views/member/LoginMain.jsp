@@ -42,7 +42,7 @@ margin-left: 10%;
    <div class="container center banner" style="text-align: center;">
    <img alt="banner" src="resources/bootstrap/image/회원가입 할인.png" onclick="location.href='TermsAndConditions.do'" style=" width: 100%;">
    </div>
-   <div style="padding-bottom:5rem; padding-top:5rem;">
+   <div style="padding-bottom:5rem;">
   
       <div class="row">
       <form:form name="f" action="${loginUrl}" method="POST" class="center-block">
