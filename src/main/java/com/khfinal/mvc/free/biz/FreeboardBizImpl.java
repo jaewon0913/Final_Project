@@ -108,6 +108,11 @@ public class FreeboardBizImpl implements FreeboardBiz{
 	public int com_board_delete(int com_num) {
 		return dao.com_board_delete(com_num);
 	}
+
+	@Override
+	public List<FreeboardDto> freemainselect() {
+		return dao.freemainselect();
+	}
 	
 
 }

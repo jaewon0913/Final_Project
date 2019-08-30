@@ -259,6 +259,15 @@ public class FreeboardDaoImpl implements FreeboardDao {
 		return res;
 	}
 
+
+
+	@Override
+	public List<FreeboardDto> freemainselect() {
+		List<FreeboardDto> list = sqlSession.selectList(namespace+"freemainselect");
+		
+		return list;
+	}
+
 	
 	
 }
