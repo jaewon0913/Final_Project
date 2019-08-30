@@ -3,6 +3,8 @@ package com.khfinal.mvc;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,18 +39,48 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@RequestMapping("/login.do")
-	public String login(String id, String password) {
-		String encPassword = bcryptPasswordEncoder.encode(password);
-		System.out.println("암호화된 비밀번호 : "+encPassword);
+	@ResponseBody
+	public Map<String, Boolean> login(String id, String password) {
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		
-		MemberDto memberdto = memberbiz.login(id,encPassword);
+//		System.out.println("암호화된 비밀번호 : "+encPassword);
 		
-		if(memberdto != null) {
-			return "redirect: mainpage.do";
-		}else {
-			return "redirect: loginMain.do";
+//		MemberDto memberdto = memberbiz.login(id,encPassword);
+		String encPassword = "";
+		MemberDto memberdto = new MemberDto();
+		
+		//fasle가 있는거
+		boolean idchk = memberbiz.idChk(id);
+		if(idchk == false) {
+			memberdto = memberbiz.pwChk(id);
+//			encPassword = bcryptPasswordEncoder.encode(password);
+			
 		}
 		
+//		bcryptPasswordEncoder.matches(memberdto.getMember_pw(), encPassword);
+		System.out.println("matches함수 결과 : "+bcryptPasswordEncoder.matches(password,memberdto.getMember_pw()));
+		
+		
+		if(idchk == false && (bcryptPasswordEncoder.matches(password,memberdto.getMember_pw())) == true) {
+			map.put("loginchk", true);
+			System.out.println("1");
+		}else if(idchk == true) {
+			map.put("idchk", false);//아이디없음
+			map.put("loginchk", false);
+			System.out.println("2");
+		}else if(idchk == false && bcryptPasswordEncoder.matches(password, encPassword) == false) {
+			map.put("idchk", true);//아이디는 있음
+			map.put("loginchk", false);//비밀번호가틀림
+			System.out.println("3");
+		}
+		
+//		if(memberdto != null) {
+//			map.put("loginchk", true);
+//		}else {
+//			map.put("loginchk", false);
+//		}
+		
+		return map;
 	}
 	@RequestMapping("/loginsuccess.do")
 	public String loginsuccess(Principal auth,HttpSession session) {
@@ -68,7 +100,7 @@ public class LoginController {
 		if (idchk == true) {// 가입페이지로 이동
 			model.addAttribute("id", id);
 			model.addAttribute("name", name);
-			return "KakaoMemberInsert";
+			return "member/KakaoMemberInsert";
 		}else {//로그인으로이동
 			System.out.println("kakaologin컨틀롤러 else문");
 			MemberDto memberdto = memberbiz.login(id,id);
@@ -285,10 +317,26 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/withdrawal.do")
-	public String memberWithdrawal() {
-		
-		
-		return "redirect:mainpage.do";
+	public void memberWithdrawal(HttpServletResponse response, HttpServletRequest request,HttpSession session) throws IOException {
+		String member_id = request.getParameter("member_id");
+		System.out.println(member_id);
+		int res = memberbiz.memberWithdrawal(member_id);
+		if(res > 0) {
+			session.setAttribute("logindto", null);
+			
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>"
+					+ "alert('탈퇴가 완료되었습니다.');"
+					+ "location.href='mainpage.do';"
+					+ "</script>");
+			out.flush();
+		}else {
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('탈퇴 실패');location.href='mainpage.do'</script>");
+			out.flush();
+		}		
 	}
 		
 }

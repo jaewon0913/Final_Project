@@ -16,6 +16,7 @@ public interface MemberBiz {
 	public MemberDto pwfind(String member_id,String member_email); // pw찾기
 
 	public boolean idChk(String member_id);
+	public MemberDto pwChk(String member_id);
 	public boolean emailChk(String member_email);
 	public MemberDto loginsuccess(String id);
 	public int memberWithdrawal(String member_id);

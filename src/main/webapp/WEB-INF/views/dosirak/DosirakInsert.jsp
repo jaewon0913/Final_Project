@@ -12,7 +12,7 @@
 	<!-- ------------------------헤더-------------------------------------------- -->
 	<%@ include file="../header.jsp"%>
 	<!-- ------------------------헤더-------------------------------------------- -->
-		<div>
+		<div class="container">
 			<form:form action="dosirak_insert.do" method="post" enctype="multipart/form-data">
 		<table class="table table-hover">
 			
@@ -69,34 +69,34 @@
 				<td><input multiple="multiple" type="file" name="file2" required="required"></td>				
 			</tr>
 			<tr>
-				<td colspan="12">
-					<input class="btn" type="submit" value="작 성" >
-					<input class="btn" type="button" value="취 소">
+				<td colspan="12" align="right">
+					<input class="btn btn-outline-light" type="submit" value="작 성" />
+					<input class="btn btn-outline-light" type="button" value="취 소" onclick="location.href='dosirak_listpaging.do'">
 				</td>
 			</tr>
 		</table>
 	</form:form>
 	
 
-		
-		</div>	
-	
-	<!-- ------------------------푸터-------------------------------------------- -->
-	<%@ include file="../footer.jsp"%>
-	<!-- ------------------------푸터-------------------------------------------- -->
+      
+      </div>   
+   
+   <!-- ------------------------푸터-------------------------------------------- -->
+   <%@ include file="../footer.jsp"%>
+   <!-- ------------------------푸터-------------------------------------------- -->
 
 
 </body>
 </html>
 
-			
+         
 
-	<!-- <form name="multifileupload" action="multifileupload.do" method="post" enctype="multipart/form-data">
-		<label>썸네일이미지</label>
-		
-		<input multiple="multiple" type="file" name="multifile">
-		
-		<input type="text" name="multisrc">
-		
-		<input type="submit" value="전송">
-	</form> -->
+   <!-- <form name="multifileupload" action="multifileupload.do" method="post" enctype="multipart/form-data">
+      <label>썸네일이미지</label>
+      
+      <input multiple="multiple" type="file" name="multifile">
+      
+      <input type="text" name="multisrc">
+      
+      <input type="submit" value="전송">
+   </form> -->

@@ -5,7 +5,45 @@
 <html lang="utf-8">
 
 <head>
+<style type="text/css">
+.mint{
+background-color: #59CAB7 ! important;
+}
+.best3img {
+   width: 25rem; 
+   height : 25rem; 
+}
 
+.best3img:hover {
+opacity: 0.8;
+}
+
+
+.number{
+	display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    padding-top: 9px;
+    background: rgba(89,202,183,0.45);
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    line-height: 100%;
+}
+.eventpage:hover{
+opacity: 0.8;
+}
+
+.best3:hover{
+opacity: 0.5;
+}
+
+
+</style>
 <!-- 파비콘 -->
 
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/bootstrap/image/favicon.ico" type="image/x-icon">
@@ -34,6 +72,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script type="text/javascript">	
 // 	$(document).ready(function() {
@@ -57,8 +96,6 @@
 	<!-- header.jsp -->
 	<%@ include file="header.jsp"%>
 	
-	<input type = "button" value = "테스트버튼" onclick = "location.href='testpage.do'">
-
 <!-- -----------------슬라이드 이미지-------------------------------------------- -->
 
 	<!-- Page Content -->
@@ -122,95 +159,99 @@
 <!-- -----------------홈페이지 설명-------------------------------------------- -->
 
 		<!-- Call to Action Well -->
-		<div class="card text-white bg-secondary my-5 py-4 text-center">
-			<div class="card-body">
-				<p class="text-white m-0">홈페이지 설명 div</p>
-			</div>
+		<div class="  my-5 py-4 m-0 ">
+						<img alt="eventpage" src="resources/bootstrap/image/이벤트.png"  class="eventpage" style="width: 98%;" onclick="location.href='eventboard_list.do'">
 		</div>
 <!-- -----------------홈페이지 설명-------------------------------------------- -->
-<!-- -----------------인스타 크롤링-------------------------------------------- -->
+<!-- -----------------BEST3-------------------------------------------- -->
 		<!-- Content Row -->
-		<div class="row">
-			<div class="col-md-4 mb-5">
-				<div class="card h-100">
-					<div class="card-body">
-						<h2 class="card-title">인스타 크롤링1</h2>
-						<p class="card-text">
-							<c:choose>
-								<c:when test="${empty logindto}">
-									<h3>로그인 세션 없음.</h3>
-								</c:when>
-								<c:otherwise>
-									<h3>${logindto.member_id }</h3>
-									<h3>${logindto.member_name }</h3>
-									<h3>${logindto.member_phone }</h3>
-									<h3>${logindto.member_address }</h3>
-									<h3>${logindto.member_subway }</h3>
-								</c:otherwise>
-							</c:choose>
-						</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary btn-sm">More Info</a>
-					</div>
-				</div>
+		<div class="row justify-content-center">
+			<div>
+			<c:choose>
+			<c:when test="${empty viewslist}">
+				<h3>베스트메뉴 도시락이 없습니다.</h3>
+			</c:when>
+			
+			<c:otherwise>
+				<c:forEach items="${viewslist}" var="viewsdto">
+				
+			<div class="col-lg-4 col-md-4 col-sm-2 col-xs-5">
+               <div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${viewsdto.dosirak_postnum}'">
+               <div class="number">${viewsdto.bestnum }<p>Best</p></div>
+               <img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="best3img">
+               <input type="hidden" name="dosirak_postnum" value="${viewsdto.dosirak_postnum}">
+               </div>
+               </div>
+			
+				</c:forEach>
+			</c:otherwise>
+		
+		</c:choose>
+			</div>				
 			</div>
-			<!-- /.col-md-4 -->
-			<div class="col-md-4 mb-5">
-				<div class="card h-100">
-					<div class="card-body">
-						<h2 class="card-title">인스타 크롤링</h2>
-						<p class="card-text">위하여, 풀밭에 없는 풍부하게 스며들어 가는 수 이것이다. 능히 청춘은
-							그들에게 유소년에게서 두기 같이, 봄바람이다. 꽃이 트고, 얼음 길을 소금이라 이상의 낙원을 대중을 이 있는가? 하는
-							심장은 우리의 너의 우리 쓸쓸하랴? 용기가 이것을 품으며, 설산에서 앞이 인류의 봄바람이다. 싸인 이것을 피가
-							반짝이는 아니다.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary btn-sm">More Info</a>
-					</div>
-				</div>
-			</div>
-			<!-- /.col-md-4 -->
-			<div class="col-md-4 mb-5">
-				<div class="card h-100">
-					<div class="card-body">
-						<h2 class="card-title">인스타 크롤링</h2>
-						<p class="card-text">위하여, 풀밭에 없는 풍부하게 스며들어 가는 수 이것이다. 능히 청춘은
-							그들에게 유소년에게서 두기 같이, 봄바람이다. 꽃이 트고, 얼음 길을 소금이라 이상의 낙원을 대중을 이 있는가? 하는
-							심장은 우리의 너의 우리 쓸쓸하랴? 용기가 이것을 품으며, 설산에서 앞이 인류의 봄바람이다. 싸인 이것을 피가
-							반짝이는 아니다.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary btn-sm">More Info</a>
-					</div>
-				</div>
-			</div>
-
 <!-- -----------------인스타 크롤링-------------------------------------------- -->
 
-
+<div class="row">
 <!-- -----------------공지사항 게시판-------------------------------------------- -->
-			<!-- <div class="Notice">
+			<div class="Notice">
 				<a href="notice_list.do" class="btn">공지사항 게시판</a>
-				<ul>
-					<li>공지사항1</li>
-					<li>공지사항2</li>
-					<li onclick="location.href='testpay.do'">공지사항3</li>
-				</ul>
-			</div> -->
+				<c:choose>
+					<c:when test="${empty noticelist }">
+					<hr/>
+						공지사항이 없습니다.
+					</c:when>
+					<c:otherwise>
+					<hr/>
+						<table class = "table table-hover">
+							<tr>
+								<th>제목</th>
+								<th>조회수</th>
+								<th>작성일</th>
+							</tr>
+							<c:forEach items="${noticelist }" var="dto">
+								<tr>
+									<td><a href="notice_detail.do?notice_postnum=${dto.notice_postnum}">${dto.notice_title}</a></td>
+									<td>${dto.notice_views }</td>
+									<td>${dto.notice_regdate }</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:otherwise>
+				</c:choose>
+			</div>
 
 <!-- -----------------공지사항 게시판-------------------------------------------- -->
-<!-- -----------------이벤트 게시판-------------------------------------------- -->
-			<!-- <div class="Notice">
-				<a href="testa.do">이벤트 게시판</a>
-				<ul>
-					<li>이벤트</li>
-				</ul>
+<!-- -----------------자유 게시판-------------------------------------------- -->
+			<div class="Notice">
+				<a href="testa.do" class="btn">자유 게시판</a>
+				<c:choose>
+					<c:when test="${empty freelist }">
+					<hr/>
+						자유게시판에 작성된 글이 없습니다.
+					</c:when>
+					<c:otherwise>
+					<hr/>
+						<table class="table table-hover">					
+							<tr>
+								<th>제목</th>
+								<th>작성일</th>
+								<th>조회수</th>
+							</tr>
+							<c:forEach items="${freelist }" var="dto">
+								<tr>
+									<td><a href="freeboard_detail.do?free_postnum=${dto.free_postnum }">${dto.free_title}</a></td>
+									<td>${dto.free_regdate }</td>
+									<td>${dto.free_views }</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
-			 -->
-<!-- -----------------이벤트 게시판-------------------------------------------- -->
+			
+<!-- -----------------자유 게시판-------------------------------------------- -->
 
-
+</div>
 <!-- ------------------------동영상-------------------------------------------- -->
 
 			<div class="embed-responsive embed-responsive-4by3" style="margin-bottom: 5%;">

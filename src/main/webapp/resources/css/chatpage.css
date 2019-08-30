@@ -6,9 +6,10 @@
 		background-color : white;
 		border : 1px solid;
 		left : 5rem;
-		width: 60rem; 
+		width: 55rem;
 		height: 30rem;
 		top : 17rem;
+		overflow : scroll;
 		border-radius: 15px;
 	}
 	#send_div{
@@ -18,12 +19,12 @@
 		background-color : white;
 		border : 1px solid;
 		left : 5rem;
-		width: 60rem; 
+		width: 55rem;
 		top : 47rem;
 		border-radius: 15px;
 	}
 	#send_btn{
-		width : 10rem;
+		width : 8rem;
 		float : right;
 		margin-right: 0.5rem
 	}
@@ -64,13 +65,14 @@
 	border: 1px solid;
 	left: 5rem;
 	width: 55rem;
-	top: 52rem;
+	top : 52rem;
 	border-radius: 15px;
 }
 
 #bot_send_btn {
-	width: 57px;
-	float: right;
+	width : 8rem;
+	float : right;
+	margin-right: 0.5rem
 }
 
 #bot_message {
@@ -101,14 +103,14 @@
 	border-color: rgba(213, 148, 75, 0);
 	border-right-color: #bbd5bf;
 	border-width: 30px;
-	margin-top: -54px;
+	margin-top: -48px;
 }
 
 .arrow_box:before {
 	border-color: rgba(240, 245, 93, 0);
 	border-right-color: #f0f55d;
 	border-width: 36px;
-	margin-top: -60px;
+	margin-top: -55px;
 }
 
 .arrow_box_right {
@@ -140,4 +142,8 @@
 	border-left-color: #c2e1f5;
 	border-width: 36px;
 	margin-top: -36px;
+}
+.chat,.bot{
+	width: 5rem;
+	height: 5rem;
 }

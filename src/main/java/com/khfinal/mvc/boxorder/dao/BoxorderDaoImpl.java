@@ -76,6 +76,7 @@ public class BoxorderDaoImpl implements BoxorderDao {
 		return list;
 	}
 
+	
 	@Override
 	public List<BoxorderDto> graphSelectList(String member_id) {
 		Map<String, String> map = new HashMap<String, String>();
@@ -93,7 +94,7 @@ public class BoxorderDaoImpl implements BoxorderDao {
 		if(list == null) {
 			System.out.println("list가 null이다!!!!!");
 //			List<BoxorderDto> list2 = new ArrayList<BoxorderDto>();
-			
+			list = new ArrayList<BoxorderDto>();
 			for(int i=0; i<7; i++) {
 				BoxorderDto dto = new BoxorderDto();
 				dto.setTan(0);
@@ -104,8 +105,8 @@ public class BoxorderDaoImpl implements BoxorderDao {
 				list.add(i,dto);
 			}
 //			return list;
-		}else if(list.size() != 7) {
-			
+		}else if(list.size() != 7 && list != null) {
+//			System.out.println("%%%%%%%%%%%%%%"+list.get(0).getTan());
 			System.out.println("리스트 사이즈 : "+list.size());
 //			List<BoxorderDto> list2 = new ArrayList<BoxorderDto>();
 			int size = 7-(list.size());//list.size()==2(0,1)  size=5
@@ -120,8 +121,54 @@ public class BoxorderDaoImpl implements BoxorderDao {
 			}
 //			return list;
 		}
+		for(int i = 0; i<7; i++) {
+			System.out.println("탄 : "+list.get(i).getTan());
+			System.out.println("단 : "+list.get(i).getDan());
+			System.out.println("지 : "+list.get(i).getGi());
+			System.out.println("칼 : "+list.get(i).getKcal());
+		}
 		
 		System.out.println("리스트 사이즈!!!!! : "+list.size());
+		return list;
+	}
+
+	@Override
+	public List<BoxorderDto> orderresult(String member_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		
+		List<BoxorderDto> list = sqlSession.selectList(namespace+"orderresult",map);
+		
+		return list;
+	}
+
+	@Override
+	public List<BoxorderDto> todayorderresult(String member_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		
+		List<BoxorderDto> list = sqlSession.selectList(namespace+"todayorder",map);
+		
+		return list;
+	}
+
+	@Override
+	public List<BoxorderDto> weekorderresult(String member_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		
+		List<BoxorderDto> list = sqlSession.selectList(namespace+"weekorder",map);
+	
+		return list;
+	}
+
+	@Override
+	public List<BoxorderDto> monthorderresult(String member_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		
+		List<BoxorderDto> list = sqlSession.selectList(namespace+"monthorder",map);
+	
 		return list;
 	}
 

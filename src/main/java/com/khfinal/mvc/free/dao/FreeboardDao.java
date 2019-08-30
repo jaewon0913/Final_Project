@@ -18,6 +18,7 @@ public interface FreeboardDao {
 	public int freeboard_insert(FreeboardDto dto);
 	public int freeboard_update(FreeboardDto dto);
 	public int freeboard_delete(int free_postnum);
+	public List<FreeboardDto> freemainselect();
 	
 	public int updateViews(int free_postnum);
 	

@@ -2,9 +2,13 @@ package com.khfinal.mvc;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,113 +19,124 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.khfinal.mvc.dosirak.biz.DosirakBiz;
 import com.khfinal.mvc.dosirak.dto.DosirakDto;
+import com.khfinal.mvc.etc.util.CookieDto;
 import com.khfinal.mvc.etc.util.CustomOrderDto;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.paging.Paging;
 
 @Controller
 public class DosirakController {
-	
-	@Autowired
-	private DosirakBiz dosirakbiz;
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+   
+   @Autowired
+   private DosirakBiz dosirakbiz;
+   private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	@RequestMapping("/dosiraktest.do")
-	public String dosiraktest(Model model) {
-		DosirakDto dosirakdto = dosirakbiz.selecttest(1);
-		model.addAttribute("dosirakdto", dosirakdto);
-		
-		return "payment/DosirakTest";
-	}
-	
-	@RequestMapping("/kakaopay.do")
-	public String kakaopay(DosirakDto dto, Model model,HttpSession session) {
-		System.out.println("kakaopay들어옴");
-		MemberDto memberdto = (MemberDto)session.getAttribute("logindto");
-		
-		model.addAttribute("dto", dto);
-		model.addAttribute("memberdto",memberdto);
-		return "payment/Kakaopay";
-	}
-	
-	@RequestMapping("/kakaopay_custom.do")
-	public String kakaopay_custom(CustomOrderDto custom_dto, Model model,HttpSession session, HttpServletRequest request) {
-		MemberDto memberdto = (MemberDto)session.getAttribute("logindto");
-		
-		System.out.println(custom_dto.getCustom_kal());
-		custom_dto.setCustom_kal(request.getParameter("custom_kal"));
-		
-		if(custom_dto.getCustom_count().equals("4")) {
-			custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
-			custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
-			custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
-			custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
-			custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
-			custom_dto.setCustom_dish6(null);
-			custom_dto.setCustom_dish7(null);
-		} else if (custom_dto.getCustom_count().equals("5")) {
-			custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
-			custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
-			custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
-			custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
-			custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
-			custom_dto.setCustom_dish6(request.getParameter("sideDish6"));
-			custom_dto.setCustom_dish7(null);
-		} else {
-			custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
-			custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
-			custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
-			custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
-			custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
-			custom_dto.setCustom_dish6(request.getParameter("sideDish6"));
-			custom_dto.setCustom_dish7(request.getParameter("sideDish7"));
-		}
-				
-		model.addAttribute("customdto", custom_dto);
-		model.addAttribute("memberdto",memberdto);
-		return "payment/KakaopayCustom";
-	}
-	
+   @RequestMapping("/dosiraktest.do")
+   public String dosiraktest(Model model) {
+      DosirakDto dosirakdto = dosirakbiz.selecttest(1);
+      model.addAttribute("dosirakdto", dosirakdto);
+      
+      return "payment/DosirakTest";
+   }
+   
+   @RequestMapping("/kakaopay.do")
+   public String kakaopay(DosirakDto dto, Model model,HttpSession session) {
+      System.out.println("kakaopay들어옴");
+      MemberDto memberdto = (MemberDto)session.getAttribute("logindto");
+      
+      model.addAttribute("dto", dto);
+      model.addAttribute("memberdto",memberdto);
+      return "payment/Kakaopay";
+   }
+   
+   @RequestMapping("/kakaopay_custom.do")
+   public String kakaopay_custom(CustomOrderDto custom_dto, Model model,HttpSession session, HttpServletRequest request) {
+      MemberDto memberdto = (MemberDto)session.getAttribute("logindto");
+      
+      custom_dto.setCustom_kal(request.getParameter("custom_kal"));
+      System.out.println(custom_dto.getCustom_kal());
+      
+      if(custom_dto.getCustom_count().equals("0")) {
+    	 custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+    	 model.addAttribute("dto", custom_dto);
+         model.addAttribute("memberdto",memberdto);
+         return "payment/Kakaopay";
+         
+      } else if(custom_dto.getCustom_count().equals("4")) {
+         custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+         custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
+         custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
+         custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
+         custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
+         custom_dto.setCustom_dish6(null);
+         custom_dto.setCustom_dish7(null);
+      } else if (custom_dto.getCustom_count().equals("5")) {
+         custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+         custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
+         custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
+         custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
+         custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
+         custom_dto.setCustom_dish6(request.getParameter("sideDish6"));
+         custom_dto.setCustom_dish7(null);
+      } else {
+         custom_dto.setCustom_dish1(request.getParameter("sideDish1"));
+         custom_dto.setCustom_dish2(request.getParameter("sideDish2"));
+         custom_dto.setCustom_dish3(request.getParameter("sideDish3"));
+         custom_dto.setCustom_dish4(request.getParameter("sideDish4"));
+         custom_dto.setCustom_dish5(request.getParameter("sideDish5"));
+         custom_dto.setCustom_dish6(request.getParameter("sideDish6"));
+         custom_dto.setCustom_dish7(request.getParameter("sideDish7"));
+      }
+            
+      model.addAttribute("customdto", custom_dto);
+      model.addAttribute("memberdto",memberdto);
+      return "payment/KakaopayCustom";
+   }
+   
 
-	@RequestMapping("/dosirak_list.do")
-	public String dosiraklist(Model model) {
-		model.addAttribute("list",dosirakbiz.selectList());
-		return "dosirak/DosirakList";
-	}
-	
-	@RequestMapping("/dosirak_listpaging.do")
-	public String dosiraklistpaging(Model model, String txt_search, String page) {
-		
-		String txt_s = txt_search;
-	      
-	         // 페이징하기
-	         int totalCount = dosirakbiz.totalcount(txt_s);
-	         int pag = (page == null) ? 1 : Integer.parseInt(page);
+   @RequestMapping("/dosirak_list.do")
+   public String dosiraklist(Model model) {
+      model.addAttribute("list",dosirakbiz.selectList());
+      return "dosirak/DosirakList";
+   }
+   
+   @RequestMapping("/dosirak_listpaging.do")
+   public String dosiraklistpaging(Model model, String txt_search, String page, HttpSession session) {
+      
+      String txt_s = txt_search;
+         
+            // 페이징하기
+            int totalCount = dosirakbiz.totalcount(txt_s);
+            int pag = (page == null) ? 1 : Integer.parseInt(page);
 
-	         Paging paging = new Paging();
-	         
-	         paging.setPageNo(pag); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
-	         paging.setPageSize(9); // 한페이지에 불러낼 게시물의 개수 지정
-	         paging.setTotalCount(totalCount);
-	         pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
-
-	         List<DosirakDto> list = dosirakbiz.selectListPaging(pag, paging.getPageSize(), txt_s);
-	         List<DosirakDto> viewslist = dosirakbiz.viewslist();
-	         model.addAttribute("list", list);
-	         model.addAttribute("viewslist", viewslist);
-	         model.addAttribute("paging", paging);
-	         model.addAttribute("txt_search", txt_s);
-	         
+            Paging paging = new Paging();
+            
+            paging.setPageNo(pag); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
+            paging.setPageSize(9); // 한페이지에 불러낼 게시물의 개수 지정
+            paging.setTotalCount(totalCount);
+            pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
+            
+            MemberDto logindto = (MemberDto) session.getAttribute("logindto");
+			model.addAttribute("logindto", logindto);
+            
+	        List<DosirakDto> list = dosirakbiz.selectListPaging(pag, paging.getPageSize(), txt_s);
+	        List<DosirakDto> viewslist = dosirakbiz.viewslist();
+	        
+	        model.addAttribute("list", list);
+	        model.addAttribute("viewslist", viewslist);
+	        model.addAttribute("paging", paging);
+	        model.addAttribute("txt_search", txt_s);
 	         return "dosirak/DosirakList";
 	         
 	}
 	
-	@RequestMapping("/dosirak_selectone.do")
+   @RequestMapping("/dosirak_selectone.do")
 	public String dosirakselectOne(Model model, @RequestParam int dosirak_postnum) {
 		int res = 0;
 		DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
@@ -129,7 +144,6 @@ public class DosirakController {
 		
 		res = dosirakbiz.updateviews(dosirak_postnum);
 		if( res > 0) {
-			System.out.println("오긴하니?? 조회수다");
 			return "dosirak/DosirakSelectone";
 		}
 		return "dosirak/DosirakSelectone";
@@ -137,7 +151,7 @@ public class DosirakController {
 	
 	@RequestMapping("/dosirak_insertform.do")
 	public String dosirak_insertform() {
-		return "dosirak/dosirak_insert";
+		return "dosirak/DosirakInsert";
 	}
 	
 	@RequestMapping("/dosirak_insert.do")
@@ -209,7 +223,7 @@ public class DosirakController {
 	public String dosirak_updateform(Model model, int dosirak_postnum) {
 		DosirakDto dosirakdto = dosirakbiz.selectOne(dosirak_postnum);
 		model.addAttribute("dosirakdto", dosirakdto);
-		return "dosirak/dosirak_update";
+		return "dosirak/Dosirakupdate";
 	}
 	
 	@RequestMapping("dosirak_update.do")
@@ -271,4 +285,45 @@ public class DosirakController {
 		model.addAttribute("dosirakdto");
 		return "payment/Dorirak_monthpay";
 	}
+	
+	@RequestMapping("/dosirakCookie.do")
+	@ResponseBody
+	public Map<String, String> cookie(HttpServletResponse response, CookieDto dto){
+		Cookie setCookie_name = new Cookie("cookieName", "일반도시락");
+		
+		Cookie setCookie_tan = new Cookie("cookieTan", dto.getTan());
+		Cookie setCookie_dan = new Cookie("cookieDan", dto.getDan());
+		Cookie setCookie_zi = new Cookie("cookieZi", dto.getZi());
+		Cookie setCookie_cal = new Cookie("cookieCal", dto.getCal());
+		Cookie setCookie_price = new Cookie("cookiePrice", dto.getPrice());
+		Cookie setCookie_count = new Cookie("cookieCount", "0");
+		Cookie setCookie_dish1 = new Cookie("cookieDish1", dto.getDish1());
+		Cookie setCookie_src1 = new Cookie("cookieSrc1", dto.getSrc1());
+		
+		setCookie_name.setMaxAge(60*3);
+		setCookie_tan.setMaxAge(60*3);
+		setCookie_dan.setMaxAge(60*3);
+		setCookie_zi.setMaxAge(60*3);
+		setCookie_cal.setMaxAge(60*3);
+		setCookie_price.setMaxAge(60*3);
+		setCookie_count.setMaxAge(60*3);
+		setCookie_dish1.setMaxAge(60*3);
+		setCookie_src1.setMaxAge(60*3);
+
+		response.addCookie(setCookie_name);
+		response.addCookie(setCookie_tan);
+		response.addCookie(setCookie_dan);
+		response.addCookie(setCookie_zi);
+		response.addCookie(setCookie_cal);
+		response.addCookie(setCookie_price);
+		response.addCookie(setCookie_count);
+		response.addCookie(setCookie_dish1);
+		response.addCookie(setCookie_src1);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("success", "success");
+		
+		return map;
+	}
+	
 }

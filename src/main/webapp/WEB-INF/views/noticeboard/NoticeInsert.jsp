@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<th>내 용</th>
-				<td><textarea rows="10" cols="60" name="notice_content"></textarea></td>
+				<td><textarea rows="40" cols="100" name="notice_content"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">

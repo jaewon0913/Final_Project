@@ -14,4 +14,9 @@ public interface BoxorderBiz {
 	public int receiveUpdate(BoxorderDto dto);
 	public List<BoxorderDto> qrcodeSelect(String member_id);
 	public List<BoxorderDto> graphSelectList(String member_id);
+	
+	public List<BoxorderDto> orderresult(String member_id);
+	public List<BoxorderDto> todayorderresult(String member_id);
+	public List<BoxorderDto> weekorderresult(String member_id);
+	public List<BoxorderDto> monthorderresult(String member_id);
 }

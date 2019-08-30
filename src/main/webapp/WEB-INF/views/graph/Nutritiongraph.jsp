@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주간영양정보</title>
 </head>
 <%@ include file="../header.jsp"%>
 <style>
@@ -33,11 +33,30 @@
     font-size: 12px;
     min-width: 30px;
 }
+svg{
+	width: 80rem;
+	height: 50rem;
+}
+svg>g>text{
+x:3;
+}
 </style>
 
 
 <body>
 <div class="container text-center center">
+	<div class="border" style="width: 20rem;">
+		<div class="pull-left">
+			<img alt="?" src="resources/bootstrap/image/q&a.png" style="width: 3rem; height: 3rem;">
+		</div>
+		<br/><br/>
+		<div style="text-align: left; ">
+			2000Kcal 기준<br/>
+			한끼 권장 칼로리는<br/>
+			아침 : 400Kcal<br/>
+			점심, 저녁 : 800Kcal 입니다.
+		</div>
+	</div>
 <svg style="width:700; height:320;" ></svg>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -160,8 +179,58 @@ $(document).ready(function(){
 });
 
 </script>
+	<h1 style="text-align: left; margin-top: 5rem; ">칼로리 계산기</h1>
+	<div class="container" style="margin-bottom: 5rem; margin-top: 5rem;">
+	
+		<div class="col-md-6" style="text-align: left;">
+			<input type="radio" id = "man" name="sex" value="man" checked>&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id = "woman" name="sex" value="woman" >&nbsp;&nbsp;여자
+			<br/>
+			<input type="text" placeholder="키를 입력해주세요" name="tall" id = "input_tall">
+			<span>&nbsp;&nbsp;&nbsp;&nbsp;활동량 : </span>
+			<select name="활동량" id = "select_action">
+		  		<option value="40">많음</option>
+		  		<option value="35" selected="selected">보통</option>
+		 		 <option value="30" >적음</option>
+			</select>
+			<br/><br/>
+			<input type="button" value="칼로리 확인하기" class="btn btn-outline-light pull-right" style="margin-right: 13rem;" onclick = "checkkal()">
+		</div>
+	
+		<div class="col-md-6" style="text-align: left;">
+			<h3>하루 권장 칼로리 : <span id = "onedaykal"></span> </h3>
+			<span>{표준체중[키 - 100] * 0.9} * {활동[많음(40) 보통(35) 적음(30)]}</span>
+			<br/><br/>
+			<h3>한끼 권장 칼로리 : <span id = "onekal"></span></h3>
+			<span>하루권장 칼로리 / 3</span>
+		</div>
+	</div>
 </div>
 
+<script>
+	function checkkal(){
+		var sex = $("input[name=sex]:checked").val();
+		
+		var action = document.getElementById('select_action').value;
+		
+		var tall = document.getElementById('input_tall').value;
+		
+		var kal;
+		var onekal;
+		
+		if(sex == 'man'){
+			kal = ((tall - 100) * 0.9) * action;
+			onekal = kal / 3;
+			$("#onedaykal").text(kal);
+			$("#onekal").text(onekal);
+		} else if (sex == 'woman'){
+			kal = ((tall - 100) * 0.9) * action;
+			onekal = kal / 3;
+			$("#onedaykal").text(kal);
+			$("#onekal").text(onekal);
+		}
+	}
+</script>
 <%@ include file="../footer.jsp"%>
 </body>
 </html>

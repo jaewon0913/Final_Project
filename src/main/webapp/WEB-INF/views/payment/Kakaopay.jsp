@@ -17,11 +17,6 @@
  		width: 5rem;
  		height: 3rem;
  	}
- 	.test{
- 		margin-right: 25rem;
- 		margin-left: 25rem;
- 		text-align: left;
- 	}
 </style>
 </head>
 <body>
@@ -30,7 +25,7 @@
 <!--     <input type="button" id="pay" value="결제시스템입니다." >-->   
 
 
-<div class="test">
+<div class="container">
 <!-- 바코드 이미지 태그  outerHTML-->
 	<div id="qrcodeform">
 		<img id="qrcode" src='' />
@@ -93,7 +88,6 @@
 		<tr>
 			<td colspan="2" align="right">
 				<img id="pay" alt="결제" src="resources/bootstrap/image/kakaopay_btn.png">
-				
 				<input type="button" value="취소" onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'" class="btn btn-outline-light" />
 			</td>
 		</tr>
@@ -108,7 +102,7 @@ var date = "";
 		//date가져오고 
 		var d = new Date();
 		date = d.getFullYear()+""+(d.getMonth()+1)+""+d.getDate()+""+d.getHours()+""+d.getMinutes()+""+d.getSeconds();
-		alert(date);
+// 		alert(date);
 		ordernumber = '${memberdto.member_id}'+date;
 		var queryStr = "?member_id=${memberdto.member_id}&ordernumber="+ordernumber +"&choe=UTF-8";
 		var googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=";
@@ -120,7 +114,7 @@ var date = "";
 	function chuan(){
 		var qr = document.getElementById("qrcode").outerHTML;
 		qr = qr.replace(/"/g,"&quot;");
-		alert(qr);
+// 		alert(qr);
 		return qr;
 	}
 	
@@ -178,7 +172,7 @@ var date = "";
           var msg = '결제에 실패하였습니다.';
           msg += '에러내용 : ' + rsp.error_msg;
       }
-      alert(msg);
+//       alert(msg);
   });
          
          

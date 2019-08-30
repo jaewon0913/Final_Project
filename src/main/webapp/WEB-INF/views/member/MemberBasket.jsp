@@ -38,11 +38,8 @@
 	
 	<div class="em">
 	<!-- Body -->
-		<table border = "1" align = "center">
-		<form action="kakaopay_custom.do" method = "POST">
-			<col width = "500rem">
-			<col width = "350rem">
-		
+	<form action="kakaopay_custom.do" method = "POST">
+		<table class="table">		
 			<c:choose>
 				<c:when test="${empty cookiedto}">
 					<tr>
@@ -66,6 +63,7 @@
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish1 }
 							</th>
 							<th rowspan = "5" style = "text-align : center">
+								<br><br><br><br><br><br><br><br>
 								칼로리 : ${cookiedto.cal }
 								<input type = "hidden" value = "${cookiedto.cal}" name = "custom_kal"><hr>
 								탄수화물 : ${cookiedto.tan }
@@ -111,66 +109,144 @@
 						<tr>
 							<th>
 								<input type = "hidden" value = "${cookiedto.count }" name = "custom_count">
+								<input type = "hidden" value = "${cookiedto.dish1 }" name = "sideDish1">
 								<img class = "barket_img" src = "${cookiedto.src1}">${cookiedto.dish1 }
 							</th>
-							<th rowspan = "6">
-								칼로리 : ${cookiedto.cal }<br>
-								탄수화물 : ${cookiedto.tan }<br>
-								단백질 : ${cookiedto.dan }<br>
-								지방 : ${cookiedto.zi }<br><br>
-								도시락 가격 : ${cookiedto.price } &nbsp; 원
+							<th rowspan = "6" style = "text-align : center">
+								<br><br><br><br><br><br><br><br><br><br>
+								칼로리 : ${cookiedto.cal }
+								<input type = "hidden" value = "${cookiedto.cal}" name = "custom_kal"><hr>
+								탄수화물 : ${cookiedto.tan }
+								<input type = "hidden" value = "${cookiedto.tan }" name = "custom_tan"><hr>
+								단백질 : ${cookiedto.dan }
+								<input type = "hidden" value = "${cookiedto.dan }" name = "custom_dan"><hr>
+								지방 : ${cookiedto.zi }
+								<input type = "hidden" value = "${cookiedto.zi }" name = "custom_zi"><hr><br>
+								도시락 가격 : ${cookiedto.price }
+								<input type = "hidden" value = "${cookiedto.price }" name = "custom_price">
 							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src2}">${cookiedto.dish2 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish2 }" name = "sideDish2">
+								<img class = "barket_img" src = "${cookiedto.src2}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish2 }
+							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src3}">${cookiedto.dish3 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish3 }" name = "sideDish3">
+								<img class = "barket_img" src = "${cookiedto.src3}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish3 }
+							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src4}">${cookiedto.dish4 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish4 }" name = "sideDish4">
+								<img class = "barket_img" src = "${cookiedto.src4}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish4 }
+							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src5}">${cookiedto.dish5 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish5 }" name = "sideDish5">
+								<img class = "barket_img" src = "${cookiedto.src5}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish5 }
+							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src6}">${cookiedto.dish6 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish6 }" name = "sideDish6">
+								<img class = "barket_img" src = "${cookiedto.src6}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish6 }
+							</th>
 						</tr>
 					</c:when>
 					<c:when test="${cookiedto.count == 6 }">
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src1}">${cookiedto.dish1 }</th>
-							<th rowspan = "7">
-								칼로리 : ${cookiedto.cal }<br>
-								탄수화물 : ${cookiedto.tan }<br>
-								단백질 : ${cookiedto.dan }<br>
-								지방 : ${cookiedto.zi }<br><br>
+							<th>
+								<img class = "barket_img" src = "${cookiedto.src1}">${cookiedto.dish1 }
+								<input type = "hidden" value = "${cookiedto.count }" name = "custom_count">
+								<input type = "hidden" value = "${cookiedto.dish1 }" name = "sideDish1">
+							</th>
+							<th rowspan = "7" style = "text-align : center">
+								<br><br><br><br><br><br><br><br><br><br><br><br>
+								칼로리 : ${cookiedto.cal }
+								<input type = "hidden" value = "${cookiedto.cal}" name = "custom_kal"><hr>
+								탄수화물 : ${cookiedto.tan }
+								<input type = "hidden" value = "${cookiedto.tan }" name = "custom_tan"><hr>
+								단백질 : ${cookiedto.dan }
+								<input type = "hidden" value = "${cookiedto.dan }" name = "custom_dan"><hr>
+								지방 : ${cookiedto.zi }
+								<input type = "hidden" value = "${cookiedto.zi }" name = "custom_zi"><hr><br>
 								도시락 가격 : ${cookiedto.price }
+								<input type = "hidden" value = "${cookiedto.price }" name = "custom_price">
 							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src2}">${cookiedto.dish2 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish2 }" name = "sideDish2">
+								<img class = "barket_img" src = "${cookiedto.src2}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish2 }
+							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src3}">${cookiedto.dish3 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish3 }" name = "sideDish3">
+								<img class = "barket_img" src = "${cookiedto.src3}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish3 }
+							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src4}">${cookiedto.dish4 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish4 }" name = "sideDish4">
+								<img class = "barket_img" src = "${cookiedto.src4}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish4 }
+							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src5}">${cookiedto.dish5 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish5 }" name = "sideDish5">
+								<img class = "barket_img" src = "${cookiedto.src5}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish5 }
+							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src6}">${cookiedto.dish6 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish6 }" name = "sideDish6">
+								<img class = "barket_img" src = "${cookiedto.src6}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish6 }
+							</th>
 						</tr>
 						<tr>
-							<th><img class = "barket_img" src = "${cookiedto.src7}">${cookiedto.dish7 }</th>
+							<th>
+								<input type = "hidden" value = "${cookiedto.dish7 }" name = "sideDish7">
+								<img class = "barket_img" src = "${cookiedto.src7}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish7 }
+							</th>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<td colspan = "2" align = "center">
-						======== 장바구니가 비어 있습니다. ========
-						</td>
+						<tr>
+							<th>
+								<br><br>
+								<img class = "barket_img" src = "${pageContext.request.contextPath }/resources/etc/multiupload/${cookiedto.src1}">&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish1 }
+								<input type = "hidden" value = "${cookiedto.count }" name = "custom_count">
+								<input type = "hidden" value = "${cookiedto.dish1 }" name = "sideDish1">
+							</th>
+							<th style = "text-align : center">
+								칼로리 : ${cookiedto.cal }
+								<input type = "hidden" value = "${cookiedto.cal}" name = "custom_kal"><hr>
+								탄수화물 : ${cookiedto.tan }
+								<input type = "hidden" value = "${cookiedto.tan }" name = "custom_tan"><hr>
+								단백질 : ${cookiedto.dan }
+								<input type = "hidden" value = "${cookiedto.dan }" name = "custom_dan"><hr>
+								지방 : ${cookiedto.zi }
+								<input type = "hidden" value = "${cookiedto.zi }" name = "custom_zi"><hr><br>
+								도시락 가격 : ${cookiedto.price }
+								<input type = "hidden" value = "${cookiedto.price }" name = "custom_price">
+							</th>
+						</tr>
 					</c:otherwise>
 					</c:choose>
 					<tr>
@@ -191,8 +267,10 @@
 					</tr>
 				</c:otherwise>
 			</c:choose>
-			</form>
 		</table>
+		</form>
+		
+		</div>
 	<script>
 	//date 타입 오늘 날짜 세팅
 	document.getElementById("input_date").value = new Date().toISOString().substring(0,10);

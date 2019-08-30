@@ -1,12 +1,11 @@
 <%@ page import="com.khfinal.mvc.member.dto.MemberDto"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<%@ include file="chat/ChatPage.jsp" %>
-
+<%@ include file="chat/ChatPage.jsp"%>
 
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -19,22 +18,18 @@
 
 <title>main</title>
 <style type="text/css">
-
 body, input, div, span, p, a, nav, li, ul, button {
-	font-family:'샘물';
+   font-family:'샘물';
 }
 
 a.nav-link{
-	color: white;
+   color: white;
 }
 
 a.nav-link:hover{
-	color: white;
-	opacity: 0.5;
+   color: white;
+   opacity: 0.5;
 }
-
-
-
 </style>
 
 
@@ -48,10 +43,10 @@ a.nav-link:hover{
 
 <script src="resources/js/mainpage.js"></script>
 
-<!-- jaewon -->
 <!-- jQuery, bootstrap CDN -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script> <!-- msie 문제 해결 -->
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<!-- msie 문제 해결 -->
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -64,40 +59,33 @@ a.nav-link:hover{
 <body>
 	<header>
 		<nav class="header navbar navbar-expand-lg fixed-top " style="margin-bottom: 0px;">
-		<div class="col-md-4">
-			<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
+			<div class="col-md-4">
+				<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
 			</div>
-			
-		<!-- search bar -->
-		<div class="col-md-4 center " style="text-align: center;">
-			<table class="pull-right search">
+			<!-- search bar -->
+			<table class=" search col-md-4 center">
 				<tr>
 					<td>
-						<div class="form-group form-inline search">
-							<input type="text" id="txt_search" style= "border-radius: 5px; width: 30rem;" />
-								<span>
-								<img alt="search" src="${pageContext.request.contextPath }/resources/bootstrap/image/searchbar.png" 
-								onclick="search()" style="width: 3rem; height: 3rem;">
-								</span>
-						
+						<div class="form-group form-inline search" style="width: 100%;">
+							<input type="text" id="txt_search" value="${txt_search }" onkeyup="searchenterkey();" style="border-radius: 5px; width: 75%;">
+							<span>
+								<img alt="search" src="${pageContext.request.contextPath }/resources/bootstrap/image/searchbar.png" onclick="search()" style="width: 3rem; height: 3rem;" class="searchbar">
+							</span>
 						</div>
 					</td>
 				</tr>
 			</table>
-		<!-- search bar -->
-		
-			<div  class="pull-right col-md-4"  style="text-align: right;">
+			<!-- search bar -->
+			<div class="pull-right col-md-4" style="text-align: right;">
 				<c:choose>
 					<c:when test="${empty logindto}">
-							<span class="loginbutton btn btn-outline-light" onclick="location.href='loginMain.do'">로그인</span>
-							<span class="insertbutton btn btn-outline-light" onclick="location.href='TermsAndConditions.do'">회원가입</span>
+						<span class="loginbutton btn btn-outline-light" onclick="location.href='loginMain.do'">로그인</span>
+						<span class="insertbutton btn btn-outline-light" onclick="location.href='TermsAndConditions.do'">회원가입</span>
 					</c:when>
 					<c:otherwise>
-							<span>안녕하세요. ${logindto.member_name }님</span>
-							<span class="mypagebutton btn btn-outline-light" onclick="location.href='mypage.do'">마이페이지</span>
-							<span class="logoutbutton btn btn-outline-light" onclick="logout('${logindto.member_id}')">로그아웃</span>
-						
-						
+						<span>안녕하세요. ${logindto.member_name }님</span>
+						<span class="mypagebutton btn btn-outline-light" onclick="location.href='mypage.do'">마이페이지</span>
+						<span class="logoutbutton btn btn-outline-light" onclick="logout('${logindto.member_id}')">로그아웃</span>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -106,158 +94,35 @@ a.nav-link:hover{
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg nav-bar-custom main_img ">
 			<div class="container">
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarResponsive" aria-controls="navbarResponsive"
-					aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item ">
-						<a class="nav-link" href="dosirak_listpaging.do">도시락 주문 <span class="sr-only">(current)</span>
-						</a></li>
-						<!-- 둘중 선택 <li class="nav-item active"><a class="nav-link" href="dosiraktest.do">도시락
-							주문 <span class="sr-only">(current)</span>
-					 	</a></li> -->
-						<li class="nav-item "><a class="nav-link" href="custom.do">커스텀 도시락
-								주문</a></li>
-						<li class="nav-item"><a class="nav-link" href="nutritiongraph.do">주간 영양정보</a>
+							<a class="nav-link" href="dosirak_listpaging.do">도시락 주문 <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="#">특가 도시락</a></li>
-						<li class="nav-item"><a class="nav-link" href="freeboard_list.do">자유 게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="eventboard_list.do">이벤트 게시판</a>
+						<li class="nav-item ">
+							<a class="nav-link" href="custom.do">커스텀 도시락 주문</a>
 						</li>
-						<li class="nav-item "><a class="nav-link" href="notice_list.do">공지사항 게시판</a>
+						<c:if test="${logindto ne null}">
+						<li class="nav-item">
+							<a class="nav-link" href="nutritiongraph.do">주간 영양정보</a>
+						</li>
+						</c:if>
+						<li class="nav-item">
+							<a class="nav-link" href="freeboard_list.do">자유 게시판</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="eventboard_list.do">이벤트 게시판</a>
+						</li>
+						<li class="nav-item ">
+							<a class="nav-link" href="notice_list.do">공지사항 게시판</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		
-	<script type="text/javascript">
-			var EndEvent = new Date('March 14, 14:29:00');
-			End_hours = EndEvent.getHours();
-			End_minutes = EndEvent.getMinutes();
-			End_seconds = EndEvent.getSeconds();
-
-			//강연시 시간을 변경할것
-			var StartEvent = new Date('March 14, 14:26:40');
-			Start_hours = StartEvent.getHours();
-			Start_minutes = StartEvent.getMinutes();
-			Start_seconds = StartEvent.getSeconds();
-
-			if(window.location.href != 'http://localhost:8787/mvc/eventboard_list.do'){
-			var EVT = setInterval("Event_Time()", 1000);
-			}
-			
-			function Event_Time() {
-				var now = new Date();
-				hours = now.getHours();
-				minutes = now.getMinutes();
-				seconds = now.getSeconds();
-
-				if (End_hours > Start_hours) {
-					if (End_hours < hours) {
-						clearInterval(EVT);
-					}
-
-					else if (End_hours == hours) {
-						if (End_minutes < minutes) {
-							clearInterval(EVT);
-						} else if (End_minutes == minutes) {
-							if (End_seconds < seconds) {
-								clearInterval(EVT);
-							} else if (End_seconds >= seconds) {
-								calculate();
-							}
-						} else if (End_minutes > minutes) {
-							calculate();
-						}
-					}
-
-					else if (End_hours > hours && hours > Start_hours) {
-						calculate();
-					}
-
-					else if (Start_hours == hours) {
-						if (Start_minutes < minutes) {
-							calculate();
-						} else if (Start_minutes == minutes) {
-							if (Start_seconds <= seconds) {
-								calculate();
-							} else if (Start_seconds > seconds) {
-
-							}
-						} else if (Start_minutes > minutes) {
-
-						}
-					}
-
-					else if (Start_hours > hours) {
-
-					}
-				}
-
-				else if (End_hours == Start_hours) {
-					if (End_hours < hours) {
-						clearInterval(EVT);
-					} else if (End_hours == hours && Start_hours == hours) {
-						if (End_minutes < minutes) {
-							clearInterval(EVT);
-						} else if (End_minutes > minutes
-								&& Start_minutes < minutes) {
-							calculate();
-						} else if (End_minutes == minutes
-								&& Start_minutes == minutes) {
-							if (End_seconds > seconds
-									&& Start_seconds < seconds) {
-								calculate();
-							} else if (End_seconds < seconds) {
-								clearInterval(EVT);
-							} else if (Start_seconds > seconds) {
-
-							}
-						} else if (End_minutes == minutes) {
-							if (End_seconds >= seconds) {
-								calculate();
-							}
-						} else if (Start_minutes == minutes) {
-							if (Start_seconds <= seconds) {
-								calculate();
-							}
-						} else if (Start_minutes > minutes) {
-
-						}
-
-					} else if (Start_hours > hours) {
-
-					}
-				}
-			}
-
-			function calculate() {
-				setTimeout(function() {
-					notify();
-				}, 100);
-				clearInterval(EVT);
-			}
-
-			function notify() {
-				if (Notification.permission !== 'granted') {
-					alert('notification is disabled');
-				} else {
-					var notification = new Notification('Event', {
-						icon : 'resources/bootstrap/image/Event.jpg',
-						body : '이벤트의 내용을 적어 주세요\n클릭시 이벤트 페이지로 이동',
-					});
-
-					notification.onclick = function() {
-						location.href = 'eventboard_list.do';
-						notification.close();
-					};
-				}
-			}
-		</script>
 	</header>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.khfinal.mvc;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khfinal.mvc.common.util.Paging;
 import com.khfinal.mvc.free.biz.FreeboardBiz;
@@ -87,7 +89,7 @@ public class FreeController {
 		MemberDto logindto = (MemberDto) session.getAttribute("logindto");
 		model.addAttribute("logindto", logindto);
 
-		return "freeboard/FreeboardInsertform";
+		return "freeboard/FreeboardInsertForm";
 	}
 
 	@RequestMapping("/freeboard_insert.do")
@@ -190,16 +192,21 @@ public class FreeController {
 	}
 
 	@RequestMapping("/com_board_insert.do")
-	public String com_board_insert(@ModelAttribute CommentDto dto,Model model) {
+	@ResponseBody
+	public Map<String, List<CommentDto>> com_board_insert(String com_content,int free_postnum,HttpSession session) {
+		Map<String, List<CommentDto>> map = new HashMap<String, List<CommentDto>>();
+		MemberDto logindto = (MemberDto) session.getAttribute("logindto");
+		
+		CommentDto dto = new CommentDto(0,free_postnum,logindto.getMember_id(),logindto.getMember_name(),com_content
+				,0,0,0,null);
 		int res = biz.com_board_insert(dto);
 		
-		model.addAttribute("free_postnum", dto.getFree_postnum());
-		
 		if (res > 0) {
-			return "redirect:freeboard_detail.do";
-		} else {
-			return "redirect:freeboard_detail.do";
-		}
+			List<CommentDto> list = biz.com_selectList(free_postnum);
+			map.put("list", list);
+		} 
+		
+		return map;
 	}
 
 	
@@ -215,31 +222,39 @@ public class FreeController {
 	}
 
 	@RequestMapping("/com_board_update.do")
-	public String com_board_update(@ModelAttribute CommentDto cmt, Model model) {
-		int res = biz.com_board_update(cmt);
+	@ResponseBody
+	public Map<String, List<CommentDto>> com_board_update(int com_num,int free_postnum,String com_content, Model model) {
+		Map<String, List<CommentDto>> map = new HashMap<String, List<CommentDto>>();
+		CommentDto dto = new CommentDto(com_num,0,"","",com_content,0,0,0,null);
+		int res = biz.com_board_update(dto);
 		
-		model.addAttribute("free_postnum", cmt.getFree_postnum());
+		if(res > 0) {
+			List<CommentDto> list = biz.com_selectList(free_postnum);
+			map.put("list", list);
+		}
+//		model.addAttribute("free_postnum", free_postnum);
 		
-		System.out.println("cmt : " + cmt);
+//		System.out.println("cmt : " + cmt);
 
-		return "redirect:freeboard_detail.do";
+		return map;
 
 
 
 	}
 
 	@RequestMapping("/com_board_delete.do")
-	public String com_board_delete(@RequestParam int com_num,@RequestParam int free_postnum,Model model) {
+	@ResponseBody
+	public Map<String, List<CommentDto>> com_board_delete(@RequestParam int com_num,int free_postnum) {
+		Map<String, List<CommentDto>> map = new HashMap<String, List<CommentDto>>();
+		
 		int res = biz.com_board_delete(com_num);
 		
-		model.addAttribute("free_postnum", free_postnum);
-		// biz.freeboard_delete(free_postnum);
 		if (res > 0) {
-			return "redirect:freeboard_detail.do";
-		} else {
-			return "redirect:freeboard_detail.do";
-		}
-	
+			List<CommentDto> list = biz.com_selectList(free_postnum);
+			map.put("list", list);
+		} 
+			
+		return map;
 
 	}
 
