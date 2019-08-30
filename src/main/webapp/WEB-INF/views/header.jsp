@@ -67,7 +67,7 @@ a.nav-link:hover{
 				<tr>
 					<td>
 						<div class="form-group form-inline search" style="width: 100%;">
-							<input type="text" id="txt_search" value="${txt_search }" onkeyup="enterkey();" style="border-radius: 5px; width: 75%;">
+							<input type="text" id="txt_search" value="${txt_search }" onkeyup="searchenterkey();" style="border-radius: 5px; width: 75%;">
 							<span>
 								<img alt="search" src="${pageContext.request.contextPath }/resources/bootstrap/image/searchbar.png" onclick="search()" style="width: 3rem; height: 3rem;" class="searchbar">
 							</span>

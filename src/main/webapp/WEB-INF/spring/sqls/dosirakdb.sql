@@ -17,8 +17,7 @@ CREATE TABLE DOSIRAK(
    GI NUMBER NOT NULL,						-- 지방
    KCAL NUMBER NOT NULL,					-- 칼로리
    MAINIMAGE CLOB,							-- 메인이미지
-   THUMBNAIL CLOB,		
-   -- 썸네일이미지
+   THUMBNAIL CLOB,						-- 썸네일이미지
    DOSIRAK_REGDATE DATE NOT NULL			-- 날짜
 );
 
