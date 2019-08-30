@@ -74,6 +74,10 @@
 	<div class="payback mint line font" style = "top : 100px; overflow: auto; width: 25rem; text-align: left; border: 1 solid #59cab7;">
     
 		<form action="kakaopay.do" method = "POST" style=" overflow: auto;">
+		<input type="hidden" name="tan" value="${dosirakdto.tan }">
+		<input type="hidden" name="dan" value="${dosirakdto.dan }">
+		<input type="hidden" name="gi" value="${dosirakdto.gi }">
+		<input type="hidden" name="kcal" value="${dosirakdto.kcal }">
 		<div class="container" id="sendDiv" >
 		<input type="hidden" name="dosirak_title" value="${dosirakdto.dosirak_title }">
 			<hr/>

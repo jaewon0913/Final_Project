@@ -102,7 +102,7 @@ var date = "";
 		//date가져오고 
 		var d = new Date();
 		date = d.getFullYear()+""+(d.getMonth()+1)+""+d.getDate()+""+d.getHours()+""+d.getMinutes()+""+d.getSeconds();
-		alert(date);
+// 		alert(date);
 		ordernumber = '${memberdto.member_id}'+date;
 		var queryStr = "?member_id=${memberdto.member_id}&ordernumber="+ordernumber +"&choe=UTF-8";
 		var googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=";
@@ -114,7 +114,7 @@ var date = "";
 	function chuan(){
 		var qr = document.getElementById("qrcode").outerHTML;
 		qr = qr.replace(/"/g,"&quot;");
-		alert(qr);
+// 		alert(qr);
 		return qr;
 	}
 	
@@ -172,7 +172,7 @@ var date = "";
           var msg = '결제에 실패하였습니다.';
           msg += '에러내용 : ' + rsp.error_msg;
       }
-      alert(msg);
+//       alert(msg);
   });
          
          

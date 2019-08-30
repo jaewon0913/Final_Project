@@ -179,6 +179,9 @@ td>a:hover {
 									
 									
 									<c:choose>
+										<c:when test="${logindto.member_id ne null }">
+											<input type="button" value="글쓰기" onclick="location.href='freeboard_insertform.do'" class="btn btn-outline-light">
+										</c:when>
 										<c:when test="${logindto.member_id eq 'admin'}">
 											<input type="button" value="글쓰기" onclick="location.href='freeboard_insertform.do'" class="btn btn-outline-light">
 											<input type="submit" value="삭제" onclick="removeChk()" class="btn btn-outline-light">
