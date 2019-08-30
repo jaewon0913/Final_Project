@@ -138,7 +138,7 @@ public class BoxorderController {
 		model.addAttribute("list", list);
 		model.addAttribute("member_id",logindto.getMember_id());
 		
-		return "member/orderresult";
+		return "member/OrderResult";
 	}
 	
 	@RequestMapping("/todayorderresult.do")
@@ -149,7 +149,7 @@ public class BoxorderController {
 		model.addAttribute("list", list);
 		model.addAttribute("member_id", member_id);
 		
-		return "member/todayorderresult";
+		return "member/TodayOrderResult";
 	}
 	@RequestMapping("/weekorderresult.do")
 	public String weekorderresult(Model model,String member_id) {
@@ -157,7 +157,7 @@ public class BoxorderController {
 		model.addAttribute("list", list);
 		model.addAttribute("member_id", member_id);
 		
-		return "member/weekorderresult";
+		return "member/WeekOrderResult";
 	}
 	@RequestMapping("/monthorderresult.do")
 	public String monthorderresult(Model model,String member_id) {
@@ -166,7 +166,7 @@ public class BoxorderController {
 		model.addAttribute("member_id", member_id);
 		
 		
-		return "member/monthorderresult";
+		return "member/MonthOrderResult";
 	}
 }
 

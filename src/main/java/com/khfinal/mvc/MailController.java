@@ -91,7 +91,7 @@ public class MailController {
 			// email ����
 			try {
 				MimeMessage msg = new MimeMessage(session);
-				msg.setFrom(new InternetAddress(user, "�ʵ�����"));
+				msg.setFrom(new InternetAddress(user, "너도나도"));
 				msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
 
 				// ���� ����
@@ -165,7 +165,7 @@ public class MailController {
 	        //email ����
 	        try {
 	            MimeMessage msg = new MimeMessage(session);
-	            msg.setFrom(new InternetAddress(user, "�ʵ�����"));
+	            msg.setFrom(new InternetAddress(user, "너도나도"));
 	            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
 	            
 	            //���� ����
