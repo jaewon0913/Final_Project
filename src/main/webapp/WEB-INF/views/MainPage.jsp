@@ -196,22 +196,56 @@ opacity: 0.5;
 <!-- -----------------공지사항 게시판-------------------------------------------- -->
 			<div class="Notice">
 				<a href="notice_list.do" class="btn">공지사항 게시판</a>
-				<ul>
-					<li>공지사항1</li>
-					<li>공지사항2</li>
-					<li>공지사항3</li>
-				</ul>
+				<c:choose>
+					<c:when test="${empty noticelist }">
+						공지사항이 없습니다.
+					</c:when>
+					<c:otherwise>
+						<table>
+							<tr>
+								<th>제목</th>
+								<th>조회수</th>
+								<th>작성일</th>
+							</tr>
+							<c:forEach items="${noticelist }" var="dto">
+								<tr>
+									<td><a href="notice_detail.do?notice_postnum=${dto.notice_postnum}">${dto.notice_title}</a></td>
+									<td>${dto.notice_views }</td>
+									<td>${dto.notice_regdate }</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
 
 <!-- -----------------공지사항 게시판-------------------------------------------- -->
 <!-- -----------------이벤트 게시판-------------------------------------------- -->
 			<div class="Notice">
 				<a href="testa.do" class="btn">자유 게시판</a>
-				<ul>
-					<li>자유</li>
-					<li>자유</li>
-					<li>자유</li>
-				</ul>
+				<c:choose>
+					<c:when test="${empty freelist }">
+						자유게시판에 작성된 글이 없습니다.
+					</c:when>
+					<c:otherwise>
+						<table>
+							<tr>
+								<th>작성자</th>
+								<th>제목</th>
+								<th>조회수</th>
+								<th>작성일</th>
+							</tr>
+							<c:forEach items="${freelist }" var="dto">
+								<tr>
+									<td>${dto.member_id }</td>
+									<td><a href="freeboard_detail.do?free_postnum=${dto.free_postnum }">${dto.free_title}</a></td>
+									<td>${dto.free_views }</td>
+									<td>${dto.free_regdate }</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			
 <!-- -----------------이벤트 게시판-------------------------------------------- -->

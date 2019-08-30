@@ -150,6 +150,9 @@
       DELETE FROM COM_BOARD WHERE FREE_POSTNUM = #{free_postnum}
    </delete>
    
+   <select id="freemainselect" resultType="FreeboardDto">
+   	SELECT * FROM FREEBOARD WHERE ROWNUM<![CDATA[<]]>=3 ORDER BY FREE_REGDATE DESC
+   </select>
 
  
 </mapper>
