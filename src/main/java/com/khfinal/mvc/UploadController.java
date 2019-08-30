@@ -88,6 +88,8 @@ public class UploadController implements ServletContextAware {
 	public String fileUpload(HttpServletRequest request, Model model, UploadFile uploadFile, BindingResult result) {
 		//	BindingResult : uploadForm.jsp 에서 modelAttribute 를 이용해 매개변수를 Bean에 binding 할 때 발생한 오류 정보를 받는다.
 		
+		System.out.println("업로드수행중...");
+		
 		//	7.	업로드 파일 데이터 저장 (FileValidator.java 로 이동)
 		//	발생하는 errors의 정보를 받기 위해 사용
 		fileValidator.validate(uploadFile, result);

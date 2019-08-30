@@ -2,9 +2,13 @@ package com.khfinal.mvc;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,11 +19,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.khfinal.mvc.dosirak.biz.DosirakBiz;
 import com.khfinal.mvc.dosirak.dto.DosirakDto;
+import com.khfinal.mvc.etc.util.CookieDto;
 import com.khfinal.mvc.etc.util.CustomOrderDto;
 import com.khfinal.mvc.member.dto.MemberDto;
 import com.khfinal.mvc.paging.Paging;
@@ -273,4 +279,43 @@ public class DosirakController {
 		model.addAttribute("dosirakdto");
 		return "payment/Dorirak_monthpay";
 	}
+	
+	@RequestMapping("/dosirakCookie.do")
+	@ResponseBody
+	public Map<String, String> cookie(HttpServletResponse response, CookieDto dto){
+		Cookie setCookie_name = new Cookie("cookieName", "일반도시락");
+		
+		Cookie setCookie_tan = new Cookie("cookieTan", dto.getTan());
+		Cookie setCookie_dan = new Cookie("cookieDan", dto.getDan());
+		Cookie setCookie_zi = new Cookie("cookieZi", dto.getZi());
+		Cookie setCookie_cal = new Cookie("cookieCal", dto.getCal());
+		Cookie setCookie_price = new Cookie("cookiePrice", dto.getPrice());
+		
+		Cookie setCookie_dish1 = new Cookie("cookieDish1", dto.getDish1());
+		Cookie setCookie_src1 = new Cookie("cookieSrc1", dto.getSrc1());
+
+		setCookie_name.setMaxAge(60*3);
+		setCookie_tan.setMaxAge(60*3);
+		setCookie_dan.setMaxAge(60*3);
+		setCookie_zi.setMaxAge(60*3);
+		setCookie_cal.setMaxAge(60*3);
+		setCookie_price.setMaxAge(60*3);
+		setCookie_dish1.setMaxAge(60*3);
+		setCookie_src1.setMaxAge(60*3);
+
+		response.addCookie(setCookie_name);
+		response.addCookie(setCookie_tan);
+		response.addCookie(setCookie_dan);
+		response.addCookie(setCookie_zi);
+		response.addCookie(setCookie_cal);
+		response.addCookie(setCookie_price);
+		response.addCookie(setCookie_dish1);
+		response.addCookie(setCookie_src1);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("success", "success");
+		
+		return map;
+	}
+	
 }

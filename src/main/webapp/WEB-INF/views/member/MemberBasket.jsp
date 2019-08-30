@@ -64,6 +64,7 @@
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish1 }
 							</th>
 							<th rowspan = "5" style = "text-align : center">
+								<br><br><br><br><br><br><br><br>
 								칼로리 : ${cookiedto.cal }
 								<input type = "hidden" value = "${cookiedto.cal}" name = "custom_kal"><hr>
 								탄수화물 : ${cookiedto.tan }

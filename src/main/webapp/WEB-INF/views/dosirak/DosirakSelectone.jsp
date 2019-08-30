@@ -69,6 +69,10 @@
 <div class="container" >
 <div class="dosirakimg" >
 <img alt="메인이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dosirakdto.mainimage}" class="doim">
+
+	<input type = "hidden" id = "dosirak_src" value = "${dosirakdto.mainimage }">
+	<input type = "hidden" id = "dosirak_name" value = "${dosirakdto.dosirak_title }">
+
 </div>
 	<div class="dosirak_info">
 	<div class="payback mint line font" style = "top : 100px; overflow: auto; width: 25rem; text-align: left; border: 1 solid #59cab7;">
@@ -99,7 +103,7 @@
 				</select>
 			</p>
 			<br /> 
-			<input type="button" value="장바구니" class="btn btn-outline-light" onclick="createCookie(${count })"/> 
+			<input type="button" value="장바구니" class="btn btn-outline-light" onclick="createCookie()"/> 
 			<input type="submit" value="결제하기" class="btn btn-outline-light" >
 		</div>
 		</form>

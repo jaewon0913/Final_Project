@@ -88,10 +88,12 @@
 
 <script>
 	function realchk(){
+		var id = "${logindto.member_id}";
+		alert(id);
+
 		var check = confirm("정말 회원탈퇴를 하시겠습니까???");
 		if(check){
-			location.href="withdrawal.do";
-			alert("회원탈퇴 되었습니다.");
+			location.href="withdrawal.do?member_id="+id;
 		}
 	}
 </script>
