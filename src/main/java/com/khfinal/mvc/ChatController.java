@@ -15,7 +15,6 @@ public class ChatController {
 	 *  아래의 코드 기준으로는 시큐리티가 적용되어서 세션의 값을 User를 이용해 불러오게 된다. 즉, 웹 소켓에서 사용하는 세션의 값은 User의 값가 동일하다.
 	 *  스프링환경에서는 시큐리티를 통한 세션 관리를 권장한다.
 	 */
-	
 	@RequestMapping("mvc/echo")
 	public ModelAndView chat(ModelAndView mv) {
 		System.out.println("실행");

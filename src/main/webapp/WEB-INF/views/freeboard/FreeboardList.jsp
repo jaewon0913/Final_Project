@@ -114,7 +114,7 @@ td>a:hover {
 			<c:choose>
 				<c:when test="${empty freeboard_list }">
 					<c:choose>
-						<c:when test="${logindto.member_id eq 'admin'}">
+						<c:when test="${logindto.member_id ne null}">
 							<input type="button" value="글쓰기" onclick="location.href='freeboard_insertform.do'" class="btn btn-outline-light">
 						</c:when>
 					</c:choose> 

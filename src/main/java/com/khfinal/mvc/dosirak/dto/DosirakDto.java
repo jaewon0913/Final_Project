@@ -152,19 +152,19 @@ public class DosirakDto {
       this.kcal = kcal;
    }
 
-   public String getmainimage() {
+   public String getMainimage() {
       return mainimage;
    }
 
-   public void setmainimage(String mainimage) {
+   public void setMainimage(String mainimage) {
       this.mainimage = mainimage;
    }
 
-   public String getthumbnail() {
+   public String getThumbnail() {
       return thumbnail;
    }
 
-   public void setthumbnail(String thumbnail) {
+   public void setThumbnail(String thumbnail) {
       this.thumbnail = thumbnail;
    }
 

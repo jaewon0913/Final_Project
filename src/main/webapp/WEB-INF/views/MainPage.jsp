@@ -266,14 +266,13 @@ opacity: 0.5;
 		</div>
 		<!-- /.row -->
 
-	</div>
 	<!-- /.container -->
 
 
 	<%@ include file="footer.jsp"%>	
 </body>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	var EndEvent = new Date('March 14, 14:29:00');
 	End_hours = EndEvent.getHours();
 	End_minutes = EndEvent.getMinutes();
@@ -325,15 +324,12 @@ opacity: 0.5;
 					if (Start_seconds <= seconds) {
 						calculate();
 					} else if (Start_seconds > seconds) {
-
 					}
 				} else if (Start_minutes > minutes) {
-
 				}
 			}
 
 			else if (Start_hours > hours) {
-
 			}
 		}
 
@@ -364,7 +360,6 @@ opacity: 0.5;
 				} else if (Start_minutes > minutes) {
 
 				}
-
 			} else if (Start_hours > hours) {
 
 			}
@@ -380,7 +375,6 @@ opacity: 0.5;
 
 	function notify() {
 		if (Notification.permission !== 'granted') {
-			alert('notification is disabled');
 		} else {
 			var notification = new Notification('Event', {
 				icon : 'resources/bootstrap/image/Event.jpg',
@@ -393,6 +387,6 @@ opacity: 0.5;
 			};
 		}
 	}
-</script> -->
+</script>
 
 </html>

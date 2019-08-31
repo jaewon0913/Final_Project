@@ -16,7 +16,7 @@ public class Scheduler {
 	@Autowired
 	private MemberBiz memberbiz;
 
-	@Scheduled(cron="0 18 12 * * *")
+	@Scheduled(cron="0 30 10 * * *")
 	public void cronTest1() {
 		MailController mail = new MailController();
 		

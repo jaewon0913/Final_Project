@@ -169,7 +169,7 @@ public class DosirakController {
 			Long fileSize = mf.getSize(); // 파일 사이즈
 			String mainimagePath = path + "/" + originFileName; // 경로
 			String mainimage = originFileName;
-			dto.setmainimage(mainimage);
+			dto.setMainimage(mainimage);
 			System.out.println("경로  : " + mainimage);
 			System.out.println("originFileName : " + originFileName);
 			System.out.println("fileSize : " + fileSize);
@@ -186,7 +186,7 @@ public class DosirakController {
 			Long fileSize = mf2.getSize(); // 파일 사이즈
 			String thumbnailPath = path + "/" + originFileName; // 경로
 			String thumbnail = originFileName;
-			dto.setthumbnail(thumbnail);
+			dto.setThumbnail(thumbnail);
 			System.out.println("경로  : " + thumbnail);
 			System.out.println("originFileName : " + originFileName);
 			System.out.println("fileSize : " + fileSize);
@@ -241,7 +241,7 @@ public class DosirakController {
 			Long fileSize = mf.getSize(); // 파일 사이즈
 			String mainimagePath = path + "/" + originFileName; // 경로
 			String mainimage = originFileName;
-			dto.setmainimage(mainimage);
+			dto.setMainimage(mainimage);
 			System.out.println("경로  : " + mainimage);
 			System.out.println("originFileName : " + originFileName);
 			System.out.println("fileSize : " + fileSize);
@@ -258,7 +258,7 @@ public class DosirakController {
 			Long fileSize = mf2.getSize(); // 파일 사이즈
 			String thumbnailPath = path + "/" + originFileName; // 경로
 			String thumbnail = originFileName;
-			dto.setthumbnail(thumbnail);
+			dto.setThumbnail(thumbnail);
 			System.out.println("경로  : " + thumbnail);
 			System.out.println("originFileName : " + originFileName);
 			System.out.println("fileSize : " + fileSize);

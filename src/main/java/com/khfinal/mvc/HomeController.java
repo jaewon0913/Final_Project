@@ -89,6 +89,8 @@ public class HomeController {
 	public String search(Model model, HttpServletRequest request, HttpServletResponse response) {
 		String text = request.getParameter("text");
 				
+		System.out.println(text);
+		
 		List<NoticeDto> noticelist = etcBiz.NoticeSelectList(text);
 		List<FreeboardDto> freelist = etcBiz.FreeSelectList(text);
 		List<DosirakDto> dosiraklist = etcBiz.DosirakSelectList(text);
