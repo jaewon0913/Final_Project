@@ -55,7 +55,7 @@
 	<select id="idChk" parameterType="map" resultType="memberdto">
 		SELECT MEMBER_ID 
 		FROM MEMBER
-		WHERE MEMBER_ID=#{member_id} AND MEMBER_ENABLED=1
+		WHERE MEMBER_ID=#{member_id}
 	</select>
 	
 	<select id="pwChk" parameterType="map" resultType="memberdto">
@@ -71,11 +71,11 @@
 	</select>
 	
 	<update id="memberWithdrawal" parameterType="map">
-		UPDATE MEMBER SET MEMBER_ENABLED=2 WHERE MEMBER_ID = #{member_id}
+		UPDATE MEMBER SET MEMBER_ENABLED=2 , MEMBER_EMAIL = '' WHERE MEMBER_ID = #{member_id}
 	</update>
 	
 	<select id="pwChangedate" resultType="memberdto">
 		SELECT * FROM MEMBER 
-		WHERE TRUNC(SYSDATE - MEMBER_PW_CHANGE) <![CDATA[>]]>= 4
+		WHERE TRUNC(SYSDATE - MEMBER_PW_CHANGE) <![CDATA[>]]>= 2
 	</select>
 </mapper>

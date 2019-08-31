@@ -22,6 +22,10 @@
 	<div class="container">
 		<c:choose>
 			<c:when test="${empty noticelist }">
+				<h1>공지사항 게시판</h1>
+				<br>
+				<p align = "center">검색된 결과가 없습니다.</p>
+				<hr/>
 			</c:when>
 			<c:otherwise>
 				<h1>공지사항 게시판</h1>
@@ -72,6 +76,10 @@
 
 		<c:choose>
 			<c:when test="${empty freelist }">
+				<h1>자유 게시판</h1>
+				<br>
+				<p align = "center">검색된 결과가 없습니다.</p>
+				<hr/>
 			</c:when>
 			<c:otherwise>
 				<h1>자유 게시판</h1>
@@ -122,6 +130,10 @@
 
 		<c:choose>
 			<c:when test="${empty dosiraklist }">
+				<h1>도시락 게시판</h1>
+				<br>
+				<p align = "center">검색된 결과가 없습니다.</p>
+				<hr/>
 			</c:when>
 			<c:otherwise>
 				<h1>도시락 게시판</h1>
@@ -134,14 +146,17 @@
 									<c:forEach items="${dosiraklist}" var="dto">
 										<div class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
 											<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'">
-												<img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${viewsdto.mainimage}" class="best3img">
-					<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
+												<img alt="test" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" class="dosirakimg">
+												<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
 												<div style="text-align: center;">
 													<p>${dto.dosirak_name}/${dto.dosirak_price}원</p>
 												</div>
 											</div>
 										</div>
 									</c:forEach>
+								<div>
+									<input type="button" value="더보기" class="btn btn-outline-light" style="float: right;" onclick="location.href='dosirak_list.do'">
+								</div>
 								</c:when>
 								<c:otherwise>
 									<c:forEach items="${dosiraklist}" var="dto" varStatus="status"
@@ -149,13 +164,16 @@
 										<div class="gallery_product col-lg-3 col-md-3 col-sm-2 col-xs-5 filter hdpe menu ">
 											<div onclick="location.href='dosirak_selectone.do?dosirak_postnum=${dto.dosirak_postnum}'">
 												<img alt="이미지" src="${pageContext.request.contextPath }/resources/etc/multiupload/${dto.mainimage}" class="dosirakimg" />
-										<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
+												<input type="hidden" name="dosirak_postnum" value="${dto.dosirak_postnum}">
 												<div style="text-align: center;">
 													<p>${dto.dosirak_name}/${dto.dosirak_price}원</p>
 												</div>
 											</div>
 										</div>
 									</c:forEach>
+								<div>
+									<input type="button" value="더보기" class="btn btn-outline-light" style="float: right;" onclick="location.href='dosirak_list.do'">
+								</div>
 								</c:otherwise>
 							</c:choose>
 						</table>
@@ -163,7 +181,6 @@
 				</div>
 			</c:otherwise>
 		</c:choose>
-		<input type="button" value="더보기" class="btn btn-outline-light" style="float: right;" onclick="location.href='dosirak_list.do'">
 	</div>
 	<!-- footer -->
 	<%@ include file="../footer.jsp"%>

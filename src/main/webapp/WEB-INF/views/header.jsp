@@ -62,6 +62,7 @@ a.nav-link:hover{
 			<div class="col-md-4">
 				<img alt="너도나도" src="${pageContext.request.contextPath }/resources/bootstrap/image/logo.png" onclick="location.href='mainpage.do'" style="width: 30rem; height: 10rem;">
 			</div>
+			
 			<!-- search bar -->
 			<table class=" search col-md-4 center">
 				<tr>
@@ -76,6 +77,7 @@ a.nav-link:hover{
 				</tr>
 			</table>
 			<!-- search bar -->
+			
 			<div class="pull-right col-md-4" style="text-align: right;">
 				<c:choose>
 					<c:when test="${empty logindto}">

@@ -31,7 +31,6 @@ public class BoxorderController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoxorderController.class);
 
-	
 	@RequestMapping("/dosirakorderinsert.do")
 	   public String dosirakorderinsert(Model model,BoxorderDto boxorderdto) {
 	      
@@ -138,7 +137,7 @@ public class BoxorderController {
 		model.addAttribute("list", list);
 		model.addAttribute("member_id",logindto.getMember_id());
 		
-		return "member/OrderResult";
+		return "member/OrderResult2";
 	}
 	
 	@RequestMapping("/todayorderresult.do")

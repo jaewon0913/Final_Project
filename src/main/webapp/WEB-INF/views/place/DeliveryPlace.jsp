@@ -75,7 +75,6 @@ margin-bottom: 5rem;
 
 		function notify() {
 			if (Notification.permission !== 'granted') {
-				alert('notification is disabled');
 			} else {
 				var notification = new Notification('배달장소 확인', {
 					icon : 'resources/bootstrap/image/map1.jpg',
