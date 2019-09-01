@@ -106,9 +106,7 @@ public class BoxorderDaoImpl implements BoxorderDao {
 			}
 //			return list;
 		}else if(list.size() != 7 && list != null) {
-//			System.out.println("%%%%%%%%%%%%%%"+list.get(0).getTan());
 			System.out.println("리스트 사이즈 : "+list.size());
-//			List<BoxorderDto> list2 = new ArrayList<BoxorderDto>();
 			int size = 7-(list.size());//list.size()==2(0,1)  size=5
 			System.out.println("그냥 사이즈 : "+size);
 			for(int i= list.size(); i<7 ;i++) {
@@ -119,7 +117,6 @@ public class BoxorderDaoImpl implements BoxorderDao {
 				dto.setKcal(0);
 				list.add(dto);
 			}
-//			return list;
 		}
 		for(int i = 0; i<7; i++) {
 			System.out.println("탄 : "+list.get(i).getTan());

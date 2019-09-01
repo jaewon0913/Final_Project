@@ -89,11 +89,9 @@ margin-left: 10%;
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',
       success: function(authObj) {
-    	  alert("성공함수");
         //setCookie("kakao_login","done",1);//쿠키생성(로그인)
         // 로그인 성공시, API를 호출합니다.
         Kakao.API.request({
-        	alert("성공2");
           url: '/v1/user/me',
           success: function(res) {//로그인되자마자 실행되는 구간
             console.log(JSON.stringify(res.kaccount_email));

@@ -156,13 +156,16 @@ function execPostCode() {
 			</tr>
 			<tr>
 				<th>도시락 받을 역</th>
-				<td><input type="text" name="member_subway" required="required"></td>
+				<td>
+					<input type="text" name="member_subway" required="required" id = "addr4">
+					<input type="button" value="지도 보기" onclick="showPopup();" class="btn btn-outline-light"/>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
 				    <div class="g-recaptcha" data-sitekey="6Lcjlq8UAAAAAIl-9rG38Ko_2AHNrSzvUe4FA0V-"></div>
 <!--     				<button id="btn" title="n">테스트 버튼</button> -->
-    				<input type="button" value="로봇이 아닙니다." id="btn" name="btn" title="n">
+    				<input type="button" value="로봇이 아닙니다." id="btn" name="btn" title="n" class="btn btn-outline-light">
 				</td>
 			</tr>
 			<tr>
@@ -196,6 +199,10 @@ $("#formtag").submit(function() {
 		}
 
 });   
+function showPopup() {
+	window.open("popup_map.do", "abc",
+			"width=700, height=600, left=100, top=50");
+}
 </script>
 </body>
 </html>

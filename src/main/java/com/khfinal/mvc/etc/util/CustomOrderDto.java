@@ -17,6 +17,15 @@ public class CustomOrderDto {
 	private String custom_time;	//	아침 or 저녁
 	private String custom_count;
 	
+	private String tan;
+	private String dan;
+	private String gi;
+	private String kcal;
+	private String dosirak_title;
+	private String dosirak_price;
+	private String dosirak_postnum;
+	private String dosirak_delivery;
+	
 	public String getCustom_price() {
 		return custom_price;
 	}
@@ -106,5 +115,53 @@ public class CustomOrderDto {
 	}
 	public void setCustom_count(String custom_count) {
 		this.custom_count = custom_count;
+	}
+	public String getDosirak_title() {
+		return dosirak_title;
+	}
+	public void setDosirak_title(String dosirak_title) {
+		this.dosirak_title = dosirak_title;
+	}
+	public String getDosirak_price() {
+		return dosirak_price;
+	}
+	public void setDosirak_price(String dosirak_price) {
+		this.dosirak_price = dosirak_price;
+	}
+	public String getDosirak_postnum() {
+		return dosirak_postnum;
+	}
+	public void setDosirak_postnum(String dosirak_postnum) {
+		this.dosirak_postnum = dosirak_postnum;
+	}
+	public String getDosirak_delivery() {
+		return dosirak_delivery;
+	}
+	public void setDosirak_delivery(String dosirak_delivery) {
+		this.dosirak_delivery = dosirak_delivery;
+	}
+	public String getTan() {
+		return tan;
+	}
+	public void setTan(String tan) {
+		this.tan = tan;
+	}
+	public String getDan() {
+		return dan;
+	}
+	public void setDan(String dan) {
+		this.dan = dan;
+	}
+	public String getGi() {
+		return gi;
+	}
+	public void setGi(String gi) {
+		this.gi = gi;
+	}
+	public String getKcal() {
+		return kcal;
+	}
+	public void setKcal(String kcal) {
+		this.kcal = kcal;
 	}
 }

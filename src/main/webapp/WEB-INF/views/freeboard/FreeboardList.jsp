@@ -11,12 +11,6 @@
    MemberDto logindto = (MemberDto) session.getAttribute("logindto");
 %>
 
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,9 +70,7 @@ $(function(){
 
 <script type="text/javascript">
    function PageMove_free(page, data) {
-      location.href = "freeboard_list.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
-      
-   
+      location.href = "freeboard_list.do?page=" + page + "&txt_search=" + $('input#txt_search').val();   
    }
 
 </script>
@@ -91,10 +83,6 @@ td>a:hover {
 	color: gray;
 }
 </style>
-
-
-
-
 <body>
 	<!-- header -->
 	<%@ include file="../header.jsp"%>
@@ -103,10 +91,10 @@ td>a:hover {
 		<div class="container col-sm-12 text-center ">
 			<table class="pull-right">
 				<tr>
-					<td colspan="5"><input type="text" id="txt_search"
-						value="${txt_search }"> <input type="button" value="검색"
-						onclick="javascript:PageMove_free(${paging.pageNo})"
-						class="btn btn-outline-light"></td>
+					<td colspan="5">
+						<input type="text" id="txt_search" value="${txt_search }"> 
+						<input type="button" class="btn btn-outline-light" value="검색" onclick="javascript:PageMove_free(${paging.pageNo})">
+					</td>
 				</tr>
 			</table>
 			<br>
