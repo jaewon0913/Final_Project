@@ -222,6 +222,9 @@ $("#comminsert").click(function(){
 					var button = $("<input>").attr("type","button").attr("value","삭제").attr("onclick","commdelete("+val.com_num+")")
 					var button2 = $("<input>").attr("type","button").attr("value","수정").attr("onclick","commUpdateForm("+val.com_num+")")
 					
+					button.addClass('btn btn-outline-light');
+					button2.addClass('btn btn-outline-light');
+					
 					th1.append("작성자");
 					td1.append(val.member_name);
 					th2.append("내용");
@@ -288,6 +291,9 @@ function commdelete(com_num){
 				var button = $("<input>").attr("type","button").attr("value","삭제").attr("onclick","commdelete("+val.com_num+")")
 				var button2 = $("<input>").attr("type","button").attr("value","수정").attr("onclick","commUpdateForm("+val.com_num+")")
 				
+				button.addClass('btn btn-outline-light');
+				button2.addClass('btn btn-outline-light');
+				
 				th1.append("작성자");
 				td1.append(val.member_name);
 				th2.append("내용");
@@ -350,10 +356,12 @@ function commUpdate(com_num){
 				var td2 = $("<td id='content"+val.com_num+"'>")
 				var td3 = $("<td>")
 				var td4 = $("<td>")
-				var button = $("<input>").attr("type","button").attr("value","삭제").attr("onclick","commdelete("+val.com_num+")")
-				var button2 = $("<input>").attr("type","button").attr("value","수정").attr("onclick","commUpdateForm("+val.com_num+")")
+				var button = $("<input>").attr("type","button").attr("value","삭제").attr("onclick","commdelete("+val.com_num+")");
+				var button2 = $("<input>").attr("type","button").attr("value","수정").attr("onclick","commUpdateForm("+val.com_num+")");
 				
-				th1.append("작성자");
+				button.addClass('btn btn-outline-light');
+				button2.addClass('btn btn-outline-light');
+				
 				td1.append(val.member_name);
 				th2.append("내용");
 				td2.append(val.com_content);
@@ -384,7 +392,6 @@ function commUpdateForm(com_num){
 	var content = $("#comm_commTextF"+com_num+"").children("#content"+com_num+"");
 	var test = $("#content"+com_num).text();
 	
-// 	var span=$("<span>");
 	var td = $("<td>").attr("colspan","5")
 	var td2 = $("<td>")
 	var th = $("<th>")
@@ -392,13 +399,11 @@ function commUpdateForm(com_num){
 	var textarea = $("<textarea>").attr("cols","80").attr("id","updatecontent"+com_num+"")
 	var button = $("<input>").attr("type","button").attr("value","수정").attr("onclick","commUpdate("+com_num+")")
 	
-// 	$("#comm_commTextF"+com_num+"").children("#content"+com_num+"").hide();
+	button.addClass('btn btn-outline-light');
+	
 	$("#comm_commTextF"+com_num+"").children().hide();
-// 	$("#comm_commTextF"+com_num+"").attr("colspan","2")
 	
 	textarea.append(test);
-// 	span.append(textarea);
-// 	span.append(button);
 	th.append("작성자")
 	td3.append("${logindto.member_id}")
 	
@@ -408,7 +413,6 @@ function commUpdateForm(com_num){
 	$("#comm_commTextF"+com_num+"").append(td3);
 	$("#comm_commTextF"+com_num+"").append(td);
 	$("#comm_commTextF"+com_num+"").append(td2);
-// 	$("#comm_commTextF"+com_num+"").attr("colspan","2").append(button);
 }
 </script>	
 

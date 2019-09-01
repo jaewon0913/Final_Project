@@ -21,6 +21,7 @@ public class CookieDto {
 	private String tan;
 	private String dan;
 	private String zi;
+	private String gi;
 	
 	private String price;
 	private String count;
@@ -183,5 +184,13 @@ public class CookieDto {
 
 	public void setCount(String count) {
 		this.count = count;
+	}
+
+	public String getGi() {
+		return gi;
+	}
+
+	public void setGi(String gi) {
+		this.gi = gi;
 	}
 }

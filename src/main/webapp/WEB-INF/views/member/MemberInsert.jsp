@@ -167,7 +167,10 @@ function execPostCode() {
 			</tr>
 			<tr>
 				<th>도시락 받을 역</th>
-				<td><input type="text" name="member_subway" required="required" id="addr4"> <input type="button" value="지도 보기" 	onclick="showPopup();" class="btn btn-outline-light"/></td>
+				<td>
+					<input type="text" name="member_subway" required="required" id="addr4">
+					<input type="button" value="지도 보기" onclick="showPopup();" class="btn btn-outline-light"/>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

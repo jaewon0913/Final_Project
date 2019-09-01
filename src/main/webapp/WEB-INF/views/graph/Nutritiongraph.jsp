@@ -62,15 +62,12 @@ x:3;
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 $(document).ready(function(){
-// 	alert("시작");
 	$.ajax({
 		url:"graph.do",
 		type:"post",
 		dataType:"json",
 		success:function(data){
-// 			alert(data.list);
 			var list = data.list;
-// 			alert(list[0]);
 			if(list[0].tan == 0){
 				alert("주문 정보가 없습니다. 주문 후 이용해주세요.");
 				location.href="mainpage.do";

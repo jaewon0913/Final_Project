@@ -71,7 +71,8 @@
 								단백질 : ${cookiedto.dan }
 								<input type = "hidden" value = "${cookiedto.dan }" name = "custom_dan"><hr>
 								지방 : ${cookiedto.zi }
-								<input type = "hidden" value = "${cookiedto.zi }" name = "custom_zi"><hr><br>
+								<input type = "hidden" value = "${cookiedto.zi }" name = "custom_zi"><hr>
+								<br>
 								도시락 가격 : ${cookiedto.price }
 								<input type = "hidden" value = "${cookiedto.price }" name = "custom_price">
 							</th>
@@ -233,6 +234,13 @@
 								<img class = "barket_img" src = "${pageContext.request.contextPath }/resources/etc/multiupload/${cookiedto.src1}">&nbsp;&nbsp;&nbsp;&nbsp;${cookiedto.dish1 }
 								<input type = "hidden" value = "${cookiedto.count }" name = "custom_count">
 								<input type = "hidden" value = "${cookiedto.dish1 }" name = "sideDish1">
+								<input type = "hidden" value = "${cookiedto.dish1 }" name = "dosirak_title">
+								<input type = "hidden" value = "${cookiedto.price }" name = "dosirak_price">
+								<input type = "hidden" value = "${cookiedto.cal}" name = "kcal">
+								<input type = "hidden" value = "${cookiedto.tan }" name = "tan">
+								<input type = "hidden" value = "${cookiedto.dan }" name = "dan">
+								<input type = "hidden" value = "${cookiedto.zi }" name = "zi">
+								<input type = "hidden" value = "${cookiedto.zi }" name = "gi">								
 							</th>
 							<th style = "text-align : center">
 								칼로리 : ${cookiedto.cal }
