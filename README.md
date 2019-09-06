@@ -21,7 +21,8 @@
 - 이승근 : Web Notification(팝업창 알림) / Kakao Map API  
 - 정민호 : 도시락 주문 게시판(CRUD) / 다중 업로드 / 마이페이지  
 - 홍유미 : 자유 게시판 (CRUD, 댓글) / 이벤트 게시판 / 기타 CSS 담당  
-- 황재원 : 도시락 커스텀 게시판(CRUD, Drag & Drop) / 장바구니 (Cookie) / Spring WebSocket / 매크로 봇 / 프로젝트 형상 관리  
+- 황재원 : 도시락 커스텀 게시판(CRUD, Drag & Drop) / 장바구니 (Cookie) / Spring WebSocket   
+/ 매크로 봇 / 프로젝트 형상 관리(git)  
   
 ### 시스템 구현  
 - OS : Window 7, 10 / Mac OS  
